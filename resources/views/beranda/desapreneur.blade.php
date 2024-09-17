@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Desa Prima</title>
+    <title>Desa Preneur</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -73,9 +73,9 @@
                     <div class="header-right1 d-flex align-items-center">
                         <!-- Social -->
                         <div class="header-social d-none d-md-block">
-                        <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
-                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                            <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                            <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
                         <!-- Search Box -->
                         <div class="search d-none d-md-block">
@@ -243,36 +243,33 @@
 </main>
 
 <footer>
-    <!-- Footer Start-->
-    <div class="footer-area footer-padding">
-        <div class="container-fluid ">
+     <!-- Footer Start -->
+     <div class="footer-area footer-padding">
+        <div class="container-fluid">
             <div class="row d-flex justify-content-between">
                 <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
-                 <div class="single-footer-caption mb-50">
-                   <div class="single-footer-caption mb-30">
-                      <!-- logo -->
-                      <div class="footer-logo mb-35">
-                       <a href="index.html"><img src="themewagon/img/logo/logo2_footer.png" alt=""></a>
-                   </div>
-                   <div class="footer-tittle">
-                       <div class="footer-pera">
-                           <p>Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla.</p>
-                       </div>
-                   </div>
-                   <!-- social -->
-                   <div class="footer-social">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <div class="single-footer-caption mb-50">
+                        <!-- Logo -->
+                        <div class="footer-logo mb-35">
+                            <a href="{{ url('/') }}">
+                                <img src="{{ asset('themewagon/img/logo/logo1.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 150px;">
+                            </a>
+                        </div>
+            
+                        <!-- Social Media Icons -->
+                        <div class="footer-social">
+                            <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                            <a href="https://www.instagram.com/kalurahan_sinduharjo"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        </div>
-    <!-- Quick Links -->
-    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+
+               <!-- Quick Links -->
+               <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
-                            <h4>Quick links</h4>
+                            <h4>Link</h4>
                             <ul>
                                 <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
                                 <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
@@ -282,61 +279,43 @@
                         </div>
                     </div>
                 </div>
-    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
-        <div class="single-footer-caption mb-50">
-            <div class="footer-tittle">
-                <h4>Shop Category</h4>
-                <ul>
-                    <li><a href="#">Image Licensin</a></li>
-                    <li><a href="#">Style Guide</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
+
+                <!-- Contact Info -->
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Kontak</h4>
+                            <ul>
+                                <li><a href="#">(0274) 882723</a></li>
+                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
-        <div class="single-footer-caption mb-50">
-            <div class="footer-tittle">
-                <h4>Pertners</h4>
-                <ul>
-                    <li><a href="#">Image Licensin</a></li>
-                    <li><a href="#">Style Guide</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
+
+    <!-- Footer-Bottom Area -->
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="footer-border">
+                <div class="row d-flex align-items-center">
+                    <div class="col-xl-12">
+                        <div class="footer-copy-right text-center">
+                            <p>
+                                Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+                                All rights reserved | Kalurahan Sinduharjo
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
-        <div class="single-footer-caption mb-50">
-            <div class="footer-tittle">
-                <h4>Get in touch</h4>
-                <ul>
-                    <li><a href="#">(0274) 882723</a></li>
-                    <li><a href="#">sinduharjomantep@gmail.com</a></li>
-                    <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-<!-- footer-bottom area -->
-<div class="footer-bottom-area">
-    <div class="container">
-        <div class="footer-border">
-           <div class="row d-flex align-items-center">
-               <div class="col-xl-12 ">
-                   <div class="footer-copy-right text-center">
-                       <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Kalurahan Sinduharjo 
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- Footer End-->
+    <!-- Footer End -->
 </footer>
 <!--? Search model Begin -->
 <div class="search-model-box">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AdminKelurahan;
 use App\Http\Controllers\AdminDesaBudaya;
+use App\Http\Controllers\Search;
 
 // Routes untuk Website
 Route::get('/', [PageController::class, 'index'])->name('home');
@@ -22,3 +23,5 @@ Route::get('/adminkelurahan', [AdminKelurahan::class, 'showDashboard'])->name('a
 // Rute untuk halaman dashboard admin budaya
 Route::get('/adminbudaya', [AdminDesaBudaya::class, 'showDashboard'])->name('admin.adminbudaya.adminbudaya');
 
+// Rute untuk search
+Route::get('/search', [Search::class, 'search'])->name('search');

@@ -208,8 +208,8 @@
 </main>
 
 <footer>
-    <!-- Footer Start -->
-    <div class="footer-area footer-padding">
+     <!-- Footer Start -->
+     <div class="footer-area footer-padding">
         <div class="container-fluid">
             <div class="row d-flex justify-content-between">
                 <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
@@ -230,8 +230,8 @@
                     </div>
                 </div>
 
-                <!-- Quick Links -->
-                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+               <!-- Quick Links -->
+               <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
                             <h4>Link</h4>

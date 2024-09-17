@@ -3,110 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Produk</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
         }
 
-        .product-details {
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .product-detail {
+            background-color: #fff;
+            border-radius: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-images {
+            width: 45%; /* Adjust width for images */
+            margin-right: 20px;
+        }
+
+        .product-images img {
+            width: 100%;
+            height: auto;
+            max-width: 300px; /* Limit max width for larger screens */
+            border-radius: 10px;
+            object-fit: contain; /* Ensure the image fits properly */
+        }
+
+        .product-info {
+            width: 50%; /* Adjust width for product info */
+        }
+
+        .product-info h2 {
+            color: #444;
+        }
+
+        .product-info h3 {
+            color: #888;
+            font-weight: normal;
+        }
+
+        .product-info .price {
+            font-size: 24px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .product-info .description {
+            margin: 15px 0;
+            color: #777;
+        }
+
+        .product-info button {
+            background-color: #17a2b8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product-info button:hover {
+            background-color: #138496;
+        }
+
+        .social-icons {
             margin-top: 20px;
         }
 
-        .product-img {
-            width: 90%;
-            height: 250px;
+        .social-icons a {
+            color: #555;
+            margin-right: 10px;
+            font-size: 18px;
         }
 
-        .btn-buy {
-            background-color: #5e2ced;
-            color: #fff;
-            font-weight: bold;
+        .social-icons a:hover {
+            color: #000;
         }
 
-        .btn-buy:hover {
-            background-color: #471bb0;
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .product-images {
+                width: 50%; /* Slightly wider on tablet size */
+            }
+
+            .product-info {
+                width: 100%;
+                margin-top: 20px;
+            }
         }
 
-        .product-title {
-            font-size: 2rem;
-            font-weight: bold;
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-images, .product-info {
+                width: 100%;
+                margin: 0;
+            }
+
+            .product-images img {
+                width: 90%; /* Make image smaller on mobile */
+                max-width: 250px; /* Limit max width */
+                height: auto;
+            }
+
+            .product-info {
+                margin-top: 20px;
+                text-align: center; /* Center text for mobile */
+            }
         }
 
-        .price {
-            color: #5e2ced;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+        @media (max-width: 480px) {
+            .product-images img {
+                width: 80%; /* Reduce image size further for smaller screens */
+                max-width: 200px; /* Limit max width */
+            }
 
-        .product-description {
-            margin-top: 20px;
+            .product-info {
+                font-size: 14px; /* Smaller text size on very small screens */
+            }
+
+            .product-info button {
+                width: 100%;
+                padding: 8px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container product-details">
-    <div class="row">
-        <!-- Product Image Slider -->
-        <div class="col-md-6">
-            <div id="productImageCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" class="d-block product-img" alt="Produk 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('themewagon/img/desaprima/produk2.jpeg') }}" class="d-block product-img" alt="Produk 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('themewagon/img/desaprima/produk3.jpeg') }}" class="d-block product-img" alt="Produk 3">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#productImageCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#productImageCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+<div class="container">
+    <div class="product-detail">
+        <!-- Product Images Slider -->
+        <div class="product-images">
+            <div><img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 1"></div>
+            <div><img src="{{ asset('themewagon/img/desaprima/produk2.jpeg') }}" alt="Produk 2"></div>
+            <div><img src="{{ asset('themewagon/img/desaprima/produk3.jpeg') }}" alt="Produk 3"></div>
         </div>
-        
-        <!-- Product Info -->
-        <div class="col-md-6">
-            <h1 class="product-title">Briza Brownis</h1>
-            <p class="price">Rp 35.000 - Rp 100.000</p>
 
-
-            <div class="sizes">
-                <h5>Varian:</h5>
-                <select class="form-select w-50">
-                    <option>Coklat</option>
-                    <option>Keju</option>
-                </select>
+        <!-- Product Information -->
+        <div class="product-info">
+            <h3> Briza Brownies </h3>
+            <h2>Coklat</h2>
+            <p class="price">Rp 100.000</p>
+            <p>Adidas Footwear</p>
+            <div class="description">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
             </div>
-
-            <!-- Description Section -->
-            <div class="description-section mt-4">
-                <p><b>Produk dari kelompok</b> : Sindu Jaya Kreatif</p>
-                <p><b>Alamat</b> : Jalan Kaliurang</p>
-            </div>
-
-            <button class="btn btn-buy mt-4">Beli Sekarang</button>
+            <button>BELI</button>
         </div>
-    </div>
-
-    <!-- Product Description -->
-    <div class="product-description mt-5">
-        <h4>Product Description</h4>
-        <p>
-            Dibuat dengan coklat yang berkualitas
-        </p>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Slick Slider Script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.product-images').slick({
+            dots: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            prevArrow: '<button class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+            nextArrow: '<button class="slick-next"><i class="fas fa-chevron-right"></i></button>',
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        dots: true
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
 </body>
 </html>

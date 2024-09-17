@@ -430,10 +430,10 @@
                 </div>
 
                <!-- Quick Links -->
-			   <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+               <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
-                            <h4>Quick links</h4>
+                            <h4>Link</h4>
                             <ul>
                                 <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
                                 <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
@@ -448,7 +448,7 @@
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
-                            <h4>Get in touch</h4>
+                            <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
                                 <li><a href="#">sinduharjo@gmail.com</a></li>

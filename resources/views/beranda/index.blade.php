@@ -86,17 +86,17 @@
 
                            
                             <!-- Search Box -->
-                            <div class="search d-none d-md-block">
-                                <ul class="d-flex align-items-center">
-                                    <li class="mr-15">
-                                        <div class="nav-search search-switch">
-                                            <i class="ti-search"></i>
-                                        </div>
-                                    </li>
+                            <div class="header-search d-flex align-items-center" >
+                            <form class="search-form" method="GET" action="http://127.0.0.1:8000/search">
+                                 <div class="form-floating mb-0">
+                                    <input id="search-form" type="text" class="form-control" name="keyword" value="" placeholder="Search">
                                     
-                                </ul>
+                                </div>
+                            </form>
                             </div>
                         </div>
+
+
                         <!-- Mobile Menu -->
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -125,15 +125,13 @@
                     <a href="/signup"><i class="fas fa-user-plus"></i></a>
                     </div>
                     <!-- Search Box -->
-                    <div class="search d-block d-md-none" >
-                        <ul class="d-flex align-items-center">
-                            <li class="mr-15">
-                                <div class="nav-search search-switch">
-                                    <i class="ti-search"></i>
+                    <div class="header-search d-block d-md-none" >
+                            <form class="search-form" method="GET" action="http://127.0.0.1:8000/search">
+                                 <div class="form-floating mb-0">
+                                    <input id="search-form" type="text" class="form-control" name="keyword" value="" placeholder="Search">
+                                    
                                 </div>
-                            </li>
-                            
-                        </ul>
+                            </form>
                     </div>
                 </div>
                 <!-- /End mobile  Menu-->
@@ -379,7 +377,7 @@
     <!-- Footer Start -->
     <div class="footer-area footer-padding">
         <div class="container-fluid">
-            <div class="row d-flex justify-content-between">
+            <div class="row d-flex justify-content-around"> 
                 <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
                     <div class="single-footer-caption mb-50">
                         <!-- Logo -->
@@ -402,7 +400,7 @@
                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
-                            <h4>Quick links</h4>
+                            <h4>Link</h4>
                             <ul>
                                 <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
                                 <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
@@ -417,7 +415,7 @@
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
-                            <h4>Get in touch</h4>
+                            <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
                                 <li><a href="#">sinduharjo@gmail.com</a></li>
