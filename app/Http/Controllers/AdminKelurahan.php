@@ -11,6 +11,13 @@ class AdminKelurahan extends Controller
     {
         return view('admin.adminkelurahan.adminkelurahan'); 
     }
-
+    public function chartjs()
+    {
+        return view('admin.adminkelurahan.charts.chartjs'); // Mengarah ke resources/views/beranda/shop.blade.php
+    }
+    public function basic_elements()
+    {
+        return view('admin.adminkelurahan.forms.basic_elements'); // Mengarah ke resources/views/beranda/shop.blade.php
+    }
     // Method lain bisa ditambahkan sesuai kebutuhan
 }
