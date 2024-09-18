@@ -114,37 +114,72 @@
         <!-- Header End -->
     </header>
     <!-- header end -->
-    <main>
-        <!-- breadcrumb Start-->
-        <div class="page-notification">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                                <li class="breadcrumb-item"><a href="#">Desa Budaya</a></li> 
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- listing Area Start -->
         <div class="category-area">
     <div class="container">
         <div class="row">
-            <div class="col-xl-7 col-lg-8 col-md-10 mx-auto"> <!-- mx-auto untuk membuat posisi di tengah -->
-                <div class="section-tittle mb-50 text-center">
-                    <h2 style="width: 100%; word-wrap: break-word;">DESA BUDAYA SINDUHARJO</h2> <!-- width untuk memperpanjang judul -->
-                    <p style="text-align: justify;">
-                         
-                    </p>
-                </div>
-            </div>
-        </div>
+        
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <li class="breadcrumb-item"><a href="#">Desa Budaya</a></li> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .banner {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(to bottom, #add8e6, #00008b);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .banner h1 {
+            font-size: 50px;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+    </style>
+
+<body>
+    <div class="banner">
+        <h1>Desa Budaya Mandiri</h1>
+        <div class="silhouette"></div>
+        <div class="batik left"></div>
+        <div class="batik right"></div>
     </div>
+</body>
+</html>
+
 </div>
+</div>
+</div>
+
+<!-- breadcrumb Start-->
+<div class="page-notification">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb justify-content-center">
+                                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li> 
+                                        
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
     <div class="row"></div>
         <!--? Left content -->

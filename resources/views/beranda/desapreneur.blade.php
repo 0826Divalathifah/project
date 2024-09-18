@@ -99,23 +99,6 @@
         <!-- Header End -->
     </header>
     <!-- header end -->
-    <main>
-        <!-- breadcrumb Start-->
-        <div class="page-notification">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                                <li class="breadcrumb-item"><a href="#">Desa Prima</a></li> 
-                                
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
         <!-- listing Area Start -->
         <div class="category-area">
             <div class="container">
@@ -124,6 +107,24 @@
                         <div class="section-tittle mb-50">
                             <h2>DESA PRIMA </h2>
                             <p>Mewujudkan kesejahteraan perempuan melalui Desa Prima Mandiri Budaya</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- breadcrumb Start-->
+                <div class="page-notification">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb justify-content-center">
+                                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li> 
+                                        
+                                    </ol>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>

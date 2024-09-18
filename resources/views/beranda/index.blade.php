@@ -86,14 +86,14 @@
 
                            
                             <!-- Search Box -->
-                            <div class="header-search d-flex align-items-center" >
+                            <!--<div class="header-search d-flex align-items-center" >
                             <form class="search-form" method="GET" action="http://127.0.0.1:8000/search">
                                  <div class="form-floating mb-0">
                                     <input id="search-form" type="text" class="form-control" name="keyword" value="" placeholder="Search">
                                     
                                 </div>
                             </form>
-                            </div>
+                            </div>-->
                         </div>
 
 
@@ -125,14 +125,14 @@
                     <a href="/signup"><i class="fas fa-user-plus"></i></a>
                     </div>
                     <!-- Search Box -->
-                    <div class="header-search d-block d-md-none" >
+                    <!--<div class="header-search d-block d-md-none" >
                             <form class="search-form" method="GET" action="http://127.0.0.1:8000/search">
                                  <div class="form-floating mb-0">
                                     <input id="search-form" type="text" class="form-control" name="keyword" value="" placeholder="Search">
                                     
                                 </div>
                             </form>
-                    </div>
+                    </div>-->
                 </div>
                 <!-- /End mobile  Menu-->
 
@@ -159,7 +159,7 @@
                     </div>
                     <!-- Single -->
                     <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider3.jpg') }}'); 
+                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}');
                                 background-size: cover; 
                                 background-position: center; 
                                 background-repeat: no-repeat; 
@@ -168,54 +168,16 @@
                     <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption 
+                                    <!-- Hero Caption -->
                                     <div class="hero__caption">
-                                        <h1>DESA<br>PRIMA</h1>
-                                        <a href="{{ url('/desaprima') }}" class="btn">Selengkapnya</a>
-                                    </div>-->
+                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
+                                        <a href="{{ url('/desabudaya') }}" class="btn">Selengkapnya</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Single -->
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider2.jpg') }}'); 
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 300px;">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption 
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>PREUNER</h1>
-                                        <a href="{{ url('/desapreuner') }}" class="btn">Selengkapnya</a>
-                                    </div>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider3.jpg') }}'); 
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 300px;">
-                    <!-- Single -->
-                    <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption 
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>WISATA</h1>
-                                        <a href="{{ url('/desawisata') }}" class="btn">Selengkapnya</a>
-                                    </div>-->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    
             </div>
         </div>
        
@@ -249,63 +211,6 @@
         </div> -->
         
 
-<!--? Popular Locations Start 01-->
-
-<!--?<div class="popular-product pt-50">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="single-product mb-50">
-                    <div class="location-img">
-                        <img src="{{ asset('themewagon/img/popular/popular1.jpg') }}" alt="">
-                    </div>
-                    <div class="location-details">
-                        <p><a href="{{ url('/detail_kesenian') }}">Nama Budaya</a></p>
-                        <a href="{{ url('/detail_kesenian') }}"class="btn">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="single-product mb-50">
-                    <div class="location-img">
-                        <img src="{{ asset('themewagon/img/popular/popular1.jpg') }}" alt="">
-                    </div>
-                    <div class="location-details">
-                        <p><a href="{{ url('/detail_kesenian') }}">Nama Kesenian</a></p>
-                        <a href="{{ url('/detail_kesenian') }}"class="btn">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="single-product mb-50">
-                    <div class="location-img">
-                        <img src="{{ asset('themewagon/img/popular/popular2.jpg') }}" alt="">
-                    </div>
-                    <div class="location-details">
-                        <p><a href="{{ url('/detail_kesenian') }}">Nama Kesenian</a></p>
-                        <a href="{{ url('/detail_kesenian') }}"class="btn">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="single-product mb-50">
-                    <div class="location-img">
-                        <img src="{{ asset('themewagon/img/popular/popular2.jpg') }}" alt="">
-                    </div>
-                    <div class="location-details">
-                        <p><a href="{{ url('/detail_kesenian') }}">Nama Kesenian</a></p>
-                        <a href="{{ url('/detail_kesenian') }}"class="btn">Selengkapnya</a>
-                    </div>
-                </div>
-            </div>
-
-            
-
-        </div>
-    </div>
-</div> -->
-<!-- Popular Locations End -->
 
 <!--? collection -->
 

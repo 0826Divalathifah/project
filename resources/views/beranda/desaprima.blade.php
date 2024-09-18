@@ -150,95 +150,107 @@
                     
                     <div class="col-xl-9 col-lg-9 col-md-8 ">
                         <!--? New Arrival Start -->
-                        <div class="new-arrival new-arrival2">
-                            <div class="row">
-
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
-                                        </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
+                        <div class="cards-wrapper">
+                        <div class="card">
+                            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
+                            <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                
+                                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
                             </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk2.png') }}" alt=""style="width: 90%; height: 250px;">
-
-                                        </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
                         </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
-                                        </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
+                                <p class="card-text"><span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span></p>
+                                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text"><span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span></p>
+                                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
 
-                                        </div>
-                                        <div class="popular-caption">
-                                            <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                            <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                        </div>
-                                </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
+                    <!-- Custom Styles for Card Slider -->
+                    <style>
+                    /* Wrapper for cards */
+                    .cards-wrapper {
+                        display: flex;
+                        overflow-x: scroll;
+                        scroll-snap-type: x mandatory;
+                        gap: 15px;
+                        padding: 20px;
+                    }
 
-                                        </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
-            </div>
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
+                    .card {
+                        min-width: 300px;
+                        max-width: 320px;
+                        height: 400px; /* Adjusting height */
+                        flex: 0 0 auto;
+                        scroll-snap-align: start;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        border-radius: 8px;
+                        transition: transform 0.3s ease-in-out;
+                    }
 
-                                        </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
-        </div>
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
+                    .card img {
+                        width: 100%;
+                        height: 200px; /* Adjusting image height */
+                        object-fit: cover;
+                        border-top-left-radius: 8px;
+                        border-top-right-radius: 8px;
+                    }
 
-                                        </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
-    </div>
-</div>
-</div>
+                    .card-body {
+                        padding: 15px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        height: 100%; /* Ensure content fits within card height */
+                    }
+
+                    .card:hover {
+                        transform: scale(1.05);
+                    }
+
+                    /* Styling for smaller screens */
+                    @media (max-width: 768px) {
+                        .cards-wrapper {
+                            padding: 10px;
+                            gap: 10px;
+                        }
+                        .card {
+                            min-width: 250px;
+                            height: 350px; /* Adjust height for smaller screens */
+                        }
+
+                        .card img {
+                            height: 150px; /* Adjust image height */
+                        }
+                    }
+
+                    @media (max-width: 480px) {
+                        .card {
+                            min-width: 200px;
+                            height: 320px; /* Adjust height for mobile screens */
+                        }
+
+                        .card img {
+                            height: 130px; /* Adjust image height */
+                        }
+                    }
+                </style>
+                    </div>
+                    </div>
+                    </div>
 <!-- listing-area Area End -->
 
 </main>

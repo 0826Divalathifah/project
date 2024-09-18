@@ -169,7 +169,7 @@
             <div class="description">
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
             </div>
-            <button>BELI</button>
+            <button><a href="{{ url('/transaksi') }}">Beli</a></button>
         </div>
     </div>
 </div>
