@@ -145,7 +145,7 @@
               </a>
               <div class="collapse" id="form-elements">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="{{ asset('pages/forms/basic_elements.html') }}">Basic Elements</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ asset('pages/forms/basic_elements') }}">Basic Elements</a></li>
                 </ul>
               </div>
             </li>
@@ -157,7 +157,7 @@
               </a>
               <div class="collapse" id="charts">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/charts/chartjs.html') }}">ChartJs</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/charts/chartjs') }}">ChartJs</a></li>
                 </ul>
               </div>
             </li>

@@ -46,11 +46,11 @@
                 <div class="menu-wrapper d-flex align-items-center justify-content-between">
                     <div class="header-left d-flex align-items-center">
                         <!-- Logo -->
+                        <!-- Logo -->
                         <div class="logo">
                             <a href="{{ url('/') }}">
-                            <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="Logo Kabupaten Sleman" style="width: 65px; height: auto;">
-</a>
-                        </div>
+                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                                </a></div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
@@ -259,27 +259,27 @@
     <!-- Footer Start -->
     <div class="footer-area footer-padding">
         <div class="container-fluid">
-            <div class="row d-flex justify-content-between">
-                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
+            <div class="row d-flex justify-content-around">
+                <!-- Logo and Social Media -->
+                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8 d-flex justify-content-center">
                     <div class="single-footer-caption mb-50">
                         <!-- Logo -->
-                        <div class="footer-logo mb-35">
+                        <div class="footer-logo mb-35" style="text-align: right;">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo1.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 150px;">
+                                <img src="{{ asset('themewagon/img/logo/logo_footer.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 120px;">
                             </a>
                         </div>
-            
                         <!-- Social Media Icons -->
                         <div class="footer-social">
-                            <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
-                            <a href="https://www.instagram.com/kalurahan_sinduharjo"><i class="fab fa-instagram"></i></a>
+                            <a href="https://sinduharjosid.slemankab.go.id/first" class="mr-2"><i class="fas fa-globe"></i></a>
+                            <a href="https://www.instagram.com/kalurahan_sinduharjo" class="mr-2"><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
 
-               <!-- Quick Links -->
-               <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+                <!-- Quick Links -->
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
                             <h4>Link</h4>
@@ -295,7 +295,7 @@
 
                 <!-- Contact Info -->
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
-                    <div class="single-footer-caption mb-50">
+                    <div class="single-footer-caption mb-35" style= "text-align: left;">
                         <div class="footer-tittle">
                             <h4>Kontak</h4>
                             <ul>
@@ -306,7 +306,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -330,6 +329,7 @@
     </div>
     <!-- Footer End -->
 </footer>
+
 <!--? Search model Begin -->
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">

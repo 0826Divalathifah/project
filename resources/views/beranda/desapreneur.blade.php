@@ -45,12 +45,11 @@
             <div class="container-fluid">
                 <div class="menu-wrapper d-flex align-items-center justify-content-between">
                     <div class="header-left d-flex align-items-center">
-                        <!-- Logo -->
-                        <div class="logo">
+                         <!-- Logo -->
+                         <div class="logo">
                             <a href="{{ url('/') }}">
-                            <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="Logo Kabupaten Sleman" style="width: 65px; height: auto;">
-</a>
-                        </div>
+                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                                </a> </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
@@ -98,176 +97,222 @@
         </div>
         <!-- Header End -->
     </header>
-    <!-- header end -->
-        <!-- listing Area Start -->
-        <div class="category-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-7 col-lg-8 col-md-10">
-                        <div class="section-tittle mb-50">
-                            <h2>DESA PRIMA </h2>
-                            <p>Mewujudkan kesejahteraan perempuan melalui Desa Prima Mandiri Budaya</p>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- breadcrumb Start-->
-                <div class="page-notification">
+    <main>
+                <!-- listing Area Start -->
+                <div class="category-area">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb justify-content-center">
-                                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li> 
-                                        
-                                    </ol>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
-                    <!--? Left content -->
-                    <div class="col-xl-3 col-lg-3 col-md-4 ">
-                        <!-- Job Category Listing start -->
-                        <div class="category-listing mb-50">
-                            <!-- single one -->
-                            <div class="single-listing">
-                                <!-- Select City items start -->
-                                <div class="select-job-items2">
-                                    <select name="select2">
-                                        <option value="">Category</option>
-                                        <option value="">Makanan dan Minuman</option>
-                                        <option value="">Kerajinan dan Aksesoris</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Job Category Listing End -->
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <style>
+        /* Styling for the banner */
+                .banner-container {
+                    position: relative;
+                    text-align: center;
+                    color: white;
+                    width: 100%; /* Full width */
+                    height: 400px; /* Adjust height as needed */
+                    background: url('/path_to_image/image.png') no-repeat center center/cover;
+                }
+
+                .banner-overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+                }
+
+                .banner-text {
+                    position: relative;
+                    z-index: 2;
+                    font-size: 48px;
+                    font-weight: bold;
+                    letter-spacing: 3px;
+                    text-transform: uppercase;
+                    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+                    margin-top: 150px; /* To vertically center text */
+                }
+
+                /* Styling for the breadcrumb */
+                .page-notification {
+                    margin-top: 20px; /* Distance between banner and breadcrumb */
+                    display: flex;
+                    justify-content: center; /* Horizontally center the breadcrumb */
+                }
+
+                .breadcrumb {
+                    position: center;
+                    z-index: 2;
+                    margin-top: 20px;
+                    font-size: 18px;
+                    color: #f0f0f0;
+                }
+                </style>
+
+        <!-- Banner Section -->
+        <div class="banner-container">
+                        <div class="banner-overlay"></div>
+                        <div class="banner-text">Desa Budaya</div>
                     </div>
-                    <!--?  Right content -->
-                    <div class="col-xl-9 col-lg-9 col-md-8 ">
-                        <!--? New Arrival Start -->
-                        <div class="new-arrival new-arrival2">
-                            <div class="row">
 
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
+                    <!-- Breadcrumb Section -->
+                            <!--<div class="page-notification">
+                                <div class="container">
+                                    <div class="row justify-content-center"> <!-- Pastikan row juga diatur untuk center -->
+                                        <div class="col-lg-24"> <!-- Ubah lebar kolom untuk memastikan breadcrumb bisa diatur dengan benar -->
+                                            <nav aria-label="breadcrumb">
+                                                <ol class="breadcrumb justify-content-center">
+                                                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                                                    <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
+                                                </ol>
+                                            </nav>
                                         </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
                                     </div>
                                 </div>
+                            </div>
+
+                    <div class="row">
+                            <!--? Left content -->
+                            <div class="col-xl-3 col-lg-3 col-md-4 ">
+                                <!-- Job Category Listing start -->
+                                <div class="category-listing mb-50">
+                                    <!-- single one -->
+                                    <div class="single-listing">
+                                        <!-- Select City items start -->
+                                        <div class="select-job-items2">
+                                            <select name="select2">
+                                                <option value="">Category</option>
+                                                <option value="">Makanan dan Minuman</option>
+                                                <option value="">Kerajinan dan Aksesoris</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Job Category Listing End -->
+                            </div>
+                            <!--?  Right content -->
+                            <div class="col-xl-9 col-lg-9 col-md-8 ">
+                                <!--? New Arrival Start -->
+                                <div class="new-arrival new-arrival2">
+                                    <div class="row">
+
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="single-new-arrival mb-50 text-center">
+                                                <div class="popular-img">
+                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
+
+                                                </div>
+                                                <div class="popular-caption">
+                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
+                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="single-new-arrival mb-50 text-center">
+                                                <div class="popular-img">
+                                                <img src="{{ asset('themewagon/img/desaprima/produk2.png') }}" alt=""style="width: 90%; height: 250px;">
+
+                                                </div>
+                                                <div class="popular-caption">
+                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
+                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="single-new-arrival mb-50 text-center">
+                                                <div class="popular-img">
+                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
+
+                                                </div>
+                                                <div class="popular-caption">
+                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
+                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                                            </div>
+                                        </div>
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk2.png') }}" alt=""style="width: 90%; height: 250px;">
+                                            <div class="single-new-arrival mb-50 text-center">
+                                                <div class="popular-img">
+                                                    <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
 
+                                                </div>
+                                                <div class="popular-caption">
+                                                    <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
+                                                    <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                                                </div>
                                         </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
+                                            <div class="single-new-arrival mb-50 text-center">
+                                                <div class="popular-img">
+                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
 
+                                                </div>
+                                                <div class="popular-caption">
+                                                <h3><a href="{{ url('detail_produk') }}">Briza Brownis</a></h3>
+                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                                            </div>
                                         </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="single-new-arrival mb-50 text-center">
+                                                <div class="popular-img">
+                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
 
+                                                </div>
+                                                <div class="popular-caption">
+                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
+                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                                            </div>
                                         </div>
-                                        <div class="popular-caption">
-                                            <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                            <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                        </div>
-                                </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
+                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="single-new-arrival mb-50 text-center">
+                                                <div class="popular-img">
+                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
 
+                                                </div>
+                                                <div class="popular-caption">
+                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
+                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                                            </div>
                                         </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
             </div>
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
-                                        </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
         </div>
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                    <div class="single-new-arrival mb-50 text-center">
-                                        <div class="popular-img">
-                                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
-                                        </div>
-                                        <div class="popular-caption">
-                                         <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                         <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                    </div>
-                                </div>
-    </div>
-</div>
-</div>
-<!-- listing-area Area End -->
-
+        </div>
+        <!-- listing-area Area End -->
 </main>
 
 <footer>
-     <!-- Footer Start -->
-     <div class="footer-area footer-padding">
+    <!-- Footer Start -->
+    <div class="footer-area footer-padding">
         <div class="container-fluid">
-            <div class="row d-flex justify-content-between">
-                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
+            <div class="row d-flex justify-content-around">
+                <!-- Logo and Social Media -->
+                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8 d-flex justify-content-center">
                     <div class="single-footer-caption mb-50">
                         <!-- Logo -->
-                        <div class="footer-logo mb-35">
+                        <div class="footer-logo mb-35" style="text-align: right;">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo1.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 150px;">
+                                <img src="{{ asset('themewagon/img/logo/logo_footer.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 120px;">
                             </a>
                         </div>
-            
                         <!-- Social Media Icons -->
                         <div class="footer-social">
-                            <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
-                            <a href="https://www.instagram.com/kalurahan_sinduharjo"><i class="fab fa-instagram"></i></a>
+                            <a href="https://sinduharjosid.slemankab.go.id/first" class="mr-2"><i class="fas fa-globe"></i></a>
+                            <a href="https://www.instagram.com/kalurahan_sinduharjo" class="mr-2"><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
 
-               <!-- Quick Links -->
-               <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+                <!-- Quick Links -->
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
                             <h4>Link</h4>
@@ -283,7 +328,7 @@
 
                 <!-- Contact Info -->
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
-                    <div class="single-footer-caption mb-50">
+                    <div class="single-footer-caption mb-35" style= "text-align: left;">
                         <div class="footer-tittle">
                             <h4>Kontak</h4>
                             <ul>
@@ -294,7 +339,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -318,6 +362,7 @@
     </div>
     <!-- Footer End -->
 </footer>
+
 <!--? Search model Begin -->
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">

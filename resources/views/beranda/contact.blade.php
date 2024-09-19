@@ -47,11 +47,12 @@
                 <div class="container-fluid">
                     <div class="menu-wrapper d-flex align-items-center justify-content-between">
                         <div class="header-left d-flex align-items-center">
-                            <!-- Logo -->
-                            <div class="logo">
+                             <!-- Logo -->
+                             <div class="logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="Logo Kabupaten Sleman" style="width: 65px; height: auto;">
-</a>
+                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                                </a>
+
                             </div>
                             <!-- Main-menu -->
                             <div class="main-menu  d-none d-lg-block">

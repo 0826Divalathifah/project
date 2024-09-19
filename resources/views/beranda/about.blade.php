@@ -171,12 +171,12 @@
             <div class="row d-flex justify-content-between">
                 <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
                     <div class="single-footer-caption mb-50">
-                        <!-- Logo -->
-                        <div class="footer-logo mb-35">
+                         <!-- Logo -->
+                         <div class="logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo1.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 150px;">
-                            </a>
-                        </div>
+                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                                </a>
+                            </div>
             
                         <!-- Social Media Icons -->
                         <div class="footer-social">

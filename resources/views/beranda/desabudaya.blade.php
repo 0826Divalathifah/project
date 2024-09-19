@@ -59,12 +59,11 @@
             <div class="container-fluid">
                 <div class="menu-wrapper d-flex align-items-center justify-content-between">
                     <div class="header-left d-flex align-items-center">
-                        <!-- Logo -->
-                        <div class="logo">
+                         <!-- Logo -->
+                         <div class="logo">
                             <a href="{{ url('/') }}">
-                            <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="Logo Kabupaten Sleman" style="width: 65px; height: auto;">
-</a>
-                        </div>
+                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                                </a></div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
@@ -113,121 +112,97 @@
         </div>
         <!-- Header End -->
     </header>
-    <!-- header end -->
-        <!-- listing Area Start -->
-        <div class="category-area">
-    <div class="container">
-        <div class="row">
-        
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <li class="breadcrumb-item"><a href="#">Desa Budaya</a></li> 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .banner {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(to bottom, #add8e6, #00008b);
+    <main>
+        <!-- header end -->
+            <!-- listing Area Start -->
+            <div class="category-area">
+        <div class="container">
+            <div class="row">
+            
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        /* Styling for the banner */
+        .banner-container {
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
             text-align: center;
+            color: white;
+            height: 400px;
+            background: url('path_to_image/image.png') no-repeat center center/cover;
         }
-        .banner h1 {
-            font-size: 50px;
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+        }
+
+        .banner-text {
+            position: relative;
+            z-index: 2;
+            font-size: 48px;
             font-weight: bold;
-            z-index: 1;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            margin-top: 150px; /* To vertically center text */
         }
-        
+
+        .breadcrumb {
+            position: relative;
+            z-index: 2;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #f0f0f0;
+        }
     </style>
 
-<body>
-    <div class="banner">
-        <h1>Desa Budaya Mandiri</h1>
-        <div class="silhouette"></div>
-        <div class="batik left"></div>
-        <div class="batik right"></div>
+    <div class="banner-container">
+        <div class="banner-overlay"></div>
+        <div class="banner-text">Desa Budaya </div>
     </div>
-</body>
-</html>
 
-</div>
-</div>
-</div>
 
-<!-- breadcrumb Start-->
-<div class="page-notification">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb justify-content-center">
-                                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li> 
-                                        
-                                    </ol>
-                                </nav>
+                <!-- breadcrumb Start-->
+                <div class="page-notification">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb justify-content-center">
+                                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                                            <li class="breadcrumb-item"><a href="#">Desa Prima</a></li> 
+                                            
+                                        </ol>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-    <div class="row"></div>
-        <!--? Left content -->
-        <!-- <div class="col-xl-3 col-lg-3 col-md-4 ">-->
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="single-product mb-50">
-        <!-- youtube -->
-        <div class="location-img" style="overflow: hidden;">
-            <iframe width="100%" height="350" src="https://www.youtube.com/embed/MEfE4vI1b2c" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
-        <!-- Kotakan Box untuk Nama dan Deskripsi -->
-        <div class="border p-3 mb-3">
-            <h3 class="h6 mb-0">
-                <a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank" style="font-size: 24px; font-weight: bold; font-family: 'Cinzel', serif; color: #1a1a59;">
-                       BUDAYA 1
-                </a>
-            </h3>
-            <div class="collapse" id="collapsebank">
-                <div class="py-2">
-                    <p class="mb-0">deskripsi singkat tentang budaya yang ditampilkan</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="single-product mb-50">
+        <div class="row"></div>
+            <!--? Left content -->
+            <!-- <div class="col-xl-3 col-lg-3 col-md-4 ">-->
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <div class="single-product mb-50">
             <!-- youtube -->
-        <div class="location-img" style="overflow: hidden;">
-            <iframe width="100%" height="350" src="https://www.youtube.com/embed/MEfE4vI1b2c" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-        </div>
+            <div class="location-img" style="overflow: hidden;">
+                <iframe width="100%" height="350" src="https://www.youtube.com/embed/MEfE4vI1b2c" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
             <!-- Kotakan Box untuk Nama dan Deskripsi -->
             <div class="border p-3 mb-3">
                 <h3 class="h6 mb-0">
                     <a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank" style="font-size: 24px; font-weight: bold; font-family: 'Cinzel', serif; color: #1a1a59;">
-                            BUDAYA 2
+                        BUDAYA 1
                     </a>
                 </h3>
                 <div class="collapse" id="collapsebank">
@@ -237,36 +212,63 @@
                 </div>
             </div>
         </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12">
+            <div class="single-product mb-50">
+                <!-- youtube -->
+            <div class="location-img" style="overflow: hidden;">
+                <iframe width="100%" height="350" src="https://www.youtube.com/embed/MEfE4vI1b2c" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+                <!-- Kotakan Box untuk Nama dan Deskripsi -->
+                <div class="border p-3 mb-3">
+                    <h3 class="h6 mb-0">
+                        <a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank" style="font-size: 24px; font-weight: bold; font-family: 'Cinzel', serif; color: #1a1a59;">
+                                BUDAYA 2
+                        </a>
+                    </h3>
+                    <div class="collapse" id="collapsebank">
+                        <div class="py-2">
+                            <p class="mb-0">deskripsi singkat tentang budaya yang ditampilkan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-</div>
-</main>
+    </div>
+    </main>
 
 <footer>
-     <!-- Footer Start -->
-     <div class="footer-area footer-padding">
+    <!-- Footer Start -->
+    <div class="footer-area footer-padding">
         <div class="container-fluid">
-            <div class="row d-flex justify-content-between">
-                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
+            <div class="row d-flex justify-content-around">
+                <!-- Logo and Social Media -->
+                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8 d-flex justify-content-center">
                     <div class="single-footer-caption mb-50">
                         <!-- Logo -->
-                        <div class="footer-logo mb-35">
+                        <div class="footer-logo mb-35" style="text-align: right;">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo1.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 150px;">
+                                <img src="{{ asset('themewagon/img/logo/logo_footer.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 120px;">
                             </a>
                         </div>
-            
                         <!-- Social Media Icons -->
                         <div class="footer-social">
-                            <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
-                            <a href="https://www.instagram.com/kalurahan_sinduharjo"><i class="fab fa-instagram"></i></a>
+                            <a href="https://sinduharjosid.slemankab.go.id/first" class="mr-2"><i class="fas fa-globe"></i></a>
+                            <a href="https://www.instagram.com/kalurahan_sinduharjo" class="mr-2"><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
 
-               <!-- Quick Links -->
-               <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+                <!-- Quick Links -->
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
                             <h4>Link</h4>
@@ -282,7 +284,7 @@
 
                 <!-- Contact Info -->
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
-                    <div class="single-footer-caption mb-50">
+                    <div class="single-footer-caption mb-35" style= "text-align: left;">
                         <div class="footer-tittle">
                             <h4>Kontak</h4>
                             <ul>
@@ -293,7 +295,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
