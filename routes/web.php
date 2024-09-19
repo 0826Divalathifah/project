@@ -23,7 +23,7 @@ Route::get('/adminkelurahan', [AdminKelurahan::class, 'showDashboard'])->name('a
 Route::get('/chartjs', [AdminKelurahan::class, 'chartjs'])->name('admin.adminkelurahan.charts.chartjs');
 Route::get('/basic_elements', [AdminKelurahan::class, 'basic_elements'])->name('admin.adminkelurahan.forms.basic_elements');
 
-// Rute untuk halaman dashboard admin budaya
+//Rute untuk halaman dashboard admin budaya
 Route::get('/adminbudaya', [AdminDesaBudaya::class, 'showDashboard'])->name('admin.adminbudaya.adminbudaya');
 
 // Rute untuk search
