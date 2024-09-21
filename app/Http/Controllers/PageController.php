@@ -13,11 +13,11 @@ class PageController extends Controller
 
             public function desabudaya()
             {
-                return view('beranda.desabudaya'); // Mengarah ke resources/views/beranda/shop.blade.php
+                return view('beranda.desabudaya'); 
             }
                 public function detail_kesenian()
                 {
-                    return view('beranda.detail_kesenian'); // Mengarah ke resources/views/beranda/shop.blade.php
+                    return view('beranda.detail_kesenian'); 
                 }
                 
             public function desaprima()

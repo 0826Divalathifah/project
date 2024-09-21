@@ -32,11 +32,11 @@
       <!-- partial:../../partials/_navbar.html -->
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <a class="navbar-brand brand-logo me-5" href="{{ asset('index.html') }}">
-            <img src="{{ asset('admin/assets/images/logo.svg') }}" class="me-2" alt="logo" />
+          <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkelurahan') }}" >
+            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" class="me-2" alt="logo" />
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ asset('index.html') }}">
-            <img src="{{ asset('admin/assets/images/logo-mini.svg') }}" alt="logo" />
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkelurahan') }}">
+            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="logo" />
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -139,9 +139,9 @@
               </a>
               <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/ui-features/buttons.html') }}">Buttons</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/ui-features/dropdowns.html') }}">Dropdowns</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/ui-features/typography.html') }}">Typography</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/buttons') }}">Buttons</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/dropdowns') }}">Dropdowns</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/typography') }}">Typography</a></li>
                 </ul>
               </div>
             </li>
@@ -158,8 +158,6 @@
     </ul>
   </div>
 </li>
-
-
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
                 <i class="icon-bar-graph menu-icon"></i>
@@ -181,7 +179,7 @@
               </a>
               <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/tables/basic-table.html') }}">Basic table</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/basic-table') }}">Basic table</a></li>
                 </ul>
               </div>
             </li>
@@ -193,7 +191,7 @@
               </a>
               <div class="collapse" id="icons">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/icons/mdi.html') }}">Mdi icons</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/mdi') }}">Mdi icons</a></li>
                 </ul>
               </div>
             </li>
@@ -205,8 +203,8 @@
               </a>
               <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/samples/login.html') }}"> Login </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/samples/register.html') }}"> Register </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/login') }}"> Login </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/register') }}"> Register </a></li>
                 </ul>
               </div>
             </li>
@@ -218,13 +216,13 @@
               </a>
               <div class="collapse" id="error">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/samples/error-404.html') }}"> 404 </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ asset('pages/samples/error-500.html') }}"> 500 </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/error-404') }}"> 404 </a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/error-500') }}"> 500 </a></li>
                 </ul>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('docs/documentation.html') }}">
+              <a class="nav-link" href="{{ url('/documentation') }}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Documentation</span>
               </a>
@@ -262,7 +260,7 @@
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card tale-bg">
                   <div class="card-people mt-auto">
-                    <img src="assets/images/dashboard/people.svg" alt="people">
+                    <img src="{{ asset('admin/assets/images/dashboard/people.svg') }}" alt="people">
                     <div class="weather-info">
                       <div class="d-flex">
                         <div>
@@ -938,12 +936,15 @@
     </div>
     <!-- container-scroller -->
     
-     <!-- plugins:js -->
+<!-- plugins:js -->
 <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
+<!-- endinject -->
+ <!-- Plugin js for this page -->
 <script src="{{ asset('admin/assets/vendors/chart.js/chart.umd.js') }}"></script>
 <script src="{{ asset('admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+<script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
 <script src="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
-<script src="{{ asset('admin/assets/js/select.dataTables.min.js') }}"></script>
+<script src="{{ asset('admin/assets/js/dataTables.select..min.js') }}"></script>
 
 <!-- Custom js for this page-->
 <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
@@ -952,8 +953,8 @@
 <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
 
 <!-- Custom js for this page-->
-<script src="{{ asset('assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-<script src="{{ asset('assets/js/dashboard.js') }}"></script>
+<script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
 <!-- End custom js for this page-->
 </body>
 </html>
