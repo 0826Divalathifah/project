@@ -69,6 +69,8 @@
                                     <li>   
                                     <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
                                     <li><a href="{{ url('/contact') }}">Kontak</a></li>
+                                    <li><a href="{{ url('#') }}">Login</a></li>
+        
                                 </ul>
                             </nav>
                         </div>
@@ -80,8 +82,6 @@
                                 <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                                 <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                                  <!-- Ikon Login dan Sign Up -->
-                                 <a href="/login"><i class="fas fa-sign-in-alt"></i></a>
-                                <a href="/signup"><i class="fas fa-user-plus"></i></a>
                             </div>
 
                            
@@ -120,9 +120,6 @@
                     <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                     <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                     <!-- Ikon Login dan Sign Up -->
-                     
-                    <a href="/login"><i class="fas fa-sign-in-alt"></i></a>
-                    <a href="/signup"><i class="fas fa-user-plus"></i></a>
                     </div>
                     <!-- Search Box -->
                     <!--<div class="header-search d-block d-md-none" >

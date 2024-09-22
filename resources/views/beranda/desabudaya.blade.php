@@ -114,9 +114,9 @@
     </header>
     <main>
         <!-- header end -->
-            <!-- listing Area Start -->
+        <!-- listing Area Start -->
             <div class="category-area">
-        <div class="container">
+            <div class="container">
             <div class="row">
             
         <meta charset="UTF-8">
@@ -127,9 +127,10 @@
             position: relative;
             text-align: center;
             color: white;
-            height: 400px;
-            background: url('path_to_image/image.png') no-repeat center center/cover;
-        }
+            height: 500px;
+            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
+            margin-bottom: 40px; /* Sesuaikan nilai ini dengan jarak yang Anda inginkan */
+        }            
 
         .banner-overlay {
             position: absolute;
@@ -148,100 +149,157 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 150px; /* To vertically center text */
+            margin-top: 100px; /* To vertically center text */
+        }
+
+        .banner-container {
+        position: relative;
+        text-align: center;
+        color: white;
+        height: 500px;
+        background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .banner-text {
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
         }
 
         .breadcrumb {
-            position: relative;
-            z-index: 2;
             margin-top: 20px;
             font-size: 18px;
-            color: #f0f0f0;
+            color: #ffffff;
         }
+
+        .breadcrumb-item a {
+            color: #ffffff;
+        }
+
+        .breadcrumb-item a:hover {
+            color: #ffffff;
+        }
+
+        
     </style>
 
-    <div class="banner-container">
-        <div class="banner-overlay"></div>
-        <div class="banner-text">Desa Budaya </div>
+        <div class="banner-container">
+            <div class="banner-overlay"></div>
+            <div class="banner-text">Desa Budaya</div>
+
+            <!-- breadcrumb Start-->
+            <div class="breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+<style>
+        /* Mengatur layout agar video dan deskripsi berada berdampingan */
+        .content-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        /* Kontainer deskripsi di sebelah kanan video */
+        .description-container {
+            flex: 1;
+            max-width: 50%; /* Ukuran deskripsi 50% dari lebar kontainer */
+        }
+
+        .description-container h1 {
+            font-size: 30px;
+            color: #e84c3d; /* Warna merah oranye untuk judul */
+            font-family: "Somedeals";
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .description-container h2 {
+            font-size: 30px;
+            color: #333; /* Warna untuk sub judul */
+            font-weight: bold;
+            text-align: center;
+            font-family: "cursive";
+            margin-bottom: 20px;
+        }
+
+        .description-container p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555; /* Warna untuk deskripsi */
+        }
+
+        /* Untuk responsif, di layar kecil deskripsi dan video akan disusun secara vertikal */
+        @media (max-width: 768px) {
+            .content-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .video-container, .description-container {
+                max-width: 100%; /* Membuat kontainer video dan deskripsi 100% di layar kecil */
+                margin-right: 0;
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-section">
+        <div class="location-img" style="overflow: hidden;">
+                <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="" style="width: 100%; height: 350px;">
+            </div>
+
+        <!-- Bagian untuk deskripsi budaya di samping video -->
+        <div class="description-container">
+            <h1 class="welcome-text">Selamat Datang di Website Desa Budaya</h1>
+            <h2>Saatnya memulai petualangan Anda</h2>
+            <p>DESA BUDAYA adalah wahana sekelompok manusia yang melakukan aktivitas budaya yang mengekspresikan sistem kepercayaan (religi), sistem kesenian, sistem mata pencaharian, sistem teknologi, sistem komunikasi, sistem sosial, dan sistem lingkungan, tata ruang, dan arsitektur dengan MENGAKTUALISASIKAN KEKAYAAN POTENSINYA dan MENKONSERVASINYA DENGAN SAKSAMA ATAS KEKAYAAN BUDAYA YANG DIMILIKINYA, terutama yang tampak pada adat dan tradisi, seni pertunjukan, kerajinan, dan tata ruang dan arsitektural....</p>
+        </div>
     </div>
 
-
-                <!-- breadcrumb Start-->
-                <div class="page-notification">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <nav aria-label="breadcrumb">
-                                        <ol class="breadcrumb justify-content-center">
-                                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                                            <li class="breadcrumb-item"><a href="#">Desa Prima</a></li> 
-                                            
-                                        </ol>
-                                    </nav>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-        <div class="row"></div>
-            <!--? Left content -->
-            <!-- <div class="col-xl-3 col-lg-3 col-md-4 ">-->
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <div class="single-product mb-50">
-            <!-- youtube -->
-            <div class="location-img" style="overflow: hidden;">
-                <iframe width="100%" height="350" src="https://www.youtube.com/embed/MEfE4vI1b2c" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <!-- Kotakan Box untuk Nama dan Deskripsi -->
-            <div class="border p-3 mb-3">
-                <h3 class="h6 mb-0">
-                    <a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank" style="font-size: 24px; font-weight: bold; font-family: 'Cinzel', serif; color: #1a1a59;">
-                        BUDAYA 1
-                    </a>
-                </h3>
-                <div class="collapse" id="collapsebank">
-                    <div class="py-2">
-                        <p class="mb-0">deskripsi singkat tentang budaya yang ditampilkan</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-
+    
         <div class="col-lg-6 col-md-6 col-sm-12">
             <div class="single-product mb-50">
-                <!-- youtube -->
-            <div class="location-img" style="overflow: hidden;">
-                <iframe width="100%" height="350" src="https://www.youtube.com/embed/MEfE4vI1b2c" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-                <!-- Kotakan Box untuk Nama dan Deskripsi -->
-                <div class="border p-3 mb-3">
-                    <h3 class="h6 mb-0">
-                        <a class="d-block" data-bs-toggle="collapse" href="#collapsebank" role="button" aria-expanded="false" aria-controls="collapsebank" style="font-size: 24px; font-weight: bold; font-family: 'Cinzel', serif; color: #1a1a59;">
-                                BUDAYA 2
-                        </a>
-                    </h3>
-                    <div class="collapse" id="collapsebank">
-                        <div class="py-2">
-                            <p class="mb-0">deskripsi singkat tentang budaya yang ditampilkan</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/MEfE4vI1b2c" 
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                style="width: 100%; height: 300px; max-width: 100%;">
+            </iframe>
         </div>
-    </div>
-    </div>
     </main>
 
 <footer>

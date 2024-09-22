@@ -98,81 +98,97 @@
         <!-- Header End -->
     </header>
     <main>
-                <!-- listing Area Start -->
-                <div class="category-area">
-                    <div class="container">
-                <div class="row">
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-            <style>
+                 <!-- listing Area Start -->
+        <div class="category-area">
+            <div class="container">
+            <div class="row">
+            
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
         /* Styling for the banner */
-                .banner-container {
-                    position: relative;
-                    text-align: center;
-                    color: white;
-                    width: 100%; /* Full width */
-                    height: 400px; /* Adjust height as needed */
-                    background: url('/path_to_image/image.png') no-repeat center center/cover;
-                }
+        .banner-container {
+            position: relative;
+            text-align: center;
+            color: white;
+            width: 100%; /* Lebarkan hingga penuh ke samping */
+            height: 500px; /* Tetap 500px untuk tinggi */
+            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 40px;
+        }
 
-                .banner-overlay {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-                }
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan hitam */
+        }
 
-                .banner-text {
-                    position: relative;
-                    z-index: 2;
-                    font-size: 48px;
-                    font-weight: bold;
-                    letter-spacing: 3px;
-                    text-transform: uppercase;
-                    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-                    margin-top: 150px; /* To vertically center text */
-                }
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
 
-                /* Styling for the breadcrumb */
-                .page-notification {
-                    margin-top: 20px; /* Distance between banner and breadcrumb */
-                    display: flex;
-                    justify-content: center; /* Horizontally center the breadcrumb */
-                }
+        .banner-text {
+            position: relative;
+            z-index: 2;
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            margin-top: 100px; /* To vertically center text */
 
-                .breadcrumb {
-                    position: center;
-                    z-index: 2;
-                    margin-top: 20px;
-                    font-size: 18px;
-                    color: #f0f0f0;
-                }
-                </style>
+        @media screen and (max-width: 768px) {
+            .banner-container {
+                width: 100%; /* Tetap penuh pada layar kecil */
+                height: 300px; /* Kurangi tinggi untuk layar lebih kecil */
+            }
 
-        <!-- Banner Section -->
+            .banner-text {
+                font-size: 36px; /* Ukuran teks lebih kecil di layar mobile */
+            }
+        }
+
+
+        .breadcrumb {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .breadcrumb-item a {
+            color: #ffffff;
+        }
+
+        .breadcrumb-item a:hover {
+            color: #ffffff;
+        }
+
+        
+    </style>
+
         <div class="banner-container">
-                        <div class="banner-overlay"></div>
-                        <div class="banner-text">Desa Budaya</div>
-                    </div>
+            <div class="banner-overlay"></div>
+            <div class="banner-text">Desa Preneur</div>
 
-                    <!-- Breadcrumb Section -->
-                            <!--<div class="page-notification">
-                                <div class="container">
-                                    <div class="row justify-content-center"> <!-- Pastikan row juga diatur untuk center -->
-                                        <div class="col-lg-24"> <!-- Ubah lebar kolom untuk memastikan breadcrumb bisa diatur dengan benar -->
-                                            <nav aria-label="breadcrumb">
-                                                <ol class="breadcrumb justify-content-center">
-                                                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                                                    <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
-                                                </ol>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+            <!-- breadcrumb Start-->
+            <div class="breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
 
                     <div class="row">
                             <!--? Left content -->
