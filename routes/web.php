@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminDesaBudaya;
 use App\Http\Controllers\AdminDesaPreneur;
 use App\Http\Controllers\AdminDesaPrima;
 use App\Http\Controllers\AdminDesaWisata;
+use App\Http\Controllers\Penjual;
 use App\Http\Controllers\Auth;
 
 // Routes untuk Website
@@ -73,6 +74,32 @@ Route::get('/error-404', [AdminDesaPrima::class, 'samples1'])->name('admin.admin
 Route::get('/error-500', [AdminDesaPrima::class, 'samples2'])->name('admin.adminprima.samples.error-500');
 Route::get('/documentation', [AdminDesaPrima::class, 'docs'])->name('admin.adminprima.docs.documentation');
 
+//Rute untuk halaman dashboard admin wisata
+Route::get('/adminwisata', [AdminDesaWisata::class, 'showDashboard'])->name('admin.adminwisata.adminwisata');
+Route::get('/buttons', [AdminDesaWisata::class, 'uifeatures1'])->name('admin.adminwisata.ui-features.buttons');
+Route::get('/dropdowns', [AdminDesaWisata::class, 'uifeatures2'])->name('admin.adminwisata.ui-features.dropdowns');
+Route::get('/typography', [AdminDesaWisata::class, 'uifeatures3'])->name('admin.adminwisata.ui-features.typography');
+Route::get('/chartjs', [AdminDesaWisata::class, 'charts'])->name('admin.adminwisata.charts.chartjs');
+Route::get('/basic_elements', [AdminDesaWisata::class, 'forms'])->name('admin.adminwisata.forms.basic_elements');
+Route::get('/basic-table', [AdminDesaWisata::class, 'tables'])->name('admin.adminwisata.tables.basic-table');
+Route::get('/mdi', [AdminDesaWisata::class, 'icons'])->name('admin.adminwisata.icons.mdi');
+Route::get('/error-404', [AdminDesaWisata::class, 'samples1'])->name('admin.adminwisata.samples.error-404');
+Route::get('/error-500', [AdminDesaWisata::class, 'samples2'])->name('admin.adminwisata.samples.error-500');
+Route::get('/documentation', [AdminDesaWisata::class, 'docs'])->name('admin.adminwisata.docs.documentation');
+
+//Rute untuk halaman dashboard penjual
+Route::get('/penjual', [Penjual::class, 'showDashboard'])->name('admin.penjual.penjual');
+Route::get('/tambahbudaya', [Penjual::class, 'tambahbudaya'])->name('admin.penjual.budaya.tambahbudaya');
+Route::get('/transaksibudaya', [Penjual::class, 'transaksibudaya'])->name('admin.penjual.budaya.transaksibudaya');
+Route::get('/laporanbudaya', [Penjual::class, 'laporanbudaya'])->name('admin.penjual.budaya.laporanbudaya');
+Route::get('/tambahpreneur', [Penjual::class, 'tambahpreneur'])->name('admin.penjual.preneur.tambahpreneur');
+Route::get('/transaksipreneur', [Penjual::class, 'transaksipreneur'])->name('admin.penjual.preneur.transaksipreneur');
+Route::get('/laporanpreneur', [Penjual::class, 'laporanpreneur'])->name('admin.penjual.preneur.laporanpreneur');Route::get('/tambahprima', [Penjual::class, 'tambahprima'])->name('admin.penjual.prima.tambahprima');
+Route::get('/transaksiprima', [Penjual::class, 'transaksiprima'])->name('admin.penjual.prima.transaksiprima');
+Route::get('/laporanprima', [Penjual::class, 'laporanprima'])->name('admin.penjual.prima.laporanprima');
+Route::get('/tambahwisata', [Penjual::class, 'tambahwisata'])->name('admin.penjual.wisata.tambahwisata');
+Route::get('/transaksiwisata', [Penjual::class, 'transaksiwisata'])->name('admin.penjual.wisata.transaksiwisata');
+Route::get('/laporanwisata', [Penjual::class, 'laporanwisata'])->name('admin.penjual.wisata.laporanwisata');
 
 // Rute untuk Auth
 Route::get('/login', [Auth::class, 'login'])->name('admin.adminkelurahan.samples.login');
