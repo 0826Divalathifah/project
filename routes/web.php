@@ -16,7 +16,7 @@ Route::get('/desabudaya', [PageController::class, 'desabudaya'])->name('desabuda
 Route::get('/desaprima', [PageController::class, 'desaprima'])->name('desaprima');
 Route::get('/desapreneur', [PageController::class, 'desapreneur'])->name('desapreneur');
 Route::get('/desawisata', [PageController::class, 'desawisata'])->name('desawisata');
-Route::get('/detail_kesenian', [PageController::class, 'detail_kesenian'])->name('detail_kesenian');
+Route::get('/detail_budaya', [PageController::class, 'detail_budaya'])->name('detail_budaya');
 Route::get('/detail_produk', [PageController::class, 'detail_produk'])->name('detail_produk');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi');

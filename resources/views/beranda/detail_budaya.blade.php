@@ -1,9 +1,9 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Desa Wisata</title>
+    <title>Detail Budaya</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -46,12 +46,11 @@
                 <div class="menu-wrapper d-flex align-items-center justify-content-between">
                     <div class="header-left d-flex align-items-center">
                         <!-- Logo -->
+                        <!-- Logo -->
                         <div class="logo">
                             <a href="{{ url('/') }}">
                                 <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
-                                </a>
-
-                            </div>
+                                </a></div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
@@ -86,7 +85,6 @@
                                         <i class="ti-search"></i>
                                     </div>
                                 </li>
-                               
                             </ul>
                         </div>
                     </div>
@@ -102,8 +100,8 @@
     </header>
     <!-- header end -->
     <main>
-          <!-- listing Area Start -->
-          <div class="category-area">
+        <!-- listing Area Start -->
+        <div class="category-area">
             <div class="container">
             <div class="row">
             
@@ -150,7 +148,6 @@
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
             margin-top: 100px; /* To vertically center text */
         }
-
         @media screen and (max-width: 768px) {
             .banner-container {
                 width: 100%; /* Tetap penuh pada layar kecil */
@@ -182,123 +179,74 @@
 
         <div class="banner-container">
             <div class="banner-overlay"></div>
-            <div class="banner-text">Desa Prima</div>
+            <div class="banner-text">Detail Budaya</div>
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
+                        <li class="breadcrumb-item"><a href="#">Detail</a></li>
                     </ol>
                 </nav>
             </div>
         </div>
-<style>
-/* Mengatur layout agar gambar dan deskripsi berada berdampingan */
-.content-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #f7f7f7;
-}
 
-/* Kontainer gambar di sebelah kiri */
-.image-container {
-    flex: 1;
-    max-width: 50%; /* Ukuran gambar 50% dari lebar kontainer */
-    padding-right: 20px;
-}
-
-/* Kontainer deskripsi di sebelah kanan */
-.description-container {
-    flex: 1;
-    max-width: 50%; /* Ukuran deskripsi 50% dari lebar kontainer */
-}
-
-.description-container h1 {
-    font-size: 30px;
-    color: #e84c3d; /* Warna merah oranye untuk judul */
-    font-family: "Somedeals";
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-.description-container h2 {
-    font-size: 30px;
-    color: #333; /* Warna untuk sub judul */
-    font-weight: bold;
-    text-align: center;
-    font-family: "cursive";
-    margin-bottom: 20px;
-}
-
-.description-container p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #555; /* Warna untuk deskripsi */
-}
-
-/* Responsif: di layar kecil, deskripsi dan gambar akan tersusun secara vertikal */
-@media (max-width: 768px) {
-    .content-section {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .image-container, .description-container {
-        max-width: 100%; /* Membuat kontainer gambar dan deskripsi 100% di layar kecil */
-        padding-right: 0;
-        padding-left: 0;
-    }
-}
-</style>
-    <div class="content-section">
-    <!-- Gambar wisata di sebelah kiri -->
-    <div class="image-container">
-        <div class="location-img" style="overflow: hidden;">
-            <img src="{{ asset('themewagon/img/desawisata/wisata1.jpeg') }}" alt="" style="width: 100%; height: 350px;">
+        
+       
+            <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/MEfE4vI1b2c" 
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                style="width: 800px; height: 400px; " >
+            </iframe>
         </div>
-    </div>
-
-    <!-- Deskripsi budaya di sebelah kanan -->
-    <div class="description-container">
-        <h1 class="welcome-text">Selamat Datang di Website Desa Budaya</h1>
-        <h2>Saatnya memulai 
-        petualangan Anda</h2>
-        <p>
-            DESA BUDAYA adalah wahana sekelompok manusia yang melakukan aktivitas budaya yang mengekspresikan sistem kepercayaan (religi), 
-            sistem kesenian, sistem mata pencaharian, sistem teknologi, sistem komunikasi, sistem sosial, dan sistem lingkungan, tata ruang, dan arsitektur 
-            dengan MENGAKTUALISASIKAN KEKAYAAN POTENSINYA dan MENKONSERVASINYA DENGAN SAKSAMA ATAS KEKAYAAN BUDAYA YANG DIMILIKINYA, terutama yang tampak 
-            pada adat dan tradisi, seni pertunjukan, kerajinan, dan tata ruang dan arsitektural....
-        </p>
-    </div>
-</div>
-
-
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="single-product mb-50">
-            <!-- Gambar wisata tanpa efek zoom -->
-            <div class="location-img" style="overflow: hidden;">
-                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="" style="width: 100%; height: 350px;">
-            </div>
-            <!-- Kotakan Box untuk Nama dan Deskripsi -->
-            <div class="location-details p-3" style="border: 1px solid #ddd; border-radius: 5px; margin-top: 10px; background-color: #f9f9f9;">
-            <h1 style="font-weight: bold;"><a href="{{ url('/detail_wisata') }}">Desa Wisata Palgading</a></h1>
-                <p>Deskripsi singkat tentang wisata ini. Misalnya, informasi tentang tempat, fasilitas, dan pengalaman yang ditawarkan.</p>
-
-                
+        <!--?  Details start -->
+        <div class="directory-details pt-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="small-tittle mb-20">
+                            <h2>Description</h2>
+                        </div>
+                        <div class="directory-cap mb-40">
+                        </div>
+                        <div class="small-tittle mb-20">
+                            <h2>Description</h2>
+                        </div>
+                        <div class="gallery-img">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <img src="themewagon/img/gallery/galley1.png" class="mb-30" alt="">
+                                </div>
+                                <div class="col-lg-6">
+                                    <img src="themewagon/img/gallery/gallry2.png" class="mb-30" alt="">
+                                </div>
+                                <div class="col-lg-6">
+                                    <img src="themewagon/img/gallery/galley3.png"  class="mb-30"alt="">
+                                </div>
+                                <div class="col-lg-6">
+                                    <img src="themewagon/img/gallery/galery4.png"  class="mb-30"alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="map">
+                            <img src="themewagon/img/gallery/map.png" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
-</main>
+        <!--  Details End -->
 
-<footer>
+
+    </main>
+
+    <footer>
     <!-- Footer Start -->
     <div class="footer-area footer-padding">
         <div class="container-fluid">
@@ -372,7 +320,6 @@
     </div>
     <!-- Footer End -->
 </footer>
-
 <!--? Search model Begin -->
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">

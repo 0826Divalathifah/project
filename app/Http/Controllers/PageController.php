@@ -15,9 +15,9 @@ class PageController extends Controller
             {
                 return view('beranda.desabudaya'); 
             }
-                public function detail_kesenian()
+                public function detail_budaya()
                 {
-                    return view('beranda.detail_kesenian'); 
+                    return view('beranda.detail_budaya'); 
                 }
                 
             public function desaprima()

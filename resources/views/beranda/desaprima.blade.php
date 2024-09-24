@@ -147,7 +147,7 @@
             text-transform: uppercase;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
             margin-top: 100px; /* To vertically center text */
-
+        }
         @media screen and (max-width: 768px) {
             .banner-container {
                 width: 100%; /* Tetap penuh pada layar kecil */
@@ -213,7 +213,7 @@
                     <!--?  Right content -->
                     
                     <div class="col-xl-9 col-lg-9 col-md-8 ">
-                        <!--? New Arrival Start -->
+                        <!--? Makanan -->
                         <div id="makanan" class="cards-wrapper">
                         <div class="card">
                             <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" class="card-img-top" alt="...">

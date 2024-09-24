@@ -17,6 +17,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('furni/css/tiny-slider.css') }}" rel="stylesheet">
     <link href="{{ asset('furni/css/style.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
 
         <!-- CSS themewagon -->
@@ -36,7 +39,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
 </head>
 <body class="full-wrapper">
@@ -127,41 +130,13 @@
             position: relative;
             text-align: center;
             color: white;
-            height: 500px;
+            height: 600px;
             background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
-            margin-bottom: 40px; /* Sesuaikan nilai ini dengan jarak yang Anda inginkan */
-        }            
-
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-        }
-
-        .banner-text {
-            position: relative;
-            z-index: 2;
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 100px; /* To vertically center text */
-        }
-
-        .banner-container {
-        position: relative;
-        text-align: center;
-        color: white;
-        height: 500px;
-        background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
 
         .banner-overlay {
@@ -170,21 +145,24 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            background: rgba(0, 0, 0, 0.5);
+            pointer-events: none; /* Membuat overlay tidak memblokir interaksi */
         }
 
         .banner-content {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Pastikan ini berada di atas overlay */
             text-align: center;
         }
 
         .banner-text {
             font-size: 48px;
             font-weight: bold;
+            z-index: 3; 
             letter-spacing: 3px;
             text-transform: uppercase;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            margin-top: 100px;
         }
 
         .breadcrumb {
@@ -195,12 +173,15 @@
 
         .breadcrumb-item a {
             color: #ffffff;
+            text-decoration: none;
+            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
+            position: relative; /* Penting untuk memastikan z-index bekerja */
         }
 
         .breadcrumb-item a:hover {
             color: #ffffff;
+            text-decoration: underline;
         }
-
         
     </style>
 
@@ -208,98 +189,296 @@
             <div class="banner-overlay"></div>
             <div class="banner-text">Desa Budaya</div>
 
-            <!-- breadcrumb Start-->
-            <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
-                    </ol>
-                </nav>
-            </div>
+            <!-- Breadcrumb Start -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('desabudaya') }}">Desa Budaya</a></li>
+                </ol>
+            </nav>
+            <!-- Breadcrumb End -->
         </div>
+
+
 <style>
         /* Mengatur layout agar video dan deskripsi berada berdampingan */
         .content-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #f7f7f7;
+    gap: 20px; /* Menambahkan gap agar elemen tidak terlalu menempel */
+    flex-wrap: wrap; /* Supaya elemen bisa otomatis wrap di layar kecil */
+}
+
+.description-container {
+    flex: 1;
+    max-width: 70%; /* Ukuran deskripsi 50% dari lebar kontainer */
+    padding: 20px;
+}
+
+.description-container h1 {
+    font-size: 30px;
+    color: #e84c3d; /* Warna merah oranye untuk judul */
+    font-family: "Great Vibes";
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.description-container h2 {
+    font-size: 30px;
+    color: #333; /* Warna untuk sub judul */
+    font-weight: bold;
+    text-align: center;
+    font-family: "cursive";
+    margin-bottom: 20px;
+}
+
+.description-container p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555; /* Warna untuk deskripsi */
+}
+
+/* Kontainer video */
+.video-container {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+}
+
+.video-container video {
+    width: 100%; /* Video akan mengisi kontainer secara penuh */
+    height: auto;
+}
+
+/* Untuk responsif, di layar kecil deskripsi dan video akan disusun secara vertikal */
+@media (max-width: 768px) {
+    .content-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .video-container, .description-container {
+        max-width: 100%; /* Membuat kontainer video dan deskripsi 100% di layar kecil */
+        padding: 10px;
+    }
+
+    .description-container h1, .description-container h2 {
+        font-size: 24px; /* Sesuaikan ukuran font untuk layar kecil */
+    }
+
+    .description-container p {
+        font-size: 14px; /* Sesuaikan ukuran font deskripsi */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+
+
+<div class="content-section" data-aos="fade-up" data-aos-duration="1000">
+<div data-aos="fade-left"
+     data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="500">
+</div>
+    <div class="location-img" style="overflow: hidden;">
+        <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="" style="width: 100%; height: 350px;">
+    </div>
+
+    <!-- Bagian untuk deskripsi budaya di samping video -->
+    <div class="description-container" data-aos="fade-in" data-aos-duration="1500">
+        <h1 class="welcome-text">Selamat Datang di Website Desa Budaya</h1>
+        <h2>Saatnya memulai petualangan Anda</h2>
+        <p>DESA BUDAYA adalah wahana sekelompok manusia yang melakukan aktivitas budaya yang mengekspresikan sistem kepercayaan (religi), sistem kesenian, sistem mata pencaharian, sistem teknologi, sistem komunikasi, sistem sosial, dan sistem lingkungan, tata ruang, dan arsitektur.</p>
+    </div>
+</div>
+
+ 
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        .container {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #f7f7f7;
+            gap: 20px;
         }
 
-        /* Kontainer deskripsi di sebelah kanan video */
-        .description-container {
-            flex: 1;
-            max-width: 50%; /* Ukuran deskripsi 50% dari lebar kontainer */
-        }
-
-        .description-container h1 {
-            font-size: 30px;
-            color: #e84c3d; /* Warna merah oranye untuk judul */
-            font-family: "Somedeals";
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 30%;
             text-align: center;
-            margin-top: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h2 {
+            font-size: 2rem;
+            color: #e84c3d;
             margin-bottom: 10px;
         }
 
-        .description-container h2 {
-            font-size: 30px;
-            color: #333; /* Warna untuk sub judul */
+        .card-content h3 {
+            font-size: 1.2rem;
             font-weight: bold;
-            text-align: center;
-            font-family: "cursive";
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
-        .description-container p {
-            font-size: 16px;
-            line-height: 1.8;
-            color: #555; /* Warna untuk deskripsi */
+        .card-content p {
+            font-size: 0.9rem;
+            color: #555;
         }
 
-        /* Untuk responsif, di layar kecil deskripsi dan video akan disusun secara vertikal */
+        /* Responsive Layout */
         @media (max-width: 768px) {
-            .content-section {
+            .container {
                 flex-direction: column;
-                text-align: center;
+                gap: 10px;
             }
 
-            .video-container, .description-container {
-                max-width: 100%; /* Membuat kontainer video dan deskripsi 100% di layar kecil */
-                margin-right: 0;
-                padding-left: 0;
+            .card {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
-
-    <div class="content-section">
-        <div class="location-img" style="overflow: hidden;">
-                <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="" style="width: 100%; height: 350px;">
-            </div>
-
-        <!-- Bagian untuk deskripsi budaya di samping video -->
-        <div class="description-container">
-            <h1 class="welcome-text">Selamat Datang di Website Desa Budaya</h1>
-            <h2>Saatnya memulai petualangan Anda</h2>
-            <p>DESA BUDAYA adalah wahana sekelompok manusia yang melakukan aktivitas budaya yang mengekspresikan sistem kepercayaan (religi), sistem kesenian, sistem mata pencaharian, sistem teknologi, sistem komunikasi, sistem sosial, dan sistem lingkungan, tata ruang, dan arsitektur dengan MENGAKTUALISASIKAN KEKAYAAN POTENSINYA dan MENKONSERVASINYA DENGAN SAKSAMA ATAS KEKAYAAN BUDAYA YANG DIMILIKINYA, terutama yang tampak pada adat dan tradisi, seni pertunjukan, kerajinan, dan tata ruang dan arsitektural....</p>
-        </div>
+    <div class="form-group">
+            <label for="selectcategory">Data Budaya</label>
+            <select class="form-select" id="selectcategory">
+            <option>Kesenian</option>
+            <option>Adat Istiadat</option>
+            </select>
     </div>
 
-    
-        <div class="col-lg-6 col-md-6 col-sm-12">
-            <div class="single-product mb-50">
-            <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/MEfE4vI1b2c" 
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                style="width: 100%; height: 300px; max-width: 100%;">
-            </iframe>
+        
+
+    <div class="content-section" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+
+        <!-- Flexbox container for alignment -->
+        <div class="card-container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+            
+            <!-- Card Seni Pertunjukan-->
+            <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
+                <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
+                <div class="card-content">
+                    <h2>Seni Pertunjukan</h2>
+                    <h3>Desa Budaya Banjarharjo</h3>
+                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
+                </div>
+            </div>
+
+            <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
+                <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
+                <div class="card-content">
+                    <h2>Seni Pertunjukan</h2>
+                    <h3>Desa Budaya Banjarharjo</h3>
+                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
+                </div>
+            </div>
+
+            <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
+                <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
+                <div class="card-content">
+                    <h2>Seni Pertunjukan</h2>
+                    <h3>Desa Budaya Banjarharjo</h3>
+                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
+
+
+<div class="content-section" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+
+        <!-- Flexbox container for alignment -->
+        <div class="card-container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+            
+            <!-- Card Adat-->
+            <div class="card" id="adat" style="flex: 1; min-width: 300px;">
+                <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
+                <div class="card-content">
+                    <h2>Seni Pertunjukan</h2>
+                    <h3>Desa Budaya Banjarharjo</h3>
+                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
+                </div>
+            </div>
+
+            <div class="card" id="adat" style="flex: 1; min-width: 300px;">
+                <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
+                <div class="card-content">
+                    <h2>Seni Pertunjukan</h2>
+                    <h3>Desa Budaya Banjarharjo</h3>
+                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
+                </div>
+            </div>
+
+            <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
+                <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
+                <div class="card-content">
+                    <h2>Seni Pertunjukan</h2>
+                    <h3>Desa Budaya Banjarharjo</h3>
+                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+    document.getElementById('selectcategory').addEventListener('change', function() {
+        const selectedCategory = this.value;
+        const kesenianCard = document.getElementById('kesenian-card');
+        const adatCard = document.getElementById('adat-card');
+
+        if (selectedCategory === 'kesenian') {
+            kesenianCard.style.display = 'block';
+            adatCard.style.display = 'none';
+        } else if (selectedCategory === 'adat') {
+            kesenianCard.style.display = 'none';
+            adatCard.style.display = 'block';
+        }
+    });
+</script>
+
+
     </main>
 
 <footer>
@@ -436,5 +615,10 @@
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+        AOS.init();
+</script>
 </body>
 </html>
