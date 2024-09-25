@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <!-- Preloader Start -->
+    <!-- Preloader End -->
 <header>
     <!-- Header Start -->
     <div class="header-area">
