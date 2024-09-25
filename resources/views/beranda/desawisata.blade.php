@@ -24,7 +24,13 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 </head>
+
+
 <body class="full-wrapper">
     <!-- Preloader Start -->
     <div id="preloader-active">
@@ -116,13 +122,13 @@
             text-align: center;
             color: white;
             width: 100%; /* Lebarkan hingga penuh ke samping */
-            height: 500px; /* Tetap 500px untuk tinggi */
+            height: 600px; /* Tetap 500px untuk tinggi */
             background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .banner-overlay {
@@ -171,10 +177,14 @@
 
         .breadcrumb-item a {
             color: #ffffff;
+            text-decoration: none;
+            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
+            position: relative; /* Penting untuk memastikan z-index bekerja */
         }
 
         .breadcrumb-item a:hover {
             color: #ffffff;
+            text-decoration: underline;
         }
 
         
@@ -182,14 +192,14 @@
 
         <div class="banner-container">
             <div class="banner-overlay"></div>
-            <div class="banner-text">Desa Prima</div>
+            <div class="banner-text">Desa Wisata</div>
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
+                        <li class="breadcrumb-item"><a href="#">Desa Wisata</a></li>
                     </ol>
                 </nav>
             </div>
@@ -202,7 +212,7 @@
     align-items: center;
     padding: 20px;
     margin-bottom: 20px;
-    background-color: #f7f7f7;
+    background-color: #ffffff;
 }
 
 /* Kontainer gambar di sebelah kiri */
@@ -221,7 +231,7 @@
 .description-container h1 {
     font-size: 30px;
     color: #e84c3d; /* Warna merah oranye untuk judul */
-    font-family: "Somedeals";
+    font-family: "Great Vibes";
     text-align: center;
     margin-top: 30px;
     margin-bottom: 10px;
@@ -256,7 +266,12 @@
     }
 }
 </style>
-    <div class="content-section">
+<div class="content-section" data-aos="fade-up" data-aos-duration="1000">
+<div data-aos="fade-left"
+     data-aos-anchor="#example-anchor"
+     data-aos-offset="500"
+     data-aos-duration="500">
+</div>
     <!-- Gambar wisata di sebelah kiri -->
     <div class="image-container">
         <div class="location-img" style="overflow: hidden;">
@@ -265,7 +280,7 @@
     </div>
 
     <!-- Deskripsi budaya di sebelah kanan -->
-    <div class="description-container">
+    <div class="description-container" data-aos="fade-in" data-aos-duration="1500">
         <h1 class="welcome-text">Selamat Datang di Website Desa Budaya</h1>
         <h2>Saatnya memulai 
         petualangan Anda</h2>
@@ -429,6 +444,12 @@
 <!-- Jquery Plugins, main Jquery -->	
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+        AOS.init();
+</script>
 
 </body>
 </html>

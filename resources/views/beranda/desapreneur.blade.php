@@ -111,14 +111,14 @@
             position: relative;
             text-align: center;
             color: white;
-            width: 100%; /* Lebarkan hingga penuh ke samping */
-            height: 500px; /* Tetap 500px untuk tinggi */
+            width: 200%; /* Lebarkan hingga penuh ke samping */
+            height: 600px; /* Tetap 500px untuk tinggi */
             background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .banner-overlay {
@@ -145,7 +145,7 @@
             text-transform: uppercase;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
             margin-top: 100px; /* To vertically center text */
-
+        }
         @media screen and (max-width: 768px) {
             .banner-container {
                 width: 100%; /* Tetap penuh pada layar kecil */
@@ -166,10 +166,14 @@
 
         .breadcrumb-item a {
             color: #ffffff;
+            text-decoration: none;
+            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
+            position: relative; /* Penting untuk memastikan z-index bekerja */
         }
 
         .breadcrumb-item a:hover {
             color: #ffffff;
+            text-decoration: underline;
         }
 
         
@@ -190,118 +194,122 @@
             </div>
         </div>
 
-                    <div class="row">
-                            <!--? Left content -->
-                            <div class="col-xl-3 col-lg-3 col-md-4 ">
-                                <!-- Job Category Listing start -->
-                                <div class="category-listing mb-50">
-                                    <!-- single one -->
-                                    <div class="single-listing">
-                                        <!-- Select City items start -->
-                                        <div class="select-job-items2">
-                                            <select name="select2">
-                                                <option value="">Category</option>
-                                                <option value="">Makanan dan Minuman</option>
-                                                <option value="">Kerajinan dan Aksesoris</option>
-                                            </select>
-                                        </div>
-                                    </div>
+        <div class="row">
+            <!--? Left content -->
+            <div class="col-xl-3 col-lg-3 col-md-4 ">
+                <!-- Job Category Listing start -->
+                <div class="category-listing mb-50">
+                    <!-- single one -->
+                    <div class="single-listing">
+                        <!-- Select City items start -->
+                        <div class="select-job-items2">
+                                    <select name="select2" id="categorySelect" onchange="navigateToSection()">
+                                        <option value="">--Pilih Kategori--</option>
+                                        <option value="makanan">Makanan dan Minuman</option>
+                                        <option value="kerajinan">Kerajinan dan Aksesoris</option>
+                                    </select>
                                 </div>
-                                <!-- Job Category Listing End -->
-                            </div>
-                            <!--?  Right content -->
-                            <div class="col-xl-9 col-lg-9 col-md-8 ">
-                                <!--? New Arrival Start -->
-                                <div class="new-arrival new-arrival2">
-                                    <div class="row">
-
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                            <div class="single-new-arrival mb-50 text-center">
-                                                <div class="popular-img">
-                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
-                                                </div>
-                                                <div class="popular-caption">
-                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                            <div class="single-new-arrival mb-50 text-center">
-                                                <div class="popular-img">
-                                                <img src="{{ asset('themewagon/img/desaprima/produk2.png') }}" alt=""style="width: 90%; height: 250px;">
-
-                                                </div>
-                                                <div class="popular-caption">
-                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                            </div>
-                                        </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                            <div class="single-new-arrival mb-50 text-center">
-                                                <div class="popular-img">
-                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
-                                                </div>
-                                                <div class="popular-caption">
-                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                            </div>
-                                        </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                            <div class="single-new-arrival mb-50 text-center">
-                                                <div class="popular-img">
-                                                    <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
-                                                </div>
-                                                <div class="popular-caption">
-                                                    <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                                    <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                                </div>
-                                        </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                            <div class="single-new-arrival mb-50 text-center">
-                                                <div class="popular-img">
-                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
-                                                </div>
-                                                <div class="popular-caption">
-                                                <h3><a href="{{ url('detail_produk') }}">Briza Brownis</a></h3>
-                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                            </div>
-                                        </div>
                     </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                            <div class="single-new-arrival mb-50 text-center">
-                                                <div class="popular-img">
-                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
-
-                                                </div>
-                                                <div class="popular-caption">
-                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                            </div>
-                                        </div>
                 </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                                            <div class="single-new-arrival mb-50 text-center">
-                                                <div class="popular-img">
-                                                <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""style="width: 90%; height: 250px;">
+                <!-- Job Category Listing End -->
+                </div>
+                <!--?  Right content -->
+                <div class="col-xl-9 col-lg-9 col-md-8 ">
 
-                                                </div>
-                                                <div class="popular-caption">
-                                                <h3><a href="{{ url('/detail_produk') }}">Briza Brownis</a></h3>
-                                                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                            </div>
-                                        </div>
+        <style>
+/* Container Slider */
+.slider {
+    display: flex;               /* Menggunakan flexbox untuk mengatur card secara horizontal */
+    overflow-x: auto;           /* Mengaktifkan scroll horizontal */
+    padding: 10px;              /* Padding untuk slider */
+    scroll-snap-type: x mandatory; /* Mengaktifkan scroll snap */
+}
+
+/* Card Style */
+.card {
+    flex: 0 0 auto;             /* Card tidak akan membesar atau mengecil */
+    width: 300px;               /* Lebar card */
+    height: 470px;
+    margin-right: 15px;         /* Margin antara card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow card */
+    border-radius: 8px;         /* Sudut melingkar */
+    background-color: #fff;     /* Warna latar belakang card */
+    scroll-snap-align: start;   /* Align saat scroll */
+}
+
+/* Gaya untuk gambar card */
+.card img {
+    width: 100%;                /* Mengatur gambar agar memenuhi card */
+    height: 250px;               /* Mengatur tinggi otomatis */
+    border-top-left-radius: 8px; /* Radius untuk sudut atas */
+    border-top-right-radius: 8px; /* Radius untuk sudut atas */
+}
+
+/* Card body style */
+.card-body {
+    padding: 10px;              /* Padding untuk body card */
+    text-align:center;         /* Rata tengah untuk teks */
+}
+
+/* Tombol gaya */
+.btn {
+    background-color: #9F78FF;;  /* Warna latar belakang tombol */
+    color: #fff;                /* Warna teks tombol */
+    border: none;               /* Tanpa border */
+    padding: 20px 20px;         /* Padding untuk tombol */
+    border-radius:  10px;        /* Sudut melingkar tombol */
+    text-decoration: none;      /* Menghilangkan garis bawah */
+}
+</style>
+</head>
+<body>
+    <!-- Makanan Section -->
+    <div id="makanan" class="slider">
+        <div class="card">
+            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Briza Brownies">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
             </div>
         </div>
+
+        <div class="card">
+            <img src="..." alt="Produk 2">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 2</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Deskripsi singkat produk 2.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>
         </div>
-        <!-- listing-area Area End -->
+
+        <div class="card">
+            <img src="..." alt="Produk 3">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 3</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Deskripsi singkat produk 3.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>
+        </div>
+    </div>
+
+        <!-- Custom Styles for Card Slider -->
+
+        <script>
+            function navigateToSection() {
+                var selectedCategory = document.getElementById("categorySelect").value;
+                
+                if (selectedCategory === "makanan") {
+                    document.getElementById("makanan").scrollIntoView({ behavior: "smooth" });
+                } else if (selectedCategory === "kerajinan") {
+                    document.getElementById("kerajinan").scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        </script>
+<!-- listing-area Area End -->
 </main>
 
 <footer>

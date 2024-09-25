@@ -209,7 +209,7 @@
     padding: 20px;
     margin-bottom: 30px;
     background-color: #f7f7f7;
-    gap: 20px; /* Menambahkan gap agar elemen tidak terlalu menempel */
+    gap: 10px; /* Menambahkan gap agar elemen tidak terlalu menempel */
     flex-wrap: wrap; /* Supaya elemen bisa otomatis wrap di layar kecil */
 }
 
@@ -289,7 +289,7 @@
      data-aos-duration="500">
 </div>
     <div class="location-img" style="overflow: hidden;">
-        <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="" style="width: 100%; height: 350px;">
+        <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="" style="width: 100%; height: 400px;">
     </div>
 
     <!-- Bagian untuk deskripsi budaya di samping video -->
@@ -377,13 +377,14 @@
     </style>
 </head>
 <body>
-    <div class="form-group">
-            <label for="selectcategory">Data Budaya</label>
-            <select class="form-select" id="selectcategory">
-            <option>Kesenian</option>
-            <option>Adat Istiadat</option>
-            </select>
-    </div>
+<div class="form-group">
+    <label for="selectcategory">Data Budaya</label>
+    <select class="form-select" id="selectcategory">
+        <option value="">--Pilih Kategori--</option>
+        <option value="kesenian">Kesenian</option>
+        <option value="adat">Adat Istiadat</option>
+    </select>
+</div>
 
         
 
@@ -432,28 +433,28 @@
         <div class="card-container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
             
             <!-- Card Adat-->
-            <div class="card" id="adat" style="flex: 1; min-width: 300px;">
+            <div class="card" id="adat-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2>Seni Pertunjukan</h2>
+                    <h2>Adat Istiadat</h2>
                     <h3>Desa Budaya Banjarharjo</h3>
                     <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
                 </div>
             </div>
 
-            <div class="card" id="adat" style="flex: 1; min-width: 300px;">
+            <div class="card" id="adat-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2>Seni Pertunjukan</h2>
+                    <h2>Adat Istiadat</h2>
                     <h3>Desa Budaya Banjarharjo</h3>
                     <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
                 </div>
             </div>
 
-            <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
+            <div class="card" id="adat-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2>Seni Pertunjukan</h2>
+                    <h2>Adat Istiadat</h2>
                     <h3>Desa Budaya Banjarharjo</h3>
                     <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
                 </div>
@@ -462,18 +463,14 @@
     </div>
 </div>
 
-    <script>
-    document.getElementById('selectcategory').addEventListener('change', function() {
+<script>
+    document.getElementById('selectcategory').addEventListener('change', 'function'() {
         const selectedCategory = this.value;
-        const kesenianCard = document.getElementById('kesenian-card');
-        const adatCard = document.getElementById('adat-card');
 
         if (selectedCategory === 'kesenian') {
-            kesenianCard.style.display = 'block';
-            adatCard.style.display = 'none';
+            document.getElementById('kesenian-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else if (selectedCategory === 'adat') {
-            kesenianCard.style.display = 'none';
-            adatCard.style.display = 'block';
+            document.getElementById('adat-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
 </script>

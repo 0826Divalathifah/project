@@ -114,7 +114,7 @@
             text-align: center;
             color: white;
             width: 100%; /* Lebarkan hingga penuh ke samping */
-            height: 500px; /* Tetap 500px untuk tinggi */
+            height: 600px; /* Tetap 500px untuk tinggi */
             background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
             display: flex;
             align-items: center;
@@ -168,10 +168,14 @@
 
         .breadcrumb-item a {
             color: #ffffff;
+            text-decoration: none;
+            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
+            position: relative; /* Penting untuk memastikan z-index bekerja */
         }
 
         .breadcrumb-item a:hover {
             color: #ffffff;
+            text-decoration: underline;
         }
 
         
@@ -201,7 +205,7 @@
                                 <!-- Select City items start -->
                                 <div class="select-job-items2">
                                     <select name="select2" id="categorySelect" onchange="navigateToSection()">
-                                        <option value="">Category</option>
+                                        <option value="">--Pilih Kategori--</option>
                                         <option value="makanan">Makanan dan Minuman</option>
                                         <option value="kerajinan">Kerajinan dan Aksesoris</option>
                                     </select>

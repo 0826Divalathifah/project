@@ -194,53 +194,92 @@
 
         
        
+        <div class="container">
+    <div class="row">
+        <!-- Bagian Video -->
+        <div class="col-lg-8">
             <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/MEfE4vI1b2c" 
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                style="width: 800px; height: 400px; " >
-            </iframe>
-        </div>
-        <!--?  Details start -->
-        <div class="directory-details pt-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="small-tittle mb-20">
-                            <h2>Description</h2>
-                        </div>
-                        <div class="directory-cap mb-40">
-                        </div>
-                        <div class="small-tittle mb-20">
-                            <h2>Description</h2>
-                        </div>
-                        <div class="gallery-img">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <img src="themewagon/img/gallery/galley1.png" class="mb-30" alt="">
-                                </div>
-                                <div class="col-lg-6">
-                                    <img src="themewagon/img/gallery/gallry2.png" class="mb-30" alt="">
-                                </div>
-                                <div class="col-lg-6">
-                                    <img src="themewagon/img/gallery/galley3.png"  class="mb-30"alt="">
-                                </div>
-                                <div class="col-lg-6">
-                                    <img src="themewagon/img/gallery/galery4.png"  class="mb-30"alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="map">
-                            <img src="themewagon/img/gallery/map.png" alt="">
-                        </div>
-                    </div>
-                </div>
+                <iframe src="https://www.youtube.com/embed/MEfE4vI1b2c" 
+                    title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    style="width: 100%; height: 400px;">
+                </iframe>
+            </div>
+            <!-- Deskripsi di Bawah Video -->
+            <div class="description mt-4">
+                <h2>Description</h2>
+                <p>Ini adalah deskripsi video atau produk yang ingin dijelaskan. Kamu dapat menambahkan informasi penting terkait dengan konten yang ada di video ini, seperti detail produk atau layanan yang ingin ditonjolkan.</p>
             </div>
         </div>
+
+        <!-- Bagian Form Pemesanan -->
+        <div class="col-lg-4">
+            <h2>Formulir Pemesanan</h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan nama Anda" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Nomor Telepon</label>
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Masukkan nomor telepon Anda" required>
+                </div>
+
+                <!-- Input Tanggal Booking -->
+                <div class="form-group">
+                    <label for="booking-date">Tanggal Booking</label>
+                    <input type="date" id="booking-date" name="booking-date" class="form-control" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="address">Alamat </label>
+                    <textarea id="address" name="address" class="form-control" rows="3" placeholder="Masukkan alamat pengiriman" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Pesan Sekarang</button>
+            </form>
+
+            <!-- Bagian Peta di Bawah Form -->
+            <div class="map mt-4">
+                <h2>Lokasi Kami</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126918.25923728208!2d106.68942910865508!3d-6.229746486445747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4c5a3c553%3A0x401fef807deff9f!2sJakarta!5e0!3m2!1sen!2sid!4v1632991446681!5m2!1sen!2sid" 
+                    width="100%" 
+                    height="300" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .video-container {
+        margin-bottom: 20px;
+    }
+    .description {
+        margin-top: 20px;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .btn-primary {
+        background-color: #9F78FF;
+        border: none;
+        padding: 20px 20px;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+    }
+    .btn-primary:hover {
+        background-color: #8764db;
+    }
+</style>
+
         <!--  Details End -->
 
 
