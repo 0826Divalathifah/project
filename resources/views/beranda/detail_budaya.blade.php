@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+    
+    
 </head>
 <body class="full-wrapper">
     <!-- Preloader Start -->
@@ -213,11 +215,10 @@
                 <p>Ini adalah deskripsi video atau produk yang ingin dijelaskan. Kamu dapat menambahkan informasi penting terkait dengan konten yang ada di video ini, seperti detail produk atau layanan yang ingin ditonjolkan.</p>
             </div>
         </div>
-
         <!-- Bagian Form Pemesanan -->
         <div class="col-lg-4">
             <h2>Formulir Pemesanan</h2>
-            <form action="#" method="POST">
+            <form id="formPemesanan" action="#" method="POST">
                 <div class="form-group">
                     <label for="name">Nama</label>
                     <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan nama Anda" required>
@@ -240,7 +241,8 @@
                     <textarea id="address" name="address" class="form-control" rows="3" placeholder="Masukkan alamat pengiriman" required></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Pesan Sekarang</button>
+                <button type="button" id="pesansekarang" class="btn btn-primary">Pesan Sekarang</button>
+
             </form>
 
             <!-- Bagian Peta di Bawah Form -->
@@ -415,6 +417,47 @@
 <!-- Jquery Plugins, main Jquery -->	
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.querySelector("#pesansekarang").addEventListener("click", () => {
+        const form = document.querySelector("#formPemesanan");
+
+        // Cek apakah form valid
+        if (!form.checkValidity()) {
+            // Jika tidak valid, tampilkan pesan kesalahan
+            Swal.fire({
+                title: "Perhatian!",
+                text: "Harap lengkapi semua field yang diperlukan.",
+                icon: "warning"
+            });
+            return; // Keluar dari fungsi jika form tidak valid
+        }
+
+        // Jika valid, tampilkan SweetAlert
+        Swal.fire({
+            title: "Apakah Anda Sudah Yakin?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Pemesanan Berhasil!",
+                    text: "Pesanan anda sedang diproses.",
+                    icon: "success"
+                }).then(() => {
+                    // Mengembalikan form ke kondisi default
+                    form.reset();
+                });
+            }
+        });
+    });
+</script>
+
+<script>$('.carousel').carousel()</script>
 
 </body>
 </html>

@@ -398,7 +398,7 @@
             <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2>Seni Pertunjukan</h2>
+                    <h2><a href="{{ url('/detail_budaya') }}">Seni Pertunjukan</a></h2>
                     <h3>Desa Budaya Banjarharjo</h3>
                     <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
                 </div>
@@ -407,7 +407,7 @@
             <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2>Seni Pertunjukan</h2>
+                    <h2><a href="{{ url('/detail_budaya') }}">Seni Pertunjukan</a></h2>
                     <h3>Desa Budaya Banjarharjo</h3>
                     <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
                 </div>
@@ -416,7 +416,7 @@
             <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2>Seni Pertunjukan</h2>
+                    <h2><a href="{{ url('/detail_budaya') }}">Seni Pertunjukan</a></h2>
                     <h3>Desa Budaya Banjarharjo</h3>
                     <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
                 </div>
@@ -436,7 +436,7 @@
             <div class="card" id="adat-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2>Adat Istiadat</h2>
+                    <h2><a href="{{ url('/detail_budaya') }}">Adat Istiadat</a></h2>
                     <h3>Desa Budaya Banjarharjo</h3>
                     <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
                 </div>
@@ -445,7 +445,7 @@
             <div class="card" id="adat-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2>Adat Istiadat</h2>
+                    <h2><a href="{{ url('/detail_budaya') }}">Adat Istiadat</a></h2>
                     <h3>Desa Budaya Banjarharjo</h3>
                     <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
                 </div>
@@ -454,7 +454,7 @@
             <div class="card" id="adat-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2>Adat Istiadat</h2>
+                    <h2><a href="{{ url('/detail_budaya') }}">Adat Istiadat</a></h2>
                     <h3>Desa Budaya Banjarharjo</h3>
                     <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
                 </div>

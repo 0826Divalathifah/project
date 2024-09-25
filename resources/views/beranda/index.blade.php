@@ -69,8 +69,9 @@
                                     <li>   
                                     <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
                                     <li><a href="{{ url('/contact') }}">Kontak</a></li>
-                                    <li><a href="{{ url('#') }}">Login</a></li>
-        
+
+                                    <li><a href="#" onclick="showAuthForm()">Login/Register</a></li>
+
                                 </ul>
                             </nav>
                         </div>
@@ -83,17 +84,6 @@
                                 <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                                  <!-- Ikon Login dan Sign Up -->
                             </div>
-
-                           
-                            <!-- Search Box -->
-                            <!--<div class="header-search d-flex align-items-center" >
-                            <form class="search-form" method="GET" action="http://127.0.0.1:8000/search">
-                                 <div class="form-floating mb-0">
-                                    <input id="search-form" type="text" class="form-control" name="keyword" value="" placeholder="Search">
-                                    
-                                </div>
-                            </form>
-                            </div>-->
                         </div>
 
 
@@ -121,15 +111,6 @@
                     <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                     <!-- Ikon Login dan Sign Up -->
                     </div>
-                    <!-- Search Box -->
-                    <!--<div class="header-search d-block d-md-none" >
-                            <form class="search-form" method="GET" action="http://127.0.0.1:8000/search">
-                                 <div class="form-floating mb-0">
-                                    <input id="search-form" type="text" class="form-control" name="keyword" value="" placeholder="Search">
-                                    
-                                </div>
-                            </form>
-                    </div>-->
                 </div>
                 <!-- /End mobile  Menu-->
 
@@ -408,5 +389,85 @@
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Fungsi untuk menampilkan pilihan Login/Register
+    async function showAuthForm() {
+        const { isConfirmed, isDismissed } = await Swal.fire({
+            title: "Pilih Opsi",
+            showCancelButton: true,
+            confirmButtonText: 'Login',
+            cancelButtonText: 'Register',
+            icon: 'question'
+        });
+
+        if (isConfirmed) {
+            showLoginForm();
+        } else if (isDismissed) {
+            showRegisterForm();
+        }
+    }
+
+    // Fungsi untuk menampilkan form Login
+    async function showLoginForm() {
+        const { value: formValues } = await Swal.fire({
+            title: "Login Form",
+            html: `
+                <input id="swal-login-email" class="swal2-input" placeholder="Email" value="">
+                <input id="swal-login-password" class="swal2-input" type="password" placeholder="Password" value="">
+            `,
+            focusConfirm: false,
+            preConfirm: () => {
+                const email = document.getElementById("swal-login-email").value;
+                const password = document.getElementById("swal-login-password").value;
+
+                if (!email || !password) {
+                    Swal.showValidationMessage(`Harap isi semua field!`);
+                    return false; // Menghentikan eksekusi jika field kosong
+                }
+
+                return { email, password };
+            }
+        });
+
+        if (formValues) {
+            Swal.fire(`Login Berhasil!`);
+        }
+    }
+
+    // Fungsi untuk menampilkan form Register
+    async function showRegisterForm() {
+        const { value: formValues } = await Swal.fire({
+            title: "Register Form",
+            html: `
+                <input id="swal-register-name" class="swal2-input" placeholder="Nama Lengkap" value="">
+                <input id="swal-register-email" class="swal2-input" placeholder="Email" value="">
+                <input id="swal-register-password" class="swal2-input" type="password" placeholder="Password" value="">
+                <input id="swal-register-confirm-password" class="swal2-input" type="password" placeholder="Konfirmasi Password" value="">
+            `,
+            focusConfirm: false,
+            preConfirm: () => {
+                const name = document.getElementById("swal-register-name").value;
+                const email = document.getElementById("swal-register-email").value;
+                const password = document.getElementById("swal-register-password").value;
+                const confirmPassword = document.getElementById("swal-register-confirm-password").value;
+
+                if (!name || !email || !password || !confirmPassword) {
+                    Swal.showValidationMessage(`Harap isi semua field!`);
+                    return false; // Menghentikan eksekusi jika field kosong
+                } else if (password !== confirmPassword) {
+                    Swal.showValidationMessage(`Password dan Konfirmasi Password tidak cocok!`);
+                    return false; // Menghentikan eksekusi jika password tidak cocok
+                }
+
+                return { name, email, password };
+            }
+        });
+
+        if (formValues) {
+            Swal.fire(`Register Berhasil!`);
+        }
+    }
+</script>
 </body>
 </html>
