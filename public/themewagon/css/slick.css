@@ -117,3 +117,71 @@
 .slick-arrow.slick-hidden {
     display: none;
 }
+
+
+/* alert login/register */
+
+    .swal-custom-title {
+        font-size: 1.5em; /* Besarkan ukuran font judul */
+    }
+
+    .swal-custom-actions .swal2-styled {
+        padding: 0.75em 2em; /* Perbesar tombol */
+        font-size: 1.7em;
+    }
+    .swal2-title {
+        font-size: 2em; /* Membesarkan ukuran judul */
+        font-weight: bold;
+    }
+
+    .swal2-input {
+        font-size: 1.3em; /* Membesarkan teks input */
+        padding: 15px; /* Membesarkan padding dalam input */
+        width: 80%; /* Membuat input lebih lebar */
+        margin-bottom: 10px; /* Memberi jarak antar input */
+    }
+
+    .swal2-confirm {
+        font-size: 1.7em; /* Membesarkan teks pada tombol */
+        padding: 10px 25px; /* Membesarkan ukuran tombol */
+        background-color: #6A5ACD; /* Mengubah warna tombol */
+        border-radius: 5px; /* Membuat sudut tombol lebih halus */
+    }
+
+    .swal2-input::placeholder {
+        font-size: 1.2em; /* Membesarkan teks placeholder */
+        color: #cccccc; /* Mengatur warna placeholder */
+    }
+
+    .swal2-popup {
+        width: 600px; /* Memperbesar ukuran modal */
+        padding: 30px; /* Menambah padding dalam modal */
+    }
+
+
+
+    /* slider galery  */
+    
+    
+    .carousel-item img {
+        max-height: 200px; /* Tinggi maksimal gambar */
+        width: auto; /* Agar gambar tetap proporsional */
+        object-fit: cover;
+        border-radius: 10px;
+        margin: 0 10px; /* Jarak antara gambar */
+    }
+
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+        background-color: #6A5ACD; /* Warna icon navigasi carousel */
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    .carousel {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        text-align: center; /* Agar gambar dan carousel terpusat */
+    }
+
+
+

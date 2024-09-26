@@ -29,3 +29,28 @@
             });
         });
     });
+
+    //script slider galler
+    $(document).ready(function(){
+        $(".gallery-slider").owlCarousel({
+            items: 3, // Jumlah gambar yang ditampilkan
+            loop: true, // Looping slider
+            margin: 10,
+            nav: true, // Menampilkan tombol next/prev
+            dots: false, // Menyembunyikan dots navigasi
+            autoplay: true, // Gambar bergulir secara otomatis
+            autoplayTimeout: 3000, // Durasi autoplay
+            responsive: {
+                0: {
+                    items: 1 // Tampilan mobile, satu gambar
+                },
+                600: {
+                    items: 2 // Tampilan tablet, dua gambar
+                },
+                1000: {
+                    items: 3 // Tampilan desktop, tiga gambar
+                }
+            }
+        });
+    });
+

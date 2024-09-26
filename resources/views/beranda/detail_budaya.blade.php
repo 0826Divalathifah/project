@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
     
 </head>
@@ -209,12 +211,42 @@
                     style="width: 100%; height: 400px;">
                 </iframe>
             </div>
-            <!-- Deskripsi di Bawah Video -->
+            
+            <!-- Carousel Slider di atas deskripsi dengan gambar kecil -->
+            <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel" style="max-width: 300px; margin: auto;">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner text-center">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" style="width: 200px; height: auto;" alt="Slide 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" style="width: 200px; height: auto;" alt="Slide 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" style="width: 200px; height: auto;" alt="Slide 3">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+
+            <!-- Deskripsi di Bawah Carousel -->
             <div class="description mt-4">
                 <h2>Description</h2>
                 <p>Ini adalah deskripsi video atau produk yang ingin dijelaskan. Kamu dapat menambahkan informasi penting terkait dengan konten yang ada di video ini, seperti detail produk atau layanan yang ingin ditonjolkan.</p>
             </div>
         </div>
+
         <!-- Bagian Form Pemesanan -->
         <div class="col-lg-4">
             <h2>Formulir Pemesanan</h2>
@@ -235,14 +267,12 @@
                     <input type="date" id="booking-date" name="booking-date" class="form-control" required>
                 </div>
 
-
                 <div class="form-group">
                     <label for="address">Alamat </label>
                     <textarea id="address" name="address" class="form-control" rows="3" placeholder="Masukkan alamat pengiriman" required></textarea>
                 </div>
 
                 <button type="button" id="pesansekarang" class="btn btn-primary">Pesan Sekarang</button>
-
             </form>
 
             <!-- Bagian Peta di Bawah Form -->
@@ -250,7 +280,8 @@
                 <h2>Lokasi Kami</h2>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126918.25923728208!2d106.68942910865508!3d-6.229746486445747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4c5a3c553%3A0x401fef807deff9f!2sJakarta!5e0!3m2!1sen!2sid!4v1632991446681!5m2!1sen!2sid" 
                     width="100%" 
-                    height="300" 
+                    height="200" 
+                    margin-bottom= "30px"
                     style="border:0;" 
                     allowfullscreen="" 
                     loading="lazy"></iframe>
@@ -419,6 +450,8 @@
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
     document.querySelector("#pesansekarang").addEventListener("click", () => {
         const form = document.querySelector("#formPemesanan");

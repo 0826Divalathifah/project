@@ -395,10 +395,18 @@
     async function showAuthForm() {
         const { isConfirmed, isDismissed } = await Swal.fire({
             title: "Pilih Opsi",
-            showCancelButton: true,
+            width: '500px', // menambah lebar modal
+            padding: '3em', // padding di dalam modal
             confirmButtonText: 'Login',
+            confirmButtonColor: '#6A5ACD', // ganti warna tombol Login
             cancelButtonText: 'Register',
-            icon: 'question'
+            cancelButtonColor: '#A9A9A9', // ganti warna tombol Register
+            showCancelButton: true,
+            icon: 'question',
+            customClass: {
+                title: 'swal-custom-title', // menambahkan class CSS untuk judul
+                actions: 'swal-custom-actions', // menambahkan class CSS untuk tombol
+            }
         });
 
         if (isConfirmed) {
@@ -411,7 +419,9 @@
     // Fungsi untuk menampilkan form Login
     async function showLoginForm() {
         const { value: formValues } = await Swal.fire({
-            title: "Login Form",
+            title: "Login ",
+            width: '500px', // memperbesar lebar modal
+            padding: '3em',
             html: `
                 <input id="swal-login-email" class="swal2-input" placeholder="Email" value="">
                 <input id="swal-login-password" class="swal2-input" type="password" placeholder="Password" value="">
@@ -438,7 +448,9 @@
     // Fungsi untuk menampilkan form Register
     async function showRegisterForm() {
         const { value: formValues } = await Swal.fire({
-            title: "Register Form",
+            title: "Register ",
+            width: '500px',
+            padding: '3em',
             html: `
                 <input id="swal-register-name" class="swal2-input" placeholder="Nama Lengkap" value="">
                 <input id="swal-register-email" class="swal2-input" placeholder="Email" value="">
@@ -454,10 +466,10 @@
 
                 if (!name || !email || !password || !confirmPassword) {
                     Swal.showValidationMessage(`Harap isi semua field!`);
-                    return false; // Menghentikan eksekusi jika field kosong
+                    return false;
                 } else if (password !== confirmPassword) {
                     Swal.showValidationMessage(`Password dan Konfirmasi Password tidak cocok!`);
-                    return false; // Menghentikan eksekusi jika password tidak cocok
+                    return false;
                 }
 
                 return { name, email, password };
@@ -469,5 +481,3 @@
         }
     }
 </script>
-</body>
-</html>
