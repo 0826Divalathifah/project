@@ -13,12 +13,6 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <!-- endinject -->
 
-    <!-- One Page, Animated Headline, Date Picker -->
-    <script src="{{ asset('themewagon/js/wow.min.js') }}"></script>
-    <script src="{{ asset('themewagon/js/animated.headline.js') }}"></script>
-    <script src="{{ asset('themewagon/js/jquery.magnific-popup.js') }}"></script>
-    <script src="{{ asset('themewagon/js/gijgo.min.js') }}"></script>
-    <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
 
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css') }}">
@@ -39,10 +33,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkelurahan') }}" >
+          <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" class="me-2" alt="logo" />
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkelurahan') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="logo" />
           </a>
         </div>
@@ -118,7 +112,7 @@
             </li>
             <li class="nav-item nav-settings d-none d-lg-flex">
               <a class="nav-link" href="#">
-                <i class="icon-ellipsis"></i>
+                <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
               </a>
             </li>
           </ul>
@@ -202,72 +196,79 @@
             </li>
           </ul>
         </nav>
+      
         <div class="main-panel">
         <div class="content-wrapper">
         <div class="row">
         <div class="col-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Formulir Tambah Budaya</h4>
-                    <p class="card-description"> Lengkapi kolom formulir di bawah ini </p>
-                    <form class="forms-sample">
-                    <div class="form-group">
-                      <label>Pilih Budaya</label>
-                      <select class="js-example-basic-single w-100">
-                        <option value="AL">Kesenian</option>
-                        <option value="WY">Adat Istiadat</option>
-                      </select>
-                    </div>
-                      <div class="form-group">
-                        <label for="exampleInputName1">Nama Budaya</label>
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="contoh:'Karawitan Miguyoh Rasa' ">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputName1">Alamat</label>
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Alamat ">
-                      </div>
-                      <div class="form-group">
-                      <label for="exampleInputName1">Harga</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">Rp</span>
-                        </div>
-                        <input type="text" class="form-control form-control-sm" aria-label="Amount (to the nearest rupiah)">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputName1">Link Youtube</label>
-                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Link Youtube">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleTextarea1">Deskripsi</label>
-                        <textarea class="form-control" id="exampleTextarea1" rows="5"></textarea>
-                      </div>
-                      <div class="form-group">
-                        <label>Unggah Foto Card</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12 d-flex align-items-center">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
-                          <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                          </span>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label>Unggah Foto-Foto Kebudayaan</label>
-                        <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple>
-                        <div class="input-group col-xs-12 d-flex align-items-center">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
-                          <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                          </span>
-                        </div>
-                      </div>
-                      <button type="submit" class="btn btn-primary me-2">Submit</button>
-                    </form>
-                  </div>
+        <div class="card">
+        <form id="formTambahBudaya" action="#" method="POST">
+          <div class="card-body">
+            <h4 class="card-title">Formulir Tambah Budaya</h4>
+            <p class="card-description"> Lengkapi kolom formulir di bawah ini </p>
+            <form class="forms-sample">
+            <div class="form-group">
+              <label>Pilih Budaya</label>
+              <select class="js-example-basic-single w-100">
+                <option value="AL">Kesenian</option>
+                <option value="WY">Adat Istiadat</option>
+              </select>
+            </div>
+              <div class="form-group">
+                <label for="exampleInputName1">Nama Budaya</label>
+                <input type="text" class="form-control" id="exampleInputName1" placeholder="contoh:'Karawitan Miguyoh Rasa' ">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputName1">Alamat</label>
+                <input type="text" class="form-control" id="exampleInputName1" placeholder="Alamat ">
+              </div>
+              <div class="form-group">
+              <label for="exampleInputName1">Harga</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Rp</span>
+                </div>
+                <input type="text" class="form-control form-control-sm" aria-label="Amount (to the nearest rupiah)">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="youtubeLink">Link Youtube</label>
+              <input type="url" class="form-control" id="youtubeLink" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
+              <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
+          </div>
+          <div class="form-group">
+              <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
+              <input type="number" class="form-control" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+          </div>
+              <div class="form-group">
+                <label for="exampleTextarea1">Deskripsi</label>
+                <textarea class="form-control" id="exampleTextarea1" rows="5"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Unggah Foto Card</label>
+                <input type="file" name="img[]" class="file-upload-default">
+                <div class="input-group col-xs-12 d-flex align-items-center">
+                  <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                  <span class="input-group-append ms-2">
+                    <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                  </span>
                 </div>
               </div>
+              <div class="form-group">
+                <label>Unggah Foto-Foto Kebudayaan</label>
+                <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple>
+                <div class="input-group col-xs-12 d-flex align-items-center">
+                  <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                  <span class="input-group-append ms-2">
+                    <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                  </span>
+                </div>
+              </div>
+              <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
 
           <footer class="footer">
   <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -280,11 +281,6 @@
         <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
-    </div>
-
-    <!-- Scroll Up -->
-    <div id="back-top" >
-        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
 
     <!-- container-scroller -->
@@ -306,5 +302,46 @@
     <script src="{{ asset('admin/assets/js/typeahead.js') }}"></script>
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <!-- End custom js for this page-->
-  </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.querySelector("#submit").addEventListener("click", () => {
+            const form = document.querySelector("#formTambahBudaya");
+
+            // Cek apakah form valid
+            if (!form.checkValidity()) {
+                // Jika tidak valid, tampilkan pesan kesalahan
+                Swal.fire({
+                    title: "Perhatian!",
+                    text: "Harap lengkapi semua field yang diperlukan.",
+                    icon: "warning"
+                });
+                return; // Keluar dari fungsi jika form tidak valid
+            }
+
+            // Jika valid, tampilkan SweetAlert
+            Swal.fire({
+                title: "Apakah Anda Sudah Yakin?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Pemesanan Berhasil!",
+                        text: "Pesanan anda sedang diproses.",
+                        icon: "success"
+                    }).then(() => {
+                        // Mengembalikan form ke kondisi default
+                        form.reset();
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>$('.carousel').carousel()</script>
+</body>
 </html>
