@@ -272,7 +272,7 @@
                 <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-            </div>
+            </div>                                                                                              
         </div>
 
         <div class="card">
