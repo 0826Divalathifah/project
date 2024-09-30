@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <!-- endinject -->
+
+
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/fontawesome-all.min.css') }}">
     <!-- End plugin css for this page -->
 
     <!-- inject:css -->
@@ -26,10 +33,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkelurahan') }}" >
+          <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" class="me-2" alt="logo" />
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkelurahan') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="logo" />
           </a>
         </div>
@@ -105,7 +112,7 @@
             </li>
             <li class="nav-item nav-settings d-none d-lg-flex">
               <a class="nav-link" href="#">
-                <i class="icon-ellipsis"></i>
+                <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
               </a>
             </li>
           </ul>
@@ -134,8 +141,8 @@
               <div class="collapse" id="budaya">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahbudaya') }}">Tambah Kesenian</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudya') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudya') }}">Laporan</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudaya') }}">Transaksi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
                 </ul>
               </div>
             </li>
@@ -148,8 +155,8 @@
               <div class="collapse" id="preneur">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahpreneur') }}">Tambah Produk</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprener') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprneur') }}">Laporan</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksipreneur') }}">Transaksi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanpreneur') }}">Laporan</a></li>
                 </ul>
               </div>
             </li>
@@ -189,460 +196,126 @@
             </li>
           </ul>
         </nav>
-        <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper">
-            <div class="row">
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Basic Table</h4>
-                    <p class="card-description"> Add class <code>.table</code>
-                    </p>
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead>
-                          <tr>
-                            <th>Profile</th>
-                            <th>VatNo.</th>
-                            <th>Created</th>
-                            <th>Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Jacob</td>
-                            <td>53275531</td>
-                            <td>12 May 2017</td>
-                            <td><label class="badge badge-danger">Pending</label></td>
-                          </tr>
-                          <tr>
-                            <td>Messsy</td>
-                            <td>53275532</td>
-                            <td>15 May 2017</td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                          </tr>
-                          <tr>
-                            <td>John</td>
-                            <td>53275533</td>
-                            <td>14 May 2017</td>
-                            <td><label class="badge badge-info">Fixed</label></td>
-                          </tr>
-                          <tr>
-                            <td>Peter</td>
-                            <td>53275534</td>
-                            <td>16 May 2017</td>
-                            <td><label class="badge badge-success">Completed</label></td>
-                          </tr>
-                          <tr>
-                            <td>Dave</td>
-                            <td>53275535</td>
-                            <td>20 May 2017</td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                          </tr>
-                        </tbody>
-                      </table>
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <form id="formTambahBudaya" action="#" method="POST">
+            <div class="card-body">
+              <h4 class="card-title">Formulir Tambah Budaya</h4>
+              <p class="card-description"> Lengkapi kolom formulir di bawah ini </p>
+
+              <!-- Pilihan Kategori Budaya -->
+              <div class="form-group">
+                <label>Pilih Budaya</label>
+                <select class="js-example-basic-single w-100">
+                  <option value="Makanan">Makanan dan Minuman</option>
+                  <option value="Kerajinan">Kerajinan dan Aksesoris</option>
+                </select>
+              </div>
+
+              <!-- Nama dan Alamat -->
+              <div class="form-group">
+                <label for="exampleInputName1">Nama</label>
+                <input type="text" class="form-control" id="exampleInputName1" placeholder="contoh: 'Karawitan Miguyoh Rasa'">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputAddress1">Alamat</label>
+                <input type="text" class="form-control" id="exampleInputAddress1" placeholder="Alamat">
+              </div>
+
+              <!-- Kisaran Harga -->
+              <div class="form-group">
+                <label for="exampleInputPrice">Kisaran Harga</label>
+                <div class="d-flex align-items-center">
+                  <div class="input-group me-2">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Rp</span>
                     </div>
+                    <input type="text" id="harga_min" name="harga_min" class="form-control" placeholder="Min">
+                  </div>
+                  <span class="mx-2">-</span>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Rp</span>
+                    </div>
+                    <input type="text" id="harga_max" name="harga_max" class="form-control" placeholder="Max">
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Hoverable Table</h4>
-                    <p class="card-description"> Add class <code>.table-hover</code>
-                    </p>
-                    <div class="table-responsive">
-                      <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th>User</th>
-                            <th>Product</th>
-                            <th>Sale</th>
-                            <th>Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Jacob</td>
-                            <td>Photoshop</td>
-                            <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                            <td><label class="badge badge-danger">Pending</label></td>
-                          </tr>
-                          <tr>
-                            <td>Messsy</td>
-                            <td>Flash</td>
-                            <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                          </tr>
-                          <tr>
-                            <td>John</td>
-                            <td>Premier</td>
-                            <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
-                            <td><label class="badge badge-info">Fixed</label></td>
-                          </tr>
-                          <tr>
-                            <td>Peter</td>
-                            <td>After effects</td>
-                            <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                            <td><label class="badge badge-success">Completed</label></td>
-                          </tr>
-                          <tr>
-                            <td>Dave</td>
-                            <td>53275535</td>
-                            <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
-                            <td><label class="badge badge-warning">In progress</label></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+
+              <!-- Nomor WhatsApp -->
+              <div class="form-group">
+                <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
+                <input type="number" class="form-control" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+              </div>
+
+              <!-- Deskripsi -->
+              <div class="form-group">
+                <label for="exampleTextarea1">Deskripsi</label>
+                <textarea class="form-control" id="exampleTextarea1" rows="5"></textarea>
+              </div>
+
+              <!-- Unggah Foto Card -->
+              <div class="form-group">
+                <label>Unggah Foto Card</label>
+                <input type="file" name="img[]" class="file-upload-default">
+                <div class="input-group d-flex align-items-center">
+                  <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                  <button class="file-upload-browse btn btn-primary ms-2" type="button">Unggah</button>
                 </div>
               </div>
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Striped Table</h4>
-                    <p class="card-description"> Add class <code>.table-striped</code>
-                    </p>
-                    <div class="table-responsive">
-                      <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            <th> User </th>
-                            <th> First name </th>
-                            <th> Progress </th>
-                            <th> Amount </th>
-                            <th> Deadline </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces/face1.jpg" alt="image" />
-                            </td>
-                            <td> Herman Beck </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces/face2.jpg" alt="image" />
-                            </td>
-                            <td> Messsy Adam </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $245.30 </td>
-                            <td> July 1, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces/face3.jpg" alt="image" />
-                            </td>
-                            <td> John Richards </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $138.00 </td>
-                            <td> Apr 12, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces/face4.jpg" alt="image" />
-                            </td>
-                            <td> Peter Meggik </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces/face5.jpg" alt="image" />
-                            </td>
-                            <td> Edward </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 160.25 </td>
-                            <td> May 03, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces/face6.jpg" alt="image" />
-                            </td>
-                            <td> John Doe </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 123.21 </td>
-                            <td> April 05, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <img src="../../assets/images/faces/face7.jpg" alt="image" />
-                            </td>
-                            <td> Henry Tom </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 150.00 </td>
-                            <td> June 16, 2015 </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+
+              <!-- Unggah Foto-Foto Produk -->
+              <div class="form-group">
+                <label>Unggah Foto-Foto Produk</label>
+                <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple>
+                <div class="input-group d-flex align-items-center">
+                  <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                  <button class="file-upload-browse btn btn-primary ms-2" type="button">Unggah</button>
                 </div>
               </div>
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Bordered table</h4>
-                    <p class="card-description"> Add class <code>.table-bordered</code>
-                    </p>
-                    <div class="table-responsive pt-3">
-                      <table class="table table-bordered">
-                        <thead>
-                          <tr>
-                            <th> # </th>
-                            <th> First name </th>
-                            <th> Progress </th>
-                            <th> Amount </th>
-                            <th> Deadline </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td> 1 </td>
-                            <td> Herman Beck </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 2 </td>
-                            <td> Messsy Adam </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $245.30 </td>
-                            <td> July 1, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> John Richards </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $138.00 </td>
-                            <td> Apr 12, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 4 </td>
-                            <td> Peter Meggik </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 5 </td>
-                            <td> Edward </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 160.25 </td>
-                            <td> May 03, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 6 </td>
-                            <td> John Doe </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 123.21 </td>
-                            <td> April 05, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 7 </td>
-                            <td> Henry Tom </td>
-                            <td>
-                              <div class="progress">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </td>
-                            <td> $ 150.00 </td>
-                            <td> June 16, 2015 </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+
+              <!-- Form Tambah Varian -->
+              <h4 class="card-title">Form Tambah Varian (Opsional)</h4>
+
+              <!-- Variasi Rasa -->
+              <div class="form-group">
+                <label>Variasi Rasa</label>
+                <div id="flavorList">
+                  <div class="d-flex mb-2">
+                    <input type="text" class="form-control me-2" placeholder="Nama Rasa">
+                    <input type="number" class="form-control me-2" placeholder="Harga Rasa (Rp)">
+                    <button type="button" class="btn btn-danger remove-flavor">Hapus</button>
                   </div>
                 </div>
+                <button type="button" class="btn btn-primary" id="addFlavor">Tambah Rasa</button>
               </div>
-              <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Inverse table</h4>
-                    <p class="card-description"> Add class <code>.table-dark</code>
-                    </p>
-                    <div class="table-responsive pt-3">
-                      <table class="table table-dark">
-                        <thead>
-                          <tr>
-                            <th> # </th>
-                            <th> First name </th>
-                            <th> Amount </th>
-                            <th> Deadline </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td> 1 </td>
-                            <td> Herman Beck </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 2 </td>
-                            <td> Messsy Adam </td>
-                            <td> $245.30 </td>
-                            <td> July 1, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 3 </td>
-                            <td> John Richards </td>
-                            <td> $138.00 </td>
-                            <td> Apr 12, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 4 </td>
-                            <td> Peter Meggik </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 5 </td>
-                            <td> Edward </td>
-                            <td> $ 160.25 </td>
-                            <td> May 03, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 6 </td>
-                            <td> John Doe </td>
-                            <td> $ 123.21 </td>
-                            <td> April 05, 2015 </td>
-                          </tr>
-                          <tr>
-                            <td> 7 </td>
-                            <td> Henry Tom </td>
-                            <td> $ 150.00 </td>
-                            <td> June 16, 2015 </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+
+              <!-- Variasi Topping -->
+              <div class="form-group">
+                <label>Variasi Topping</label>
+                <div id="toppingList">
+                  <div class="d-flex mb-2">
+                    <input type="text" class="form-control me-2" placeholder="Nama Topping">
+                    <input type="number" class="form-control me-2" placeholder="Harga Topping (Rp)">
+                    <button type="button" class="btn btn-danger remove-topping">Hapus</button>
                   </div>
                 </div>
+                <button type="button" class="btn btn-primary" id="addTopping">Tambah Topping</button>
               </div>
-              <div class="col-lg-12 stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Table with contextual classes</h4>
-                    <p class="card-description"> Add class <code>.table-{color}</code>
-                    </p>
-                    <div class="table-responsive pt-3">
-                      <table class="table table-bordered">
-                        <thead>
-                          <tr>
-                            <th> # </th>
-                            <th> First name </th>
-                            <th> Product </th>
-                            <th> Amount </th>
-                            <th> Deadline </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr class="table-info">
-                            <td> 1 </td>
-                            <td> Herman Beck </td>
-                            <td> Photoshop </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr class="table-warning">
-                            <td> 2 </td>
-                            <td> Messsy Adam </td>
-                            <td> Flash </td>
-                            <td> $245.30 </td>
-                            <td> July 1, 2015 </td>
-                          </tr>
-                          <tr class="table-danger">
-                            <td> 3 </td>
-                            <td> John Richards </td>
-                            <td> Premeire </td>
-                            <td> $138.00 </td>
-                            <td> Apr 12, 2015 </td>
-                          </tr>
-                          <tr class="table-success">
-                            <td> 4 </td>
-                            <td> Peter Meggik </td>
-                            <td> After effects </td>
-                            <td> $ 77.99 </td>
-                            <td> May 15, 2015 </td>
-                          </tr>
-                          <tr class="table-primary">
-                            <td> 5 </td>
-                            <td> Edward </td>
-                            <td> Illustrator </td>
-                            <td> $ 160.25 </td>
-                            <td> May 03, 2015 </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary">Tambah Produk</button>
             </div>
-          </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:../../partials/_footer.html -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
           <footer class="footer">
   <div class="d-sm-flex justify-content-center justify-content-sm-between">
     <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
@@ -650,17 +323,19 @@
   </div>
 </footer>
           <!-- partial -->
-        </div>
+          </div>
         <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
     </div>
-    
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
+    <script src="{{ asset('admin/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendors/select2/select2.min.js') }}"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
@@ -669,6 +344,50 @@
     <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
+    <script src="{{ asset('admin/assets/js/file-upload.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/typeahead.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <!-- End custom js for this page-->
-  </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.querySelector("#submit").addEventListener("click", () => {
+            const form = document.querySelector("#formTambahBudaya");
+
+            // Cek apakah form valid
+            if (!form.checkValidity()) {
+                // Jika tidak valid, tampilkan pesan kesalahan
+                Swal.fire({
+                    title: "Perhatian!",
+                    text: "Harap lengkapi semua field yang diperlukan.",
+                    icon: "warning"
+                });
+                return; // Keluar dari fungsi jika form tidak valid
+            }
+
+            // Jika valid, tampilkan SweetAlert
+            Swal.fire({
+                title: "Apakah Anda Sudah Yakin?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Pemesanan Berhasil!",
+                        text: "Pesanan anda sedang diproses.",
+                        icon: "success"
+                    }).then(() => {
+                        // Mengembalikan form ke kondisi default
+                        form.reset();
+                    });
+                }
+            });
+        });
+    </script>
+
+    <script>$('.carousel').carousel()</script>
+</body>
 </html>
