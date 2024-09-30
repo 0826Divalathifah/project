@@ -121,7 +121,7 @@
                                 background-size: cover; 
                                 background-position: center; 
                                 background-repeat: no-repeat; 
-                                height: 300px;">
+                                height: 200px;">
 
                         <div class="container">
                             <div class="row justify-content-center">
@@ -140,7 +140,7 @@
                                 background-size: cover; 
                                 background-position: center; 
                                 background-repeat: no-repeat; 
-                                height: 300px;">
+                                height: 200px;">
 
                     <div class="container">
                             <div class="row justify-content-center">

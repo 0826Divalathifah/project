@@ -180,8 +180,25 @@
     .carousel {
         margin-top: 30px;
         margin-bottom: 30px;
-        text-align: center; /* Agar gambar dan carousel terpusat */
+        text-align: right; /* Agar gambar dan carousel terpusat */
     }
+    .carousel-inner .row {
+        margin-left: -5px; /* Sesuaikan dengan kebutuhan */
+    }
+    
+    /* Geser form ke kiri */
+.col-lg-5 {
+    width: 40%; /* Lebar form sedikit lebih besar */
+    margin-left: 0; /* Menghilangkan margin kiri */
+    margin-right: auto; /* Biar form otomatis bergerak ke kiri */
+}
+
+/* Pastikan input dan textarea tetap lebar sesuai dengan form */
+.form-group input, 
+.form-group textarea {
+    width: 100%; /* Input menyesuaikan dengan lebar form */
+}
+
 
 
 

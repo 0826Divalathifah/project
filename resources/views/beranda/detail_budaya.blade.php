@@ -9,7 +9,7 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
 
-    <!-- CSS here -->
+    <!--  CSS here -->
     <link rel="stylesheet" href="{{ asset('themewagon/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/slicknav.css') }}">
@@ -104,8 +104,8 @@
     </header>
     <!-- header end -->
     <main>
-        <!-- listing Area Start -->
-        <div class="category-area">
+       <!-- listing Area Start -->
+       <div class="category-area">
             <div class="container">
             <div class="row">
             
@@ -117,14 +117,14 @@
             position: relative;
             text-align: center;
             color: white;
-            width: 100%; /* Lebarkan hingga penuh ke samping */
-            height: 500px; /* Tetap 500px untuk tinggi */
+            width: 200%; /* Lebarkan hingga penuh ke samping */
+            height: 600px; /* Tetap 500px untuk tinggi */
             background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .banner-overlay {
@@ -172,10 +172,14 @@
 
         .breadcrumb-item a {
             color: #ffffff;
+            text-decoration: none;
+            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
+            position: relative; /* Penting untuk memastikan z-index bekerja */
         }
 
         .breadcrumb-item a:hover {
             color: #ffffff;
+            text-decoration: underline;
         }
 
         
@@ -183,19 +187,18 @@
 
         <div class="banner-container">
             <div class="banner-overlay"></div>
-            <div class="banner-text">Detail Budaya</div>
+            <div class="banner-text">Desa Preneur</div>
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Detail</a></li>
+                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
                     </ol>
                 </nav>
             </div>
         </div>
-
         
        
         <div class="container">
@@ -208,37 +211,59 @@
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen
-                    style="width: 100%; height: 400px;">
+                    style="width: 80%; height: 370px;">
                 </iframe>
             </div>
             
-            <!-- Carousel Slider di atas deskripsi dengan gambar kecil -->
-            <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel" style="max-width: 300px; margin: auto;">
-                <ol class="carousel-indicators">
-                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner text-center">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" style="width: 200px; height: auto;" alt="Slide 1">
+            <!-- Carousel Slider di Sebelah Kiri dengan 4 Foto per Slide -->
+            <div class="col-lg-12">
+            <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel" style="width: 80%; margin: 0 auto; transform: translateX(-10%);">
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block w-100" alt="Slide 1" style="width: 100%; height: auto;">
                     </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" style="width: 200px; height: auto;" alt="Slide 2">
+                    <div class="col-3">
+                        <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block w-100" alt="Slide 2" style="width: 100%; height: auto;">
                     </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" style="width: 200px; height: auto;" alt="Slide 3">
+                    <div class="col-3">
+                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block w-100" alt="Slide 3" style="width: 100%; height: auto;">
+                    </div>
+                    <div class="col-3">
+                        <img src="{{ asset('themewagon/img/gallery/gallery4.jpg') }}" class="d-block w-100" alt="Slide 4" style="width: 100%; height: auto;">
                     </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
             </div>
+            <div class="carousel-item">
+                <div class="row">
+                <div class="col-3">
+                        <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block w-100" alt="Slide 1" style="width: 100%; height: auto;">
+                    </div>
+                    <div class="col-3">
+                        <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block w-100" alt="Slide 2" style="width: 100%; height: auto;">
+                    </div>
+                    <div class="col-3">
+                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block w-100" alt="Slide 3" style="width: 100%; height: auto;">
+                    </div>
+                    <div class="col-3">
+                        <img src="{{ asset('themewagon/img/gallery/gallery4.jpg') }}" class="d-block w-100" alt="Slide 4" style="width: 100%; height: auto;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+    </div>
+</div>
+
 
             <!-- Deskripsi di Bawah Carousel -->
             <div class="description mt-4">
