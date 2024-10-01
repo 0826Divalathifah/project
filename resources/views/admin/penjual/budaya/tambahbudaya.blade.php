@@ -198,7 +198,134 @@
         </nav>
       
         <div class="main-panel">
-        <div class="content-wrapper">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="card-title">Kelola Produk</p>
+                            <!-- Trigger Modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahBudayaModal">
+                              Tambah Budaya
+                            </button>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="table-responsive">
+                                    <table id="example" class="display expandable-table" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Produk</th>
+                                                <th>Kategori</th>
+                                                <th>Alamat</th>
+                                                <th>Kisaran Harga</th>
+                                                <th>Premium</th>
+                                                <th>Status</th>
+                                                <th>Updated at</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Tambah Produk -->
+        <div class="modal fade" id="tambahBudayaModal" tabindex="-1" aria-labelledby="tambahBudayaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content rounded-lg shadow-sm">
+      <!-- Modal Header -->
+      <div class="modal-header  text-white rounded-top">
+      <h4 class="card-title" id="tambahBudayaModalLabel">Formulir Tambah Budaya</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <!-- Modal Body with Form -->
+      <div class="modal-body">
+        <form id="formTambahBudaya" action="#" method="POST">
+          <div class="mb-3">
+            <label for="budayaSelect" class="form-label">Pilih Budaya</label>
+            <select id="budayaSelect" class="form-select js-example-basic-single w-100">
+              <option value="AL">Kesenian</option>
+              <option value="WY">Adat Istiadat</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="namaBudaya" class="form-label">Nama Budaya</label>
+            <input type="text" class="form-control rounded" id="namaBudaya" placeholder="contoh: 'Karawitan Miguyoh Rasa'">
+          </div>
+
+          <div class="mb-3">
+            <label for="alamatBudaya" class="form-label">Alamat</label>
+            <input type="text" class="form-control rounded" id="alamatBudaya" placeholder="Alamat">
+          </div>
+
+          <div class="mb-3">
+  <label for="hargaBudaya" class="form-label">Harga</label>
+  <div class="input-group">
+    <span class="input-group-text">Rp</span>
+    <input type="text" class="form-control rounded" id="hargaBudaya" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)">
+  </div>
+</div>
+
+<script>
+  function formatCurrency(input) {
+    // Menghapus semua karakter yang bukan angka
+    let value = input.value.replace(/\D/g, '');
+    
+    // Mengubah angka menjadi format dengan titik setiap 3 digit
+    if (value) {
+      value = Number(value).toLocaleString('id-ID'); // Format untuk ID
+      input.value = value;
+    }
+  }
+</script>
+
+
+          <div class="mb-3">
+            <label for="youtubeLink" class="form-label">Link Youtube</label>
+            <input type="url" class="form-control rounded" id="youtubeLink" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
+            <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
+          </div>
+
+          <div class="mb-3">
+            <label for="whatsappNumber" class="form-label">Nomor WhatsApp Aktif</label>
+            <input type="number" class="form-control rounded" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="deskripsiBudaya" class="form-label">Deskripsi</label>
+            <textarea class="form-control rounded" id="deskripsiBudaya" rows="4" placeholder="Deskripsi Budaya"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="fotoBudaya" class="form-label">Unggah Foto Card</label>
+            <input type="file" class="form-control rounded" id="fotoBudaya">
+          </div>
+
+          <div class="mb-3">
+            <label for="fotoLainBudaya" class="form-label">Unggah Foto-Foto Kebudayaan</label>
+            <input type="file" class="form-control rounded" id="fotoLainBudaya" multiple>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
         <div class="row">
         <div class="col-12 grid-margin stretch-card">
         <div class="card">
