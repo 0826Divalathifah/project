@@ -199,6 +199,21 @@
     width: 100%; /* Input menyesuaikan dengan lebar form */
 }
 
+/* ini css slider */
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: transparent; /* Hilangkan background */
+    outline: none; /* Hilangkan outline jika ada */
+    border: none; /* Hilangkan border */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    background: none; /* Hilangkan background tombol */
+    border: none; /* Hilangkan border tombol */
+}
+
 
 
 

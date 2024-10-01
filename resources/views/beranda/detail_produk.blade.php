@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
 
     <style>
-        body {
+        body {3e
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
     
 </head>
 <body class="full-wrapper">
@@ -219,12 +219,14 @@
             <div class="d-flex justify-content-center">
                 <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}"class="d-block" alt="Gambar 3">
                 <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" alt="Gambar 4">
+                <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}"class="d-block" alt="Gambar 3">
             </div>
             </div>
             <div class="carousel-item">
             <div class="d-flex justify-content-center">
                 <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}"class="d-block" alt="Gambar 3">
                 <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" alt="Gambar 4">
+                <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}"class="d-block" alt="Gambar 3">
             </div>
             </div>
             <!-- Tambahkan carousel-item lainnya -->
@@ -232,11 +234,11 @@
 
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
+            
         </button>
         </div>
 

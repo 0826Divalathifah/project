@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Detail Budaya</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
 
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     
     
 </head>
@@ -216,54 +216,42 @@
             </div>
             
             <!-- Carousel Slider di Sebelah Kiri dengan 4 Foto per Slide -->
-            <div class="col-lg-12">
-            <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel" style="width: 80%; margin: 0 auto; transform: translateX(-10%);">
+<div class="col-lg-10"> 
+    <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel" style="width: 100%; margin: 0 auto;">
 
+        <!-- Carousel Start -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block w-100" alt="Slide 1" style="width: 100%; height: auto;">
-                    </div>
-                    <div class="col-3">
-                        <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block w-100" alt="Slide 2" style="width: 100%; height: auto;">
-                    </div>
-                    <div class="col-3">
-                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block w-100" alt="Slide 3" style="width: 100%; height: auto;">
-                    </div>
-                    <div class="col-3">
-                        <img src="{{ asset('themewagon/img/gallery/gallery4.jpg') }}" class="d-block w-100" alt="Slide 4" style="width: 100%; height: auto;">
-                    </div>
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block" alt="Gambar 1" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block" alt="Gambar 2" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
                 </div>
             </div>
             <div class="carousel-item">
-                <div class="row">
-                <div class="col-3">
-                        <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block w-100" alt="Slide 1" style="width: 100%; height: auto;">
-                    </div>
-                    <div class="col-3">
-                        <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block w-100" alt="Slide 2" style="width: 100%; height: auto;">
-                    </div>
-                    <div class="col-3">
-                        <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block w-100" alt="Slide 3" style="width: 100%; height: auto;">
-                    </div>
-                    <div class="col-3">
-                        <img src="{{ asset('themewagon/img/gallery/gallery4.jpg') }}" class="d-block w-100" alt="Slide 4" style="width: 100%; height: auto;">
-                    </div>
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" alt="Gambar 3" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery4.jpg') }}" class="d-block" alt="Gambar 4" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery5.jpg') }}" class="d-block" alt="Gambar 5" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
                 </div>
             </div>
+            <div class="carousel-item">
+                <div class="d-flex justify-content-center">
+                    <img src="{{ asset('themewagon/img/gallery/gallery6.jpg') }}" class="d-block" alt="Gambar 6" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery7.jpg') }}" class="d-block" alt="Gambar 7" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery8.jpg') }}" class="d-block" alt="Gambar 8" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
+                </div>
+            </div>
+            <!-- Tambahkan carousel-item lainnya sesuai kebutuhan -->
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </a>
+        </button>
     </div>
 </div>
-
 
             <!-- Deskripsi di Bawah Carousel -->
             <div class="description mt-4">
