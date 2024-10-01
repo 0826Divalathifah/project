@@ -211,34 +211,35 @@
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen
-                    style="width: 80%; height: 370px;">
+                    style="width: 100%; height: 370px;">
                 </iframe>
             </div>
             
             <!-- Carousel Slider di Sebelah Kiri dengan 4 Foto per Slide -->
-<div class="col-lg-10"> 
+<div class="col-lg-12"> 
     <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel" style="width: 100%; margin: 0 auto;">
 
         <!-- Carousel Start -->
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block" alt="Gambar 1" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
-                    <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block" alt="Gambar 2" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block" alt="Gambar 1" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block" alt="Gambar 2" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block" alt="Gambar 1" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" alt="Gambar 3" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
-                    <img src="{{ asset('themewagon/img/gallery/gallery4.jpg') }}" class="d-block" alt="Gambar 4" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
-                    <img src="{{ asset('themewagon/img/gallery/gallery5.jpg') }}" class="d-block" alt="Gambar 5" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" alt="Gambar 3"  style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery4.jpg') }}" class="d-block" alt="Gambar 4"  style="width: 80%; height: 150px;object-fit: cover; margin: 0 10px;">
+                    <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}"  class="d-block" alt="Gambar 5"  style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
                 </div>
             </div>
             <div class="carousel-item">
                 <div class="d-flex justify-content-center">
-                    <img src="{{ asset('themewagon/img/gallery/gallery6.jpg') }}" class="d-block" alt="Gambar 6" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
-                    <img src="{{ asset('themewagon/img/gallery/gallery7.jpg') }}" class="d-block" alt="Gambar 7" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
-                    <img src="{{ asset('themewagon/img/gallery/gallery8.jpg') }}" class="d-block" alt="Gambar 8" style="width: 100%; height: 200px; object-fit: cover; margin: 0 10px;">
+                <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block" alt="Gambar 6" style="width: 80%; height: 150px;object-fit: cover; margin: 0 10px;">
+                <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}"  class="d-block" alt="Gambar 7" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
+                <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}"  class="d-block" alt="Gambar 8" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
                 </div>
             </div>
             <!-- Tambahkan carousel-item lainnya sesuai kebutuhan -->
@@ -293,8 +294,8 @@
                 <h2>Lokasi Kami</h2>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126918.25923728208!2d106.68942910865508!3d-6.229746486445747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4c5a3c553%3A0x401fef807deff9f!2sJakarta!5e0!3m2!1sen!2sid!4v1632991446681!5m2!1sen!2sid" 
                     width="100%" 
-                    height="200" 
-                    margin-bottom= "30px"
+                    height="250" 
+                    margin-bottom= "40px"
                     style="border:0;" 
                     allowfullscreen="" 
                     loading="lazy"></iframe>
