@@ -188,7 +188,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
+                        <li class="breadcrumb-item"><a href="#">Desa Preneur</a></li>
                     </ol>
                 </nav>
             </div>
@@ -216,55 +216,44 @@
                 <!--?  Right content -->
                 <div class="col-xl-9 col-lg-9 col-md-8 ">
 
-        <style>
-/* Container Slider */
-.slider {
-    display: flex;               /* Menggunakan flexbox untuk mengatur card secara horizontal */
-    overflow-x: auto;           /* Mengaktifkan scroll horizontal */
-    padding: 10px;              /* Padding untuk slider */
-    scroll-snap-type: x mandatory; /* Mengaktifkan scroll snap */
-}
-
-/* Card Style */
-.card {
-    flex: 0 0 auto;             /* Card tidak akan membesar atau mengecil */
-    width: 300px;               /* Lebar card */
-    height: 470px;
-    margin-right: 15px;         /* Margin antara card */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow card */
-    border-radius: 8px;         /* Sudut melingkar */
-    background-color: #fff;     /* Warna latar belakang card */
-    scroll-snap-align: start;   /* Align saat scroll */
-}
-
-/* Gaya untuk gambar card */
-.card img {
-    width: 100%;                /* Mengatur gambar agar memenuhi card */
-    height: 250px;               /* Mengatur tinggi otomatis */
-    border-top-left-radius: 8px; /* Radius untuk sudut atas */
-    border-top-right-radius: 8px; /* Radius untuk sudut atas */
-}
-
-/* Card body style */
-.card-body {
-    padding: 10px;              /* Padding untuk body card */
-    text-align:center;         /* Rata tengah untuk teks */
-}
-
-/* Tombol gaya */
-.btn {
-    background-color: #9F78FF;;  /* Warna latar belakang tombol */
-    color: #fff;                /* Warna teks tombol */
-    border: none;               /* Tanpa border */
-    padding: 20px 20px;         /* Padding untuk tombol */
-    border-radius:  10px;        /* Sudut melingkar tombol */
-    text-decoration: none;      /* Menghilangkan garis bawah */
-}
-</style>
+       
 </head>
 <body>
     <!-- Makanan Section -->
     <div id="makanan" class="slider">
+        <div class="card">
+            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Briza Brownies">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>                                                                                              
+        </div>
+
+        <div class="card">
+            <img src="..." alt="Produk 2">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 2</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Deskripsi singkat produk 2.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="..." alt="Produk 3">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 3</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Deskripsi singkat produk 3.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>
+        </div>
+    </div>
+
+     <!-- Kerajinan section -->
+     <div id="kerajinan" class="slider">
         <div class="card">
             <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Briza Brownies">
             <div class="card-body">

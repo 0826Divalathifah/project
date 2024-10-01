@@ -21,155 +21,6 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
 
-    <style>
-        body {3e
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-
-        /* Footer Styling */
-        .footer {
-            background-color: #343a40;
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .footer a {
-            color: white;
-            margin: 0 10px;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .footer a:hover {
-            color: #17a2b8;
-        }
-
-        /* Product Details Styling */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .product-detail {
-            background-color: #fff;
-            border-radius: 15px;
-            display: flex;
-            max-width: 1000px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-images {
-            width: 50%;
-            margin-right: 20px;
-        }
-
-        .product-images img {
-            width: 90%;
-            height: 250px;
-            border-radius: 10px;
-        }
-
-        .product-info {
-            width: 50%;
-        }
-
-        .product-info h2 {
-            color: #444;
-        }
-
-        .product-info h3 {
-            color: #888;
-            font-weight: normal;
-        }
-
-        .product-info .price {
-            font-size: 24px;
-            color: #333;
-            margin: 10px 0;
-        }
-
-        .product-info .description {
-            margin: 15px 0;
-            color: #777;
-        }
-
-        .product-info button {
-            background-color: #17a2b8;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .product-info button:hover {
-            background-color: #138496;
-        }
-
-        .social-icons {
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            color: #555;
-            margin-right: 10px;
-            font-size: 18px;
-        }
-
-        .social-icons a:hover {
-            color: #000;
-        }
-
-        /* Header Styling */
-        .header-area {
-            background-color: white; /* Set background to white */
-            padding: 10px 0;
-        }
-
-        .header-area a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .main-menu ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .main-menu ul li {
-            display: inline-block;
-            margin-right: 20px;
-        }
-
-        .main-menu ul li a {
-            color: black;
-            font-weight: bold;
-        }
-
-        .header-social a {
-            color: black;
-            margin-left: 10px;
-        }
-
-        .header-social a:hover {
-            color: black;
-        }
-
-        .header-area.sticky {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-    </style>
 </head>
 <body>
 
@@ -183,7 +34,7 @@
                         <!-- Logo -->
                         <div class="logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97px; height: 70px;">
+                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 200px; height: 70px;">
                             </a>
                         </div>
                         <!-- Main-menu -->
@@ -223,59 +74,176 @@
     </div>
 </header>
 <!-- Header End -->
-
 <div class="container">
-    <div class="product-detail">
-        <!-- Product Images Slider -->
-        <div class="product-images">
-            <div><img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt=""></div>
-            <div><img src="{{ asset('themewagon/img/desaprima/produk2.jpeg') }}" alt=""></div>
-            <div><img src="{{ asset('themewagon/img/desaprima/produk3.jpeg') }}" alt=""></div>
+        <div class="product-detail">
+            <!-- Product Images Slider -->
+            <div class="image-slider">
+            <div class="slide"><img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 1"></div>
+            <div class="slide"><img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 2"></div>
+            <div class="slide"><img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 3"></div>
         </div>
+      
 
-        <!-- Product Information -->
-        <div class="product-info">
-            <h3>KART GOODS</h3>
-            <h2>Sea Blue & White</h2>
-            <p class="price">$62.50</p>
-            <p>Adidas Footwear</p>
-            <div class="description">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-            </div>
-            <button>BUY</button>
-            
-            <!-- Social Media Icons -->
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-            </div>
+    <!-- Product Information -->
+    <div class="product-info">
+        <h2>Briza Brownies</h2>
+        <p class="price">Rp 30.000</p>
+        <p>Adidas Footwear</p>
+        <div class="description">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+        </div>
+        
+        <div class="flavor-selection">
+            <label for="flavors">Pilih Rasa:</label>
+            <select id="flavors">
+                <option value="coklat">Coklat</option>
+                <option value="vanila">Vanila</option>
+                <option value="stroberi">Stroberi</option>
+                <option value="keju">Keju</option>
+                <option value="matcha">Matcha</option>
+            </select>
+        </div>
+            <button>BELI</button>
         </div>
     </div>
 </div>
 
-<!-- Footer Start -->
-<div class="footer">
-    <p>Follow us on</p>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-pinterest"></i></a>
-    <a href="#"><i class="fab fa-facebook"></i></a>
-</div>
-<!-- Footer End -->
 
-<!-- JS -->
-<script src="{{ asset('themewagon/js/jquery-3.6.0.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/bootstrap.bundle.min.js') }}"></script>
+
+
+
+<footer>
+    <!-- Footer Start -->
+    <div class="footer-area footer-padding">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-around">
+                <!-- Logo and Social Media -->
+                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8 d-flex justify-content-center">
+                    <div class="single-footer-caption mb-50">
+                        <!-- Logo -->
+                        <div class="footer-logo mb-35" style="text-align: right;">
+                            <a href="{{ url('/') }}">
+                                <img src="{{ asset('themewagon/img/logo/logo_footer.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 120px;">
+                            </a>
+                        </div>
+                        <!-- Social Media Icons -->
+                        <div class="footer-social">
+                            <a href="https://sinduharjosid.slemankab.go.id/first" class="mr-2"><i class="fas fa-globe"></i></a>
+                            <a href="https://www.instagram.com/kalurahan_sinduharjo" class="mr-2"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Link</h4>
+                            <ul>
+                                <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
+                                <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
+                                <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
+                                <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
+                    <div class="single-footer-caption mb-35" style= "text-align: left;">
+                        <div class="footer-tittle">
+                            <h4>Kontak</h4>
+                            <ul>
+                                <li><a href="#">(0274) 882723</a></li>
+                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer-Bottom Area -->
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="footer-border">
+                <div class="row d-flex align-items-center">
+                    <div class="col-xl-12">
+                        <div class="footer-copy-right text-center">
+                            <p>
+                                Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+                                All rights reserved | Kalurahan Sinduharjo
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+</footer>
+
+<!--? Search model Begin -->
+<div class="search-model-box">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-btn">+</div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Searching key.....">
+        </form>
+    </div>
+</div>
+<!-- Search model end -->
+<!-- Scroll Up -->
+<div id="back-top" >
+    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
+</div>
+    </footer>
+
+<!-- JS here -->
+<!-- Jquery, Popper, Bootstrap -->
+<script src="{{ asset('themewagon/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+<script src="{{ asset('themewagon/js/vendor/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ asset('themewagon/js/popper.min.js') }}"></script>
+<script src="{{ asset('themewagon/js/bootstrap.min.js') }}"></script>
+
+
+<!-- Slick-slider , Owl-Carousel ,slick-nav -->
+<script src="{{ asset('themewagon/js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('themewagon/js/slick.min.js') }}"></script>
-<script>
-    $(document).ready(function(){
-        $('.product-images').slick({
-            infinite: true,
-            slidesToShow: 1,
-            slidesToScroll: 1
-        });
-    });
-</script>
+<script src="{{ asset('themewagon/js/jquery.slicknav.min.js') }}"></script>
+
+<!-- One Page, Animated-HeadLin, Date Picker -->
+<script src="{{ asset('themewagonjs/wow.min.js') }}"></script>
+<script src="{{ asset('themewagon/js/animated.headline.js') }}"></script>
+<script src="{{ asset('themewagon/js/jquery.magnific-popup.js') }}"></script>
+<script src="{{ asset('themewagon/js/gijgo.min.js') }}"></script>
+
+
+<!-- Nice-select, sticky,Progress -->
+<script src="{{ asset('themewagon/js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('themewagon/js/jquery.sticky.js') }}"></script>
+<script src="{{ asset('themewagon/js/jquery.barfiller.js') }}"></script>
+
+<!-- counter , waypoint,Hover Direction -->
+<script src="{{ asset('themewagon/js/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('themewagon/js/waypoints.min.js') }}"></script>
+<script src="{{ asset('themewagon/js/jquery.countdown.min.js') }}"></script>
+<script src="{{ asset('themewagon/js/hover-direction-snake.min.js') }}"></script>
+
+<!-- contact js -->
+<script src="{{ asset('themewagon/js/contact.js') }}"></script>
+<script src="{{ asset('themewagon/js/jquery.form.js') }}"></script>
+<script src="{{ asset('themewagon/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('themewagon/js/mail-script.js') }}"></script>
+<script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script>
+
+<!-- Jquery Plugins, main Jquery -->	
+<script src="{{ asset('themewagon/js/plugins.js') }}"></script>
+<script src="{{ asset('themewagon/js/main.js') }}"></script>
 
 </body>
 </html>
