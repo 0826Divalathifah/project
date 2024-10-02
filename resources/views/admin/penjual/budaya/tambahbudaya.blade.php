@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css') }}">
     <!-- End plugin css for this page -->
 
     <!-- inject:css -->
@@ -196,7 +196,7 @@
             </li>
           </ul>
         </nav>
-    
+
     <div class="main-panel">
     <div class="content-wrapper">
     <div class="row">
@@ -315,7 +315,5 @@
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
 
     <!-- End custom js for this page-->
-
-
 </body>
 </html>

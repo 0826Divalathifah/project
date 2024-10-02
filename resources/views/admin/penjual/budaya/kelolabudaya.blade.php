@@ -199,144 +199,46 @@
       
         <div class="main-panel">
     <div class="content-wrapper">
-        <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="card-title">Kelola Produk</p>
-                            <!-- Trigger Modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahBudayaModal">
-                              Tambah Budaya
-                            </button>
-                        </div>
+    <div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+              <p class="card-title">Kelola Produk</p>
+              <a href="{{ url('tambahbudaya') }}" class="btn btn-primary">Tambah Budaya</a>
+          </div>
 
-                        <div class="row mt-3">
-                            <div class="col-12">
-                                <div class="table-responsive">
-                                    <table id="example" class="display expandable-table" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Nama Produk</th>
-                                                <th>Kategori</th>
-                                                <th>Alamat</th>
-                                                <th>Kisaran Harga</th>
-                                                <th>Premium</th>
-                                                <th>Status</th>
-                                                <th>Updated at</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table id="example" class="display expandable-table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nama Produk</th>
+                            <th>Kategori</th>
+                            <th>Alamat</th>
+                            <th>Kisaran Harga</th>
+                            <th>Premium</th>
+                            <th>Status</th>
+                            <th>Updated at</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
-<!-- Modal Tambah Produk -->
-<div class="modal fade" id="tambahBudayaModal" tabindex="-1" aria-labelledby="tambahBudayaModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md"> <!-- Mengubah menjadi modal-md -->
-    <div class="modal-content rounded-lg shadow-sm">
-
-      <!-- Modal Header -->
-      <div class="modal-header text-white rounded-top" style="background-color: #007bff;">
-        <h4 class="card-title" id="tambahBudayaModalLabel" style="font-family: 'Arial', sans-serif;">Formulir Tambah Budaya</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <!-- Modal Body with Form -->
-      <div class="modal-body">
-        <form id="formTambahBudaya" action="#" method="POST">
-          @csrf
-
-          <!-- Kategori Budaya -->
-          <h5 class="mt-3 mb-3" style="font-family: 'Arial', sans-serif;">Informasi Budaya</h5>
-          <div class="mb-3">
-            <label for="budayaSelect" class="form-label">Pilih Budaya</label>
-            <select id="budayaSelect" class="form-select js-example-basic-single">
-              <option value="AL">Kesenian</option>
-              <option value="WY">Adat Istiadat</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label for="namaBudaya" class="form-label">Nama Budaya</label>
-            <input type="text" class="form-control rounded" id="namaBudaya" placeholder="contoh: 'Karawitan Miguyoh Rasa'" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="alamatBudaya" class="form-label">Alamat</label>
-            <input type="text" class="form-control rounded" id="alamatBudaya" placeholder="Alamat" required>
-          </div>
-
-          <div class="mb-3">
-            <label for="mapsLink" class="form-label">Link Alamat/Maps</label>
-            <input type="url" class="form-control rounded" id="mapsLink" placeholder="Masukkan link Google Maps" pattern="https://.*" required>
-            <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
-          </div>
-
-          <h5 class="mt-4 mb-3" style="font-family: 'Arial', sans-serif;">Informasi Harga dan Kontak</h5>
-          <div class="mb-3">
-            <label for="hargaBudaya" class="form-label">Harga</label>
-            <div class="input-group">
-              <span class="input-group-text">Rp</span>
-              <input type="text" class="form-control rounded" id="hargaBudaya" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="youtubeLink" class="form-label">Link Youtube</label>
-            <input type="url" class="form-control rounded" id="youtubeLink" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
-            <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
-          </div>
-
-          <div class="mb-3">
-            <label for="whatsappNumber" class="form-label">Nomor WhatsApp Aktif</label>
-            <input type="number" class="form-control rounded" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
-          </div>
-
-          <h5 class="mt-4 mb-3" style="font-family: 'Arial', sans-serif;">Deskripsi dan Foto</h5>
-          <div class="mb-3">
-            <label for="deskripsiBudaya" class="form-label">Deskripsi</label>
-            <textarea class="form-control rounded" id="deskripsiBudaya" rows="4" placeholder="Deskripsi Budaya" required></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label for="fotoBudaya" class="form-label">Unggah Foto Card</label>
-            <input type="file" class="form-control rounded" id="fotoBudaya" accept="image/*">
-          </div>
-
-          <div class="mb-3">
-            <label for="fotoLainBudaya" class="form-label">Unggah Foto-Foto Kebudayaan</label>
-            <input type="file" class="form-control rounded" id="fotoLainBudaya" multiple accept="image/*">
-          </div>
-
-          <!-- Submit Button -->
-          <button type="submit" id="submit" class="btn btn-primary w-100" style="font-weight: bold;">Submit</button>
-        </form>
-      </div>
     </div>
-  </div>
-</div>
-
-</div>
-
-    
-
-  <footer class="footer">
-  <div class="d-sm-flex justify-content-center justify-content-sm-between">
-    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ms-1"></i></span>
-  </div>
-  </footer>
-          <!-- partial -->
-          </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
     </div>
+    </div>
+    </div>
+    </div>
+</div>
+<!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
 
     <!-- container-scroller -->
     <!-- plugins:js -->
