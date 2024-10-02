@@ -249,6 +249,7 @@
       <!-- Modal Body with Form -->
       <div class="modal-body">
         <form id="formTambahBudaya" action="#" method="POST">
+        @csrf
           <div class="mb-3">
             <label for="budayaSelect" class="form-label">Pilih Budaya</label>
             <select id="budayaSelect" class="form-select js-example-basic-single w-100">
@@ -291,13 +292,13 @@
 
           <div class="mb-3">
             <label for="youtubeLink" class="form-label">Link Youtube</label>
-            <input type="url" class="form-control rounded" id="youtubeLink" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
+            <input type="url" class="form-control rounded" id="youtubeLink" placeholder="Masukkan Link Youtube" pattern="https://.*" >
             <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
           </div>
 
           <div class="mb-3">
             <label for="whatsappNumber" class="form-label">Nomor WhatsApp Aktif</label>
-            <input type="number" class="form-control rounded" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+            <input type="number" class="form-control rounded" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0">
           </div>
 
           <div class="mb-3">
