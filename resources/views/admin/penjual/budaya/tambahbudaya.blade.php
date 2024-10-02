@@ -209,89 +209,90 @@
                     </ol>
                 </nav>
 
-    <div class="col-12 grid-margin stretch-card">
+                <div class="col-12 grid-margin stretch-card">
     <div class="card">
-    <form id="formTambahBudaya" action="#" method="POST">
-    <div class="card-body">
-      <h4 class="card-title">Formulir Tambah Budaya</h4>
-      <p class="card-description"> Lengkapi kolom formulir di bawah ini </p>
-      <form class="forms-sample">
-      <div class="form-group">
-        <label>Pilih Budaya</label>
-        <select class="js-example-basic-single w-100">
-          <option value="AL">Kesenian</option>
-          <option value="WY">Adat Istiadat</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputName1">Nama Budaya</label>
-        <input type="text" class="form-control" id="exampleInputName1" placeholder="contoh:'Karawitan Miguyoh Rasa' ">
-      </div>
-      <div class="form-group">
-        <label for="exampleInputName1">Alamat</label>
-        <input type="text" class="form-control" id="exampleInputName1" placeholder="Alamat ">
-      </div>
-      <div class="mb-3">
-        <label for="hargaBudaya" class="form-label">Harga</label>
-        <div class="input-group">
-            <span class="input-group-text">Rp</span>
-            <input type="text" class="form-control rounded" id="hargaBudaya" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
-        </div>
-        </div>
-      <div class="form-group">
-        <label for="youtubeLink">Link Youtube</label>
-        <input type="url" class="form-control" id="youtubeLink" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
-        <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
-      </div>
-      <div class="form-group">
-        <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
-        <input type="number" class="form-control" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
-      </div>
-      <div class="form-group">
-        <label for="exampleTextarea1">Deskripsi</label>
-        <textarea class="form-control" id="exampleTextarea1" rows="5"></textarea>
-      </div>
-      <div class="form-group">
-        <label>Unggah Foto Card</label>
-        <input type="file" name="img[]" class="file-upload-default">
-        <div class="input-group col-xs-12 d-flex align-items-center">
-          <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
-          <span class="input-group-append ms-2">
-            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-          </span>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Unggah Foto-Foto Kebudayaan</label>
-        <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple>
-        <div class="input-group col-xs-12 d-flex align-items-center">
-          <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
-          <span class="input-group-append ms-2">
-            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-          </span>
-        </div>
-      </div>
-      <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
-    </form>
-    </div>
-    </div>
-  
-  </div>
+        <form id="formTambahBudaya" action="#" method="POST">
+            <div class="card-body">
+                <h4 class="card-title">Formulir Tambah Budaya</h4>
+                <p class="card-description"> Lengkapi kolom formulir di bawah ini </p>
+                <form class="forms-sample">
+                    <div class="form-group">
+                        <label>Pilih Budaya</label>
+                        <select class="js-example-basic-single w-100">
+                            <option value="AL">Kesenian</option>
+                            <option value="WY">Adat Istiadat</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Nama Budaya</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="contoh: 'Karawitan Miguyoh Rasa' ">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Alamat</label>
+                        <input type="text" class="form-control" id="exampleInputName1" placeholder="Alamat">
+                    </div>
+                    <div class="mb-3">
+                        <label for="hargaBudaya" class="form-label">Harga</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Rp</span>
+                            <input type="text" class="form-control rounded" id="hargaBudaya" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="youtubeLink">Link Youtube</label>
+                        <input type="url" class="form-control" id="youtubeLink" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
+                        <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
+                        <input type="number" class="form-control" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+                    </div>
 
-    
+                    <!-- Input URL Google Maps -->
+                    <div class="form-group">
+                        <label for="mapsLink">Link Google Maps</label>
+                        <input type="url" class="form-control" id="mapsLink" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
+                        <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
+                    </div>
 
-<footer class="footer">
-  <div class="d-sm-flex justify-content-center justify-content-sm-between">
-    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ms-1"></i></span>
-  </div>
-</footer>
-          <!-- partial -->
-          </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
+                    <div class="form-group">
+                        <label for="exampleTextarea1">Deskripsi</label>
+                        <textarea class="form-control" id="exampleTextarea1" rows="5"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Unggah Foto Card</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12 d-flex align-items-center">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                            <span class="input-group-append ms-2">
+                                <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Unggah Foto-Foto Kebudayaan</label>
+                        <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple>
+                        <div class="input-group col-xs-12 d-flex align-items-center">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                            <span class="input-group-append ms-2">
+                                <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                            </span>
+                        </div>
+                    </div>
+                    <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+                </form>
+            </div>
+        </form>
     </div>
+</div>
+</div>
+
+<!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
 
     <!-- container-scroller -->
     <!-- plugins:js -->

@@ -141,7 +141,7 @@
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolabudaya') }}">Kelola Kesenian</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudya') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudya') }}">Laporan</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
                 </ul>
               </div>
             </li>
