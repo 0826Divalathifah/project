@@ -204,7 +204,7 @@
     <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/kelolabudaya') }}">Kelola Produk</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
                         <li class="breadcrumb-item"><a href="#"> Tambah Budaya</a></li>
                     </ol>
                 </nav>

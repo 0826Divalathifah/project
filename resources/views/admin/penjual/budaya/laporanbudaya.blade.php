@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <!-- endinject -->
-    <!-- End plugin css for this page -->
+    <!--  css for this page -->
+      
 
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
@@ -192,6 +193,7 @@
     <div class="main-panel">
     <div class="content-wrapper">
     <div class="col-md-12 grid-margin transparent">
+    <div class="col-md-12 grid-margin transparent"> 
     <div class="row">
         <!-- Card 1 -->
         <div class="col-md-3 mb-4 stretch-card transparent">
@@ -215,24 +217,42 @@
             </div>
         </div>
 
-        <!-- Sales Report (Card) -->
-        <div class="col-md-6 mb-4 stretch-card">
-            <div class="card">
+        <!-- Card 3 -->
+        <div class="col-md-3 mb-4 stretch-card transparent">
+            <div class="card card-light-blue">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                        <p class="card-title">Sales Report</p>
-                        <a href="#" class="text-info">View all</a>
-                    </div>
-                    <p class="font-weight-500">
-                        The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page, or app, etc.
-                    </p>
-                    <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
-                    <canvas id="sales-chart"></canvas>
+                    <p class="mb-4">Number of Meetings</p>
+                    <p class="fs-30 mb-2">34040</p>
+                    <p>2.00% (30 days)</p>
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- Card 4 -->
+        <div class="col-md-3 mb-4 stretch-card transparent">
+            <div class="card card-light-danger">
+                <div class="card-body">
+                    <p class="mb-4">Number of Clients</p>
+                    <p class="fs-30 mb-2">47033</p>
+                    <p>0.22% (30 days)</p>
+                </div>
+            </div>
+        </div>
+  </div>
 </div>
+<div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <p class="card-title">Sales Report</p>
+                      <a href="#" class="text-info">View all</a>
+                    </div>
+                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                    <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
+                    <canvas id="sales-chart"></canvas>
+                  </div>
+                </div>
+              </div>
 
 
           <!-- partial -->
@@ -246,7 +266,8 @@
     <!-- plugins:js -->
     <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
-    <!-- Plugin js for this page -->
+    <!-- Plugin js for this page -->    
+
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>

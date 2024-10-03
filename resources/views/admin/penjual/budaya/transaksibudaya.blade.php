@@ -133,7 +133,7 @@
               </a>
               <div class="collapse" id="budaya">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahbudaya') }}">Tambah Kesenian</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolabudaya') }}">Tambah Kesenian</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudaya') }}">Transaksi</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
                 </ul>

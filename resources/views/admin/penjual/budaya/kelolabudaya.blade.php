@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/fontawesome-all.min.css') }}">
+ 
     <!-- End plugin css for this page -->
 
     <!-- inject:css -->
@@ -208,26 +208,84 @@
               <a href="{{ url('tambahbudaya') }}" class="btn btn-primary">Tambah Budaya</a>
           </div>
 
-    <div class="row mt-3">
-        <div class="col-12">
-            <div class="table-responsive">
-                <table id="example" class="display expandable-table" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Nama Produk</th>
-                            <th>Kategori</th>
-                            <th>Alamat</th>
-                            <th>Kisaran Harga</th>
-                            <th>Premium</th>
-                            <th>Status</th>
-                            <th>Updated at</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+          
+          <div class="row mt-3">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table id="kelolaProdukTable" class="table table-bordered table-hover" style="width:100%">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Nama Produk</th>
+                        <th>Kategori</th>
+                        <th>Alamat</th>
+                        <th>Kisaran Harga</th>
+                        <th>Link Youtube</th>
+                        <th>Nomor WhatsApp</th>
+                        <th>Link Google Maps</th>
+                        <th>Deskripsi</th>
+                        <th>Foto Card</th>
+                        <th>Foto Slider</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data produk akan diisi di sini -->
+                    <tr>
+                        <td>Produk 1</td>
+                        <td>Makanan</td>
+                        <td>Jl. Contoh No. 1</td>
+                        <td>Rp 50.000 - Rp 100.000</td>
+                        <td><a href="#">Lihat Video</a></td>
+                        <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
+                        <td><a href="https://goo.gl/maps/xxxx">Lihat Peta</a></td>
+                        <td>Deskripsi singkat produk 1</td>
+                        <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
+                        <td><img src="path/to/foto-slider.jpg" alt="Foto Slider" width="100"></td>
+                        <td>
+                            <button class="btn btn-primary btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm">Hapus</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Produk 1</td>
+                        <td>Makanan</td>
+                        <td>Jl. Contoh No. 1</td>
+                        <td>Rp 50.000 - Rp 100.000</td>
+                        <td><a href="#">Lihat Video</a></td>
+                        <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
+                        <td><a href="https://goo.gl/maps/xxxx">Lihat Peta</a></td>
+                        <td>Deskripsi singkat produk 1</td>
+                        <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
+                        <td><img src="path/to/foto-slider.jpg" alt="Foto Slider" width="100"></td>
+                        <td>
+                            <button class="btn btn-primary btn-sm">Edit</button>
+                            <button class="btn btn-danger btn-sm">Hapus</button>
+                        </td>
+                    </tr>
+                    <!-- Tambahkan lebih banyak baris produk sesuai kebutuhan -->
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
+
+<!-- Style tambahan untuk mempercantik tabel -->
+<style>
+    #kelolaProdukTable {
+        font-size: 14px;
+    }
+    #kelolaProdukTable th, #kelolaProdukTable td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    #kelolaProdukTable img {
+        border-radius: 5px;
+    }
+    .table-responsive {
+        margin-top: 20px;
+    }
+</style>
+
     </div>
     </div>
     </div>
