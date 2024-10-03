@@ -119,6 +119,81 @@
 }
 
 
+
+        /* Styling for the banner */
+        .banner-container {
+            position: relative;
+            text-align: center;
+            color: white;
+            width: 200%; /* Lebarkan hingga penuh ke samping */
+            height: 600px; /* Tetap 500px untuk tinggi */
+            background: url('/themewagon/img/desabudaya/banner.jpg') no-repeat center center/cover; /* Gunakan URL absolut */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 60px;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan hitam */
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        
+        .banner-text {
+            position: relative;
+            z-index: 2;
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            margin-top: 100px; /* Untuk pusatkan teks secara vertikal */
+        }
+        
+        @media screen and (max-width: 768px) {
+            .banner-container {
+                width: 100%; /* Tetap penuh pada layar kecil */
+                height: 300px; /* Kurangi tinggi untuk layar lebih kecil */
+            }
+        
+            .banner-text {
+                font-size: 36px; /* Ukuran teks lebih kecil di layar mobile */
+            }
+        }
+        
+
+
+        .breadcrumb {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .breadcrumb-item a {
+            color: #ffffff;
+            text-decoration: none;
+            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
+            position: relative; /* Penting untuk memastikan z-index bekerja */
+        }
+
+        .breadcrumb-item a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        
+   
 /* Container Slider Produk */
 .slider {
     display: flex;               /* Menggunakan flexbox untuk mengatur card secara horizontal */
@@ -260,137 +335,3 @@
 }
 
 
-
-
-/*Slider gambar detail produk/*
-/* Container styling */
-.product-detail {
-    display: flex;
-    flex-direction: column; /* Atur agar elemen ditumpuk secara vertikal di mobile */
-    gap: 20px;
-    max-width: 1000px; /* Lebar maksimal yang lebih besar */
-    margin: 0 auto; /* Pusatkan kontainer */
-    margin-top: 30px;
-    margin-bottom: 30px;
-    align-items: center; /* Memastikan konten rata tengah secara vertikal */
-    padding: 20px; /* Memberikan padding agar tidak terlalu rapat */
-    border: 1px solid #ccc; /* Border untuk kontainer */
-    border-radius: 8px; /* Sudut melengkung untuk kontainer */
-    background-color: #f9f9f9; /* Warna latar belakang kontainer */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan untuk kontainer */
-}
-
-/* Styling slider images */
-img {
-    width: 300px; /* Sesuaikan ukuran dengan kebutuhan */
-    height: auto; /* Memastikan proporsi gambar tetap */
-  }
-  
-  .product-image {
-    max-width: 100%; /* Menjaga agar gambar tidak melampaui ukuran container */
-    display: block; /* Menghilangkan margin dan padding default */
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-
-.image-slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out; /* Animasi saat bergerak */
-}
-
-.slide {
-    min-width: 100%; /* Setel lebar slide ke 100% agar gambar mengambil seluruh kontainer */
-}
-
-.slide img {
-    width: 100%; /* Membuat gambar mengambil lebar penuh slide */
-    height: 200px; /* Menjaga aspek rasio */
-    display: block; /* Menampilkan gambar sebagai blok */
-}
-
-/* Styling untuk Product Info */
-.product-info {
-    display: flex;
-    flex-direction: column; /* Mengatur agar elemen ditumpuk secara vertikal */
-    align-items: flex-start; /* Rata kiri untuk semua elemen */
-    gap: 10px; /* Jarak antar elemen */
-}
-
-.flavor-selection {
-    display: flex; /* Mengatur agar label dan dropdown dalam satu baris */
-    align-items: center; /* Rata tengah secara vertikal */
-    gap: 10px; /* Jarak antara label dan dropdown */
-}
-
-.flavor-selection label {
-    font-size: 16px; /* Ukuran font label */
-}
-
-.flavor-selection select {
-    padding: 8px; /* Jarak dalam dropdown */
-    border-radius: 5px; /* Sudut melengkung */
-    border: 1px solid #ccc; /* Border untuk dropdown */
-    font-size: 16px; /* Ukuran font dropdown */
-    outline: none; /* Menghilangkan outline saat fokus */
-    transition: border-color 0.3s; /* Animasi saat fokus */
-}
-
-.flavor-selection select:focus {
-    border-color: #814be6; /* Warna border saat fokus */
-}
-
-
-/* Price and button styling */
-.price {
-    font-size: 24px;
-    color: #555;
-}
-
-button {
-    background-color: #814be6; /* Warna tombol */
-    color: white;
-    padding: 8px 70px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    border-radius: 5px; /* Sudut melengkung tombol */
-}
-
-button:hover {
-    background-color: #814be6; /* Warna saat dihover */
-}
-
-button:disabled {
-    background-color: #ddd; /* Tampilan saat tombol non-aktif */
-    color: #777;
-    cursor: not-allowed;
-}
-
-@media (max-width: 768px) {
-    .product-detail {
-        flex-direction: column; /* Mengubah ke kolom untuk layar kecil */
-        align-items: center; /* Rata tengah untuk elemen */
-    }
-
-    .product-images {
-        max-width: 100%; /* Pastikan gambar responsif */
-        height: auto; /* Atur tinggi otomatis */
-    }
-}
-.flavor-selection {
-    margin: 10px 0; /* Jarak atas dan bawah */
-}
-
-.flavor-selection label {
-    margin-right: 10px; /* Jarak antara label dan dropdown */
-    font-size: 16px; /* Ukuran font label */
-}
-
-.flavor-selection select {
-    padding: 5px; /* Jarak dalam dropdown */
-    border-radius: 5px; /* Sudut melengkung */
-    border: 1px solid #ccc; /* Border untuk dropdown */
-    font-size: 16px; /* Ukuran font dropdown */
-}

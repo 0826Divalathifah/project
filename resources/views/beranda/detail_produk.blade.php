@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/detail.min.css') }}">
+
 
 </head>
 <body>
@@ -75,38 +77,52 @@
 </header>
 <!-- Header End -->
 <div class="container">
-        <div class="product-detail">
-            <!-- Product Images Slider -->
-            <div class="image-slider">
-            <div class="slide"><img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 1"></div>
-            <div class="slide"><img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 2"></div>
-            <div class="slide"><img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 3"></div>
+    <div class="product-detail">
+        <!-- Gambar Produk -->
+        <div class="product-image">
+            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" class="d-block w-100" alt="Product Image 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('themewagon/img/desaprima/produk2.jpeg') }}" class="d-block w-100" alt="Product Image 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{ asset('themewagon/img/desaprima/produk3.jpeg') }}" class="d-block w-100" alt="Product Image 3">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                  
+                </button>
+            </div>
         </div>
-      
 
-    <!-- Product Information -->
-    <div class="product-info">
-        <h2>Briza Brownies</h2>
-        <p class="price">Rp 30.000</p>
-        <p>Adidas Footwear</p>
-        <div class="description">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-        </div>
-        
-        <div class="flavor-selection">
-            <label for="flavors">Pilih Rasa:</label>
-            <select id="flavors">
-                <option value="coklat">Coklat</option>
-                <option value="vanila">Vanila</option>
-                <option value="stroberi">Stroberi</option>
-                <option value="keju">Keju</option>
-                <option value="matcha">Matcha</option>
+        <!-- Detail Produk -->
+        <div class="product-details">
+            <h2>Mens Shirt</h2>
+            <p class="price">Rp 30.000</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis possimus perspiciatis dolorem earum minus voluptatibus atque.</p>
+
+            <!-- Pilih Ukuran -->
+            <label for="Toping">Toping:</label>
+            <select id="size">
+                <option value="1">Coklat</option>
+                <option value="2">Keju</option>
             </select>
-        </div>
-            <button>BELI</button>
+
+
+            <!-- Tombol Favorit & Beli -->
+            <div class="actions">
+                <button class="btn add-to-cart">Beli</button>
+            </div>
         </div>
     </div>
 </div>
+
 
 
 

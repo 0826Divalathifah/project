@@ -111,90 +111,18 @@
             
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-        /* Styling for the banner */
-        .banner-container {
-            position: relative;
-            text-align: center;
-            color: white;
-            width: 200%; /* Lebarkan hingga penuh ke samping */
-            height: 600px; /* Tetap 500px untuk tinggi */
-            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            margin-bottom: 60px;
-        }
-
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan hitam */
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .banner-text {
-            position: relative;
-            z-index: 2;
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 100px; /* To vertically center text */
-        }
-        @media screen and (max-width: 768px) {
-            .banner-container {
-                width: 100%; /* Tetap penuh pada layar kecil */
-                height: 300px; /* Kurangi tinggi untuk layar lebih kecil */
-            }
-
-            .banner-text {
-                font-size: 36px; /* Ukuran teks lebih kecil di layar mobile */
-            }
-        }
-
-
-        .breadcrumb {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ffffff;
-        }
-
-        .breadcrumb-item a {
-            color: #ffffff;
-            text-decoration: none;
-            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
-            position: relative; /* Penting untuk memastikan z-index bekerja */
-        }
-
-        .breadcrumb-item a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
         
-    </style>
 
         <div class="banner-container">
             <div class="banner-overlay"></div>
-            <div class="banner-text">Desa Preneur</div>
+            <div class="banner-text">Detail</div>
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Prima</a></li>
+                        <li class="breadcrumb-item"><a href="#">Detail</a></li>
                     </ol>
                 </nav>
             </div>
