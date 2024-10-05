@@ -13,7 +13,10 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <!-- endinject -->
     <!--  css for this page -->
-      
+    <!-- plugins:css -->
+    <!-- plugins:css -->
+    
+    
 
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
@@ -135,8 +138,8 @@
               <div class="collapse" id="budaya">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudya') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudya') }}">Laporan</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudaya') }}">Transaksi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
                 </ul>
               </div>
             </li>
@@ -199,7 +202,7 @@
         <div class="col-md-3 mb-4 stretch-card transparent">
             <div class="card card-tale">
                 <div class="card-body">
-                    <p class="mb-4">Today’s Bookings</p>
+                    <p class="mb-4">Total Penjualan</p>
                     <p class="fs-30 mb-2">4006</p>
                     <p>10.00% (30 days)</p>
                 </div>
@@ -210,8 +213,8 @@
         <div class="col-md-3 mb-4 stretch-card transparent">
             <div class="card card-dark-blue">
                 <div class="card-body">
-                    <p class="mb-4">Total Bookings</p>
-                    <p class="fs-30 mb-2">61344</p>
+                    <p class="mb-4">Total Pendapatan</p>
+                    <p class="fs-30 mb-2">15.678.907</p>
                     <p>22.00% (30 days)</p>
                 </div>
             </div>
@@ -221,8 +224,8 @@
         <div class="col-md-3 mb-4 stretch-card transparent">
             <div class="card card-light-blue">
                 <div class="card-body">
-                    <p class="mb-4">Number of Meetings</p>
-                    <p class="fs-30 mb-2">34040</p>
+                    <p class="mb-4">Total Produk</p>
+                    <p class="fs-30 mb-2">50</p>
                     <p>2.00% (30 days)</p>
                 </div>
             </div>
@@ -232,19 +235,19 @@
         <div class="col-md-3 mb-4 stretch-card transparent">
             <div class="card card-light-danger">
                 <div class="card-body">
-                    <p class="mb-4">Number of Clients</p>
-                    <p class="fs-30 mb-2">47033</p>
+                    <p class="mb-4">Total Transaksi</p>
+                    <p class="fs-30 mb-2">567</p>
                     <p>0.22% (30 days)</p>
                 </div>
             </div>
         </div>
   </div>
 </div>
-<div class="col-md-6 grid-margin stretch-card">
+<div class="col-md-8 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
-                      <p class="card-title">Sales Report</p>
+                      <p class="card-title">GrafikPenjualan</p>
                       <a href="#" class="text-info">View all</a>
                     </div>
                     <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
@@ -277,5 +280,23 @@
     <!-- endinject -->
     <!-- Custom js for this page-->
     <!-- End custom js for this page-->
+
+
+    <!-- plugins:js -->
+<script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
+<!-- endinject -->
+ <!-- Plugin js for this page -->
+<script src="{{ asset('admin/assets/vendors/chart.js/chart.umd.js') }}"></script>
+<script src="{{ asset('admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+<script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
+<script src="{{ asset('admin/assets/js/dataTables.select..min.js') }}"></script>
+
+
+
+<!-- Custom js for this page-->
+<script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+<!-- End custom js for this page-->
   </body>
 </html>
