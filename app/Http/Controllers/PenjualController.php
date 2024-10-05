@@ -47,6 +47,10 @@ class PenjualController extends Controller
     {
         return view('admin.penjual.preneur.laporanpreneur');
     }
+    public function kelolaPreneur()
+    {
+        return view('admin.penjual.preneur.kelolapreneur');
+    }
 
     // Prima
         public function tambahPrima()
@@ -62,6 +66,10 @@ class PenjualController extends Controller
     public function laporanPrima()
     {
         return view('admin.penjual.prima.laporanprima');
+    }
+    public function kelolaPrima()
+    {
+        return view('admin.penjual.wisata.kelolaprima');
     }
 
 
@@ -79,6 +87,10 @@ class PenjualController extends Controller
     public function laporanWisata()
     {
         return view('admin.penjual.wisata.laporanwisata');
+    }
+    public function kelolaWisata()
+    {
+        return view('admin.penjual.wisata.kelolawisata');
     }
 
     // Laporan Penjual

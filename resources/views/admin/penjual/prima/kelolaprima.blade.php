@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kelola Budaya</title>
+    <title>Kelola Prima</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -198,71 +198,66 @@
         </nav>
       
         <div class="main-panel">
-        <div class="content-wrapper">
-        <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
-              <p class="card-title">Kelola Produk</p>
-              <a href="{{ url('tambahbudaya') }}" class="btn btn-primary">Tambah Budaya</a>
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h4 class="card-title">Kelola Produk</h4>
+              <a href="{{ url('tambahpreneur') }}" class="btn btn-primary">Tambah Produk</a>
             </div>
-              <div class="table-responsive">
-                <table class="table table-striped table-borderless">
-                  <thead>
-                    <tr>
-                    <th>Nama Produk</th>
-                  <th>Kategori</th>
-                  <th>Alamat</th>
-                  <th>Kisaran Harga</th>
-                  <th>Link Youtube</th>
-                  <th>Nomor WhatsApp</th>
-                  <th>Link Google Maps</th>
-                  <th>Deskripsi</th>
-                  <th>Foto Card</th>
-                  <th>Foto Slider</th>
-                  <th>Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
+            <div class="table-responsive">
+              <table class="table table-striped table-borderless">
+                <thead>
                   <tr>
-                  <td>Produk 1</td>
-                  <td>Makanan</td>
-                  <td>Jl. Contoh No. 1</td>
-                  <td>Rp 50.000 - Rp 100.000</td>
-                  <td><a href="#">Lihat Video</a></td>
-                  <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
-                  <td><a href="https://goo.gl/maps/xxxx">Lihat Peta</a></td>
-                  <td>Deskripsi singkat produk 1</td>
-                  <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
-                  <td><img src="path/to/foto-slider.jpg" alt="Foto Slider" width="100"></td>
-                  <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
-                  </td>
-              </tr>
-              <tr>
-                  <td>Produk 1</td>
-                  <td>Makanan</td>
-                  <td>Jl. Contoh No. 1</td>
-                  <td>Rp 50.000 - Rp 100.000</td>
-                  <td><a href="#">Lihat Video</a></td>
-                  <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
-                  <td><a href="https://goo.gl/maps/xxxx">Lihat Peta</a></td>
-                  <td>Deskripsi singkat produk 1</td>
-                  <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
-                  <td><img src="path/to/foto-slider.jpg" alt="Foto Slider" width="100"></td>
-                  <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
-                  </td>
+                    <th>Nama Produk</th>
+                    <th>Kategori</th>
+                    <th>Varian</th>
+                    <th>Kisaran Harga</th>
+                    <th>Nomor WhatsApp</th>
+                    <th>Deskripsi</th>
+                    <th>Foto Card</th>
+                    <th>Foto Produk</th>
+                    <th>Aksi</th>
                   </tr>
-                  </tbody>
-                </table>
-              </div>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Produk 1</td>
+                    <td>Makanan</td>
+                    <td>Varian A</td>
+                    <td>Rp 50.000 - Rp 100.000</td>
+                    <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
+                    <td>Deskripsi singkat produk 1</td>
+                    <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
+                    <td><img src="path/to/foto-slider.jpg" alt="Foto Produk" width="100"></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Hapus</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Produk 2</td>
+                    <td>Kerajinan</td>
+                    <td>Varian B</td>
+                    <td>Rp 75.000 - Rp 150.000</td>
+                    <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
+                    <td>Deskripsi singkat produk 2</td>
+                    <td><img src="path/to/foto-card2.jpg" alt="Foto Card" width="100"></td>
+                    <td><img src="path/to/foto-slider2.jpg" alt="Foto Produk" width="100"></td>
+                    <td>
+                      <button class="btn btn-primary btn-sm">Edit</button>
+                      <button class="btn btn-danger btn-sm">Hapus</button>
+                    </td>
+                  </tr>
+                  <!-- Tambahkan baris produk lainnya di sini -->
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
+      </div>
 
     </div>
     </div>

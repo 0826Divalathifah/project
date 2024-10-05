@@ -11,12 +11,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <!-- endinject -->
-    <!--  css for this page -->
-    <!-- plugins:css -->
-    <!-- plugins:css -->
-    
-    
+    <!-- endinject -->  
 
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
@@ -26,14 +21,14 @@
   </head>
   <body>
     
-    <div class="container-scroller">
+<div class="container-scroller">
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkelurahan') }}" >
+          <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" class="me-2" alt="logo" />
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkelurahan') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="logo" />
           </a>
         </div>
@@ -109,11 +104,11 @@
             </li>
             <li class="nav-item nav-settings d-none d-lg-flex">
               <a class="nav-link" href="#">
-                <i class="icon-ellipsis"></i>
+                <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
               </a>
             </li>
           </ul>
-    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
       <span class="icon-menu"></span>
     </button>
   </div>
@@ -151,23 +146,23 @@
               </a>
               <div class="collapse" id="preneur">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahpreneur') }}">Tambah Produk</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprener') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprneur') }}">Laporan</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksipreneur') }}">Transaksi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanpreneur') }}">Laporan</a></li>
                 </ul>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#primer" aria-expanded="false" aria-controls="ui-basic">
+              <a class="nav-link" data-bs-toggle="collapse" href="#prima" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Primer</span>
+                <span class="menu-title">Desa Prima</span>
                 <i class="menu-arrow"></i>
               </a>
-              <div class="collapse" id="primer">
+              <div class="collapse" id="prima">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahprimer') }}">Tambah Produk</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprimer') }}">Transaksi dan Pemesanan</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprimer') }}">Laporan</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprima') }}">Transaksi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprima') }}">Laporan</a></li>
                 </ul>
               </div>
             </li>
@@ -179,8 +174,8 @@
               </a>
               <div class="collapse" id="wisata">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahwisata') }}">Tambah Wisata</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiwisata') }}">Transaksi dan Pemesanan</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolawisata') }}">Kelola Wisata</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiwisata') }}">Transaksi</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanwisata') }}">Laporan</a></li>
                 </ul>
               </div>
@@ -193,6 +188,7 @@
             </li>
           </ul>
         </nav>
+
     <div class="main-panel">
     <div class="content-wrapper">
     <div class="col-md-12 grid-margin transparent">
@@ -265,38 +261,33 @@
       <!-- page-body-wrapper ends -->
     </div>
     
-    <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
-    <!-- Plugin js for this page -->    
 
-    <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
     <script src="{{ asset('admin/assets/js/template.js') }}"></script>
     <script src="{{ asset('admin/assets/js/settings.js') }}"></script>
     <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
     <!-- endinject -->
+
+    <!-- Plugin js for this page -->
+    <script src="{{ asset('admin/assets/vendors/chart.js/chart.umd.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+    <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+    <script src="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/dataTables.select..min.js') }}"></script>
+
     <!-- Custom js for this page-->
+    <script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
     <!-- End custom js for this page-->
 
+    <!-- Plugin js for this page , untuk dropdown navbar-->
+    <script src="{{ asset('admin/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+    <!-- End plugin js for this page -->
 
-    <!-- plugins:js -->
-<script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
-<!-- endinject -->
- <!-- Plugin js for this page -->
-<script src="{{ asset('admin/assets/vendors/chart.js/chart.umd.js') }}"></script>
-<script src="{{ asset('admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-<script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<script src="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
-<script src="{{ asset('admin/assets/js/dataTables.select..min.js') }}"></script>
-
-
-
-<!-- Custom js for this page-->
-<script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-<script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
-<!-- End custom js for this page-->
+ 
   </body>
 </html>
