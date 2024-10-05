@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/tataletal.min.css') }}">
 
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
@@ -266,33 +267,42 @@
     }
 }
 </style>
-<div class="content-section" data-aos="fade-up" data-aos-duration="1000">
-<div data-aos="fade-left"
-     data-aos-anchor="#example-anchor"
-     data-aos-offset="500"
-     data-aos-duration="500">
-</div>
-    <!-- Gambar wisata di sebelah kiri -->
-    <div class="image-container">
-        <div class="location-img" style="overflow: hidden;">
-            <img src="{{ asset('themewagon/img/desawisata/wisata1.jpeg') }}" alt="" style="width: 100%; height: 350px;">
+<div class="container mt-5">
+        <div class="row">
+            <!-- Kolom Kiri: Gambar dan Kartu -->
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="kategori.jpg" class="card-img-left img-fluid" alt="Kategori">
+                            <div class="card-body">
+                                <h5 class="card-title">Berdasarkan Kategori</h5>
+                                <p class="card-text">Pencarian Desa Budaya berdasarkan kategori objek kebudayaan</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
+                            <img src="rute.jpg" class="card-img-left img-fluid" alt="Rute Sejalur">
+                            <div class="card-body">
+                                <h5 class="card-title">Rute Sejalur</h5>
+                                <p class="card-text">Pencarian lokasi Desa Budaya berdasarkan rute Sejalur yang dilalui</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Deskripsi -->
+            <div class="col-md-6">
+                <h2 class="welcome-text">Selamat Datang di Website Desa Budaya</h2>
+                <p class="description">
+                    DESA BUDAYA adalah wahana sekelompok manusia yang melakukan aktivitas budaya yang mengeksperisikan sistem kepercayaan (religi), sistem kesenian, sistem mata pencaharian, sistem teknologi, sistem komunikasi, sistem sosial, dan sistem lingkungan, tata ruang, dan arsitektur dengan mengaktualisasikan kekayaan potensinya dan...
+                </p>
+            </div>
         </div>
     </div>
-
-    <!-- Deskripsi budaya di sebelah kanan -->
-    <div class="description-container" data-aos="fade-in" data-aos-duration="1500">
-        <h1 class="welcome-text">Selamat Datang di Website Desa Budaya</h1>
-        <h2>Saatnya memulai 
-        petualangan Anda</h2>
-        <p>
-            DESA BUDAYA adalah wahana sekelompok manusia yang melakukan aktivitas budaya yang mengekspresikan sistem kepercayaan (religi), 
-            sistem kesenian, sistem mata pencaharian, sistem teknologi, sistem komunikasi, sistem sosial, dan sistem lingkungan, tata ruang, dan arsitektur 
-            dengan MENGAKTUALISASIKAN KEKAYAAN POTENSINYA dan MENKONSERVASINYA DENGAN SAKSAMA ATAS KEKAYAAN BUDAYA YANG DIMILIKINYA, terutama yang tampak 
-            pada adat dan tradisi, seni pertunjukan, kerajinan, dan tata ruang dan arsitektural....
-        </p>
-    </div>
-</div>
-
 
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="single-product mb-50">
@@ -450,6 +460,8 @@
 <script>
         AOS.init();
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>

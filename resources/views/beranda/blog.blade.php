@@ -1,127 +1,203 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Fashion | Teamplate</title>
+    <title>Desa Budaya</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
 
-    <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/slicknav.css">
-    <link rel="stylesheet" href="assets/css/flaticon.css">
-    <link rel="stylesheet" href="assets/css/progressbar_barfiller.css">
-    <link rel="stylesheet" href="assets/css/gijgo.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/animated-headline.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap4" />
+
+    <!-- Bootstrap CSS -->
+    <link href="{{ asset('furni/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('furni/css/tiny-slider.css') }}" rel="stylesheet">
+    <link href="{{ asset('furni/css/style.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+
+        <!-- CSS themewagon -->
+    <link rel="stylesheet" href="{{ asset('themewagon/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/progressbar_barfiller.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/gijgo.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/animated-headline.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
 </head>
 <body class="full-wrapper">
-    <!-- ? Preloader Start -->
+    <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/loder.png" alt="">
+                <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="">
                 </div>
             </div>
         </div>
     </div>
-    <!-- Preloader Start -->
-    <header>
-        <!-- Header Start -->
-        <div class="header-area ">
-            <div class="main-header header-sticky">
-                <div class="container-fluid">
-                    <div class="menu-wrapper d-flex align-items-center justify-content-between">
-                        <div class="header-left d-flex align-items-center">
-                            <!-- Logo -->
-                            <div class="logo">
-                                <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                            </div>
-                            <!-- Main-menu -->
-                            <div class="main-menu  d-none d-lg-block">
-                                <nav>
-                                    <ul id="navigation">
-                                        <li><a href="index.html">Home</a></li> 
-                                        <li><a href="shop.html">shop</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="blog.html">Blog</a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="blog_details.html">Blog Details</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                                <li><a href="product_details.html">Product Details</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                    </ul>
-                                </nav>
-                            </div>   
-                        </div>
-                        <div class="header-right1 d-flex align-items-center">
-                            <!-- Social -->
-                            <div class="header-social d-none d-md-block">
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            </div>
-                            <!-- Search Box -->
-                            <div class="search d-none d-md-block">
-                                <ul class="d-flex align-items-center">
-                                    <li class="mr-15">
-                                        <div class="nav-search search-switch">
-                                            <i class="ti-search"></i>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="card-stor">
-                                            <img src="assets/img/gallery/card.svg" alt="">
-                                            <span>0</span>
-                                        </div>
-                                    </li>
+    <!-- Preloader End -->
+<header>
+    <!-- Header Start -->
+    <div class="header-area">
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                    <div class="header-left d-flex align-items-center">
+                         <!-- Logo -->
+                         <div class="logo">
+                            <a href="{{ url('/') }}">
+                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                                </a></div>
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="{{ url('/') }}">Beranda</a></li>
+                                    <li><a href="#">Desa Mandiri Budaya</a>
+                                        <ul class="submenu">
+                                            <li><a href="{{ url('/desabudaya') }}">Desa Budaya </a></li>
+                                            <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
+                                            <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
+                                            <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
+                                        </ul>
+                                    <li>   
+                                    <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
+                                    <li><a href="{{ url('/contact') }}">Kontak</a></li>
                                 </ul>
-                            </div>
+                            </nav>
                         </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                    <div class="header-right1 d-flex align-items-center">
+                        <!-- Social -->
+                        <div class="header-social d-none d-md-block">
+                        <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
+                        <!-- Search Box -->
+                        <div class="search d-none d-md-block">
+                            <ul class="d-flex align-items-center">
+                                <li class="mr-15">
+                                    <div class="nav-search search-switch">
+                                        <i class="ti-search"></i>
+                                    </div>
+                                </li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Header End -->
     </header>
-    <!-- header end -->
     <main>
-        <!-- breadcrumb Start-->
-        <div class="page-notification page-notification2">
+        <!-- header end -->
+        <!-- listing Area Start -->
+            <div class="category-area">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Blog</a></li> 
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+            <div class="row">
+            
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        /* Styling for the banner */
+        .banner-container {
+            position: relative;
+            text-align: center;
+            color: white;
+            height: 600px;
+            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            pointer-events: none; /* Membuat overlay tidak memblokir interaksi */
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2; /* Pastikan ini berada di atas overlay */
+            text-align: center;
+        }
+
+        .banner-text {
+            font-size: 48px;
+            font-weight: bold;
+            z-index: 3; 
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            margin-top: 100px;
+        }
+
+        .breadcrumb {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .breadcrumb-item a {
+            color: #ffffff;
+            text-decoration: none;
+            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
+            position: relative; /* Penting untuk memastikan z-index bekerja */
+        }
+
+        .breadcrumb-item a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        
+    </style>
+
+        <div class="banner-container">
+            <div class="banner-overlay"></div>
+            <div class="banner-text">Desa Budaya</div>
+
+            <!-- Breadcrumb Start -->
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('desabudaya') }}">Desa Budaya</a></li>
+                </ol>
+            </nav>
+            <!-- Breadcrumb End -->
         </div>
-        <!-- breadcrumb End-->
         <!-- Hero Area End-->
         <!--? Blog Area Start-->
         <section class="blog_area section-padding">
