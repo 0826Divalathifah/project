@@ -1,0 +1,52 @@
+/* style.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+h2.welcome-text {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+p.description {
+    font-size: 16px;
+    color: #555;
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-left {
+    width: 100%; /* Membuat gambar full-width di card */
+    height: auto;
+    object-fit: cover;
+}
+
+.card-body {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+}
+
+.row > .col-md-6 {
+    display: flex;
+    align-items: center;
+}
