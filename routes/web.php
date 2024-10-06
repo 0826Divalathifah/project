@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\AdminKelurahan;
-use App\Http\Controllers\AdminDesaBudaya;
-use App\Http\Controllers\AdminDesaPreneur;
-use App\Http\Controllers\AdminDesaPrima;
-use App\Http\Controllers\AdminDesaWisata;
+use App\Http\Controllers\AdminKelurahanController;
+use App\Http\Controllers\AdminDesaBudayaController;
+use App\Http\Controllers\AdminDesaPreneurController;
+use App\Http\Controllers\AdminDesaPrimaController;
+use App\Http\Controllers\AdminDesaWisataController;
 use App\Http\Controllers\PenjualController;
 use App\Http\Controllers\Auth;
 
@@ -36,17 +36,14 @@ Route::get('/error-500', [AdminKelurahan::class, 'samples2'])->name('admin.admin
 Route::get('/documentation', [AdminKelurahan::class, 'docs'])->name('admin.adminkelurahan.docs.documentation');
 
 //Rute untuk halaman dashboard admin budaya
-Route::get('/adminbudaya', [AdminDesaBudaya::class, 'showDashboard'])->name('admin.adminbudaya.adminbudaya');
-Route::get('/buttons', [AdminDesaBudaya::class, 'uifeatures1'])->name('admin.adminbudaya.ui-features.buttons');
-Route::get('/dropdowns', [AdminDesaBudaya::class, 'uifeatures2'])->name('admin.adminbudaya.ui-features.dropdowns');
-Route::get('/typography', [AdminDesaBudaya::class, 'uifeatures3'])->name('admin.adminbudaya.ui-features.typography');
-Route::get('/chartjs', [AdminDesaBudaya::class, 'charts'])->name('admin.adminbudaya.charts.chartjs');
-Route::get('/basic_elements', [AdminDesaBudaya::class, 'forms'])->name('admin.adminbudaya.forms.basic_elements');
-Route::get('/basic-table', [AdminDesaBudaya::class, 'tables'])->name('admin.adminbudaya.tables.basic-table');
-Route::get('/mdi', [AdminDesaBudaya::class, 'icons'])->name('admin.adminbudaya.icons.mdi');
-Route::get('/error-404', [AdminDesaBudaya::class, 'samples1'])->name('admin.dminbudaya.samples.error-404');
-Route::get('/error-500', [AdminDesaBudaya::class, 'samples2'])->name('admin.adminbudaya.samples.error-500');
-Route::get('/documentation', [AdminDesaBudaya::class, 'docs'])->name('admin.adminbudaya.docs.documentation');
+// Route untuk menampilkan daftar budaya
+Route::get('/daftarbudaya', [AdminDesaBudayaController::class, 'daftarBudaya'])->name('admin.adminbudaya.daftarbudaya');
+Route::get('/admin/adminbudaya/tambah', [AdminDesaBudayaController::class, 'createBudaya'])->name('admin.adminbudaya.tambahbudaya');
+Route::post('/admin/adminbudaya/store', [AdminDesaBudayaController::class, 'storeBudaya'])->name('admin.adminbudaya.store');
+Route::get('/admin/adminbudaya/edit/{id}', [AdminDesaBudayaController::class, 'editBudaya'])->name('admin.adminbudaya.edit');
+Route::put('/admin/adminbudaya/update/{id}', [AdminDesaBudayaController::class, 'updateBudaya'])->name('admin.adminbudaya.update');
+Route::delete('/admin/adminbudaya/delete/{id}', [AdminDesaBudayaController::class, 'deleteBudaya'])->name('admin.adminbudaya.delete');
+
 
 //Rute untuk halaman dashboard admin preneur
 Route::get('/adminpreneur', [AdminDesaPreneur::class, 'showDashboard'])->name('admin.adminpreneur.adminpreneur');

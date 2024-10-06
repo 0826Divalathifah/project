@@ -209,26 +209,28 @@
                     </ol>
                 </nav>
 
-                <div class="col-12 grid-margin stretch-card">
+    <div class="col-12 grid-margin stretch-card">
     <div class="card">
-        <form id="formPrima" action="#" method="POST">
+        <form id="formPrima" action="#" method="POST" enctype="multipart/form-data">
+        @csrf
+
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Produk</h4>
                 <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
 
                 <!-- Input Kategori -->
                 <div class="form-group">
-                    <label>Pilih Kategori</label>
-                    <select class="js-example-basic-single w-100">
-                        <option value="AL">Makanan dan Minuman</option>
-                        <option value="WY">Kerajinan dan Aksesoris</option>
+                    <label for="kategoriProduk">Pilih Kategori</label>
+                    <select class="js-example-basic-single w-100" name="kategori_produk" id="kategoriProduk" required>
+                        <option value="MakananMinuman">Makanan dan Minuman</option>
+                        <option value="KerajinanAksesoris">Kerajinan dan Aksesoris</option>
                     </select>
                 </div>
 
                 <!-- Input Nama Produk -->
                 <div class="form-group">
-                    <label for="exampleInputName1">Nama Produk</label>
-                    <input type="text" class="form-control" id="exampleInputName1" >
+                    <label for="namaProduk">Nama Produk</label>
+                    <input type="text" class="form-control" id="namaProduk" name="nama_produk" placeholder="Masukkan Nama Produk" required>
                 </div>
 
                 <!-- Input Harga -->
@@ -236,28 +238,28 @@
                     <label for="hargaPrima" class="form-label">Harga</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaPrima" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
+                        <input type="text" class="form-control rounded" id="hargaPrima" name="harga" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
                     </div>
                 </div>
 
                 <!-- Input Nomor WhatsApp -->
                 <div class="form-group">
                     <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
-                    <input type="number" class="form-control" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+                    <input type="tel" class="form-control" id="whatsappNumber" name="whatsapp" placeholder="Masukkan Nomor WhatsApp" pattern="[0-9]{10,15}" required>
                 </div>
 
                 <!-- Input Deskripsi -->
                 <div class="form-group">
-                    <label for="exampleTextarea1">Deskripsi</label>
-                    <textarea class="form-control" id="exampleTextarea1" rows="5"></textarea>
+                    <label for="deskripsiProduk">Deskripsi Produk</label>
+                    <textarea class="form-control" id="deskripsiProduk" name="deskripsi" rows="5" placeholder="Masukkan Deskripsi Produk" required></textarea>
                 </div>
 
                 <!-- Input Foto Card -->
                 <div class="form-group">
-                    <label>Unggah Foto Card</label>
-                    <input type="file" name="img[]" class="file-upload-default">
+                    <label>Unggah Foto Card (Ukuran 300 x 150 px)</label>
+                    <input type="file" name="foto_card" class="file-upload-default" id="fotoCard" required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto card" required>
                         <span class="input-group-append ms-2">
                             <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
                         </span>
@@ -267,9 +269,9 @@
                 <!-- Input Foto Produk -->
                 <div class="form-group">
                     <label>Unggah Foto-Foto Produk</label>
-                    <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple>
+                    <input type="file" name="foto_produk[]" class="file-upload-default" id="fileInput" multiple required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah lebih dari 1 foto" required>
                         <span class="input-group-append ms-2">
                             <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
                         </span>
@@ -283,7 +285,7 @@
                         <!-- Kolom varian akan ditambahkan di sini -->
                     </div>
                     <button type="button" class="btn btn-inverse-primary btn-fw" id="addVariantBtn">Tambah Varian</button>
-                    </div>
+                </div>
 
                 <!-- Submit Button -->
                 <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
@@ -291,6 +293,7 @@
         </form>
     </div>
 </div>
+
 
 </div>
 

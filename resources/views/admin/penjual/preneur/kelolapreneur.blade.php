@@ -197,7 +197,7 @@
   </ul>
 </nav>
       
-        <div class="main-panel">
+<div class="main-panel">
   <div class="content-wrapper">
     <div class="row">
       <div class="col-md-12 grid-margin stretch-card">
@@ -223,32 +223,43 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <!-- Contoh Produk 1 -->
                   <tr>
                     <td>Produk 1</td>
                     <td>Makanan</td>
                     <td>Varian A</td>
                     <td>Rp 50.000 - Rp 100.000</td>
-                    <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
+                    <td><a href="https://wa.me/628xxxxxxx" target="_blank">Hubungi</a></td>
                     <td>Deskripsi singkat produk 1</td>
                     <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
                     <td><img src="path/to/foto-slider.jpg" alt="Foto Produk" width="100"></td>
                     <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
+                      <a href="{{ url('editproduk/1') }}" class="btn btn-primary btn-sm">Edit</a>
+                      <!-- Form Hapus Produk dengan CSRF Protection -->
+                      <form action="{{ url('hapusproduk/1') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                      </form>
                     </td>
                   </tr>
+                  
+                  <!-- Contoh Produk 2 -->
                   <tr>
                     <td>Produk 2</td>
                     <td>Kerajinan</td>
                     <td>Varian B</td>
                     <td>Rp 75.000 - Rp 150.000</td>
-                    <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
+                    <td><a href="https://wa.me/628xxxxxxx" target="_blank">Hubungi</a></td>
                     <td>Deskripsi singkat produk 2</td>
                     <td><img src="path/to/foto-card2.jpg" alt="Foto Card" width="100"></td>
                     <td><img src="path/to/foto-slider2.jpg" alt="Foto Produk" width="100"></td>
                     <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
+                      <a href="{{ url('editproduk/2') }}" class="btn btn-primary btn-sm">Edit</a>
+                      <!-- Form Hapus Produk dengan CSRF Protection -->
+                      <form action="{{ url('hapusproduk/2') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                      </form>
                     </td>
                   </tr>
                   <!-- Tambahkan baris produk lainnya di sini -->
@@ -258,11 +269,10 @@
           </div>
         </div>
       </div>
-
     </div>
     </div>
     </div>
-    </div>
+</div>
 </div>
 <!-- partial -->
 </div>

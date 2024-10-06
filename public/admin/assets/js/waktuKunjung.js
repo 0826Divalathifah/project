@@ -1,12 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
+    let kunjungIndex = 0;  // Menentukan indeks untuk waktu kunjung
     const waktuKunjungWrapper = document.getElementById('waktuKunjungWrapper');
     const addWaktuKunjung = document.getElementById('addWaktuKunjung');
 
     // Event listener untuk menambahkan input waktu kunjung baru
     addWaktuKunjung.addEventListener('click', function () {
+        kunjungIndex++;
         // Tambah input waktu kunjung baru
         const waktuKunjung = document.createElement('div');
         waktuKunjung.classList.add('input-group', 'mb-3', 'waktu-kunjung');
+        waktuKunjung.setAttribute('id', `kunjung-${kunjungIndex}`);
 
         waktuKunjung.innerHTML = `
             <select class="form-control me-2 hari-select" name="hari[]" required>

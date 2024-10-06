@@ -202,16 +202,17 @@
     <div class="row">
           
     <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
-                        <li class="breadcrumb-item"><a href="#"> Tambah Preneur</a></li>
-                    </ol>
-                </nav>
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+              <li class="breadcrumb-item"><a href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
+              <li class="breadcrumb-item"><a href="#"> Tambah Preneur</a></li>
+          </ol>
+      </nav>
 
-                <div class="col-12 grid-margin stretch-card">
+    <div class="col-12 grid-margin stretch-card">
     <div class="card">
-        <form id="formTambah" action="#" method="POST">
+        <form id="formTambah" action="{{ route('admin.penjual.budaya.tambahbudaya') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Produk</h4>
                 <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
@@ -219,16 +220,17 @@
                 <!-- Input Kategori -->
                 <div class="form-group">
                     <label>Pilih Kategori</label>
-                    <select class="js-example-basic-single w-100">
-                        <option value="AL">Makanan dan Minuman</option>
-                        <option value="WY">Kerajinan dan Aksesoris</option>
+                    <select name="kategori" class="js-example-basic-single w-100" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="makanan_dan_minuman">Makanan dan Minuman</option>
+                        <option value="kerajinan_dan_aksesoris">Kerajinan dan Aksesoris</option>
                     </select>
                 </div>
 
                 <!-- Input Nama Produk -->
                 <div class="form-group">
-                    <label for="exampleInputName1">Nama Produk</label>
-                    <input type="text" class="form-control" id="exampleInputName1" placeholder="contoh: 'Karawitan Miguyoh Rasa' ">
+                    <label for="namaProduk">Nama Produk</label>
+                    <input type="text" class="form-control" id="namaProduk" name="nama_produk" placeholder="Masukkan nama produk" required>
                 </div>
 
                 <!-- Input Harga -->
@@ -236,26 +238,26 @@
                     <label for="hargaPreneur" class="form-label">Harga</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaPreneur" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
+                        <input type="text" class="form-control rounded" id="hargaPreneur" name="harga" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
                     </div>
                 </div>
 
                 <!-- Input Nomor WhatsApp -->
                 <div class="form-group">
                     <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
-                    <input type="number" class="form-control" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+                    <input type="number" class="form-control" id="whatsappNumber" name="whatsapp" placeholder="Masukkan Nomor WhatsApp" min="0" required>
                 </div>
 
                 <!-- Input Deskripsi -->
                 <div class="form-group">
                     <label for="exampleTextarea1">Deskripsi</label>
-                    <textarea class="form-control" id="exampleTextarea1" rows="5"></textarea>
+                    <textarea class="form-control" id="exampleTextarea1" name="deskripsi" rows="5" placeholder="Masukkan deskripsi produk" required></textarea>
                 </div>
 
                 <!-- Input Foto Card -->
                 <div class="form-group">
                     <label>Unggah Foto Card</label>
-                    <input type="file" name="img[]" class="file-upload-default">
+                    <input type="file" name="foto_card" class="file-upload-default" accept="image/*" required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
                         <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
                         <span class="input-group-append ms-2">
@@ -267,7 +269,7 @@
                 <!-- Input Foto Produk -->
                 <div class="form-group">
                     <label>Unggah Foto-Foto Produk</label>
-                    <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple>
+                    <input type="file" name="foto_produk[]" class="file-upload-default" id="fileInput" multiple accept="image/*" required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
                         <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
                         <span class="input-group-append ms-2">
@@ -283,7 +285,7 @@
                         <!-- Kolom varian akan ditambahkan di sini -->
                     </div>
                     <button type="button" class="btn btn-inverse-primary btn-fw" id="addVariantBtn">Tambah Varian</button>
-                    </div>
+                </div>
 
                 <!-- Submit Button -->
                 <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
@@ -291,6 +293,7 @@
         </form>
     </div>
 </div>
+
 
 </div>
 

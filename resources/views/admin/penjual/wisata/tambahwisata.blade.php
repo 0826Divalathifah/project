@@ -209,9 +209,10 @@
                     </ol>
                 </nav>
 
-                <div class="col-12 grid-margin stretch-card">
+    <div class="col-12 grid-margin stretch-card">
     <div class="card">
-        <form id="formTambahWisata" action="#" method="POST">
+        <form id="formTambahWisata" action="#" method="POST" enctype="multipart/form-data">
+            @csrf 
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Wisata</h4>
                 <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
@@ -219,7 +220,7 @@
                 <!-- Input Nama Wisata -->
                 <div class="form-group">
                     <label for="namaWisata">Nama Wisata</label>
-                    <input type="text" class="form-control" id="namaWisata" placeholder="Masukkan nama wisata" required>
+                    <input type="text" class="form-control" id="namaWisata" name="nama_wisata" placeholder="Masukkan nama wisata" required>
                 </div>
 
                 <!-- Input Harga (opsional) -->
@@ -227,29 +228,29 @@
                     <label for="hargaWisata" class="form-label">Harga Tiket Masuk (opsional)</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaWisata" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)">
+                        <input type="text" class="form-control rounded" id="hargaWisata" name="harga" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)">
                     </div>
                 </div>
 
                 <!-- Input URL Google Maps -->
                 <div class="form-group">
                     <label for="mapsLink">Link Google Maps</label>
-                    <input type="url" class="form-control" id="mapsLink" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
+                    <input type="url" class="form-control" id="mapsLink" name="maps_link" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
                     <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
                 </div>
 
                 <!-- Input Deskripsi -->
                 <div class="form-group">
                     <label for="deskripsiWisata">Deskripsi Wisata</label>
-                    <textarea class="form-control" id="deskripsiWisata" rows="5" placeholder="Masukkan deskripsi wisata" required></textarea>
+                    <textarea class="form-control" id="deskripsiWisata" name="deskripsi" rows="5" placeholder="Masukkan deskripsi wisata" required></textarea>
                 </div>
 
                 <!-- Input Foto Card -->
                 <div class="form-group">
-                    <label>Unggah Foto Card Wisata</label>
-                    <input type="file" name="img[]" class="file-upload-default">
+                    <label>Unggah Foto Card Wisata (Ukuran 300 x 150 px)</label>
+                    <input type="file" name="foto_card" class="file-upload-default" required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto card" required>
                         <span class="input-group-append ms-2">
                             <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
                         </span>
@@ -259,9 +260,9 @@
                 <!-- Input Foto Wisata -->
                 <div class="form-group">
                     <label>Unggah Foto-Foto Wisata</label>
-                    <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple required>
+                    <input type="file" name="foto_wisata[]" class="file-upload-default" id="fileInput" multiple required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto" required>
                         <span class="input-group-append ms-2">
                             <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
                         </span>
@@ -272,11 +273,10 @@
                 <div class="form-group">
                     <label>Waktu Kunjung</label>
                     <div id="waktuKunjungWrapper">
-                        <!-- Contoh input pertama -->
                         <div class="input-group mb-3 waktu-kunjung">
                             <select class="form-control me-2" name="hari[]" required>
                                 <option value="">Pilih Hari</option>
-                                <option value="Senin">Setiap Hari</option>
+                                <option value="Setiap Hari">Setiap Hari</option>
                                 <option value="Senin">Senin</option>
                                 <option value="Selasa">Selasa</option>
                                 <option value="Rabu">Rabu</option>
@@ -291,7 +291,7 @@
                             <button type="button" class="btn btn-danger btn-sm ms-2 removeWaktuKunjung">Hapus</button>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-success btn-sm" id="addWaktuKunjung">Tambah Waktu Kunjung</button>
+                    <button type="button" class="btn btn-inverse-primary btn-fw" id="addWaktuKunjung">Tambah Waktu Kunjung</button>
                 </div>
 
                 <!-- Submit Button -->
@@ -300,9 +300,6 @@
         </form>
     </div>
 </div>
-
-
-
 </div>
 
 <!-- partial -->
@@ -335,7 +332,7 @@
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/varianProduk.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/waktuKunjung.js') }}"></script>
     <!-- End custom js for this page-->
 </body>
 </html>
