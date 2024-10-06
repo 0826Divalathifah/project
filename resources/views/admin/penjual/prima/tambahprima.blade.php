@@ -33,12 +33,12 @@
     <!-- partial:../../partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-            <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" class="me-2" alt="logo" />
-            </a>
-            <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="logo" />
-            </a>
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
+            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
+          </a>
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
+            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
+          </a>
     </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -204,14 +204,14 @@
     <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
-                        <li class="breadcrumb-item"><a href="#"> Tambah Preneur</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
+                        <li class="breadcrumb-item"><a href="#"> Tambah Prima</a></li>
                     </ol>
                 </nav>
 
                 <div class="col-12 grid-margin stretch-card">
     <div class="card">
-        <form id="formTambahBudaya" action="#" method="POST">
+        <form id="formPrima" action="#" method="POST">
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Produk</h4>
                 <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
@@ -228,15 +228,15 @@
                 <!-- Input Nama Produk -->
                 <div class="form-group">
                     <label for="exampleInputName1">Nama Produk</label>
-                    <input type="text" class="form-control" id="exampleInputName1" placeholder="contoh: 'Karawitan Miguyoh Rasa' ">
+                    <input type="text" class="form-control" id="exampleInputName1" >
                 </div>
 
                 <!-- Input Harga -->
                 <div class="mb-3">
-                    <label for="hargaBudaya" class="form-label">Harga</label>
+                    <label for="hargaPrima" class="form-label">Harga</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaBudaya" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
+                        <input type="text" class="form-control rounded" id="hargaPrima" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
                     </div>
                 </div>
 

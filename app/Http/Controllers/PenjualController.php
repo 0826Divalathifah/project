@@ -69,7 +69,7 @@ class PenjualController extends Controller
     }
     public function kelolaPrima()
     {
-        return view('admin.penjual.wisata.kelolaprima');
+        return view('admin.penjual.prima.kelolaprima');
     }
 
 

@@ -92,7 +92,6 @@ Route::get('/documentation', [AdminDesaWisata::class, 'docs'])->name('admin.admi
 Route::get('/penjual', [PenjualController::class, 'showDashboard'])->name('admin.penjual.penjual');
 Route::get('/kelolabudaya', [PenjualController::class, 'kelolaBudaya'])->name('admin.penjual.budaya.kelolabudaya');
 Route::get('/tambahbudaya', [PenjualController::class, 'tambahBudaya'])->name('admin.penjual.budaya.tambahbudaya');
-Route::post('/tambahbudaya', [AdminBudayaController::class, 'store'])->name('tambahbudaya.store');
 Route::get('/transaksibudaya', [PenjualController::class, 'transaksiBudaya'])->name('admin.penjual.budaya.transaksibudaya');
 Route::get('/laporanbudaya', [PenjualController::class, 'laporanBudaya'])->name('admin.penjual.budaya.laporanbudaya');
 Route::get('/tambahpreneur', [PenjualController::class, 'tambahPreneur'])->name('admin.penjual.preneur.tambahpreneur');
@@ -102,12 +101,12 @@ Route::get('/kelolapreneur', [PenjualController::class, 'kelolaPreneur'])->name(
 Route::get('/tambahprima', [PenjualController::class, 'tambahPrima'])->name('admin.penjual.prima.tambahprima');
 Route::get('/transaksiprima', [PenjualController::class, 'transaksiPrima'])->name('admin.penjual.prima.transaksiprima');
 Route::get('/laporanprima', [PenjualController::class, 'laporanPrima'])->name('admin.penjual.prima.laporanprima');
-Route::get('/kelolaprima', [PenjualController::class, 'kelolaPrima'])->name('admin.penjual.preneur.kelolaprima');
+Route::get('/kelolaprima', [PenjualController::class, 'kelolaPrima'])->name('admin.penjual.prima.kelolaprima');
 Route::get('/tambahwisata', [PenjualController::class, 'tambahWisata'])->name('admin.penjual.wisata.tambahwisata');
 Route::get('/transaksiwisata', [PenjualController::class, 'transaksiWisata'])->name('admin.penjual.wisata.transaksiwisata');
 Route::get('/laporanwisata', [PenjualController::class, 'laporanWisata'])->name('admin.penjual.wisata.laporanwisata');
-Route::get('/kelolawisata', [PenjualController::class, 'kelolaWisata'])->name('admin.penjual.preneur.kelolawisata');
-
+Route::get('/kelolawisata', [PenjualController::class, 'kelolaWisata'])->name('admin.penjual.wisata.kelolawisata');
+Route::get('/laporanpenjual', [PenjualController::class, 'laporanPenjual'])->name('admin.penjual.laporanpenjual');
 
 // Rute untuk Auth
 Route::get('/login', [Auth::class, 'login'])->name('admin.adminkelurahan.samples.login');

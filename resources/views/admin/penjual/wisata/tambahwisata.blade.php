@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css') }}">
     <!-- End plugin css for this page -->
 
     <!-- inject:css -->
@@ -30,16 +30,16 @@
   <body>
     
     <div class="container-scroller">
-<!-- partial:../../partials/_navbar.html -->
-<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" class="me-2" alt="logo" />
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
+            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="logo" />
+            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
-        </div>
+    </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
@@ -140,7 +140,7 @@
               </a>
               <div class="collapse" id="budaya">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahbudaya') }}">Tambah Kesenian</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudaya') }}">Transaksi</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
                 </ul>
@@ -154,23 +154,23 @@
               </a>
               <div class="collapse" id="preneur">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahpreneur') }}">Tambah Produk</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksipreneur') }}">Transaksi</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanpreneur') }}">Laporan</a></li>
                 </ul>
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#primer" aria-expanded="false" aria-controls="ui-basic">
+              <a class="nav-link" data-bs-toggle="collapse" href="#prima" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Primer</span>
+                <span class="menu-title">Desa Prima</span>
                 <i class="menu-arrow"></i>
               </a>
-              <div class="collapse" id="primer">
+              <div class="collapse" id="prima">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahprimer') }}">Tambah Produk</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprimer') }}">Transaksi dan Pemesanan</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprimer') }}">Laporan</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprima') }}">Transaksi</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprima') }}">Laporan</a></li>
                 </ul>
               </div>
             </li>
@@ -182,8 +182,8 @@
               </a>
               <div class="collapse" id="wisata">
                 <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/tambahwisata') }}">Tambah Wisata</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiwisata') }}">Transaksi dan Pemesanan</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolawisata') }}">Kelola Wisata</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiwisata') }}">Transaksi</a></li>
                   <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanwisata') }}">Laporan</a></li>
                 </ul>
               </div>
@@ -195,168 +195,147 @@
               </a>
             </li>
           </ul>
-        </nav>       
-      
-        <div class="main-panel">
-        <div class="content-wrapper">
+        </nav>
 
-        <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <p class="card-title">Kelola Produk</p>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="table-responsive">
-                          <table id="example" class="display expandable-table" style="width:100%">
-                            <thead>
-                              <tr>
-                                <th>Nama Produk#</th>
-                                <th>Kategori</th>
-                                <th>Business type</th>
-                                <th>Policy holder</th>
-                                <th>Premium</th>
-                                <th>Status</th>
-                                <th>Updated at</th>
-                                <th></th>
-                              </tr>
-                            </thead>
-                          </table>
-                        </div>
-                      </div>
+    <div class="main-panel">
+    <div class="content-wrapper">
+    <div class="row">
+          
+    <div class="breadcrumb">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url('/kelolawisata') }}">Kelola Wisata</a></li>
+                        <li class="breadcrumb-item"><a href="#"> Tambah Wisata</a></li>
+                    </ol>
+                </nav>
+
+                <div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <form id="formTambahWisata" action="#" method="POST">
+            <div class="card-body">
+                <h4 class="card-title">Formulir Tambah Wisata</h4>
+                <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+
+                <!-- Input Nama Wisata -->
+                <div class="form-group">
+                    <label for="namaWisata">Nama Wisata</label>
+                    <input type="text" class="form-control" id="namaWisata" placeholder="Masukkan nama wisata" required>
+                </div>
+
+                <!-- Input Harga (opsional) -->
+                <div class="mb-3">
+                    <label for="hargaWisata" class="form-label">Harga Tiket Masuk (opsional)</label>
+                    <div class="input-group">
+                        <span class="input-group-text">Rp</span>
+                        <input type="text" class="form-control rounded" id="hargaWisata" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)">
                     </div>
-                  </div>
                 </div>
-              </div>
+
+                <!-- Input URL Google Maps -->
+                <div class="form-group">
+                    <label for="mapsLink">Link Google Maps</label>
+                    <input type="url" class="form-control" id="mapsLink" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
+                    <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
+                </div>
+
+                <!-- Input Deskripsi -->
+                <div class="form-group">
+                    <label for="deskripsiWisata">Deskripsi Wisata</label>
+                    <textarea class="form-control" id="deskripsiWisata" rows="5" placeholder="Masukkan deskripsi wisata" required></textarea>
+                </div>
+
+                <!-- Input Foto Card -->
+                <div class="form-group">
+                    <label>Unggah Foto Card Wisata</label>
+                    <input type="file" name="img[]" class="file-upload-default">
+                    <div class="input-group col-xs-12 d-flex align-items-center">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                        <span class="input-group-append ms-2">
+                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Input Foto Wisata -->
+                <div class="form-group">
+                    <label>Unggah Foto-Foto Wisata</label>
+                    <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple required>
+                    <div class="input-group col-xs-12 d-flex align-items-center">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                        <span class="input-group-append ms-2">
+                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Input Dinamis untuk Hari dan Jam Kunjung -->
+                <div class="form-group">
+                    <label>Waktu Kunjung</label>
+                    <div id="waktuKunjungWrapper">
+                        <!-- Contoh input pertama -->
+                        <div class="input-group mb-3 waktu-kunjung">
+                            <select class="form-control me-2" name="hari[]" required>
+                                <option value="">Pilih Hari</option>
+                                <option value="Senin">Setiap Hari</option>
+                                <option value="Senin">Senin</option>
+                                <option value="Selasa">Selasa</option>
+                                <option value="Rabu">Rabu</option>
+                                <option value="Kamis">Kamis</option>
+                                <option value="Jumat">Jumat</option>
+                                <option value="Sabtu">Sabtu</option>
+                                <option value="Minggu">Minggu</option>
+                            </select>
+                            <input type="time" class="form-control me-2" name="jam_mulai[]" required>
+                            <span class="input-group-text">s/d</span>
+                            <input type="time" class="form-control ms-2" name="jam_selesai[]" required>
+                            <button type="button" class="btn btn-danger btn-sm ms-2 removeWaktuKunjung">Hapus</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success btn-sm" id="addWaktuKunjung">Tambah Waktu Kunjung</button>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitWisata" class="btn btn-primary me-2">Submit</button>
             </div>
-
-        <div class="row">
-        <div class="col-12 grid-margin stretch-card">
-        <div class="card">
-        <form id="formTambahBudaya" action="#" method="POST">
-          <div class="card-body">
-            <h4 class="card-title">Formulir Tambah Wisata</h4>
-            <p class="card-description"> Lengkapi kolom formulir di bawah ini </p>
-            <form class="forms-sample">
-              <div class="form-group">
-                <label for="exampleInputName1">Nama Wisata</label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="contoh:'Karawitan Miguyoh Rasa' ">
-              </div>
-              <div class="form-group">
-                <label for="exampleInputName1">Alamat</label>
-                <input type="text" class="form-control" id="exampleInputName1" placeholder="Alamat ">
-              </div>
-            <div class="form-group">
-              <label for="youtubeLink">Link Youtube</label>
-              <input type="url" class="form-control" id="youtubeLink" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
-              <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
-          </div>
-          <div class="form-group">
-              <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
-              <input type="number" class="form-control" id="whatsappNumber" placeholder="Masukkan Nomor WhatsApp" min="0" required>
-          </div>
-              <div class="form-group">
-                <label for="exampleTextarea1">Deskripsi</label>
-                <textarea class="form-control" id="exampleTextarea1" rows="5"></textarea>
-              </div>
-              <div class="form-group">
-                <label>Unggah Foto Card</label>
-                <input type="file" name="img[]" class="file-upload-default">
-                <div class="input-group col-xs-12 d-flex align-items-center">
-                  <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
-                  <span class="input-group-append ms-2">
-                    <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                  </span>
-                </div>
-              </div>
-              <div class="form-group">
-                <label>Unggah Foto-Foto Kebudayaan</label>
-                <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple>
-                <div class="input-group col-xs-12 d-flex align-items-center">
-                  <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
-                  <span class="input-group-append ms-2">
-                    <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                  </span>
-                </div>
-              </div>
-              <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-
-          <footer class="footer">
-  <div class="d-sm-flex justify-content-center justify-content-sm-between">
-    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ms-1"></i></span>
-  </div>
-</footer>
-          <!-- partial -->
-          </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
+        </form>
     </div>
+</div>
+
+
+
+</div>
+
+<!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
 
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
+
     <!-- Plugin js for this page -->
     <script src="{{ asset('admin/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/select2/select2.min.js') }}"></script>
     <!-- End plugin js for this page -->
+
     <!-- inject:js -->
     <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
     <script src="{{ asset('admin/assets/js/template.js') }}"></script>
     <script src="{{ asset('admin/assets/js/settings.js') }}"></script>
     <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
     <!-- endinject -->
+
     <!-- Custom js for this page-->
     <script src="{{ asset('admin/assets/js/file-upload.js') }}"></script>
     <script src="{{ asset('admin/assets/js/typeahead.js') }}"></script>
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
-    <!-- End custom js for this page-->
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        document.querySelector("#submit").addEventListener("click", () => {
-            const form = document.querySelector("#formTambahBudaya");
-
-            // Cek apakah form valid
-            if (!form.checkValidity()) {
-                // Jika tidak valid, tampilkan pesan kesalahan
-                Swal.fire({
-                    title: "Perhatian!",
-                    text: "Harap lengkapi semua field yang diperlukan.",
-                    icon: "warning"
-                });
-                return; // Keluar dari fungsi jika form tidak valid
-            }
-
-            // Jika valid, tampilkan SweetAlert
-            Swal.fire({
-                title: "Apakah Anda Sudah Yakin?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Pemesanan Berhasil!",
-                        text: "Pesanan anda sedang diproses.",
-                        icon: "success"
-                    }).then(() => {
-                        // Mengembalikan form ke kondisi default
-                        form.reset();
-                    });
-                }
-            });
-        });
-    </script>
-
-    <script>$('.carousel').carousel()</script>
+    <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/varianProduk.js') }}"></script>
+    <!-- End custom js for this page-->
 </body>
 </html>

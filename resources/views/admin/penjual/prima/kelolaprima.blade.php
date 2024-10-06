@@ -33,11 +33,11 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" class="me-2" alt="logo" />
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
+            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="logo" />
+            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">

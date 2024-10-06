@@ -1,6 +1,6 @@
 // Event listener for the form submission with SweetAlert validation
 document.querySelector("#submit").addEventListener("click", () => {
-    const form = document.querySelector("#formTambahBudaya");
+    const form = document.querySelector("#formTambah");
     // Cek apakah form valid
     if (!form.checkValidity()) {
         // Jika tidak valid, tampilkan pesan kesalahan
