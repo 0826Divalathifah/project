@@ -116,14 +116,14 @@
 
         <div class="banner-container">
             <div class="banner-overlay"></div>
-            <div class="banner-text">Detail</div>
+            <div class="banner-text">Detail Budaya</div>
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Detail</a></li>
+                        <li class="breadcrumb-item"><a href="#">Detail budaya</a></li>
                     </ol>
                 </nav>
             </div>
@@ -190,43 +190,16 @@
             </div>
         </div>
 
-        <!-- Bagian Form Pemesanan 
-        <div class="col-lg-4">
-            <h2>Formulir Pemesanan</h2>
-            <form id="formPemesanan" action="#" method="POST">
-                <div class="form-group">
-                    <label for="name">Nama</label>
-                    <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan nama Anda" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Nomor Telepon</label>
-                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Masukkan nomor telepon Anda" required>
-                </div>-->
-
-                <!-- Input Tanggal Booking 
-                <div class="form-group">
-                    <label for="booking-date">Tanggal Booking</label>
-                    <input type="date" id="booking-date" name="booking-date" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="address">Alamat </label>
-                    <textarea id="address" name="address" class="form-control" rows="3" placeholder="Masukkan alamat pengiriman" required></textarea>
-                </div>
-
-                <button type="button" id="pesansekarang" class="btn btn-primary">Pesan Sekarang</button>
-            </form> -->
-
 <!-- Kalender Jadwal -->
 <div class="col-lg-4">
     <div class="container mt-4">
         <div id="calendar-container" class="card p-4 shadow-sm">
-            <div class="calendar-navigation d-flex justify-content-between align-items-center mb-3">
-                <button id="prev-month" class="btn btn-outline-secondary btn-sm">&lt;&lt;</button>
-                <h4 id="month-year" class="mb-0"></h4>
-                <button id="next-month" class="btn btn-outline-secondary btn-sm">&gt;&gt;</button>
-            </div>
+        <div class="calendar-navigation d-flex justify-content-between align-items-center mb-3">
+            <button id="prev-month" class="btn btn-outline-secondary btn-sm">&lsaquo;&lsaquo;</button>
+            <h4 id="month-year" class="mb-0"></h4>
+            <button id="next-month" class="btn btn-outline-secondary btn-sm">&rsaquo;&rsaquo;</button>
+        </div>
+
             <div id="calendar" class="row g-2"></div>
 
             <!-- Keterangan di bawah kalender -->
