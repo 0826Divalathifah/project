@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/tataletal.min.css') }}">
+   
 
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
@@ -267,43 +267,13 @@
     }
 }
 </style>
-<div class="container mt-5">
-        <div class="row">
-            <!-- Kolom Kiri: Gambar dan Kartu -->
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <img src="kategori.jpg" class="card-img-left img-fluid" alt="Kategori">
-                            <div class="card-body">
-                                <h5 class="card-title">Berdasarkan Kategori</h5>
-                                <p class="card-text">Pencarian Desa Budaya berdasarkan kategori objek kebudayaan</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <img src="rute.jpg" class="card-img-left img-fluid" alt="Rute Sejalur">
-                            <div class="card-body">
-                                <h5 class="card-title">Rute Sejalur</h5>
-                                <p class="card-text">Pencarian lokasi Desa Budaya berdasarkan rute Sejalur yang dilalui</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="single-product mb-50">
+            <!-- Gambar wisata tanpa efek zoom -->
+            <div class="location-img" style="overflow: hidden;">
+                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="" style="width: 100%; height: 350px;">
             </div>
-
-            <!-- Kolom Kanan: Deskripsi -->
-            <div class="col-md-6">
-                <h2 class="welcome-text">Selamat Datang di Website Desa Budaya</h2>
-                <p class="description">
-                    DESA BUDAYA adalah wahana sekelompok manusia yang melakukan aktivitas budaya yang mengeksperisikan sistem kepercayaan (religi), sistem kesenian, sistem mata pencaharian, sistem teknologi, sistem komunikasi, sistem sosial, dan sistem lingkungan, tata ruang, dan arsitektur dengan mengaktualisasikan kekayaan potensinya dan...
-                </p>
-            </div>
-        </div>
-    </div>
-
+</div>
     <div class="col-lg-6 col-md-6 col-sm-12">
         <div class="single-product mb-50">
             <!-- Gambar wisata tanpa efek zoom -->
@@ -311,12 +281,12 @@
                 <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="" style="width: 100%; height: 350px;">
             </div>
             <!-- Kotakan Box untuk Nama dan Deskripsi -->
-            <div class="location-details p-3" style="border: 1px solid #ddd; border-radius: 5px; margin-top: 10px; background-color: #f9f9f9;">
+           <!-- <div class="location-details p-3" style="border: 1px solid #ddd; border-radius: 5px; margin-top: 10px; background-color: #f9f9f9;">
             <h1 style="font-weight: bold;"><a href="{{ url('/detail_wisata') }}">Desa Wisata Palgading</a></h1>
                 <p>Deskripsi singkat tentang wisata ini. Misalnya, informasi tentang tempat, fasilitas, dan pengalaman yang ditawarkan.</p>
 
                 
-            </div>
+            </div>-->
         </div>
     </div>
 </div>

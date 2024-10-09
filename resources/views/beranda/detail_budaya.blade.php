@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('themewagon/css/calendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/whatsapp.css') }}">
     
     
     
@@ -189,7 +190,7 @@
             </div>
         </div>
 
-        <!-- Bagian Form Pemesanan -->
+        <!-- Bagian Form Pemesanan 
         <div class="col-lg-4">
             <h2>Formulir Pemesanan</h2>
             <form id="formPemesanan" action="#" method="POST">
@@ -201,9 +202,9 @@
                 <div class="form-group">
                     <label for="phone">Nomor Telepon</label>
                     <input type="text" id="phone" name="phone" class="form-control" placeholder="Masukkan nomor telepon Anda" required>
-                </div>
+                </div>-->
 
-                <!-- Input Tanggal Booking -->
+                <!-- Input Tanggal Booking 
                 <div class="form-group">
                     <label for="booking-date">Tanggal Booking</label>
                     <input type="date" id="booking-date" name="booking-date" class="form-control" required>
@@ -215,7 +216,49 @@
                 </div>
 
                 <button type="button" id="pesansekarang" class="btn btn-primary">Pesan Sekarang</button>
-            </form>
+            </form> -->
+
+<!-- Kalender Jadwal -->
+<div class="col-lg-4">
+    <div class="container mt-4">
+        <div id="calendar-container" class="card p-4 shadow-sm">
+            <div class="calendar-navigation d-flex justify-content-between align-items-center mb-3">
+                <button id="prev-month" class="btn btn-outline-secondary btn-sm">&lt;&lt;</button>
+                <h4 id="month-year" class="mb-0"></h4>
+                <button id="next-month" class="btn btn-outline-secondary btn-sm">&gt;&gt;</button>
+            </div>
+            <div id="calendar" class="row g-2"></div>
+
+            <!-- Keterangan di bawah kalender -->
+            <div id="event-description" class="mt-4 p-3 bg-light border rounded shadow-sm">
+                <h5>Detail Jadwal:</h5>
+                <p id="event-detail" class="text-muted">Klik pada tanggal yang memiliki tanda (*) untuk melihat detail acara.</p>
+            </div>
+        </div>
+                    <!-- Tombol Pesan Sekarang -->
+                    <div class="mt-4 text-center">
+                <button id="chatButton" onclick="openChat()" style="background-color: #a367e7; color: white; border: none; padding: 10px 120px; font-size: 16px; cursor: pointer; border-radius: 5px;">
+                    Pesan Sekarang
+                </button>
+            </div>
+
+            <!-- WhatsApp Chat Box -->
+            <div id="chatBox" style="display: none; margin-top: 20px;">
+                <div id="chatHeader">
+                    <h3>Kirim Pesanan Anda disini!</h3>
+                </div>
+                <textarea id="chatInput" placeholder="Ketik pesan disini" style="width: 100%; padding: 10px; border-radius: 5px; margin-bottom: 10px;"></textarea>
+                <button onclick="sendWhatsAppMessage()" style="background-color: purple; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
+                    Kirim
+                </button>
+            </div>
+    </div>
+</div>
+
+
+
+
+
 
             <!-- Bagian Peta di Bawah Form -->
             <div class="map mt-4">
@@ -343,11 +386,20 @@
         </form>
     </div>
 </div>
+
+
 <!-- Search model end -->
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
+
+
+   
+
+
+
+
 
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
@@ -368,6 +420,11 @@
 <script src="{{ asset('themewagon/js/jquery.magnific-popup.js') }}"></script>
 <script src="{{ asset('themewagon/js/gijgo.min.js') }}"></script>
 
+<!-- calendar js -->
+<script src="{{ asset('themewagon/js/calendar.js') }}"></script>
+
+<!-- whatsapp js -->
+<script src="{{ asset('themewagon/js/whatsapp.js') }}"></script>
 
 <!-- Nice-select, sticky,Progress -->
 <script src="{{ asset('themewagon/js/jquery.nice-select.min.js') }}"></script>
@@ -394,7 +451,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
+<!--<script>
     document.querySelector("#pesansekarang").addEventListener("click", () => {
         const form = document.querySelector("#formPemesanan");
 
@@ -430,7 +487,7 @@
             }
         });
     });
-</script>
+</script> -->
 
 <script>$('.carousel').carousel()</script>
 

@@ -1,0 +1,28 @@
+#chatBox {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+    width: 300px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+ }
+ 
+ #chatHeader {
+    background-color: #25D366;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+ }
+ 
+ #chatInput {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+ }
+ 
