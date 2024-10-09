@@ -4,52 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AdminDesaPrima extends Controller
+class AdminDesaPrimaController extends Controller
 {
     // Method untuk menampilkan halaman dashboard admin
     public function showDashboard()
     {
         return view('admin.adminprima.adminprima'); 
     }
-    public function charts()
+    public function tambahPrima()
     {
-        return view('admin.adminprima.charts.chartjs'); 
+        return view('admin.adminprima.tambahprima');
     }
-    public function forms()
+
+    public function transaksiPrima()
     {
-        return view('admin.adminprima.forms.basic_elements'); 
+        return view('admin.adminprima.transaksiprima');
     }
-    public function tables()
+
+    public function laporanPrima()
     {
-        return view('admin.adminprima.tables.basic-table'); 
+        return view('admin.adminprima.laporanprima');
     }
-    public function icons()
+    public function kelolaPrima()
     {
-        return view('admin.adminprima.icons.mdi'); 
+        return view('admin.adminprima.kelolaprima');
     }
-    public function samples1()
-    {
-        return view('admin.adminprima.samples.error-404'); 
-    }
-    public function samples2()
-    {
-        return view('admin.adminprima.samples.error-500'); 
-    }
-    public function docs()
-    {
-        return view('admin.adminprima.docs.documentation'); 
-    }
-    public function uifeatures1()
-    {
-        return view('admin.adminprima.ui-features.buttons'); 
-    }
-    public function uifeatures2()
-    {
-        return view('admin.adminprima.ui-features.dropdowns'); 
-    }
-    public function uifeatures3()
-    {
-        return view('admin.adminprima.ui-features.typography'); 
-    }
+
 
 }
