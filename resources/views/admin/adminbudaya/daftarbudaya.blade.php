@@ -146,24 +146,8 @@
             <th>Aksi</th>
         </tr>
     </thead>
-    <tbody>
-        <!--@foreach ($budayas as $budaya)
-         <tr>
-            <td>{{ $budaya->id }}</td>
-            <td>{{ $budaya->nama_budaya }}</td>
-            <td>{{ $budaya->alamat }}</td>
-            <td>{{ $budaya->harga }}</td>
-            <td>
-                <a href="{{ route('budaya.edit', $budaya->id) }}" class="btn btn-warning">Edit</a>
-                <form action="{{ route('budaya.destroy', $budaya->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </form>
-            </td>
-        </tr> 
-        @endforeach -->
-    </tbody>
+    
+    
 </table>
 </div>
 </div>

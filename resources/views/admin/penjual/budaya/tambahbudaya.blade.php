@@ -211,7 +211,7 @@
 
     <div class="col-12 grid-margin stretch-card">
     <div class="card">
-        <form id="formTambah" action="{{ route('admin.penjual.budaya.store') }}" method="POST" enctype="multipart/form-data">
+        <form id="formTambah" action="{{ route('admin.penjual.budaya.tambahbudaya') }}" method="POST" enctype="multipart/form-data">
             @csrf 
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Budaya</h4>

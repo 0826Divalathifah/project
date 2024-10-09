@@ -72,17 +72,12 @@ Route::get('/error-500', [AdminDesaPrima::class, 'samples2'])->name('admin.admin
 Route::get('/documentation', [AdminDesaPrima::class, 'docs'])->name('admin.adminprima.docs.documentation');
 
 //Rute untuk halaman dashboard admin wisata
-Route::get('/adminwisata', [AdminDesaWisata::class, 'showDashboard'])->name('admin.adminwisata.adminwisata');
-Route::get('/buttons', [AdminDesaWisata::class, 'uifeatures1'])->name('admin.adminwisata.ui-features.buttons');
-Route::get('/dropdowns', [AdminDesaWisata::class, 'uifeatures2'])->name('admin.adminwisata.ui-features.dropdowns');
-Route::get('/typography', [AdminDesaWisata::class, 'uifeatures3'])->name('admin.adminwisata.ui-features.typography');
-Route::get('/chartjs', [AdminDesaWisata::class, 'charts'])->name('admin.adminwisata.charts.chartjs');
-Route::get('/basic_elements', [AdminDesaWisata::class, 'forms'])->name('admin.adminwisata.forms.basic_elements');
-Route::get('/basic-table', [AdminDesaWisata::class, 'tables'])->name('admin.adminwisata.tables.basic-table');
-Route::get('/mdi', [AdminDesaWisata::class, 'icons'])->name('admin.adminwisata.icons.mdi');
-Route::get('/error-404', [AdminDesaWisata::class, 'samples1'])->name('admin.adminwisata.samples.error-404');
-Route::get('/error-500', [AdminDesaWisata::class, 'samples2'])->name('admin.adminwisata.samples.error-500');
-Route::get('/documentation', [AdminDesaWisata::class, 'docs'])->name('admin.adminwisata.docs.documentation');
+Route::get('/adminwisata', [AdminDesaWisataController::class, 'showDashboard'])->name('admin.adminwisata.adminwisata');
+Route::get('/tambahwisata', [AdminDesaWisataController::class, 'tambahWisata'])->name('admin.adminwisata.tambahwisata');
+Route::get('/transaksiwisata', [AdminDesaWisataController::class, 'transaksiWisata'])->name('admin.adminwisata.transaksiwisata');
+Route::get('/laporanwisata', [AdminDesaWisataController::class, 'laporanWisata'])->name('admin.adminwisata.laporanwisata');
+Route::get('/kelolawisata', [AdminDesaWisataController::class, 'kelolaWisata'])->name('admin.adminwisata.kelolawisata');
+Route::get('/laporanwisata', [AdminDesaWisataController::class, 'laporanWisata'])->name('admin.adminwisata.laporanpenjual');
 
 
 // Rute untuk halaman dashboard penjual
