@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/tataletal.min.css') }}">
+   
 
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
@@ -116,80 +116,6 @@
             
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-        /* Styling for the banner */
-        .banner-container {
-            position: relative;
-            text-align: center;
-            color: white;
-            width: 100%; /* Lebarkan hingga penuh ke samping */
-            height: 600px; /* Tetap 500px untuk tinggi */
-            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            margin-bottom: 30px;
-        }
-
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan hitam */
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .banner-text {
-            position: relative;
-            z-index: 2;
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 100px; /* To vertically center text */
-        }
-
-        @media screen and (max-width: 768px) {
-            .banner-container {
-                width: 100%; /* Tetap penuh pada layar kecil */
-                height: 300px; /* Kurangi tinggi untuk layar lebih kecil */
-            }
-
-            .banner-text {
-                font-size: 36px; /* Ukuran teks lebih kecil di layar mobile */
-            }
-        }
-
-
-        .breadcrumb {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ffffff;
-        }
-
-        .breadcrumb-item a {
-            color: #ffffff;
-            text-decoration: none;
-            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
-            position: relative; /* Penting untuk memastikan z-index bekerja */
-        }
-
-        .breadcrumb-item a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        
-    </style>
 
         <div class="banner-container">
             <div class="banner-overlay"></div>
@@ -205,120 +131,34 @@
                 </nav>
             </div>
         </div>
-<style>
-/* Mengatur layout agar gambar dan deskripsi berada berdampingan */
-.content-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-}
 
-/* Kontainer gambar di sebelah kiri */
-.image-container {
-    flex: 1;
-    max-width: 50%; /* Ukuran gambar 50% dari lebar kontainer */
-    padding-right: 20px;
-}
+        <div class="container mt-4">
+    <div class="card custom-card">
+        <!-- Gambar di sebelah kiri -->
+        <div class="location-img">
+            <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam">
+        </div>
 
-/* Kontainer deskripsi di sebelah kanan */
-.description-container {
-    flex: 1;
-    max-width: 50%; /* Ukuran deskripsi 50% dari lebar kontainer */
-}
+        <!-- Deskripsi di sebelah kanan -->
+        <div class="card-body">
+            <!-- Judul di atas -->
+            <h3 class="card-title">Wisata Alam Desa</h3>
+            
+            <!-- Deskripsi di bawah judul -->
+            <p class="card-text">
+                Desa ini menawarkan pengalaman wisata alam yang menakjubkan. Dengan suasana pedesaan yang asri, pengunjung dapat menikmati pemandangan yang indah serta kegiatan budaya yang unik. Lokasinya sangat cocok untuk bersantai dan melepaskan penat dari hiruk-pikuk perkotaan.
+            </p>
+            
+            <!-- Tombol Selengkapnya -->
+            <a href="{{ url('/detail_wisata') }}" class=" my-btn-primary">Selengkapnya</a>
 
-.description-container h1 {
-    font-size: 30px;
-    color: #e84c3d; /* Warna merah oranye untuk judul */
-    font-family: "Great Vibes";
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-.description-container h2 {
-    font-size: 30px;
-    color: #333; /* Warna untuk sub judul */
-    font-weight: bold;
-    text-align: center;
-    font-family: "cursive";
-    margin-bottom: 20px;
-}
-
-.description-container p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #555; /* Warna untuk deskripsi */
-}
-
-/* Responsif: di layar kecil, deskripsi dan gambar akan tersusun secara vertikal */
-@media (max-width: 768px) {
-    .content-section {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .image-container, .description-container {
-        max-width: 100%; /* Membuat kontainer gambar dan deskripsi 100% di layar kecil */
-        padding-right: 0;
-        padding-left: 0;
-    }
-}
-</style>
-<div class="container mt-5">
-        <div class="row">
-            <!-- Kolom Kiri: Gambar dan Kartu -->
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <img src="kategori.jpg" class="card-img-left img-fluid" alt="Kategori">
-                            <div class="card-body">
-                                <h5 class="card-title">Berdasarkan Kategori</h5>
-                                <p class="card-text">Pencarian Desa Budaya berdasarkan kategori objek kebudayaan</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <img src="rute.jpg" class="card-img-left img-fluid" alt="Rute Sejalur">
-                            <div class="card-body">
-                                <h5 class="card-title">Rute Sejalur</h5>
-                                <p class="card-text">Pencarian lokasi Desa Budaya berdasarkan rute Sejalur yang dilalui</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kolom Kanan: Deskripsi -->
-            <div class="col-md-6">
-                <h2 class="welcome-text">Selamat Datang di Website Desa Budaya</h2>
-                <p class="description">
-                    DESA BUDAYA adalah wahana sekelompok manusia yang melakukan aktivitas budaya yang mengeksperisikan sistem kepercayaan (religi), sistem kesenian, sistem mata pencaharian, sistem teknologi, sistem komunikasi, sistem sosial, dan sistem lingkungan, tata ruang, dan arsitektur dengan mengaktualisasikan kekayaan potensinya dan...
-                </p>
-            </div>
         </div>
     </div>
+</div>
 
-    <div class="col-lg-6 col-md-6 col-sm-12">
-        <div class="single-product mb-50">
-            <!-- Gambar wisata tanpa efek zoom -->
-            <div class="location-img" style="overflow: hidden;">
-                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="" style="width: 100%; height: 350px;">
-            </div>
-            <!-- Kotakan Box untuk Nama dan Deskripsi -->
-            <div class="location-details p-3" style="border: 1px solid #ddd; border-radius: 5px; margin-top: 10px; background-color: #f9f9f9;">
-            <h1 style="font-weight: bold;"><a href="{{ url('/detail_wisata') }}">Desa Wisata Palgading</a></h1>
-                <p>Deskripsi singkat tentang wisata ini. Misalnya, informasi tentang tempat, fasilitas, dan pengalaman yang ditawarkan.</p>
+</div>
 
-                
-            </div>
-        </div>
-    </div>
+
 </div>
 </div>
 </main>

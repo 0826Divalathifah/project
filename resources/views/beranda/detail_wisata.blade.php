@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Detail Budaya</title>
+    <title>Detail Wisata</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="site.webmanifest">
@@ -24,8 +24,8 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/calendar.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/whatsapp.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/detail.css') }}">
+    
     
     
     
@@ -116,7 +116,7 @@
 
         <div class="banner-container">
             <div class="banner-overlay"></div>
-            <div class="banner-text">Detail</div>
+            <div class="banner-text">Detail Wisata</div>
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
@@ -129,174 +129,86 @@
             </div>
         </div>
         
-       
-        <div class="container">
+<div class="container mt-5">
+    <!-- Detail Wisata -->
     <div class="row">
-        <!-- Bagian Video -->
-        <div class="col-lg-8">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/MEfE4vI1b2c" 
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                    style="width: 100%; height: 370px;">
-                </iframe>
+        <div class="col-md-6">
+            <!-- Gambar Wisata -->
+            <div class="detail-img">
+                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam" class="img-fluid rounded">
             </div>
-            
-            <!-- Carousel Slider di Sebelah Kiri dengan 4 Foto per Slide -->
-<div class="col-lg-12"> 
-    <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel" style="width: 100%; margin: 0 auto;">
-
-        <!-- Carousel Start -->
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="d-flex justify-content-center">
-                    <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block" alt="Gambar 1" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
-                    <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block" alt="Gambar 2" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
-                    <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block" alt="Gambar 1" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex justify-content-center">
-                    <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" alt="Gambar 3"  style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
-                    <img src="{{ asset('themewagon/img/gallery/gallery4.jpg') }}" class="d-block" alt="Gambar 4"  style="width: 80%; height: 150px;object-fit: cover; margin: 0 10px;">
-                    <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}"  class="d-block" alt="Gambar 5"  style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex justify-content-center">
-                <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}" class="d-block" alt="Gambar 6" style="width: 80%; height: 150px;object-fit: cover; margin: 0 10px;">
-                <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}"  class="d-block" alt="Gambar 7" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
-                <img src="{{ asset('themewagon/img/gallery/gallery1.jpg') }}"  class="d-block" alt="Gambar 8" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
-                </div>
-            </div>
-            <!-- Tambahkan carousel-item lainnya sesuai kebutuhan -->
         </div>
+        <div class="col-md-6">
+            <!-- Deskripsi Singkat -->
+            <h2 class="text-primary">Wisata Alam Desa</h2>
+            <p class="lead">
+                Nikmati keindahan alam Desa Wisata yang menawarkan pemandangan yang asri, udara segar, dan kegiatan budaya yang menarik. Cocok untuk melepas penat dan berinteraksi langsung dengan masyarakat lokal.
+            </p>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
+            <!-- Informasi Harga -->
+            <h4 class="mt-4">Harga Masuk</h4>
+            <p class="lead">Rp 30.000 / orang</p>
+        </div>
     </div>
-</div>
 
-            <!-- Deskripsi di Bawah Carousel -->
-            <div class="description mt-4">
-                <h2>Description</h2>
-                <p>Ini adalah deskripsi video atau produk yang ingin dijelaskan. Kamu dapat menambahkan informasi penting terkait dengan konten yang ada di video ini, seperti detail produk atau layanan yang ingin ditonjolkan.</p>
+    <!-- Menambahkan Google Maps -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="text-center">Lokasi Wisata</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126557.45100734407!2d110.29177434570313!3d-7.801938653110409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57d9d5b21c35%3A0x1b46f5165a7a1eab!2sDesa%20Sardono!5e0!3m2!1sen!2sid!4v1632061715199!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
+    </div>
 
-        <!-- Bagian Form Pemesanan 
-        <div class="col-lg-4">
-            <h2>Formulir Pemesanan</h2>
-            <form id="formPemesanan" action="#" method="POST">
-                <div class="form-group">
-                    <label for="name">Nama</label>
-                    <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan nama Anda" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Nomor Telepon</label>
-                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Masukkan nomor telepon Anda" required>
-                </div>-->
-
-                <!-- Input Tanggal Booking 
-                <div class="form-group">
-                    <label for="booking-date">Tanggal Booking</label>
-                    <input type="date" id="booking-date" name="booking-date" class="form-control" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="address">Alamat </label>
-                    <textarea id="address" name="address" class="form-control" rows="3" placeholder="Masukkan alamat pengiriman" required></textarea>
-                </div>
-
-                <button type="button" id="pesansekarang" class="btn btn-primary">Pesan Sekarang</button>
-            </form> -->
-
-<!-- Kalender Jadwal -->
-<div class="col-lg-4">
-    <div class="container mt-4">
-        <div id="calendar-container" class="card p-4 shadow-sm">
-            <div class="calendar-navigation d-flex justify-content-between align-items-center mb-3">
-                <button id="prev-month" class="btn btn-outline-secondary btn-sm">&lt;&lt;</button>
-                <h4 id="month-year" class="mb-0"></h4>
-                <button id="next-month" class="btn btn-outline-secondary btn-sm">&gt;&gt;</button>
-            </div>
-            <div id="calendar" class="row g-2"></div>
-
-            <!-- Keterangan di bawah kalender -->
-            <div id="event-description" class="mt-4 p-3 bg-light border rounded shadow-sm">
-                <h5>Detail Jadwal:</h5>
-                <p id="event-detail" class="text-muted">Klik pada tanggal yang memiliki tanda (*) untuk melihat detail acara.</p>
-            </div>
+    <!-- Galeri Foto Slider -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="text-center">Galeri Foto</h3>
         </div>
-                    <!-- Tombol Pesan Sekarang -->
-                    <div class="mt-4 text-center">
-                <button id="chatButton" onclick="openChat()" style="background-color: #a367e7; color: white; border: none; padding: 10px 120px; font-size: 16px; cursor: pointer; border-radius: 5px;">
-                    Pesan Sekarang
+        <div class="col-12">
+            <div id="photoGallery" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 1">
+                            </div>
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 2">
+                            </div>
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/gallery3.jpg') }}" class="d-block w-100" alt="Galeri 3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/gallery4.jpg') }}" class="d-block w-100" alt="Galeri 4">
+                            </div>
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 5">
+                            </div>
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 6">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tambahkan slide lainnya sesuai kebutuhan -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#photoGallery" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#photoGallery" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden"></span>
                 </button>
             </div>
-
-            <!-- WhatsApp Chat Box -->
-            <div id="chatBox" style="display: none; margin-top: 20px;">
-                <div id="chatHeader">
-                    <h3>Kirim Pesanan Anda disini!</h3>
-                </div>
-                <textarea id="chatInput" placeholder="Ketik pesan disini" style="width: 100%; padding: 10px; border-radius: 5px; margin-bottom: 10px;"></textarea>
-                <button onclick="sendWhatsAppMessage()" style="background-color: purple; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
-                    Kirim
-                </button>
-            </div>
-    </div>
-</div>
-
-
-
-
-
-
-            <!-- Bagian Peta di Bawah Form -->
-            <div class="map mt-4">
-                <h2>Lokasi Kami</h2>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126918.25923728208!2d106.68942910865508!3d-6.229746486445747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4c5a3c553%3A0x401fef807deff9f!2sJakarta!5e0!3m2!1sen!2sid!4v1632991446681!5m2!1sen!2sid" 
-                    width="100%" 
-                    height="250" 
-                    margin-bottom= "40px"
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy"></iframe>
-            </div>
         </div>
     </div>
 </div>
-
-<style>
-    .video-container {
-        margin-bottom: 20px;
-    }
-    .description {
-        margin-top: 20px;
-    }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    .btn-primary {
-        background-color: #9F78FF;
-        border: none;
-        padding: 20px 20px;
-        border-radius: 5px;
-        color: white;
-        cursor: pointer;
-    }
-    .btn-primary:hover {
-        background-color: #8764db;
-    }
-</style>
 
         <!--  Details End -->
 

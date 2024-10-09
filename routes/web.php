@@ -18,6 +18,7 @@ Route::get('/desapreneur', [PageController::class, 'desapreneur'])->name('desapr
 Route::get('/desawisata', [PageController::class, 'desawisata'])->name('desawisata');
 Route::match(['get', 'post'], '/detail_budaya', [PageController::class, 'detail_budaya'])->name('detail_budaya');
 Route::get('/detail_produk', [PageController::class, 'detail_produk'])->name('detail_produk');
+Route::get('/detail_wisata', [PageController::class, 'detail_wisata'])->name('detail_wisata');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi');
 

@@ -18,6 +18,7 @@ p.description {
 
 .card {
     border: none;
+    overflow: hidden; /* Untuk efek zoom pada gambar */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -25,10 +26,16 @@ p.description {
     transform: scale(1.05);
 }
 
+.img-container {
+    overflow: hidden; /* Memastikan gambar tetap berada dalam card */
+}
+
 .card-img-left {
-    width: 100%; /* Membuat gambar full-width di card */
-    height: auto;
-    object-fit: cover;
+    transition: transform 0.5s ease; /* Animasi untuk zoom gambar */
+}
+
+.card:hover .card-img-left {
+    transform: scale(1.2); /* Efek zoom saat kursor diarahkan */
 }
 
 .card-body {
@@ -44,9 +51,4 @@ p.description {
 
 .card-text {
     font-size: 14px;
-}
-
-.row > .col-md-6 {
-    display: flex;
-    align-items: center;
 }
