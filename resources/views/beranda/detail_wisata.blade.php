@@ -148,6 +148,17 @@
             <!-- Informasi Harga -->
             <h4 class="mt-4">Harga Masuk</h4>
             <p class="lead">Rp 30.000 / orang</p>
+            <!-- Informasi Hari dan Jam Buka -->
+            <h4 class="mt-4">Hari dan Jam Buka</h4>
+            <p class="lead">
+                Setiap hari: 08:00 - 18:00 WIB
+            </p>
+
+            <!-- Alamat Desa Wisata -->
+            <h4 class="mt-4">Alamat</h4>
+            <p class="lead">
+                Desa Wisata Alam, Kecamatan Sardono, Kabupaten Sleman, Yogyakarta.
+            </p>
         </div>
     </div>
 

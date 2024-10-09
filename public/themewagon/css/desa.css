@@ -1,0 +1,148 @@
+/*desa budaya*/
+        /* Mengatur layout agar video dan deskripsi berada berdampingan */
+        .content-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 30px;
+    background-color: #f7f7f7;
+    gap: 10px; /* Menambahkan gap agar elemen tidak terlalu menempel */
+    flex-wrap: wrap; /* Supaya elemen bisa otomatis wrap di layar kecil */
+}
+
+.description-container {
+    flex: 1;
+    max-width: 70%; /* Ukuran deskripsi 50% dari lebar kontainer */
+    padding: 20px;
+}
+
+.description-container h1 {
+    font-size: 30px;
+    color: #e84c3d; /* Warna merah oranye untuk judul */
+    font-family: "Great Vibes";
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.description-container h2 {
+    font-size: 30px;
+    color: #333; /* Warna untuk sub judul */
+    font-weight: bold;
+    text-align: center;
+    font-family: "cursive";
+    margin-bottom: 20px;
+}
+
+.description-container p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555; /* Warna untuk deskripsi */
+}
+
+/* Kontainer video */
+.video-container {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+}
+
+.video-container video {
+    width: 100%; /* Video akan mengisi kontainer secara penuh */
+    height: auto;
+}
+
+/* Untuk responsif, di layar kecil deskripsi dan video akan disusun secara vertikal */
+@media (max-width: 768px) {
+    .content-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .video-container, .description-container {
+        max-width: 100%; /* Membuat kontainer video dan deskripsi 100% di layar kecil */
+        padding: 10px;
+    }
+
+    .description-container h1, .description-container h2 {
+        font-size: 24px; /* Sesuaikan ukuran font untuk layar kecil */
+    }
+
+    .description-container p {
+        font-size: 14px; /* Sesuaikan ukuran font deskripsi */
+    }
+}
+
+/*card desa budaya*/
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 30%;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h2 {
+            font-size: 2rem;
+            color: #e84c3d;
+            margin-bottom: 10px;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .card {
+                width: 100%;
+            }
+        }
+    
