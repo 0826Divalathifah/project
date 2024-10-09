@@ -1,0 +1,38 @@
+/* Styling untuk gambar detail wisata */
+.detail-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Styling untuk galeri foto */
+.row.mt-5 img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Styling untuk carousel galeri foto */
+.carousel-inner img {
+    width: 100%;
+    height: 500px; /* Sesuaikan ukuran gambar galeri */
+    object-fit: cover;
+}
+
+/* Styling untuk carousel controls (prev/next buttons) */
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #6c63ff;
+}
+/* Styling untuk map agar responsif */
+.embed-responsive {
+    position: relative;
+    display: block;
+    height: 450px; /* Ukuran tinggi peta */
+    margin-bottom: 30px; /* Menambah jarak bawah */
+}
+
+.embed-responsive-item {
+    border: none;
+    border-radius: 10px;
+}
+

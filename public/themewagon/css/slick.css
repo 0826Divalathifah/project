@@ -334,4 +334,75 @@
     border: none; /* Hilangkan border tombol */
 }
 
+    /*deskripsi desawisata*/
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .card-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center; /* Menengahkan teks */
+        transform: translateY(-10px); /* Mengangkat elemen judul ke atas */
+    }
+    
+    
+    .card-text {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #666;
+        margin-bottom: 15px;
+        text-align: justify; /* Merapikan alur teks */
+        word-wrap: break-word; /* Memastikan teks tidak terpotong */
+    }
+    
+    
+    .my-btn-primary {
+        background-color: #b578ea;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        text-transform: uppercase;
+        padding: 10px 20px; /* Menyesuaikan padding agar tombol lebih kecil */
+        font-size: 1.7rem; /* Menetapkan ukuran font tombol */
+        width: auto; /* Menjaga tombol tidak melebar penuh */
+        align-self: flex-start; /* Tombol tidak ikut merenggang dalam flexbox */
+        margin-top: 10px; /* Memberi jarak atas tombol */
+    }
+    
+    .btn-primary:hover {
+        background-color: #574bce;
+    }
+    
+    .custom-card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    
+    .location-img {
+        flex: 0 0 50%;
+        padding: 0 15px; /* Menambah jarak kanan-kiri gambar */
+    }
+    
+    .location-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
 
+    
+    

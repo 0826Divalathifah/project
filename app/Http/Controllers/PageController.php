@@ -36,6 +36,10 @@ class PageController extends Controller
             {
                 return view('beranda.desawisata'); // Mengarah ke resources/views/beranda/shop.blade.php
             }
+                public function detail_wisata()
+                {
+                    return view('beranda.detail_wisata'); 
+                }
 
 
     public function about()

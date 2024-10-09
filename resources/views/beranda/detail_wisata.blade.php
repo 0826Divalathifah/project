@@ -1,15 +1,15 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Desa Wisata</title>
+    <title>Detail Wisata</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
 
-    <!-- CSS here -->
+    <!--  CSS here -->
     <link rel="stylesheet" href="{{ asset('themewagon/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/slicknav.css') }}">
@@ -24,14 +24,12 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
-   
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/detail.css') }}">
+    
+    
+    
+    
 </head>
-
-
 <body class="full-wrapper">
     <!-- Preloader Start -->
     <div id="preloader-active">
@@ -53,12 +51,11 @@
                 <div class="menu-wrapper d-flex align-items-center justify-content-between">
                     <div class="header-left d-flex align-items-center">
                         <!-- Logo -->
+                        <!-- Logo -->
                         <div class="logo">
                             <a href="{{ url('/') }}">
                                 <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
-                                </a>
-
-                            </div>
+                                </a></div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
@@ -93,7 +90,6 @@
                                         <i class="ti-search"></i>
                                     </div>
                                 </li>
-                               
                             </ul>
                         </div>
                     </div>
@@ -109,61 +105,117 @@
     </header>
     <!-- header end -->
     <main>
-          <!-- listing Area Start -->
-          <div class="category-area">
+       <!-- listing Area Start -->
+       <div class="category-area">
             <div class="container">
             <div class="row">
             
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
 
         <div class="banner-container">
             <div class="banner-overlay"></div>
-            <div class="banner-text">Desa Wisata</div>
+            <div class="banner-text">Detail Wisata</div>
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
                         <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Wisata</a></li>
+                        <li class="breadcrumb-item"><a href="#">Detail</a></li>
                     </ol>
                 </nav>
             </div>
         </div>
-
-        <div class="container mt-4">
-    <div class="card custom-card">
-        <!-- Gambar di sebelah kiri -->
-        <div class="location-img">
-            <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam">
+        
+<div class="container mt-5">
+    <!-- Detail Wisata -->
+    <div class="row">
+        <div class="col-md-6">
+            <!-- Gambar Wisata -->
+            <div class="detail-img">
+                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam" class="img-fluid rounded">
+            </div>
         </div>
-
-        <!-- Deskripsi di sebelah kanan -->
-        <div class="card-body">
-            <!-- Judul di atas -->
-            <h3 class="card-title">Wisata Alam Desa</h3>
-            
-            <!-- Deskripsi di bawah judul -->
-            <p class="card-text">
-                Desa ini menawarkan pengalaman wisata alam yang menakjubkan. Dengan suasana pedesaan yang asri, pengunjung dapat menikmati pemandangan yang indah serta kegiatan budaya yang unik. Lokasinya sangat cocok untuk bersantai dan melepaskan penat dari hiruk-pikuk perkotaan.
+        <div class="col-md-6">
+            <!-- Deskripsi Singkat -->
+            <h2 class="text-primary">Wisata Alam Desa</h2>
+            <p class="lead">
+                Nikmati keindahan alam Desa Wisata yang menawarkan pemandangan yang asri, udara segar, dan kegiatan budaya yang menarik. Cocok untuk melepas penat dan berinteraksi langsung dengan masyarakat lokal.
             </p>
-            
-            <!-- Tombol Selengkapnya -->
-            <a href="{{ url('/detail_wisata') }}" class=" my-btn-primary">Selengkapnya</a>
 
+            <!-- Informasi Harga -->
+            <h4 class="mt-4">Harga Masuk</h4>
+            <p class="lead">Rp 30.000 / orang</p>
+        </div>
+    </div>
+
+    <!-- Menambahkan Google Maps -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="text-center">Lokasi Wisata</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126557.45100734407!2d110.29177434570313!3d-7.801938653110409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57d9d5b21c35%3A0x1b46f5165a7a1eab!2sDesa%20Sardono!5e0!3m2!1sen!2sid!4v1632061715199!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Galeri Foto Slider -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="text-center">Galeri Foto</h3>
+        </div>
+        <div class="col-12">
+            <div id="photoGallery" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 1">
+                            </div>
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 2">
+                            </div>
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/gallery3.jpg') }}" class="d-block w-100" alt="Galeri 3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/gallery4.jpg') }}" class="d-block w-100" alt="Galeri 4">
+                            </div>
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 5">
+                            </div>
+                            <div class="col-4">
+                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 6">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tambahkan slide lainnya sesuai kebutuhan -->
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#photoGallery" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#photoGallery" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden"></span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
 
-</div>
+        <!--  Details End -->
 
 
-</div>
-</div>
-</main>
+    </main>
 
-<footer>
+    <footer>
     <!-- Footer Start -->
     <div class="footer-area footer-padding">
         <div class="container-fluid">
@@ -237,7 +289,6 @@
     </div>
     <!-- Footer End -->
 </footer>
-
 <!--? Search model Begin -->
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">
@@ -247,11 +298,20 @@
         </form>
     </div>
 </div>
+
+
 <!-- Search model end -->
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
+
+
+   
+
+
+
+
 
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
@@ -272,6 +332,11 @@
 <script src="{{ asset('themewagon/js/jquery.magnific-popup.js') }}"></script>
 <script src="{{ asset('themewagon/js/gijgo.min.js') }}"></script>
 
+<!-- calendar js -->
+<script src="{{ asset('themewagon/js/calendar.js') }}"></script>
+
+<!-- whatsapp js -->
+<script src="{{ asset('themewagon/js/whatsapp.js') }}"></script>
 
 <!-- Nice-select, sticky,Progress -->
 <script src="{{ asset('themewagon/js/jquery.nice-select.min.js') }}"></script>
@@ -295,13 +360,48 @@
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-        AOS.init();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<!--<script>
+    document.querySelector("#pesansekarang").addEventListener("click", () => {
+        const form = document.querySelector("#formPemesanan");
+
+        // Cek apakah form valid
+        if (!form.checkValidity()) {
+            // Jika tidak valid, tampilkan pesan kesalahan
+            Swal.fire({
+                title: "Perhatian!",
+                text: "Harap lengkapi semua field yang diperlukan.",
+                icon: "warning"
+            });
+            return; // Keluar dari fungsi jika form tidak valid
+        }
+
+        // Jika valid, tampilkan SweetAlert
+        Swal.fire({
+            title: "Apakah Anda Sudah Yakin?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Pemesanan Berhasil!",
+                    text: "Pesanan anda sedang diproses.",
+                    icon: "success"
+                }).then(() => {
+                    // Mengembalikan form ke kondisi default
+                    form.reset();
+                });
+            }
+        });
+    });
+</script> -->
+
+<script>$('.carousel').carousel()</script>
 
 </body>
 </html>
