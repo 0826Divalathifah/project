@@ -121,8 +121,8 @@
     </button>
   </div>
 </nav>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
+       <!-- partial -->
+       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
@@ -136,6 +136,12 @@
               <a class="nav-link" href="{{ url('/kelolabudaya') }}">
                 <i class="mdi mdi-shape-plus menu-icon"></i>
                 <span class="menu-title">Kelola Budaya</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolaagenda') }}">
+                <i class="mdi mdi-calendar-plus menu-icon"></i>
+                <span class="menu-title">Kelola Agenda</span>
               </a>
             </li>
             <li class="nav-item">

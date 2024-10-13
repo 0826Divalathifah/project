@@ -134,8 +134,14 @@
           </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/kelolabudaya') }}">
-                <i class="mdi mdi-home menu-icon"></i>
+                <i class="mdi mdi-shape-plus menu-icon"></i>
                 <span class="menu-title">Kelola Budaya</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolaagenda') }}">
+                <i class="mdi mdi-calendar-plus menu-icon"></i>
+                <span class="menu-title">Kelola Agenda</span>
               </a>
             </li>
             <li class="nav-item">
@@ -191,10 +197,10 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="hargaBudaya" class="form-label">Harga</label>
+                    <label for="hargaBudaya" class="form-label">Harga (optional)</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" name="harga" class="form-control rounded" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
+                        <input type="text" name="harga" class="form-control rounded" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" >
                     </div>
                 </div>
                 
