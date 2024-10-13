@@ -127,80 +127,35 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/penjual') }}">
+              <a class="nav-link" href="{{ asset('/adminbudaya') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
-            </li>
+          </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#budaya" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Budaya</span>
-                <i class="menu-arrow"></i>
+              <a class="nav-link" href="{{ url('/kelolabudaya') }}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Kelola Budaya</span>
               </a>
-              <div class="collapse" id="budaya">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudaya') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#preneur" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Preneur</span>
-                <i class="menu-arrow"></i>
+              <a class="nav-link" href="{{ url('/kelolahomepage') }}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Kelola Home Page</span>
               </a>
-              <div class="collapse" id="preneur">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksipreneur') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanpreneur') }}">Laporan</a></li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#prima" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Prima</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="prima">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprima') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprima') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#wisata" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Wisata</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="wisata">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolawisata') }}">Kelola Wisata</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiwisata') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanwisata') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/laporanpenjual') }}">
+              <a class="nav-link" href="{{ url('/laporanbudaya') }}">
                 <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Laporan Penjual</span>
+                <span class="menu-title">Laporan Admin Budaya</span>
               </a>
             </li>
           </ul>
         </nav>
-
+        
     <div class="main-panel">
     <div class="content-wrapper">
-    <div class="row">
-          
+    <div class="row">      
     <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
@@ -208,10 +163,9 @@
                         <li class="breadcrumb-item"><a href="#"> Tambah Budaya</a></li>
                     </ol>
                 </nav>
-
     <div class="col-12 grid-margin stretch-card">
     <div class="card">
-        <form id="formTambah" action="{{ route('admin.penjual.budaya.tambahbudaya') }}" method="POST" enctype="multipart/form-data">
+        <form id="formTambah" action="{{ url ('/tambahbudaya') }}" method="POST" enctype="multipart/form-data">
             @csrf 
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Budaya</h4>

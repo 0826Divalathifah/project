@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AdminKelurahan extends Controller
+class AdminKelurahanController extends Controller
 {
     // Method untuk menampilkan halaman dashboard admin
     public function showDashboard()

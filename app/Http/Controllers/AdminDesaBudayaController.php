@@ -11,51 +11,22 @@ class AdminDesaBudayaController extends Controller
     {
         return view('admin.adminbudaya.daftarbudaya');
     }
-
-    // Menampilkan form tambah budaya
-    public function createBudaya()
+    public function kelolaBudaya()
+    {
+        return view('admin.adminbudaya.kelolabudaya');
+    }
+    public function tambahBudaya()
     {
         return view('admin.adminbudaya.tambahbudaya');
     }
 
-    // Menyimpan budaya baru
-    public function storeBudaya(Request $request)
+    public function kelolaHomepage()
     {
-        $request->validate([
-            'nama_budaya' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'harga' => 'required|numeric',
-        ]);
-
-        // Logika penyimpanan data ke database
-
-        return redirect()->route('admin.budaya.daftar')->with('success', 'Budaya berhasil ditambahkan.');
+        return view('admin.adminbudaya.kelolahomepage');
     }
 
-    // Menampilkan form edit budaya
-    public function editBudaya($id)
+    public function laporanBudaya()
     {
-        return view('admin.adminbudaya.editbudaya', compact('id'));
-    }
-
-    // Mengupdate budaya
-    public function updateBudaya(Request $request, $id)
-    {
-        $request->validate([
-            'nama_budaya' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'harga' => 'required|numeric',
-        ]);
-
-        // Logika update budaya
-
-        return redirect()->route('admin.budaya.daftar')->with('success', 'Budaya berhasil diperbarui.');
-    }
-
- 
-    public function deleteBudaya($id)
-    {
-
-        return redirect()->route('admin.budaya.daftar')->with('success', 'Budaya berhasil dihapus.');
+        return view('admin.adminbudaya.laporanbudaya');
     }
 }

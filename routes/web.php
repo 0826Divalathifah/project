@@ -24,27 +24,25 @@ Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi'
 
 
 // Rute untuk halaman dashboard superadmin kelurahan
-Route::get('/adminkelurahan', [AdminKelurahan::class, 'showDashboard'])->name('admin.adminkelurahan.adminkelurahan');
-Route::get('/buttons', [AdminKelurahan::class, 'uifeatures1'])->name('admin.adminkelurahan.ui-features.buttons');
-Route::get('/dropdowns', [AdminKelurahan::class, 'uifeatures2'])->name('admin.adminkelurahan.ui-features.dropdowns');
-Route::get('/typography', [AdminKelurahan::class, 'uifeatures3'])->name('admin.adminkelurahan.ui-features.typography');
-Route::get('/chartjs', [AdminKelurahan::class, 'charts'])->name('admin.adminkelurahan.charts.chartjs');
-Route::get('/basic_elements', [AdminKelurahan::class, 'forms'])->name('admin.adminkelurahan.forms.basic_elements');
-Route::get('/basic-table', [AdminKelurahan::class, 'tables'])->name('admin.adminkelurahan.tables.basic-table');
-Route::get('/mdi', [AdminKelurahan::class, 'icons'])->name('admin.adminkelurahan.icons.mdi');
-Route::get('/error-404', [AdminKelurahan::class, 'samples1'])->name('admin.adminkelurahan.samples.error-404');
-Route::get('/error-500', [AdminKelurahan::class, 'samples2'])->name('admin.adminkelurahan.samples.error-500');
-Route::get('/documentation', [AdminKelurahan::class, 'docs'])->name('admin.adminkelurahan.docs.documentation');
+Route::get('/adminkelurahan', [AdminKelurahanController::class, 'showDashboard'])->name('admin.adminkelurahan.adminkelurahan');
+Route::get('/buttons', [AdminKelurahanController::class, 'uifeatures1'])->name('admin.adminkelurahan.ui-features.buttons');
+Route::get('/dropdowns', [AdminKelurahanController::class, 'uifeatures2'])->name('admin.adminkelurahan.ui-features.dropdowns');
+Route::get('/typography', [AdminKelurahanController::class, 'uifeatures3'])->name('admin.adminkelurahan.ui-features.typography');
+Route::get('/chartjs', [AdminKelurahanController::class, 'charts'])->name('admin.adminkelurahan.charts.chartjs');
+Route::get('/basic_elements', [AdminKelurahanController::class, 'forms'])->name('admin.adminkelurahan.forms.basic_elements');
+Route::get('/basic-table', [AdminKelurahanController::class, 'tables'])->name('admin.adminkelurahan.tables.basic-table');
+Route::get('/mdi', [AdminKelurahanController::class, 'icons'])->name('admin.adminkelurahan.icons.mdi');
+Route::get('/error-404', [AdminKelurahanController::class, 'samples1'])->name('admin.adminkelurahan.samples.error-404');
+Route::get('/error-500', [AdminKelurahanController::class, 'samples2'])->name('admin.adminkelurahan.samples.error-500');
+Route::get('/documentation', [AdminKelurahanController::class, 'docs'])->name('admin.adminkelurahan.docs.documentation');
 
 //Rute untuk halaman dashboard admin budaya
 // Route untuk menampilkan daftar budaya
 Route::get('/daftarbudaya', [AdminDesaBudayaController::class, 'daftarBudaya'])->name('admin.adminbudaya.daftarbudaya');
-Route::get('/admin/adminbudaya/tambah', [AdminDesaBudayaController::class, 'createBudaya'])->name('admin.adminbudaya.tambahbudaya');
-Route::post('/admin/adminbudaya/store', [AdminDesaBudayaController::class, 'storeBudaya'])->name('admin.adminbudaya.store');
-Route::get('/admin/adminbudaya/edit/{id}', [AdminDesaBudayaController::class, 'editBudaya'])->name('admin.adminbudaya.edit');
-Route::put('/admin/adminbudaya/update/{id}', [AdminDesaBudayaController::class, 'updateBudaya'])->name('admin.adminbudaya.update');
-Route::delete('/admin/adminbudaya/delete/{id}', [AdminDesaBudayaController::class, 'deleteBudaya'])->name('admin.adminbudaya.delete');
-
+Route::get('/kelolabudaya', [AdminDesaBudayaController::class, 'kelolaBudaya'])->name('admin.adminbudaya.kelolabudaya');
+Route::get('/kelolahomepage', [AdminDesaBudayaController::class, 'kelolaHomepage'])->name('admin.adminbudaya.kelolahomepage');
+Route::get('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya'])->name('admin.adminbudaya.tambahbudaya');
+Route::get('/laporanbudaya', [AdminDesaBudayaController::class, 'laporanBudaya'])->name('admin.adminbudaya.laporanbudaya');
 
 //Rute untuk halaman dashboard admin preneur
 Route::get('/adminpreneur', [AdminDesaPreneurController::class, 'showDashboard'])->name('admin.adminpreneur.adminpreneur');
