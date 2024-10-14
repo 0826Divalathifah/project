@@ -103,30 +103,50 @@
 
         <!-- Detail Produk -->
         <div class="product-details">
-            <h2>Mens Shirt</h2>
+            <h2>Briza Brownies</h2>
             <p class="price">Rp 30.000</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis possimus perspiciatis dolorem earum minus voluptatibus atque.</p>
 
             <!-- Pilih Ukuran -->
             <label for="Toping">Toping:</label>
             <select id="size">
+                <option value="none">Pilih Toping</option>
                 <option value="1">Coklat</option>
                 <option value="2">Keju</option>
             </select>
 
-
-            <!-- Tombol Favorit & Beli -->
+            <!-- Tombol Beli -->
             <div class="actions">
-                <button class="btn add-to-cart">Beli</button>
+                <button class="btn add-to-cart" id="beliBtn" style="background-color: purple; color: white; border: none; padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 5px;">
+                    Beli
+                </button>
+            </div>
+
+            <!-- WhatsApp Chat Box (Detail Pesanan) -->
+                <div id="chatBox" style="display: none; margin-top: 30px; border: 1px solid #ddd; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); position: relative; width: 100%; max-width: 500px; background-color: #f9f9f9;">
+                    <div id="chatHeader" style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="margin: 0; font-size: 22px; color: #333;">Detail Pesanan</h3>
+                        <!-- Tombol Close -->
+                        <span id="closeChat" style="cursor: pointer; font-size: 24px; font-weight: bold; color: #dc3545;">&times;</span>
+                    </div>
+                    
+                    <!-- Detail Produk dalam Kartu -->
+                    <div style="margin-top: 20px; background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                        <p style="margin: 0; font-size: 18px;"><strong>Produk:</strong> <span id="productName">Nama Produk</span></p>
+                        <p style="margin: 10px 0 0 0; font-size: 18px;"><strong>Harga:</strong> <span id="productPrice">Rp 150.000</span></p>
+                        <p style="margin: 10px 0 0 0; font-size: 18px;"><strong>Jumlah:</strong> <span id="productQuantity">1</span></p>
+                    </div>
+
+                    <!-- Tombol Simpan dan Kirim ke WhatsApp -->
+                    <button onclick="confirmOrderDetails()" style="background-color: #007bff; color: white; border: none; padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 8px; margin-top: 20px; width: 100%;">
+                        Simpan dan Lanjutkan ke WhatsApp
+                    </button>
+                </div>
             </div>
         </div>
+            
     </div>
 </div>
-
-
-
-
-
 
 <footer>
     <!-- Footer Start -->
@@ -260,6 +280,10 @@
 <!-- Jquery Plugins, main Jquery -->	
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
+
+
+<script src="{{ asset('themewagon/js/whatsapp.js') }}"></script>
+<script src="{{ asset('themewagon/js/detail.js') }}"></script>
 
 </body>
 </html>

@@ -6,11 +6,12 @@
   box-sizing: border-box;
   clear: both;
   cursor: pointer;
-  display: block;
-  float: left;
+  display: inline-block; /* Mengganti dari block ke inline-block agar tidak memakan seluruh lebar container */
+  float: center; /* Menghilangkan float untuk fleksibilitas layout */
   font-family: inherit;
   font-size: 14px;
   font-weight: normal;
+  margin-bottom: 20px;
   height: 42px;
   line-height: 40px;
   outline: none;
@@ -21,11 +22,12 @@
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   white-space: nowrap;
-  width: auto; }
+  width: auto; /* Menggunakan width auto agar lebar select lebih fleksibel */
+}  
   .nice-select:hover {
     border-color: #dbdbdb; }
   .nice-select:active, .nice-select.open, .nice-select:focus {

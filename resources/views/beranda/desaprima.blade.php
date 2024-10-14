@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+  
+
 </head>
 <body class="full-wrapper">
     <!-- Preloader Start -->
@@ -45,12 +47,11 @@
             <div class="container-fluid">
                 <div class="menu-wrapper d-flex align-items-center justify-content-between">
                     <div class="header-left d-flex align-items-center">
-                        <!-- Logo -->
-                        <!-- Logo -->
-                        <div class="logo">
+                         <!-- Logo -->
+                         <div class="logo">
                             <a href="{{ url('/') }}">
                                 <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
-                                </a></div>
+                                </a> </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
@@ -98,9 +99,8 @@
         </div>
         <!-- Header End -->
     </header>
-    <!-- header end -->
     <main>
-        <!-- listing Area Start -->
+                 <!-- listing Area Start -->
         <div class="category-area">
             <div class="container">
             <div class="row">
@@ -113,14 +113,14 @@
             position: relative;
             text-align: center;
             color: white;
-            width: 100%; /* Lebarkan hingga penuh ke samping */
+            width: 200%; /* Lebarkan hingga penuh ke samping */
             height: 600px; /* Tetap 500px untuk tinggi */
             background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .banner-overlay {
@@ -195,157 +195,112 @@
                 </nav>
             </div>
         </div>
-                <div class="row">
-                    <!--? Left content -->
-                    <div class="col-xl-3 col-lg-3 col-md-4 ">
-                        <!-- Job Category Listing start -->
-                        <div class="category-listing mb-50">
-                            <!-- single one -->
-                            <div class="single-listing">
-                                <!-- Select City items start -->
-                                <div class="select-job-items2">
+
+        <div class="row">
+            <!--? Left content -->
+            <div class="col-xl-3 col-lg-3 col-md-4 ">
+                <!-- Job Category Listing start -->
+                <div class="category-listing mb-50">
+                    <!-- single one -->
+                    <div class="single-listing">
+                        <!-- Select City items start -->
+                        <div class="select-job-items2">
                                     <select name="select2" id="categorySelect" onchange="navigateToSection()">
                                         <option value="">--Pilih Kategori--</option>
                                         <option value="makanan">Makanan dan Minuman</option>
                                         <option value="kerajinan">Kerajinan dan Aksesoris</option>
                                     </select>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- Job Category Listing End -->
                     </div>
-                    <!--?  Right content -->
-                    
-                    <div class="col-xl-9 col-lg-9 col-md-8 ">
-                        <!--? Makanan -->
-                        <div id="makanan" class="cards-wrapper">
-                        <div class="card">
-                            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                            <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
-                            <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                
-                                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
-                                <p class="card-text"><span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span></p>
-                                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text"><span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span></p>
-                                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <!-- Job Category Listing End -->
+                </div>
+                <!--?  Right content -->
+                <div class="col-xl-9 col-lg-9 col-md-8 ">
 
+       
+</head>
+<body>
+    <!-- Makanan Section -->
+    <div id="makanan" class="slider">
+        <div class="card">
+            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Briza Brownies">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>                                                                                              
+        </div>
 
-                    <!-- Section untuk Kerajinan dan Aksesoris -->
-                    <div id="kerajinan" class="cards-wrapper">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Kerajinan Unik</a></h5>
-                                <p class="card-text"><span style="color: #FF5733;">Rp 50.000 - Rp 200.000</span></p>
-                                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Custom Styles for Card Slider -->
+        <div class="card">
+            <img src="..." alt="Produk 2">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 2</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Deskripsi singkat produk 2.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>
+        </div>
 
-                    <script>
-                        function navigateToSection() {
-                            var selectedCategory = document.getElementById("categorySelect").value;
-                            
-                            if (selectedCategory === "makanan") {
-                                document.getElementById("makanan").scrollIntoView({ behavior: "smooth" });
-                            } else if (selectedCategory === "kerajinan") {
-                                document.getElementById("kerajinan").scrollIntoView({ behavior: "smooth" });
-                            }
-                        }
-                    </script>
+        <div class="card">
+            <img src="..." alt="Produk 3">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 3</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Deskripsi singkat produk 3.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>
+        </div>
+    </div>
 
-                    <style>
-                    /* Wrapper for cards */
-                    .cards-wrapper {
-                        display: flex;
-                        overflow-x: scroll;
-                        scroll-snap-type: x mandatory;
-                        gap: 15px;
-                        padding: 20px;
-                    }
+     <!-- Kerajinan section -->
+     <div id="kerajinan" class="slider">
+        <div class="card">
+            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Briza Brownies">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>                                                                                              
+        </div>
 
-                    .card {
-                        min-width: 300px;
-                        max-width: 320px;
-                        height: 400px; /* Adjusting height */
-                        flex: 0 0 auto;
-                        scroll-snap-align: start;
-                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                        border-radius: 8px;
-                        transition: transform 0.3s ease-in-out;
-                    }
+        <div class="card">
+            <img src="..." alt="Produk 2">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 2</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Deskripsi singkat produk 2.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>
+        </div>
 
-                    .card img {
-                        width: 100%;
-                        height: 200px; /* Adjusting image height */
-                        object-fit: cover;
-                        border-top-left-radius: 8px;
-                        border-top-right-radius: 8px;
-                    }
+        <div class="card">
+            <img src="..." alt="Produk 3">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 3</a></h5>
+                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
+                <p class="card-text">Deskripsi singkat produk 3.</p>
+                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
+            </div>
+        </div>
+    </div>
 
-                    .card-body {
-                        padding: 15px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-                        height: 100%; /* Ensure content fits within card height */
-                    }
+        <!-- Custom Styles for Card Slider -->
 
-                    .card:hover {
-                        transform: scale(1.05);
-                    }
-
-                    /* Styling for smaller screens */
-                    @media (max-width: 768px) {
-                        .cards-wrapper {
-                            padding: 10px;
-                            gap: 10px;
-                        }
-                        .card {
-                            min-width: 250px;
-                            height: 350px; /* Adjust height for smaller screens */
-                        }
-
-                        .card img {
-                            height: 150px; /* Adjust image height */
-                        }
-                    }
-
-                    @media (max-width: 480px) {
-                        .card {
-                            min-width: 200px;
-                            height: 320px; /* Adjust height for mobile screens */
-                        }
-
-                        .card img {
-                            height: 130px; /* Adjust image height */
-                        }
-                    }
-                </style>
-                    </div>
-                    </div>
-                    </div>
+        <script>
+            function navigateToSection() {
+                var selectedCategory = document.getElementById("categorySelect").value;
+                
+                if (selectedCategory === "makanan") {
+                    document.getElementById("makanan").scrollIntoView({ behavior: "smooth" });
+                } else if (selectedCategory === "kerajinan") {
+                    document.getElementById("kerajinan").scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        </script>
 <!-- listing-area Area End -->
-
 </main>
 
 <footer>

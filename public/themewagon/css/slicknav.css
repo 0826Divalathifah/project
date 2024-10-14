@@ -260,3 +260,8 @@
 	background: transparent;
 	color: #dca73a;
 }
+
+/* pemagturan teks untuk about*/
+.pera {
+  text-align: justify!important;
+}
