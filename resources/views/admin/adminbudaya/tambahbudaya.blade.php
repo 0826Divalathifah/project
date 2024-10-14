@@ -163,35 +163,35 @@
                         <li class="breadcrumb-item"><a href="#"> Tambah Budaya</a></li>
                     </ol>
                 </nav>
-    <div class="col-12 grid-margin stretch-card">
+                <div class="col-12 grid-margin stretch-card">
     <div class="card">
-        <form id="formTambah" action="{{ url ('/tambahbudaya') }}" method="POST" enctype="multipart/form-data">
+        <form id="formTambah" action="{{ url('/tambahbudaya') }}" method="POST" enctype="multipart/form-data">
             @csrf 
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Budaya</h4>
-                <p class="card-description"> Lengkapi kolom formulir di bawah ini </p>
+                <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
                 
                 <div class="form-group">
-                    <label>Pilih Budaya</label>
-                    <select name="budaya" class="js-example-basic-single w-100" required>
-                        <option value="">Pilih Budaya</option>
-                        <option value="AL">Kesenian</option>
-                        <option value="WY">Adat Istiadat</option>
+                    <label>Pilih Kategori Budaya</label>
+                    <select name="kategori_budaya" class="js-example-basic-single w-100" required>
+                        <option value="">Pilih Kategori Budaya</option>
+                        <option value="Kesenian">Kesenian</option>
+                        <option value="Adat Istiadat">Adat Istiadat</option>
                     </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="exampleInputName1">Nama Budaya</label>
+                    <label for="nama_budaya">Nama Budaya</label>
                     <input type="text" name="nama_budaya" class="form-control" placeholder="contoh: 'Karawitan Miguyoh Rasa'" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="exampleInputName1">Alamat</label>
+                    <label for="alamat">Alamat</label>
                     <input type="text" name="alamat" class="form-control" placeholder="Alamat" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="hargaBudaya" class="form-label">Harga</label>
+                    <label for="harga">Harga</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
                         <input type="text" name="harga" class="form-control rounded" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
@@ -199,30 +199,30 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="youtubeLink">Link Youtube</label>
+                    <label for="youtube_link">Link Youtube</label>
                     <input type="url" name="youtube_link" class="form-control" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
                     <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
                 </div>
                 
                 <div class="form-group">
-                    <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
-                    <input type="number" name="whatsapp_number" class="form-control" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+                    <label for="whatsapp_number">Nomor WhatsApp Aktif</label>
+                    <input type="text" name="whatsapp_number" class="form-control" placeholder="Masukkan Nomor WhatsApp" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="mapsLink">Link Google Maps</label>
+                    <label for="maps_link">Link Google Maps</label>
                     <input type="url" name="maps_link" class="form-control" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
                     <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleTextarea1">Deskripsi</label>
-                    <textarea name="deskripsi" class="form-control" id="exampleTextarea1" rows="5" required></textarea>
+                    <label for="deskripsi">Deskripsi</label>
+                    <textarea name="deskripsi" class="form-control" id="deskripsi" rows="5" required></textarea>
                 </div>
 
                 <div class="form-group">
                     <label>Unggah Foto Card</label>
-                    <input type="file" name="img[]" class="file-upload-default" required>
+                    <input type="file" name="foto_card" class="file-upload-default" required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
                         <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
                         <span class="input-group-append ms-2">
@@ -233,7 +233,7 @@
 
                 <div class="form-group">
                     <label>Unggah Foto-Foto Kebudayaan</label>
-                    <input type="file" name="img[]" class="file-upload-default" id="fileInput" multiple required>
+                    <input type="file" name="foto_lainnya[]" class="file-upload-default" id="fileInput" multiple required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
                         <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
                         <span class="input-group-append ms-2">
@@ -246,6 +246,8 @@
             </div>
         </form>
     </div>
+
+
 
 </div>
 </div>

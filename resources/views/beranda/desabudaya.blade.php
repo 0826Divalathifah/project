@@ -385,16 +385,13 @@
     </select>
 </div>
 
-        
-
-    <div class="content-section" data-aos="fade-up" data-aos-duration="1000">
+<div class="content-section" data-aos="fade-up" data-aos-duration="1000">
     <div class="container">
-
         <!-- Flexbox container for alignment -->
         <div class="card-container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
             
             <!-- Card Seni Pertunjukan-->
-            <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
+            <div class="card kesenian-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
                     <h2><a href="{{ url('/detail_budaya') }}">Seni Pertunjukan</a></h2>
@@ -403,36 +400,18 @@
                 </div>
             </div>
 
-            <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
+            <!-- Ulangi untuk setiap budaya dengan kelas yang sesuai -->
+            <!-- Contoh tambahan -->
+            <div class="card kesenian-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
-                    <h2><a href="{{ url('/detail_budaya') }}">Seni Pertunjukan</a></h2>
-                    <h3>Desa Budaya Banjarharjo</h3>
-                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
+                    <h2><a href="{{ url('/detail_budaya') }}">Seni Tari</a></h2>
+                    <h3>Desa Budaya Cianjur</h3>
+                    <p>Jalan Raya Cianjur KM 15, Cianjur, Jawa Barat - Kodepos 43218</p>
                 </div>
             </div>
 
-            <div class="card" id="kesenian-card" style="flex: 1; min-width: 300px;">
-                <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
-                <div class="card-content">
-                    <h2><a href="{{ url('/detail_budaya') }}">Seni Pertunjukan</a></h2>
-                    <h3>Desa Budaya Banjarharjo</h3>
-                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="content-section" data-aos="fade-up" data-aos-duration="1000">
-    <div class="container">
-
-        <!-- Flexbox container for alignment -->
-        <div class="card-container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
-            
-            <!-- Card Adat-->
-            <div class="card" id="adat-card" style="flex: 1; min-width: 300px;">
+            <div class="card adat-card" style="flex: 1; min-width: 300px;">
                 <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
                 <div class="card-content">
                     <h2><a href="{{ url('/detail_budaya') }}">Adat Istiadat</a></h2>
@@ -441,38 +420,33 @@
                 </div>
             </div>
 
-            <div class="card" id="adat-card" style="flex: 1; min-width: 300px;">
-                <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
-                <div class="card-content">
-                    <h2><a href="{{ url('/detail_budaya') }}">Adat Istiadat</a></h2>
-                    <h3>Desa Budaya Banjarharjo</h3>
-                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
-                </div>
-            </div>
-
-            <div class="card" id="adat-card" style="flex: 1; min-width: 300px;">
-                <img src="https://via.placeholder.com/300x150" alt="Desa Budaya">
-                <div class="card-content">
-                    <h2><a href="{{ url('/detail_budaya') }}">Adat Istiadat</a></h2>
-                    <h3>Desa Budaya Banjarharjo</h3>
-                    <p>Jalan Sentolo Muntilan KM 20, Ngrajun, Banjarharo, Kealibawang, Kulon Progo - Kodepos 55672</p>
-                </div>
-            </div>
+            <!-- Tambahkan kartu lainnya sesuai kebutuhan -->
         </div>
     </div>
 </div>
 
 <script>
-    document.getElementById('selectcategory').addEventListener('change', 'function'() {
+    document.getElementById('selectcategory').addEventListener('change', function() {
         const selectedCategory = this.value;
+        const cards = document.querySelectorAll('.card');
 
-        if (selectedCategory === 'kesenian') {
-            document.getElementById('kesenian-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else if (selectedCategory === 'adat') {
-            document.getElementById('adat-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        cards.forEach(card => {
+            if (selectedCategory === "" || card.classList.contains(selectedCategory + '-card')) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        if (selectedCategory) {
+            const target = document.querySelector(`.${selectedCategory}-card`);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
     });
 </script>
+
 
 
     </main>
