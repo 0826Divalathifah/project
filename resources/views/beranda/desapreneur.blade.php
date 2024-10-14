@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+  
+
 </head>
 <body class="full-wrapper">
     <!-- Preloader Start -->

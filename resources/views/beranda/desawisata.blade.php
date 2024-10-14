@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/responsive.css') }}">
    
 
 
@@ -133,6 +134,52 @@
         </div>
 
         <div class="container mt-4">
+    <div class="card custom-card">
+        <!-- Gambar di sebelah kiri -->
+        <div class="location-img">
+            <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam">
+        </div>
+
+        <!-- Deskripsi di sebelah kanan -->
+        <div class="card-body">
+            <!-- Judul di atas -->
+            <h3 class="card-title">Wisata Alam Desa</h3>
+            
+            <!-- Deskripsi di bawah judul -->
+            <p class="card-text">
+                Desa ini menawarkan pengalaman wisata alam yang menakjubkan. Dengan suasana pedesaan yang asri, pengunjung dapat menikmati pemandangan yang indah serta kegiatan budaya yang unik. Lokasinya sangat cocok untuk bersantai dan melepaskan penat dari hiruk-pikuk perkotaan.
+            </p>
+            
+            <!-- Tombol Selengkapnya -->
+            <a href="{{ url('/detail_wisata') }}" class=" my-btn-primary">Selengkapnya</a>
+
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="card custom-card">
+        <!-- Gambar di sebelah kiri -->
+        <div class="location-img">
+            <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam">
+        </div>
+
+        <!-- Deskripsi di sebelah kanan -->
+        <div class="card-body">
+            <!-- Judul di atas -->
+            <h3 class="card-title">Wisata Alam Desa</h3>
+            
+            <!-- Deskripsi di bawah judul -->
+            <p class="card-text">
+                Desa ini menawarkan pengalaman wisata alam yang menakjubkan. Dengan suasana pedesaan yang asri, pengunjung dapat menikmati pemandangan yang indah serta kegiatan budaya yang unik. Lokasinya sangat cocok untuk bersantai dan melepaskan penat dari hiruk-pikuk perkotaan.
+            </p>
+            
+            <!-- Tombol Selengkapnya -->
+            <a href="{{ url('/detail_wisata') }}" class=" my-btn-primary">Selengkapnya</a>
+
+        </div>
+    </div>
+</div>
+<div class="container mt-4">
     <div class="card custom-card">
         <!-- Gambar di sebelah kiri -->
         <div class="location-img">

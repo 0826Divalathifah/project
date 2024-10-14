@@ -1,6 +1,7 @@
-/* Container Produk */
+/* Mengatur layout produk agar responsif */
 .product-detail {
     display: flex;
+    flex-direction: row; /* Layout horizontal pada layar besar */
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -11,62 +12,25 @@
     margin-bottom: 30px;
 }
 
-/* Gambar Produk */
 .product-image {
     flex: 1;
     margin-right: 30px;
-   
 }
 
-.carousel-inner {
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.carousel-item img {
-    width: 100%;
-    object-fit: cover;
-    max-height: 400px; /* Mengatur tinggi gambar slider */
-    border-radius: 10px;
-}
-
-/* Kontrol Carousel */
-.carousel-control-prev-icon, .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5); /* Warna kontrol sebelumnya/berikutnya */
-    border-radius: 50%;
-    padding: 10px;
-}
-
-.carousel-control-prev, .carousel-control-next {
-    background: none;
-    border: none;
-}
-
-/* Detail Produk */
 .product-details {
     flex: 1;
-}
-
-.product-details h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
     margin-top: 20px;
 }
 
-.product-details .price {
-    font-size: 22px;
-    color: #ff4c4c;
-    margin-bottom: 20px;
+.topping-container {
+    display: flex;
+    align-items: center; /* Sejajar vertikal */
+    margin-top: 20px;
 }
 
-.product-details p {
-    margin-bottom: 20px;
-}
-
-.product-details label {
+.topping-container label {
     font-weight: bold;
-    margin-bottom: 10px;
-    display: inline-block;
+    margin-right: 10px; /* Jarak antara label dan select */
 }
 
 .product-details select {
@@ -78,85 +42,55 @@
     font-size: 16px;
 }
 
-/* Membuat dropdown Size lebih lebar */
-.product-details select {
-    width: 60%;
-    max-width: 100px; /* Lebar maksimum dropdown */
-}
-
-/* Warna pilihan di dropdown */
-.product-details select option {
-    font-size: 16px;
-}
-
-/* Tombol Pilihan */
-.product-details .actions {
-    display: flex;
-    flex-direction: column; /* Tombol vertikal */
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.product-details .favorite, .product-details .add-to-cart {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.product-details .favorite {
-    background-color: transparent;
-    border: 1px solid #000;
-    color: #000;
-    width: 100%;
-}
-
-.product-details .add-to-cart {
-    background-color: #b152f0;
-    color: white;
-    border: none;
-    font-weight: bold;
-    padding: 20px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 40%;
-}
-
-/* Styling untuk opsi warna produk */
-.product-details .color-options {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.product-details .color {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
-.product-details .red {
-    background-color: red;
-}
-
-.product-details .blue {
-    background-color: blue;
-}
-
-.product-details .gray {
-    background-color: gray;
-}
-
-/* Media query untuk tampilan responsif */
+/* Media Queries untuk layar yang lebih kecil */
 @media (max-width: 768px) {
-    .product-details select {
-        max-width: 60%;
+    .product-detail {
+        flex-direction: column; /* Ubah layout jadi vertikal pada layar kecil */
     }
 
-    .product-details .actions {
-        flex-direction: column; /* Agar tombol tampil di bawah dropdown */
+    .product-image {
+        margin-right: 0;
+        margin-bottom: 20px; /* Tambahkan jarak bawah untuk gambar */
+    }
+
+    .product-details {
+        margin-top: 10px;
+    }
+
+    .product-details select {
+        width: 100%; /* Memaksimalkan lebar pada layar kecil */
+    }
+
+    .add-to-cart, .favorite {
+        width: 100%; /* Tombol melebar penuh di layar kecil */
+    }
+
+    .carousel-item img {
+        max-height: 300px; /* Ubah tinggi maksimal gambar di slider untuk layar kecil */
+    }
+}
+
+/* Media Queries untuk layar yang lebih kecil, seperti smartphone */
+@media (max-width: 480px) {
+    .product-detail {
+        padding: 10px;
+    }
+
+    .product-details h2 {
+        font-size: 20px; /* Ukuran font lebih kecil di layar kecil */
+    }
+
+    .product-details .price {
+        font-size: 18px;
+    }
+
+    .product-details select {
+        font-size: 14px; /* Ukuran font lebih kecil */
+        padding: 8px;
+    }
+
+    .add-to-cart, .favorite {
+        padding: 15px 10px;
+        font-size: 14px;
     }
 }

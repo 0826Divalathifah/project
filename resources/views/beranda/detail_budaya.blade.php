@@ -208,30 +208,23 @@
                 <p id="event-detail" class="text-muted">Klik pada tanggal yang memiliki tanda (*) untuk melihat detail acara.</p>
             </div>
         </div>
-                    <!-- Tombol Pesan Sekarang -->
-                    <div class="mt-4 text-center">
-                <button id="chatButton" onclick="openChat()" style="background-color: #a367e7; color: white; border: none; padding: 10px 120px; font-size: 16px; cursor: pointer; border-radius: 5px;">
-                    Pesan Sekarang
-                </button>
-            </div>
+                   <!-- Tombol Pesan Sekarang -->
+<button id="pesanSekarangBtn" style="background-color: green; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; margin-bottom: 10px;">
+    Pesan Sekarang
+</button>
 
-            <!-- WhatsApp Chat Box -->
-            <div id="chatBox" style="display: none; margin-top: 20px;">
-                <div id="chatHeader">
-                    <h3>Kirim Pesanan Anda disini!</h3>
-                </div>
-                <textarea id="chatInput" placeholder="Ketik pesan disini" style="width: 100%; padding: 10px; border-radius: 5px; margin-bottom: 10px;"></textarea>
-                <button onclick="sendWhatsAppMessage()" style="background-color: purple; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
-                    Kirim
-                </button>
-            </div>
+<!-- WhatsApp Chat Box -->
+<div id="chatBox" style="display: none; margin-top: 20px; border: 1px solid #ddd; padding: 20px; border-radius: 10px; position: relative; width: 300px;">
+    <div id="chatHeader" style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="margin: 0;">Kirim Pesanan Anda!</h3>
+        <!-- Tombol Close -->
+        <span id="closeChat" style="cursor: pointer; font-size: 20px; font-weight: bold; color: red;">&times;</span>
     </div>
+    <textarea id="chatInput" placeholder="Ketik pesan disini" style="width: 100%; padding: 10px; border-radius: 5px; margin-bottom: 10px;"></textarea>
+    <button onclick="sendWhatsAppMessage()" style="background-color: purple; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px;">
+        Kirim
+    </button>
 </div>
-
-
-
-
-
 
             <!-- Bagian Peta di Bawah Form -->
             <div class="map mt-4">
@@ -360,19 +353,11 @@
     </div>
 </div>
 
-
 <!-- Search model end -->
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
-
-
-   
-
-
-
-
 
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
@@ -424,44 +409,28 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!--<script>
-    document.querySelector("#pesansekarang").addEventListener("click", () => {
-        const form = document.querySelector("#formPemesanan");
-
-        // Cek apakah form valid
-        if (!form.checkValidity()) {
-            // Jika tidak valid, tampilkan pesan kesalahan
-            Swal.fire({
-                title: "Perhatian!",
-                text: "Harap lengkapi semua field yang diperlukan.",
-                icon: "warning"
-            });
-            return; // Keluar dari fungsi jika form tidak valid
-        }
-
-        // Jika valid, tampilkan SweetAlert
-        Swal.fire({
-            title: "Apakah Anda Sudah Yakin?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Ya"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Pemesanan Berhasil!",
-                    text: "Pesanan anda sedang diproses.",
-                    icon: "success"
-                }).then(() => {
-                    // Mengembalikan form ke kondisi default
-                    form.reset();
-                });
-            }
-        });
+<script>
+    // Menampilkan chat box ketika tombol Pesan Sekarang diklik
+    document.getElementById("pesanSekarangBtn").addEventListener("click", function() {
+        document.getElementById("chatBox").style.display = "block";
     });
-</script> -->
 
+    // Menutup chat box ketika tombol Close diklik
+    document.getElementById("closeChat").addEventListener("click", function() {
+        document.getElementById("chatBox").style.display = "none";
+    });
+
+    function sendWhatsAppMessage() {
+        var phoneNumber = "628123456789"; // Ganti dengan nomor WhatsApp tujuan
+        var message = document.getElementById("chatInput").value;
+        if (message.trim() === "") {
+            alert("Pesan tidak boleh kosong.");
+        } else {
+            var url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+            window.open(url, "_blank");
+        }
+    }
+</script>
 <script>$('.carousel').carousel()</script>
 
 </body>

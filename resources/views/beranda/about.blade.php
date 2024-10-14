@@ -195,61 +195,59 @@
                 </nav>
             </div>
         </div>
+
         <div class="about-area">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="section-tittle mb-60 text-center pt-10">
-                    <h2>Desa Mandiri Budaya Desa Sinduharjo</h2>
-                    <p class="pera">Kalurahan Sinduharjo, yang terletak di Kecamatan Ngaglik, Kabupaten Sleman, Yogyakarta, telah mendapatkan pengakuan sebagai Desa Budaya Mandiri. Predikat ini diberikan sebagai bentuk apresiasi atas komitmen dan keberhasilan desa dalam melestarikan serta mengembangkan kebudayaan lokal secara mandiri dan berkelanjutan.</p>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="section-tittle mb-60 text-center pt-10">
+                            <h2>Desa Mandiri Budaya Desa Sinduharjo</h2>
+                            <p class="pera" style="text-align: justify;">
+                                Kalurahan Sinduharjo, yang terletak di Kecamatan Ngaglik, Kabupaten Sleman, Yogyakarta, telah mendapatkan pengakuan sebagai Desa Budaya Mandiri. Predikat ini diberikan sebagai bentuk apresiasi atas komitmen dan keberhasilan desa dalam melestarikan serta mengembangkan kebudayaan lokal secara mandiri dan berkelanjutan.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Carousel Start -->
         <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-            <div class="d-flex justify-content-center">
-                <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block" alt="Gambar 1">
-                <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}"class="d-block" alt="Gambar 2">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-12 col-sm-6">
+                            <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block img-fluid" alt="Gambar 1">
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block img-fluid" alt="Gambar 2">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex justify-content-center">
+                        <div class="col-12 col-sm-4">
+                            <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block img-fluid" alt="Gambar 3">
+                        </div>
+                        <div class="col-12 col-sm-4">
+                            <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block img-fluid" alt="Gambar 4">
+                        </div>
+                        <div class="col-12 col-sm-4">
+                            <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block img-fluid" alt="Gambar 5">
+                        </div>
+                    </div>
+                </div>
+                <!-- Tambahkan carousel-item lainnya -->
             </div>
-            </div>
-            <div class="carousel-item">
-            <div class="d-flex justify-content-center">
-                <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}"class="d-block" alt="Gambar 3">
-                <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" alt="Gambar 4">
-                <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}"class="d-block" alt="Gambar 3">
-            </div>
-            </div>
-            <div class="carousel-item">
-            <div class="d-flex justify-content-center">
-                <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}"class="d-block" alt="Gambar 3">
-                <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block" alt="Gambar 4">
-                <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}"class="d-block" alt="Gambar 3">
-            </div>
-            </div>
-            <!-- Tambahkan carousel-item lainnya -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            
-        </button>
-        </div>
-
-        <!-- Carousel End -->
     </div>
 </div>
-
-
-        <!-- About Area End -->
-       
-  
     </main>
     <footer>
     <!-- Footer Start -->
