@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 class AdminDesaBudayaController extends Controller
 {
     // Menampilkan daftar budaya
-    public function daftarBudaya()
+    public function showDashboard()
     {
-        return view('admin.adminbudaya.daftarbudaya');
+        return view('admin.adminbudaya.adminbudaya');
     }
     public function kelolaBudaya()
     {
@@ -74,7 +74,10 @@ class AdminDesaBudayaController extends Controller
     {
         return view('admin.adminbudaya.kelolahomepage');
     }
-
+    public function kelolaAgenda()
+    {
+        return view('admin.adminbudaya.kelolaagenda');
+    }
     public function laporanBudaya()
     {
         return view('admin.adminbudaya.laporanbudaya');

@@ -43,3 +43,24 @@ function formatCurrency(input) {
     }
 }
 
+// penghapusan pada tambah agenda
+function confirmDelete(agendaName) {
+        Swal.fire({
+            title: "Apakah Anda yakin?",
+            text: "Anda akan menghapus agenda: " + agendaName,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Agenda Dihapus!",
+                    text: "Agenda " + agendaName + " telah dihapus.",
+                    icon: "success"
+                });
+                // Logika penghapusan bisa ditambahkan di sini, seperti menghapus data dari server
+            }
+        });
+    }

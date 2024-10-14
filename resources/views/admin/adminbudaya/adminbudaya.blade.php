@@ -120,8 +120,8 @@
           </button>
         </div>
       </nav>
-       <!-- partial -->
-       <div class="container-fluid page-body-wrapper">
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
@@ -130,23 +130,21 @@
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
-            </li>
+          </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#budaya" aria-expanded="false" aria-controls="ui-basic">
+              <a class="nav-link" href="{{ url('/kelolabudaya') }}">
                 <i class="mdi mdi-shape-plus menu-icon"></i>
                 <span class="menu-title">Kelola Budaya</span>
-                <i class="menu-arrow"></i>
               </a>
-              <div class="collapse" id="budaya">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudaya') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/laporanbudaya') }}">
+              <a class="nav-link" href="{{ url('/kelolaagenda') }}">
+                <i class="mdi mdi-calendar-plus menu-icon"></i>
+                <span class="menu-title">Kelola Agenda</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolahomepage') }}">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">Kelola Home Page</span>
               </a>

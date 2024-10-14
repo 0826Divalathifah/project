@@ -49,48 +49,6 @@
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                <i class="icon-bell mx-0"></i>
-                <span class="count"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="ti-info-alt mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Just now </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="ti-settings mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Private message </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="ti-user mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> 2 days ago </p>
-                  </div>
-                </a>
-              </div>
-            </li>
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
                 <img src="{{ asset('admin/assets/images/faces/face28.jpg') }}" alt="profile" />
@@ -126,8 +84,14 @@
           </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/kelolabudaya') }}">
-                <i class="mdi mdi-home menu-icon"></i>
+                <i class="mdi mdi-shape-plus menu-icon"></i>
                 <span class="menu-title">Kelola Budaya</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolaagenda') }}">
+                <i class="mdi mdi-calendar-plus menu-icon"></i>
+                <span class="menu-title">Kelola Agenda</span>
               </a>
             </li>
             <li class="nav-item">
@@ -148,14 +112,13 @@
     <div class="main-panel">
     <div class="content-wrapper">
     <div class="col-md-12 grid-margin transparent">
-    <div class="col-md-12 grid-margin transparent"> 
     <div class="row">
         <!-- Card 1 -->
         <div class="col-md-3 mb-4 stretch-card transparent">
             <div class="card card-tale">
                 <div class="card-body">
-                    <p class="mb-4">Total Penjualan</p>
-                    <p class="fs-30 mb-2">4006</p>
+                    <p class="mb-4">Total Budaya</p>
+                    <p class="fs-30 mb-2">50</p>
                     <p>10.00% (30 days)</p>
                 </div>
             </div>
@@ -165,9 +128,9 @@
         <div class="col-md-3 mb-4 stretch-card transparent">
             <div class="card card-dark-blue">
                 <div class="card-body">
-                    <p class="mb-4">Total Pendapatan</p>
+                    <p class="mb-4">Dilihat Sebanyak </p>
                     <p class="fs-30 mb-2">15.678.907</p>
-                    <p>22.00% (30 days)</p>
+                    <p>kali</p>
                 </div>
             </div>
         </div>
