@@ -29,9 +29,9 @@
   </head>
   <body>
     
-    <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+  <div class="container-scroller">
+<!-- partial:../../partials/_navbar.html -->
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
@@ -39,7 +39,7 @@
           <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
-    </div>
+        </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
@@ -57,68 +57,32 @@
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                <i class="icon-bell mx-0"></i>
-                <span class="count"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="ti-info-alt mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Just now </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="ti-settings mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Private message </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="ti-user mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> 2 days ago </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item nav-profile dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                <img src="{{ asset('admin/assets/images/faces/face28.jpg') }}" alt="profile" />
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item">
-                  <i class="ti-settings text-primary"></i> Settings </a>
-                <a class="dropdown-item">
-                  <i class="ti-power-off text-primary"></i> Logout </a>
-              </div>
-            </li>
-            <li class="nav-item nav-settings d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
-              </a>
-            </li>
-          </ul>
-      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-      <span class="icon-menu"></span>
-    </button>
+          <div class="header-right1 d-flex align-items-center justify-content-center">
+    <!-- Social -->
+    <div class="header-social d-flex align-items-center">
+        <!-- Icon Settings -->
+        <a class="nav-link d-flex align-items-center mx-3" href="#">
+            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+            <span style="font-size: 16px;">Setting</span>
+        </a>
+        <!-- Icon Power -->
+        <a class="nav-link d-flex align-items-center mx-3" href="#">
+            <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+            <span style="font-size: 16px;">Logout</span>
+        </a>
+    </div>
+</div>    
+    <li class="nav-item nav-settings d-none d-lg-flex">
+        <a class="nav-link" href="#">
+            <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
+        </a>
+    </li>
+</ul>
+
+<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+    <span class="icon-menu"></span>
+</button>
+
   </div>
 </nav>
        <!-- partial -->
@@ -145,7 +109,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/kelolahomepage') }}">
+              <a class="nav-link" href="{{ url('/kelolahomepagebudaya') }}">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">Kelola Home Page</span>
               </a>

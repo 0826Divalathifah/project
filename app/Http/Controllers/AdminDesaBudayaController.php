@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class AdminDesaBudayaController extends Controller
 {
@@ -55,7 +57,7 @@ class AdminDesaBudayaController extends Controller
 
         // Simpan data ke database
         Budaya::create([
-            'kategori' => $request->kategori,
+            'kategori_budaya' => $request->kategori_budaya,
             'nama_budaya' => $request->nama_budaya,
             'alamat' => $request->alamat,
             'harga' => $request->harga,
@@ -72,7 +74,7 @@ class AdminDesaBudayaController extends Controller
 
     public function kelolaHomepage()
     {
-        return view('admin.adminbudaya.kelolahomepage');
+        return view('admin.adminbudaya.kelolahomepagebudaya');
     }
     public function kelolaAgenda()
     {

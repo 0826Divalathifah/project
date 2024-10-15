@@ -10,7 +10,7 @@ class Budaya extends Model
     use HasFactory;
     protected $fillable = [
         'id_budaya',
-        'kategori',
+        'kategori_budaya',
         'nama_budaya',
         'alamat',
         'harga',

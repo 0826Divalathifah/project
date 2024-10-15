@@ -3,7 +3,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBudaya extends Migration
+class CreateBudayaTable extends Migration
 {
     public function up()
     {
@@ -18,7 +18,7 @@ class CreateBudaya extends Migration
             $table->string('maps_link')->nullable();
             $table->text('deskripsi');
             $table->string('foto_card')->nullable();
-            $table->json('foto_lainnya')->nullable(); // Menyimpan beberapa foto lain dalam format JSON
+            $table->json('foto_kebudayaan')->nullable(); // Menyimpan beberapa foto lain dalam format JSON
             $table->timestamps();
         });
     }

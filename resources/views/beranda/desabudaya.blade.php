@@ -280,7 +280,6 @@
 <body>
 
 
-
 <div class="content-section" data-aos="fade-up" data-aos-duration="1000">
 <div data-aos="fade-left"
      data-aos-anchor="#example-anchor"

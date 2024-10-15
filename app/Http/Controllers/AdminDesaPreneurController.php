@@ -29,5 +29,8 @@ class AdminDesaPreneurController extends Controller
     {
         return view('admin.adminpreneur.kelolapreneur');
     }
-
+    public function kelolaHomepage()
+    {
+        return view('admin.adminpreneur.kelolahomepagepreneur');
+    }
 }

@@ -40,15 +40,16 @@ Route::get('/documentation', [AdminKelurahanController::class, 'docs'])->name('a
 // Route untuk menampilkan daftar budaya
 Route::get('/adminbudaya', [AdminDesaBudayaController::class, 'showDashboard'])->name('admin.adminbudaya.adminbudaya');
 Route::get('/kelolabudaya', [AdminDesaBudayaController::class, 'kelolaBudaya'])->name('admin.adminbudaya.kelolabudaya');
-Route::get('/kelolahomepage', [AdminDesaBudayaController::class, 'kelolaHomepage'])->name('admin.adminbudaya.kelolahomepage');
+Route::get('/kelolahomepagebudaya', [AdminDesaBudayaController::class, 'kelolaHomepage'])->name('admin.adminbudaya.kelolahomepagebudaya');
 Route::get('/kelolaagenda', [AdminDesaBudayaController::class, 'kelolaAgenda'])->name('admin.adminbudaya.kelolaagenda');
 Route::get('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya'])->name('admin.adminbudaya.tambahbudaya');
 Route::post('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya'])->name('admin.adminbudaya.tambahbudaya');
 Route::get('/laporanbudaya', [AdminDesaBudayaController::class, 'laporanBudaya'])->name('admin.adminbudaya.laporanbudaya');
-Route::post('/admin/budaya/store', [AdminDesaBudayaController::class, 'simpanBudaya'])->name('admin.budaya.store');
+
 
 //Rute untuk halaman dashboard admin preneur
 Route::get('/adminpreneur', [AdminDesaPreneurController::class, 'showDashboard'])->name('admin.adminpreneur.adminpreneur');
+Route::get('/kelolahomepagepreneur', [AdminDesaPreneurController::class, 'kelolaHomepage'])->name('admin.adminbudaya.kelolahomepagepreneur');
 Route::get('/tambahpreneur', [AdminDesaPreneurController::class, 'tambahPreneur'])->name('admin.adminpreneur.tambahpreneur');
 Route::get('/transaksipreneur', [AdminDesaPreneurController::class, 'transaksiPreneur'])->name('admin.adminpreneur.transaksipreneur');
 Route::get('/laporanpreneur', [AdminDesaPreneurController::class, 'laporanPreneur'])->name('admin.adminpreneur.laporanpreneur');

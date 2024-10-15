@@ -85,8 +85,8 @@
 
   </div>
 </nav>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
+       <!-- partial -->
+       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
@@ -109,7 +109,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/kelolahomepagebudaya') }}">
+              <a class="nav-link" href="{{ url('/kelolahomepagepreneur') }}">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">Kelola Home Page</span>
               </a>
@@ -122,105 +122,51 @@
             </li>
           </ul>
         </nav>
-        
-    <div class="main-panel">
+<!-- partial -->
+<div class="main-panel">
     <div class="content-wrapper">
-    <div class="row">      
-    <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
-                        <li class="breadcrumb-item"><a href="#"> Tambah Budaya</a></li>
-                    </ol>
-                </nav>
-                <div class="col-12 grid-margin stretch-card">
-    <div class="card">
-        <form id="formTambah" action="{{ url('/tambahbudaya') }}" method="POST" enctype="multipart/form-data">
-            @csrf 
-            <div class="card-body">
-                <h4 class="card-title">Formulir Tambah Budaya</h4>
-                <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
-                
-                <div class="form-group">
-                    <label>Pilih Kategori Budaya</label>
-                    <select name="kategori_budaya" class="js-example-basic-single w-100" required>
-                        <option value="">Pilih Kategori Budaya</option>
-                        <option value="Kesenian">Kesenian</option>
-                        <option value="Adat Istiadat">Adat Istiadat</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="nama_budaya">Nama Budaya</label>
-                    <input type="text" name="nama_budaya" class="form-control" placeholder="contoh: 'Karawitan Miguyoh Rasa'" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <input type="text" name="alamat" class="form-control" placeholder="Alamat" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="hargaBudaya" class="form-label">Harga (optional)</label>
-                    <div class="input-group">
-                        <span class="input-group-text">Rp</span>
-                        <input type="text" name="harga" class="form-control rounded" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" >
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Kelola Homepage</h4>
+                        <form class="forms-sample" action="{{ url('/kelolahomepagepreneur') }}" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Ubah Judul</label>
+                                <input type="text" class="form-control" id="exampleInputUsername1" name="title" placeholder="Judul" required oninput="updatePreview()">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Deskripsi</label>
+                                <textarea class="form-control" id="exampleInputEmail1" name="description" rows="4" placeholder="Deskripsi" required oninput="updatePreview()"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Preview Tampilan:</label>
+                                <div id="display_preview" style="border: 1px solid #ddd; padding: 10px; margin-top: 10px;">
+                                    <h4 id="preview_title">Judul akan ditampilkan di sini</h4>
+                                    <p id="preview_description">Deskripsi akan ditampilkan di sini</p>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary me-2">Simpan</button>
+                            <button type="reset" class="btn btn-light">Batal</button>
+                        </form>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="youtube_link">Link Youtube</label>
-                    <input type="url" name="youtube_link" class="form-control" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
-                    <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="whatsapp_number">Nomor WhatsApp Aktif</label>
-                    <input type="text" name="whatsapp_number" class="form-control" placeholder="Masukkan Nomor WhatsApp" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="maps_link">Link Google Maps</label>
-                    <input type="url" name="maps_link" class="form-control" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
-                    <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="deskripsi">Deskripsi</label>
-                    <textarea name="deskripsi" class="form-control" id="deskripsi" rows="5" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Unggah Foto Card</label>
-                    <input type="file" name="foto_card" class="file-upload-default" required>
-                    <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
-                        <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                        </span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Unggah Foto-Foto Kebudayaan</label>
-                    <input type="file" name="foto_kebudayaan[]" class="file-upload-default" id="fileInput" multiple required>
-                    <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
-                        <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                        </span>
-                    </div>
-                </div>
-
-                <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
             </div>
-        </form>
+        </div>
+        <script>
+            function updatePreview() {
+                const title = document.querySelector('input[name="title"]').value;
+                const description = document.querySelector('textarea[name="description"]').value;
+
+                // Update preview tampilan
+                document.getElementById('preview_title').innerText = title || 'Judul akan ditampilkan di sini';
+                document.getElementById('preview_description').innerText = description || 'Deskripsi akan ditampilkan di sini';
+            }
+        </script>
     </div>
-
-
-
 </div>
-</div>
+<!-- partial -->
 
 <!-- partial -->
 </div>
