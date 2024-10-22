@@ -33,10 +33,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
@@ -114,16 +114,16 @@
                 <span class="menu-title">Kelola Home Page</span>
               </a>
             </li>
-            <li class="nav-item">
+           <!-- <li class="nav-item">
               <a class="nav-link" href="{{ url('/laporanbudaya') }}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Laporan Admin Budaya</span>
               </a>
-            </li>
-          </ul>
+            </li>-->
+        </ul>
         </nav>
         
-        <div class="main-panel">
+    <div class="main-panel">
     <div class="content-wrapper">
         <div class="row"></div>
 

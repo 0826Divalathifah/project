@@ -298,3 +298,28 @@
 
 
 })(jQuery);
+
+//corousel detail produk slider//
+
+let currentSlide = 0; // Menyimpan slide saat ini
+const slides = document.querySelectorAll('.carousel-slide'); // Mengambil semua slide
+const totalSlides = slides.length; // Menghitung total slide
+
+// Event listener untuk tombol next
+document.querySelector('.next').addEventListener('click', function() {
+    currentSlide = (currentSlide + 1) % totalSlides; // Menghitung slide selanjutnya
+    updateCarousel(); // Memperbarui tampilan carousel
+});
+
+// Event listener untuk tombol prev
+document.querySelector('.prev').addEventListener('click', function() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; // Menghitung slide sebelumnya
+    updateCarousel(); // Memperbarui tampilan carousel
+});
+
+// Fungsi untuk memperbarui tampilan carousel
+function updateCarousel() {
+    const wrapper = document.querySelector('.carousel-wrapper'); // Mengambil wrapper carousel
+    wrapper.style.transform = `translateX(-${currentSlide * 100}%)`; // Menggeser posisi wrapper
+}
+

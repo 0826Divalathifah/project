@@ -1,0 +1,108 @@
+/*card atas*/
+.custom-card {
+        display: flex; /* Mengatur layout menjadi flex */
+        flex-direction: row; /* Menyusun gambar dan teks secara horizontal */
+        align-items: center; /* Memusatkan konten secara vertikal */
+        width: 100%; /* Lebar penuh */
+        max-width: 1200px; /* Lebar maksimum */
+        margin: 0 auto; /* Tengah secara horizontal */
+        border: none; /* Tidak ada border */
+        border-radius: 10px; /* Sudut yang membulat */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Bayangan untuk card */
+        overflow: hidden; /* Menyembunyikan bagian yang overflow */
+        margin-bottom: 20px; /* Jarak bawah antar card */
+    }
+    
+    .location-img {
+        flex: 1; /* Gambar mengambil 1 bagian dari flex */
+    }
+    
+    .location-img img {
+        width: 100%; /* Mengatur gambar agar mengikuti lebar div */
+        height: 400px; /* Tinggi otomatis untuk menjaga rasio gambar */
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+    
+    .card-body {
+        flex: 2; /* Teks mengambil 2 bagian dari flex */
+        padding: 15px; /* Padding untuk teks */
+    }
+    
+    .card-title {
+        font-size: 20px; /* Ukuran font judul */
+        color: #ff9a67; /* Warna teks */
+        margin-bottom: 10px; /* Jarak bawah judul */
+        margin-top: -100px;
+    }
+    
+    .card-text {
+        font-size: 16px; /* Ukuran font deskripsi */
+        color: #666; /* Warna teks */
+        text-align: center; /* Merapikan alur teks */
+        margin-left: 20px;
+    }
+    
+    /* Media query untuk layar kecil */
+    @media (max-width: 768px) {
+        .custom-card {
+            flex-direction: column; /* Mengubah layout menjadi vertikal pada layar kecil */
+        }
+    
+        .location-img img {
+            height: auto; /* Mengatur tinggi gambar agar menyesuaikan isi */
+        }
+    
+        .card-body {
+            padding: 10px; /* Mengurangi padding untuk tampilan mobile */
+            overflow: visible; /* Pastikan teks tidak terpotong */
+        }
+        .card-text {
+            font-size: 12px; /* Ukuran font yang lebih kecil untuk mobile */
+        }
+        .card-title {
+            font-size: 20px; /* Ukuran font judul */
+            color: #ff9a67; /* Warna teks */
+            margin-bottom: 10px; /* Jarak bawah judul */
+            margin-top:20px ;
+        }
+    }
+
+
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px;
+    gap: 30px; /* Spasi antar card ditambah agar lebih rapi */
+    margin-left: 55px;
+}
+
+.carousel-card {
+    flex: 0 0 auto;
+    width: 370px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.carousel-card h3 {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #E74C3C; /* Warna untuk judul */
+}
+
+.carousel-card p {
+    font-size: 14px;
+    color: #2C3E50; /* Warna teks */
+}

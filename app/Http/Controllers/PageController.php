@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Budaya;
 
 class PageController extends Controller
 {
@@ -11,14 +12,19 @@ class PageController extends Controller
         return view('beranda.index');
     }
 
+            // Menampilkan halaman Desa Budaya
             public function desabudaya()
             {
-                return view('beranda.desabudaya'); 
+                $budaya = Budaya::all(); // Mengambil semua data budaya
+                return view('beranda.desabudaya', compact('budaya'));
             }
-                public function detail_budaya()
-                {
-                    return view('beranda.detail_budaya'); 
-                }
+
+            // Menampilkan detail budaya berdasarkan ID
+            public function detail_budaya($id)
+            {
+                $budaya = Budaya::findOrFail($id); // Mengambil data budaya berdasarkan ID
+                return view('beranda.detail_budaya', compact('budaya'));
+            }
                 
             public function desaprima()
             {

@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tambah Budaya</title>
+    <title>Kelola Homepage</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -33,10 +33,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
@@ -114,107 +114,58 @@
                 <span class="menu-title">Kelola Home Page</span>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="{{ url('/laporanbudaya') }}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Laporan Admin Budaya</span>
               </a>
-            </li>
+            </li>-->
           </ul>
         </nav>
-        <!-- partial -->
         <div class="main-panel">
-          <div class="content-wrapper">
-          <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
-                        <li class="breadcrumb-item"><a href="#"> Tambah Budaya</a></li>
-                    </ol>
-                </nav>
-            <div class="row">
-              
-              <div class="col-md-6 grid-margin stretch-card">
+    <div class="content-wrapper">
+        <div class="row"></div>
+
+        <!-- Kelola Home Page -->
+        <div class="row">
+            <!-- Kelola Banner -->
+            <div class="col-12 grid-margin stretch-card">
                 <div class="card">
-                  <div class="card-body">
-                    
-                    <h4 class="card-title">Default form</h4>
-                    <p class="card-description"> Basic form layout </p>
-                    <form class="forms-sample">
-                      <div class="form-group">
-                        <label for="exampleInputUsername1">Username</label>
-                        <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                        <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
-                      </div>
-                      <div class="form-check">
-                        <label class="form-check-label text-muted">
-                          <input type="checkbox" class="form-check-input" required>
-                          <a href="#">Remember me</a>
-                          <i class="input-helper"></i></label>
-                      </div>
-                      <button type="submit" class="btn btn-primary me-2">Submit</button>
-                      <button class="btn btn-light">Cancel</button>
-                    </form>
-                  </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Kelola Banner</h4>
+                        <form class="forms-sample" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="bannerImage">Edit Banner</label>
+                                <input type="file" class="form-control" id="bannerImage" accept="image/*">
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                            <button type="button" class="btn btn-danger">Hapus</button>
+                        </form>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-6 grid-margin stretch-card">
+            </div>
+
+            <!-- Kelola Card Selamat Datang -->
+            <div class="col-12 grid-margin stretch-card">
                 <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Horizontal Form</h4>
-                    <p class="card-description"> Horizontal form layout </p>
-                    <form class="forms-sample">
-                      <div class="form-group row">
-                        <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="exampleInputUsername2" placeholder="Username">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Email</label>
-                        <div class="col-sm-9">
-                          <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="exampleInputMobile" class="col-sm-3 col-form-label">Mobile</label>
-                        <div class="col-sm-9">
-                          <input type="text" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
-                        <div class="col-sm-9">
-                          <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
-                        <div class="col-sm-9">
-                          <input type="password" class="form-control" id="exampleInputConfirmPassword2" placeholder="Password">
-                        </div>
-                      </div>
-                      <div class="form-check form-check-flat form-check-primary">
-                        <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input"> Remember me </label>
-                      </div>
-                      <button type="submit" class="btn btn-primary me-2">Submit</button>
-                      <button class="btn btn-light">Cancel</button>
-                    </form>
-                  </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Kelola Card Selamat Datang</h4>
+                        <form class="forms-sample" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="welcomeImage">Edit Foto</label>
+                                <input type="file" class="form-control" id="welcomeImage" accept="image/*">
+                            </div>
+                            <div class="form-group">
+                                <label for="welcomeDescription">Edit Deskripsi</label>
+                                <textarea class="form-control" id="welcomeDescription" rows="4" placeholder="Deskripsi..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                            <button type="button" class="btn btn-danger">Hapus Foto</button>
+                        </form>
+                    </div>
                 </div>
-              </div>
+            </div>
+
 <!-- partial -->
 </div>
 <!-- main-panel ends -->

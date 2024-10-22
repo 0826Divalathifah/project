@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Detail</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('themewagon/css/bootstrap.min.css') }}">
@@ -21,6 +25,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/detail.min.css') }}">
+
 
 
 </head>
@@ -79,27 +84,21 @@
 <div class="container">
     <div class="product-detail">
         <!-- Gambar Produk -->
-        <div class="product-image">
-            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" class="d-block w-100" alt="Product Image 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('themewagon/img/desaprima/produk2.jpeg') }}" class="d-block w-100" alt="Product Image 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('themewagon/img/desaprima/produk3.jpeg') }}" class="d-block w-100" alt="Product Image 3">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-                  
-                </button>
-            </div>
+        <div class="simple-carousel">
+    <div class="carousel-wrapper">
+        <div class="carousel-slide">
+            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Product Image 1">
         </div>
+        <div class="carousel-slide">
+            <img src="{{ asset('themewagon/img/desaprima/produk2.jpeg') }}" alt="Product Image 2">
+        </div>
+        <div class="carousel-slide">
+            <img src="{{ asset('themewagon/img/desaprima/produk3.jpeg') }}" alt="Product Image 3">
+        </div>
+    </div>
+    <button class="prev">❮</button>
+    <button class="next">❯</button>
+</div>
 
         <!-- Detail Produk -->
         <div class="product-details">
@@ -117,7 +116,7 @@
 
             <!-- Tombol Beli -->
             <div class="actions">
-                <button class="btn add-to-cart" id="beliBtn" style="background-color: purple; color: white; border: none; padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 5px;">
+                <button class="btn add-to-cart" id="beliBtn" style="background-color: #9F78FF; color: white; border: none; padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 5px;">
                     Beli
                 </button>
             </div>
@@ -284,6 +283,7 @@
 
 <script src="{{ asset('themewagon/js/whatsapp.js') }}"></script>
 <script src="{{ asset('themewagon/js/detail.js') }}"></script>
+
 
 </body>
 </html>

@@ -228,13 +228,13 @@
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
                 <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Some quick example text to build on the card title.</p>
                 <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
             </div>                                                                                              
         </div>
 
         <div class="card">
-            <img src="..." alt="Produk 2">
+            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 2">
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 2</a></h5>
                 <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
@@ -244,7 +244,7 @@
         </div>
 
         <div class="card">
-            <img src="..." alt="Produk 3">
+            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 3">
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 3</a></h5>
                 <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
@@ -261,13 +261,13 @@
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
                 <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Deskripsi singkat produk 1</p>
                 <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
             </div>                                                                                              
         </div>
 
         <div class="card">
-            <img src="..." alt="Produk 2">
+            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 2">
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 2</a></h5>
                 <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
@@ -277,7 +277,7 @@
         </div>
 
         <div class="card">
-            <img src="..." alt="Produk 3">
+            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 3">
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 3</a></h5>
                 <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
