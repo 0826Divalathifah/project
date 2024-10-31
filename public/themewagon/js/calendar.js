@@ -8,11 +8,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    // Jadwal event
-    const schedules = {
-        '2024-10-10': { location: 'Gelanggang Pemuda', event: 'Pentas Tari' },
-        '2024-10-15': { location: 'Pendopo Kecamatan', event: 'Resepsi Pernikahan' },
-    };
+    // Jadwal event dari server
+    const schedules = agenda.reduce((acc, item) => {
+        acc[item.tanggal_acara] = {
+            location: item.alamat,
+            event: item.nama_acara,
+            description: item.deskripsi_acara,
+        };
+        return acc;
+    }, {});
 
     document.getElementById('prev-month').addEventListener('click', function() {
         currentMonth--;
@@ -61,7 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 dayDiv.addEventListener('click', function() {
                     eventDetailElement.innerHTML = `
                         <p><strong>Event:</strong> ${schedules[dateStr].event}</p>
-                        <p><strong>Tempat:</strong> ${schedules[dateStr].location}</p>`;
+                        <p><strong>Tempat:</strong> ${schedules[dateStr].location}</p>
+                        <p><strong>Deskripsi:</strong> ${schedules[dateStr].description}</p>`;
                 });
             } else {
                 dayDiv.addEventListener('click', function() {

@@ -33,10 +33,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
@@ -114,16 +114,16 @@
                 <span class="menu-title">Kelola Home Page</span>
               </a>
             </li>
-            <li class="nav-item">
+           <!-- <li class="nav-item">
               <a class="nav-link" href="{{ url('/laporanbudaya') }}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Laporan Admin Budaya</span>
               </a>
-            </li>
-          </ul>
+            </li>-->
+        </ul>
         </nav>
         
-        <div class="main-panel">
+    <div class="main-panel">
     <div class="content-wrapper">
         <div class="row"></div>
 
@@ -132,22 +132,28 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Tambah Agenda Budaya</h4>
-                        <form class="forms-sample">
-                            <div class="form-group">
-                                <label for="namaAcara">Nama Acara</label>
-                                <input type="text" class="form-control" id="namaAcara" placeholder="Masukkan nama acara" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="tanggalAcara">Tanggal Acara</label>
-                                <input type="date" class="form-control" id="tanggalAcara" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="deskripsiAcara">Deskripsi Acara</label>
-                                <textarea class="form-control" id="deskripsiAcara" rows="4" placeholder="Deskripsi acara..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <button type="reset" class="btn btn-light">Batal</button>
+                    <h4 class="card-title">Tambah Agenda Budaya</h4>
+                    <form class="forms-sample" action="/kelolaagenda" method="POST">
+                        @csrf <!-- Token CSRF untuk keamanan -->
+                        <div class="form-group">
+                            <label for="namaAcara">Nama Acara</label>
+                            <input type="text" class="form-control" id="namaAcara" name="nama_acara" placeholder="Masukkan nama acara" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggalAcara">Tanggal Acara</label>
+                            <input type="date" class="form-control" id="tanggalAcara" name="tanggal_acara" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="deskripsiAcara">Deskripsi Acara</label>
+                            <textarea class="form-control" id="deskripsiAcara" name="deskripsi_acara" rows="4" placeholder="Deskripsi acara..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat acara" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                        <button type="reset" class="btn btn-light">Batal</button>
+                    </form>
                         </form>
                     </div>
                 </div>
@@ -159,44 +165,43 @@
             <div class="col-12 grid-margin stretch-card">
             <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Daftar Agenda Budaya</h4>
-                <div class="table-responsive">
+            <h4 class="card-title">Daftar Agenda Budaya</h4>
+            <div class="table-responsive">
                 <table class="table table-striped table-borderless">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Acara</th>
-                                    <th>Tanggal Acara</th>
-                                    <th>Deskripsi Acara</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Contoh data agenda -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>Festival Budaya</td>
-                                    <td>2024-10-20</td>
-                                    <td>Festival budaya tahunan yang menampilkan berbagai kesenian lokal.</td>
-                                    <td>
-                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Acara</th>
+                            <th>Tanggal Acara</th>
+                            <th>Deskripsi Acara</th>
+                            <th>Alamat</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($agendaList as $index => $agenda)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $agenda->nama_acara }}</td>
+                                <td>{{ $agenda->tanggal_acara }}</td>
+                                <td>{{ $agenda->deskripsi_acara }}</td>
+                                <td>{{ $agenda->alamat }}</td>
+                                <td>
+                                    <!-- Ganti dengan URL absolut untuk Edit -->
+                                    <a href="/agenda/{{ $agenda->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
+                                    
+                                    <!-- Ganti dengan URL absolut untuk Delete -->
+                                    <form action="/agenda/{{ $agenda->id }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
                                         <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus agenda ini?');">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Pameran Seni Rupa</td>
-                                    <td>2024-11-05</td>
-                                    <td>Pameran seni rupa oleh seniman lokal dan nasional.</td>
-                                    <td>
-                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                        <button class="btn btn-danger btn-sm" onclick="showAlert('Pameran Seni Rupa');">Hapus</button>
-                                    </td>
-                                </tr>
-                                <!-- Tambahkan data lainnya sesuai kebutuhan -->
-                            </tbody>
-                        </table>
-                    </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
                 </div>
             </div>
         </div>

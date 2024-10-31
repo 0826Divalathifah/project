@@ -13,6 +13,8 @@ use App\Http\Controllers\Auth;
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/desabudaya', [PageController::class, 'desabudaya'])->name('desabudaya');
+Route::get('/detail_budaya/{id}', [PageController::class, 'detail_budaya']);
+
 Route::get('/desaprima', [PageController::class, 'desaprima'])->name('desaprima');
 Route::get('/desapreneur', [PageController::class, 'desapreneur'])->name('desapreneur');
 Route::get('/desawisata', [PageController::class, 'desawisata'])->name('desawisata');
@@ -21,7 +23,6 @@ Route::get('/detail_produk', [PageController::class, 'detail_produk'])->name('de
 Route::get('/detail_wisata', [PageController::class, 'detail_wisata'])->name('detail_wisata');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi');
-
 
 // Rute untuk halaman dashboard superadmin kelurahan
 Route::get('/adminkelurahan', [AdminKelurahanController::class, 'showDashboard'])->name('admin.adminkelurahan.adminkelurahan');
@@ -38,14 +39,22 @@ Route::get('/documentation', [AdminKelurahanController::class, 'docs'])->name('a
 
 //Rute untuk halaman dashboard admin budaya
 // Route untuk menampilkan daftar budaya
-Route::get('/adminbudaya', [AdminDesaBudayaController::class, 'showDashboard'])->name('admin.adminbudaya.adminbudaya');
-Route::get('/kelolabudaya', [AdminDesaBudayaController::class, 'kelolaBudaya'])->name('admin.adminbudaya.kelolabudaya');
-Route::get('/kelolahomepagebudaya', [AdminDesaBudayaController::class, 'kelolaHomepage'])->name('admin.adminbudaya.kelolahomepagebudaya');
-Route::get('/kelolaagenda', [AdminDesaBudayaController::class, 'kelolaAgenda'])->name('admin.adminbudaya.kelolaagenda');
-Route::get('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya'])->name('admin.adminbudaya.tambahbudaya');
-Route::post('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya'])->name('admin.adminbudaya.tambahbudaya');
-Route::get('/laporanbudaya', [AdminDesaBudayaController::class, 'laporanBudaya'])->name('admin.adminbudaya.laporanbudaya');
-
+Route::get('/adminbudaya', [AdminDesaBudayaController::class, 'showDashboard']);
+Route::get('/kelolabudaya', [AdminDesaBudayaController::class, 'kelolaBudaya']);
+Route::get('/kelolahomepagebudaya', [AdminDesaBudayaController::class, 'kelolaHomepage']);
+Route::get('/kelolaagenda', [AdminDesaBudayaController::class, 'kelolaAgenda']);
+Route::post('/kelolaagenda', [AdminDesaBudayaController::class, 'simpanAgenda']); 
+Route::get('/agenda/{id}/edit', [AdminDesaBudayaController::class, 'editAgenda']);
+Route::delete('/agenda/{id}', [AdminDesaBudayaController::class, 'deleteAgenda']);
+Route::put('/admin/update-agenda/{id}', [AdminDesaBudayaController::class, 'updateAgenda']);
+Route::get('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya']);
+Route::post('/tambahbudaya', [AdminDesaBudayaController::class, 'simpanBudaya']);
+Route::get('/laporanbudaya', [AdminDesaBudayaController::class, 'laporanBudaya']);
+Route::get('/budaya/{id}', [AdminDesaBudayaController::class, 'show']);
+Route::post('/admin/simpan-budaya', [AdminDesaBudayaController::class, 'simpanBudaya']);
+Route::get('/admin/edit-budaya/{id}', [AdminDesaBudayaController::class, 'editBudaya']);
+Route::put('/admin/update-budaya/{id}', [AdminDesaBudayaController::class, 'updateBudaya']);
+Route::delete('/admin/hapus-budaya/{id}', [AdminDesaBudayaController::class, 'hapusBudaya']);
 
 //Rute untuk halaman dashboard admin preneur
 Route::get('/adminpreneur', [AdminDesaPreneurController::class, 'showDashboard'])->name('admin.adminpreneur.adminpreneur');
