@@ -39,6 +39,7 @@ Route::get('/documentation', [AdminKelurahanController::class, 'docs'])->name('a
 
 //Rute untuk halaman dashboard admin budaya
 // Route untuk menampilkan daftar budaya
+
 Route::get('/adminbudaya', [AdminDesaBudayaController::class, 'showDashboard']);
 Route::get('/kelolabudaya', [AdminDesaBudayaController::class, 'kelolaBudaya']);
 Route::get('/kelolahomepagebudaya', [AdminDesaBudayaController::class, 'kelolaHomepage']);
@@ -55,6 +56,7 @@ Route::post('/admin/simpan-budaya', [AdminDesaBudayaController::class, 'simpanBu
 Route::get('/admin/edit-budaya/{id}', [AdminDesaBudayaController::class, 'editBudaya']);
 Route::put('/admin/update-budaya/{id}', [AdminDesaBudayaController::class, 'updateBudaya']);
 Route::delete('/admin/hapus-budaya/{id}', [AdminDesaBudayaController::class, 'hapusBudaya']);
+
 
 //Rute untuk halaman dashboard admin preneur
 Route::get('/adminpreneur', [AdminDesaPreneurController::class, 'showDashboard'])->name('admin.adminpreneur.adminpreneur');

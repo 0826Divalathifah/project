@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Budaya;
+
 use App\Models\Agenda;
+
 
 
 class PageController extends Controller
@@ -60,6 +62,7 @@ class PageController extends Controller
                 // Mengirim data budaya, agenda, embed link Google Maps dan YouTube ke tampilan
                 return view('beranda.detail_budaya', compact('budaya', 'agenda', 'embed_map_link', 'embed_youtube_link'));
             }
+
 
                 
             public function desaprima()

@@ -15,7 +15,6 @@ class AdminDesaBudayaController extends Controller
         return view('admin.adminbudaya.adminbudaya');
     }
 
-
     public function kelolaBudaya()
     {
         // Ambil semua data dari model Budaya
@@ -24,7 +23,6 @@ class AdminDesaBudayaController extends Controller
         // Kirim data ke view
         return view('admin.adminbudaya.kelolabudaya', compact('budaya'));
     }
-
 
     // Menambahkan budaya
     public function tambahBudaya()
@@ -68,6 +66,9 @@ class AdminDesaBudayaController extends Controller
                 }
             }
         }
+
+        // Konversi array foto slider menjadi JSON
+        $fotoSliderJson = json_encode($fotoSliderNames);
 
         // Simpan data ke database
         $budaya = new Budaya();
