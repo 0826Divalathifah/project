@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -29,14 +29,14 @@
   </head>
   <body>
   <div class="container-scroller">
-      <!-- partial:../../partials/_navbar.html -->
-      <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+<!-- partial:../../partials/_navbar.html -->
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-          <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkelurahan') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" class="me-2" alt="logo" />
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
+            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkelurahan') }}">
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="logo" />
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
+            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -56,190 +56,74 @@
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                <i class="icon-bell mx-0"></i>
-                <span class="count"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="ti-info-alt mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Just now </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="ti-settings mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Private message </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="ti-user mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> 2 days ago </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item nav-profile dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                <img src="{{ asset('admin/assets/images/faces/face28.jpg') }}" alt="profile" />
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item">
-                  <i class="ti-settings text-primary"></i> Settings </a>
-                <a class="dropdown-item">
-                  <i class="ti-power-off text-primary"></i> Logout </a>
-              </div>
-            </li>
-            <li class="nav-item nav-settings d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                <i class="icon-ellipsis"></i>
-              </a>
-            </li>
-          </ul>
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="icon-menu"></span>
-          </button>
-        </div>
-      </nav>
+          <div class="header-right1 d-flex align-items-center justify-content-center">
+    <!-- Social -->
+    <div class="header-social d-flex align-items-center">
+        <!-- Icon Settings -->
+        <a class="nav-link d-flex align-items-center mx-3" href="#">
+            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+            <span style="font-size: 16px;">Setting</span>
+        </a>
+        <!-- Icon Power -->
+        <a class="nav-link d-flex align-items-center mx-3" href="#">
+            <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+            <span style="font-size: 16px;">Logout</span>
+        </a>
+    </div>
+</div>    
+    <li class="nav-item nav-settings d-none d-lg-flex">
+        <a class="nav-link" href="#">
+            <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
+        </a>
+    </li>
+</ul>
+
+<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+    <span class="icon-menu"></span>
+</button>
+
+  </div>
+</nav>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/adminkelurahan') }}">
+              <a class="nav-link" href="{{ asset('/adminprima') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
-            </li>
+          </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">UI Elements</span>
-                <i class="menu-arrow"></i>
+              <a class="nav-link" href="{{ url('/kelolaprima') }}">
+                <i class="mdi mdi-shape-plus menu-icon"></i>
+                <span class="menu-title">Kelola Produk</span>
               </a>
-              <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/buttons') }}">Buttons</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/dropdowns') }}">Dropdowns</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/typography') }}">Typography</a></li>
-                </ul>
-              </div>
             </li>
-
             <li class="nav-item">
-  <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-    <i class="icon-columns menu-icon"></i>
-    <span class="menu-title">Form elements</span>
-    <i class="menu-arrow"></i>
-  </a>
-  <div class="collapse" id="form-elements">
-    <ul class="nav flex-column sub-menu">
-      <li class="nav-item"><a class="nav-link" href="{{ url('/basic_elements') }}">Basic Elements</a></li>
-    </ul>
-  </div>
-</li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-                <i class="icon-bar-graph menu-icon"></i>
-                <span class="menu-title">Charts</span>
-                <i class="menu-arrow"></i>
+              <a class="nav-link" href="{{ url('/kelolahomepageprima') }}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Kelola Home Page</span>
               </a>
-              <div class="collapse" id="charts">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"><a class="nav-link" href="{{ url('/chartjs') }}">ChartJs</a></li>
-                </ul>
-              </div>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                <i class="icon-grid-2 menu-icon"></i>
-                <span class="menu-title">Tables</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="tables">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/basic-table') }}">Basic table</a></li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
-                <i class="icon-contract menu-icon"></i>
-                <span class="menu-title">Icons</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="icons">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/mdi') }}">Mdi icons</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="icon-head menu-icon"></i>
-                <span class="menu-title">User Pages</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/login') }}"> Login </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/register') }}"> Register </a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
-                <i class="icon-ban menu-icon"></i>
-                <span class="menu-title">Error pages</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="error">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/error-404') }}"> 404 </a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/error-500') }}"> 500 </a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/documentation') }}">
+              <a class="nav-link" href="{{ url('/laporanprima') }}">
                 <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Documentation</span>
+                <span class="menu-title">Laporan Desa Preneur</span>
               </a>
             </li>
-          </ul>
         </nav>
-        <!-- partial -->
-        <div class="main-panel">
+<!-- partial -->
+<div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
               <div class="col-md-12 grid-margin">
                 <div class="row">
                   <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Welcome John</h3>
-                    <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+                    <h3 class="font-weight-bold">Selamat Datang, </h3>
                   </div>
-                  <div class="col-12 col-xl-4">
+                  <!--<div class="col-12 col-xl-4">
                     <div class="justify-content-end d-flex">
                       <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                         <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -252,94 +136,66 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6 grid-margin stretch-card">
-                <div class="card tale-bg">
-                  <div class="card-people mt-auto">
-                    <img src="{{ asset('admin/assets/images/dashboard/people.svg') }}" alt="people">
-                    <div class="weather-info">
-                      <div class="d-flex">
-                        <div>
-                          <h2 class="mb-0 font-weight-normal"><i class="icon-sun me-2"></i>31<sup>C</sup></h2>
-                        </div>
-                        <div class="ms-2">
-                          <h4 class="location font-weight-normal">Chicago</h4>
-                          <h6 class="font-weight-normal">Illinois</h6>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+    <div class="col-md-12 grid-margin transparent">
+    <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4 mb-4 stretch-card transparent">
+            <div class="card card-tale">
+                <div class="card-body">
+                    <p class="mb-4">Total Budaya</p>
+                    <p class="fs-30 mb-2">50</p>
+                    <p>10.00% (30 days)</p>
                 </div>
-              </div>
-              <div class="col-md-6 grid-margin transparent">
-                <div class="row">
-                  <div class="col-md-6 mb-4 stretch-card transparent">
-                    <div class="card card-tale">
-                      <div class="card-body">
-                        <p class="mb-4">Today’s Bookings</p>
-                        <p class="fs-30 mb-2">4006</p>
-                        <p>10.00% (30 days)</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-4 stretch-card transparent">
-                    <div class="card card-dark-blue">
-                      <div class="card-body">
-                        <p class="mb-4">Total Bookings</p>
-                        <p class="fs-30 mb-2">61344</p>
-                        <p>22.00% (30 days)</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                    <div class="card card-light-blue">
-                      <div class="card-body">
-                        <p class="mb-4">Number of Meetings</p>
-                        <p class="fs-30 mb-2">34040</p>
-                        <p>2.00% (30 days)</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6 stretch-card transparent">
-                    <div class="card card-light-danger">
-                      <div class="card-body">
-                        <p class="mb-4">Number of Clients</p>
-                        <p class="fs-30 mb-2">47033</p>
-                        <p>0.22% (30 days)</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4 mb-4 stretch-card transparent">
+            <div class="card card-dark-blue">
+                <div class="card-body">
+                    <p class="mb-4">Dilihat Sebanyak </p>
+                    <p class="fs-30 mb-2">15.678.907</p>
+                    <p>kali</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4 mb-4 stretch-card transparent">
+            <div class="card card-light-blue">
+                <div class="card-body">
+                    <p class="mb-4">Total Produk</p>
+                    <p class="fs-30 mb-2">50</p>
+                    <p>2.00% (30 days)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 
+        <div class="col-md-3 mb-4 stretch-card transparent">
+            <div class="card card-light-danger">
+                <div class="card-body">
+                    <p class="mb-4">Total Transaksi</p>
+                    <p class="fs-30 mb-2">567</p>
+                    <p>0.22% (30 days)</p>
+                </div>
+            </div>
+        </div>-->
+  </div>
+</div>
             <div class="row">
               <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <p class="card-title">Order Details</p>
-                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                    <p class="card-title">Daftar Kunjungan</p>
                     <div class="d-flex flex-wrap mb-5">
-                      <div class="me-5 mt-3">
-                        <p class="text-muted">Order value</p>
-                        <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
-                      </div>
-                      <div class="me-5 mt-3">
-                        <p class="text-muted">Orders</p>
-                        <h3 class="text-primary fs-30 font-weight-medium">14k</h3>
-                      </div>
                       <div class="me-5 mt-3">
                         <p class="text-muted">Users</p>
                         <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>
-                      </div>
-                      <div class="mt-3">
-                        <p class="text-muted">Downloads</p>
-                        <h3 class="text-primary fs-30 font-weight-medium">34040</h3>
                       </div>
                     </div>
                     <canvas id="order-chart"></canvas>
@@ -350,10 +206,9 @@
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
-                      <p class="card-title">Sales Report</p>
-                      <a href="#" class="text-info">View all</a>
+                      <p class="card-title">Jumlah Eventt</p>
+                      <a href="{{ url('/laporanbudaya') }}" class="text-info">View all</a>
                     </div>
-                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
                     <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
                     <canvas id="sales-chart"></canvas>
                   </div>

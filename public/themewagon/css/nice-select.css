@@ -1,33 +1,66 @@
+.input-row {
+  display: flex;
+  gap: 20px; /* Jarak antara Jumlah dan Topping */
+  margin-bottom: 20px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Jarak antara label dan input */
+}
+.button-row {
+  display: flex;
+  gap: 10px; /* Jarak antara tombol Detail Pesanan dan tombol WhatsApp */
+  button {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#detailBtn {
+    background-color: #d8b8f7;
+    color: #fff;
+}
+
+#whatsappBtn {
+    background-color: #d8b8f7;
+    color: #fff;
+}
+}
+
 .nice-select {
   -webkit-tap-highlight-color: transparent;
-  background-color: #fff;
-  border-radius: 5px;
-  border: solid 1px #e8e8e8;
-  box-sizing: border-box;
-  clear: both;
-  cursor: pointer;
-  display: inline-block; /* Mengganti dari block ke inline-block agar tidak memakan seluruh lebar container */
-  float: center; /* Menghilangkan float untuk fleksibilitas layout */
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: normal;
-  margin-bottom: 20px;
-  height: 42px;
-  line-height: 40px;
-  outline: none;
-  padding-left: 18px;
-  padding-right: 30px;
-  position: relative;
-  text-align: left !important;
-  -webkit-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  white-space: nowrap;
-  width: auto; /* Menggunakan width auto agar lebar select lebih fleksibel */
-}  
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid 1px #e8e8e8;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: normal;
+    height: 42px;
+    line-height: 40px;
+    outline: none;
+    padding-left: 18px;
+    padding-right: 30px;
+    position: relative;
+    text-align: left !important;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    width: auto;
+    /* Hapus float dan clear */
+    float: none;
+    clear: none;
+    margin-top: 0;
+}
   .nice-select:hover {
     border-color: #dbdbdb; }
   .nice-select:active, .nice-select.open, .nice-select:focus {

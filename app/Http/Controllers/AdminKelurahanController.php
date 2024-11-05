@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Prima;
 
 class AdminKelurahanController extends Controller
 {
@@ -11,44 +12,52 @@ class AdminKelurahanController extends Controller
     {
         return view('admin.adminkelurahan.adminkelurahan'); 
     }
-    public function charts()
+    public function kelolahomepage()
     {
-        return view('admin.adminkelurahan.charts.chartjs'); 
+        return view('admin.adminkelurahan.kelolahomepage'); 
     }
-    public function forms()
+    public function kelolaAdmin()
     {
-        return view('admin.adminkelurahan.forms.basic_elements'); 
+        return view('admin.adminkelurahan.kelolaAdmin'); 
     }
-    public function tables()
+ 
+    public function simpanAdmin(Request $request)
     {
-        return view('admin.adminkelurahan.tables.basic-table'); 
+        $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:admins,username',
+            'email' => 'required|string|email|max:255|unique:admins,email',
+            'nomor_telepon' => 'required|string|max:20',
+            'peran' => 'required|string',
+            'password' => 'required|string|confirmed|min:6',
+            'status_aktif' => 'required|boolean',
+            'foto_profil' => 'nullable|image|max:2048',
+        ]);
+
+        $admin = new Admin();
+        $admin->nama_lengkap = $request->nama_lengkap;
+        $admin->username = $request->username;
+        $admin->email = $request->email;
+        $admin->nomor_telepon = $request->nomor_telepon;
+        $admin->peran = $request->peran;
+        $admin->password = Hash::make($request->password);
+        $admin->alamat = $request->alamat;
+        $admin->status_aktif = $request->status_aktif;
+
+        if ($request->hasFile('foto_profil')) {
+            $filename = time() . '.' . $request->foto_profil->getClientOriginalExtension();
+            $request->foto_profil->move(public_path('uploads/foto_profil'), $filename);
+            $admin->foto_profil = 'uploads/foto_profil/' . $filename;
+        }
+
+        $admin->save();
+
+        return redirect()->route('admin.adminkelurahan.tambahAdmin.tambahAdmin')->with('success', 'Admin berhasil ditambahkan.');
     }
-    public function icons()
+
+    public function kelolafeedback()
     {
-        return view('admin.adminkelurahan.icons.mdi'); 
+        return view('admin.adminkelurahan.kelolafeedback'); 
     }
-    public function samples1()
-    {
-        return view('admin.adminkelurahan.samples.error-404'); 
-    }
-    public function samples2()
-    {
-        return view('admin.adminkelurahan.samples.error-500'); 
-    }
-    public function docs()
-    {
-        return view('admin.adminkelurahan.docs.documentation'); 
-    }
-    public function uifeatures1()
-    {
-        return view('admin.adminkelurahan.ui-features.buttons'); 
-    }
-    public function uifeatures2()
-    {
-        return view('admin.adminkelurahan.ui-features.dropdowns'); 
-    }
-    public function uifeatures3()
-    {
-        return view('admin.adminkelurahan.ui-features.typography'); 
-    }
+   
 }

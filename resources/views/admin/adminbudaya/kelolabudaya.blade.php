@@ -78,7 +78,6 @@
         </a>
     </li>
 </ul>
-
 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
     <span class="icon-menu"></span>
 </button>
@@ -122,7 +121,6 @@
             </li>-->
           </ul>
         </nav>
-      
         <div class="main-panel">
         <div class="content-wrapper">
         <div class="row">
@@ -133,67 +131,73 @@
               <p class="card-title">Kelola Budaya</p>
               <a href="{{ url('tambahbudaya') }}" class="btn btn-primary">Tambah Budaya</a>
             </div>
-              <div class="table-responsive">
+            <div class="table-responsive">
                 <table class="table table-striped table-borderless">
-                  <thead>
+                    <thead>
+                        <tr>
+                            <th>Nama Budaya</th>
+                            <th>Nama Desa Budaya</th>
+                            <th>Kategori</th>
+                            <th>Alamat</th>
+                            <th>Kisaran Harga</th>
+                            <th>Link Youtube</th>
+                            <th>Nomor WhatsApp</th>
+                            <th>Link Google Maps</th>
+                            <th>Deskripsi</th>
+                            <th>Foto Card</th>
+                            <th>Foto Slider</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($budaya as $item)
                     <tr>
-                    <th>Nama Budaya</th>
-                    <th>Nama Desa Budaya</th>
-                  <th>Kategori</th>
-                  <th>Alamat</th>
-                  <th>Kisaran Harga</th>
-                  <th>Link Youtube</th>
-                  <th>Nomor WhatsApp</th>
-                  <th>Link Google Maps</th>
-                  <th>Deskripsi</th>
-                  <th>Foto Card</th>
-                  <th>Foto Slider</th>
-                  <th>Aksi</th>
+                        <td>{{ $item->nama_budaya }}</td>
+                        <td>{{ $item->nama_desa_budaya }}</td>
+                        <td>{{ $item->kategori }}</td>
+                        <td>{{ $item->alamat }}</td>
+                        <td>Rp {{ number_format(floatval($item->harga_min), 0, ',', '.') }} - Rp {{ number_format(floatval($item->harga_max), 0, ',', '.') }}</td>
+                        <td><a href="{{ $item->link_youtube }}">Lihat Video</a></td>
+                        <td><a href="https://wa.me/{{ $item->nomor_whatsapp }}">Hubungi</a></td>
+                        <td><a href="{{ $item->link_google_maps }}">Lihat Peta</a></td>
+                        <td>{{ $item->deskripsi }}</td>
+                        <!-- Foto Card -->
+                        <td><img src="{{ asset('uploads/budaya/' . $item->foto_card) }}" alt="Foto Card" width="100"></td>
+                        
+                        <!-- Foto Slider -->
+                        <td>
+                            @if (!empty($item->foto_slider) && is_array(json_decode($item->foto_slider, true)))
+                                @foreach (json_decode($item->foto_slider, true) as $foto)
+                                    <img src="{{ asset('uploads/budaya/' . $foto) }}" alt="Foto Slider" width="100" style="margin-bottom: 5px;">
+                                @endforeach
+                            @else
+                                <p>Tidak ada foto slider</p>
+                            @endif
+                        </td>
+                       
+                        <!-- Tombol Edit dan Hapus -->
+                        <td>
+                            <!-- Tombol Edit -->
+                            <a href="{{ url('/admin/edit-budaya/' . $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+
+                            <!-- Tombol Hapus -->
+                            <form action="{{ url('/admin/hapus-budaya/' . $item->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                            </form>
+
+                        </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                  <td>Jathilan A</td>
-                  <td>Desa Budaya Gentan</td>
-                  <td>Makanan</td>
-                  <td>Jl. Contoh No. 1</td>
-                  <td>Rp 50.000 - Rp 100.000</td>
-                  <td><a href="#">Lihat Video</a></td>
-                  <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
-                  <td><a href="https://goo.gl/maps/xxxx">Lihat Peta</a></td>
-                  <td>Deskripsi singkat produk 1</td>
-                  <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
-                  <td><img src="path/to/foto-slider.jpg" alt="Foto Slider" width="100"></td>
-                  <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
-                  </td>
-              </tr>
-              <tr>
-                  <td>Jathilan B</td>
-                  <td>Desa Budaya Gentan</td>
-                  <td>Makanan</td>
-                  <td>Jl. Contoh No. 1</td>
-                  <td>Rp 50.000 - Rp 100.000</td>
-                  <td><a href="#">Lihat Video</a></td>
-                  <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
-                  <td><a href="https://goo.gl/maps/xxxx">Lihat Peta</a></td>
-                  <td>Deskripsi singkat produk 1</td>
-                  <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
-                  <td><img src="path/to/foto-slider.jpg" alt="Foto Slider" width="100"></td>
-                  <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
-                  </td>
-                  </tr>
-                  </tbody>
+                @endforeach
+                    </tbody>
                 </table>
-              </div>
+            </div>
+
             </div>
           </div>
         </div>
-
-    </div>
+        </div>
     </div>
     </div>
     </div>

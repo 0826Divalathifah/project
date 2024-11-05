@@ -78,7 +78,6 @@
         </a>
     </li>
 </ul>
-
 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
     <span class="icon-menu"></span>
 </button>
@@ -126,45 +125,56 @@
     <div class="content-wrapper">
         <div class="row"></div>
 
-        <!-- Kelola Home Page -->
-        <div class="row">
-            <!-- Kelola Banner -->
-            <div class="col-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Kelola Banner</h4>
-                        <form class="forms-sample" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="bannerImage">Edit Banner</label>
-                                <input type="file" class="form-control" id="bannerImage" accept="image/*">
-                            </div>
-                            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <button type="button" class="btn btn-danger">Hapus</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <!-- Kelola Banner -->
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Kelola Banner</h4>
+                    <form class="forms-sample" action="{{ url('/update-homepagebudaya') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
 
-            <!-- Kelola Card Selamat Datang -->
-            <div class="col-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Kelola Card Selamat Datang</h4>
-                        <form class="forms-sample" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <label for="welcomeImage">Edit Foto</label>
-                                <input type="file" class="form-control" id="welcomeImage" accept="image/*">
-                            </div>
-                            <div class="form-group">
-                                <label for="welcomeDescription">Edit Deskripsi</label>
-                                <textarea class="form-control" id="welcomeDescription" rows="4" placeholder="Deskripsi..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <button type="button" class="btn btn-danger">Hapus Foto</button>
-                        </form>
-                    </div>
+                        <div class="form-group">
+                            <label for="bannerImage">Edit Banner</label>
+                            <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
+                            @if(isset($homepageData->gambar_banner))
+                                <p>Path Gambar: {{ $homepageData->gambar_banner }}</p>
+                                <img src="{{ asset('storage/'.$homepageData->gambar_banner) }}" alt="Current Banner" width="100" class="mt-2">
+                            @endif
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                    </form>
                 </div>
             </div>
+        </div>
+
+        <!-- Kelola Card Selamat Datang -->
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Kelola Card Selamat Datang</h4>
+                    <form class="forms-sample" action="{{ url('/update-homepagebudaya') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="welcomeImage">Edit Foto</label>
+                            <input type="file" name="welcome_image" class="form-control" id="welcomeImage" accept="image/*">
+                            @if(isset($homepageData->gambar_welcome))
+                                <img src="{{ asset('storage/'.$homepageData->gambar_welcome) }}" alt="Current Welcome Image" width="100" class="mt-2">
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="welcomeDescription">Edit Deskripsi</label>
+                            <textarea class="form-control" name="welcome_description" id="welcomeDescription" rows="4" placeholder="Deskripsi..." required>{{ $homepageData->deskripsi_welcome ?? '' }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 <!-- partial -->
 </div>

@@ -121,80 +121,35 @@
     </button>
   </div>
 </nav>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
+ <!-- partial -->
+ <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/penjual') }}">
+              <a class="nav-link" href="{{ asset('/adminprima') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
-            </li>
+          </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#budaya" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Budaya</span>
-                <i class="menu-arrow"></i>
+              <a class="nav-link" href="{{ url('/kelolaprima') }}">
+                <i class="mdi mdi-shape-plus menu-icon"></i>
+                <span class="menu-title">Kelola Produk</span>
               </a>
-              <div class="collapse" id="budaya">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudaya') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#preneur" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Preneur</span>
-                <i class="menu-arrow"></i>
+              <a class="nav-link" href="{{ url('/kelolahomepageprima') }}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Kelola Home Page</span>
               </a>
-              <div class="collapse" id="preneur">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksipreneur') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanpreneur') }}">Laporan</a></li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#prima" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Prima</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="prima">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprima') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprima') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#wisata" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Wisata</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="wisata">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolawisata') }}">Kelola Wisata</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiwisata') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanwisata') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/laporanpenjual') }}">
+              <a class="nav-link" href="{{ url('/laporanprima') }}">
                 <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Laporan Penjual</span>
+                <span class="menu-title">Laporan Desa Prima</span>
               </a>
             </li>
-          </ul>
         </nav>
 
     <div class="main-panel">
@@ -202,64 +157,64 @@
     <div class="row">
           
     <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
-                        <li class="breadcrumb-item"><a href="#"> Tambah Prima</a></li>
-                    </ol>
-                </nav>
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+              <li class="breadcrumb-item"><a href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
+              <li class="breadcrumb-item"><a href="#"> Tambah Produk Prima</a></li>
+          </ol>
+      </nav>
 
     <div class="col-12 grid-margin stretch-card">
     <div class="card">
-        <form id="formPrima" action="#" method="POST" enctype="multipart/form-data">
-        @csrf
-
+        <form id="formTambah" action="{{ url('/simpanprima') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Produk</h4>
                 <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
 
                 <!-- Input Kategori -->
                 <div class="form-group">
-                    <label for="kategoriProduk">Pilih Kategori</label>
-                    <select class="js-example-basic-single w-100" name="kategori_produk" id="kategoriProduk" required>
-                        <option value="MakananMinuman">Makanan dan Minuman</option>
-                        <option value="KerajinanAksesoris">Kerajinan dan Aksesoris</option>
+                    <label>Pilih Kategori</label>
+                    <select name="kategori_produk" class="js-example-basic-single w-100" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="makanan">Makanan dan Minuman</option>
+                        <option value="kerajinan">Kerajinan dan Aksesoris</option>
                     </select>
                 </div>
 
                 <!-- Input Nama Produk -->
                 <div class="form-group">
                     <label for="namaProduk">Nama Produk</label>
-                    <input type="text" class="form-control" id="namaProduk" name="nama_produk" placeholder="Masukkan Nama Produk" required>
+                    <input type="text" class="form-control" id="namaProduk" name="nama_produk" placeholder="Masukkan nama produk" required>
                 </div>
 
                 <!-- Input Harga -->
                 <div class="mb-3">
-                    <label for="hargaPrima" class="form-label">Harga</label>
+                    <label for="hargaPreneur" class="form-label">Harga</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaPrima" name="harga" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
+                        <input type="text" class="form-control rounded" id="hargaPreneur" name="harga_produk" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
                     </div>
                 </div>
 
                 <!-- Input Nomor WhatsApp -->
                 <div class="form-group">
                     <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
-                    <input type="tel" class="form-control" id="whatsappNumber" name="whatsapp" placeholder="Masukkan Nomor WhatsApp" pattern="[0-9]{10,15}" required>
+                    <input type="number" class="form-control" id="whatsappNumber" name="nomor_whatsapp" placeholder="Masukkan Nomor WhatsApp" min="0" required>
                 </div>
 
                 <!-- Input Deskripsi -->
                 <div class="form-group">
-                    <label for="deskripsiProduk">Deskripsi Produk</label>
-                    <textarea class="form-control" id="deskripsiProduk" name="deskripsi" rows="5" placeholder="Masukkan Deskripsi Produk" required></textarea>
+                    <label for="exampleTextarea1">Deskripsi</label>
+                    <textarea class="form-control" id="exampleTextarea1" name="deskripsi" rows="5" placeholder="Masukkan deskripsi produk" required></textarea>
                 </div>
 
                 <!-- Input Foto Card -->
                 <div class="form-group">
-                    <label>Unggah Foto Card (Ukuran 300 x 150 px)</label>
-                    <input type="file" name="foto_card" class="file-upload-default" id="fotoCard" required>
+                    <label>Unggah Foto Card</label>
+                    <input type="file" name="foto_card" class="file-upload-default" accept="image/*" required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto card" required>
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
                         <span class="input-group-append ms-2">
                             <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
                         </span>
@@ -269,9 +224,9 @@
                 <!-- Input Foto Produk -->
                 <div class="form-group">
                     <label>Unggah Foto-Foto Produk</label>
-                    <input type="file" name="foto_produk[]" class="file-upload-default" id="fileInput" multiple required>
+                    <input type="file" name="foto_produk[]" class="file-upload-default" id="fileInput" multiple accept="image/*" required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah lebih dari 1 foto" required>
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
                         <span class="input-group-append ms-2">
                             <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
                         </span>
@@ -281,9 +236,7 @@
                 <!-- Input Varian Produk -->
                 <div class="form-group">
                     <label for="varianProduk">Varian Produk (opsional)</label>
-                    <div id="varianContainer">
-                        <!-- Kolom varian akan ditambahkan di sini -->
-                    </div>
+                    <div id="varianContainer"></div>
                     <button type="button" class="btn btn-inverse-primary btn-fw" id="addVariantBtn">Tambah Varian</button>
                 </div>
 
@@ -291,8 +244,16 @@
                 <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
             </div>
         </form>
+        <script>
+            function formatCurrency(input) {
+                // Hapus simbol "Rp" dan format angka ke desimal
+                let value = input.value.replace(/[^0-9.]/g, ''); // Menghapus semua karakter kecuali angka dan titik
+                input.value = value; // Set nilai input hanya angka
+            }
+        </script>
     </div>
 </div>
+
 
 
 </div>

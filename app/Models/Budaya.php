@@ -9,10 +9,8 @@ class Budaya extends Model
 {
     use HasFactory;
 
-    // Tentukan tabel yang digunakan oleh model ini
     protected $table = 'budaya';
 
-    // Tentukan kolom yang dapat diisi
     protected $fillable = [
         'nama_budaya',
         'nama_desa_budaya',
@@ -27,25 +25,24 @@ class Budaya extends Model
         'foto_slider',
     ];
 
-    // Jika ingin mengatur harga agar muncul dalam format rupiah, tambahkan accessor
-    public function getHargaMinAttribute($value)
+    protected static function booted()
     {
-        return 'Rp ' . number_format($value, 2, ',', '.');
-    }
+        static::deleting(function ($budaya) {
+            // Hapus foto card jika ada
+            if ($budaya->foto_card) {
+                @unlink(public_path('uploads/budaya/' . $budaya->foto_card));
+            }
 
-    public function getHargaMaxAttribute($value)
-    {
-        return 'Rp ' . number_format($value, 2, ',', '.');
-    }
+            // Ambil foto slider dari database, periksa apakah dalam format string
+            $fotoSliderPaths = is_string($budaya->foto_slider) ? json_decode($budaya->foto_slider, true) : [];
 
-    // Foto slider dapat menyimpan lebih dari satu path, jadi kita bisa menggunakan JSON untuk menyimpan dan mengembalikan array
-    public function setFotoSliderAttribute($value)
-    {
-        $this->attributes['foto_slider'] = json_encode($value);
-    }
-
-    public function getFotoSliderAttribute($value)
-    {
-        return json_decode($value, true);
+            // Hapus semua foto slider
+            foreach ($fotoSliderPaths as $fotoNama) {
+                $fotoPath = public_path('uploads/budaya/' . $fotoNama);
+                if (file_exists($fotoPath)) {
+                    unlink($fotoPath);
+                }
+            }
+        });
     }
 }

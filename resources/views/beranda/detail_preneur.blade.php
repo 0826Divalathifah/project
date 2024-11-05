@@ -1,9 +1,9 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Desa Wisata</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -24,30 +24,15 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/responsive.css') }}">
-   
+    <link rel="stylesheet" href="{{ asset('themewagon/css/detail.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('themewagon/css/detail.css') }}">
 
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 </head>
+<body>
 
-
-<body class="full-wrapper">
-    <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Preloader Start -->
+<!-- Header Start -->
 <header>
-    <!-- Header Start -->
     <div class="header-area">
         <div class="main-header header-sticky">
             <div class="container-fluid">
@@ -56,10 +41,9 @@
                         <!-- Logo -->
                         <div class="logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
-                                </a>
-
-                            </div>
+                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 200px; height: 70px;">
+                            </a>
+                        </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
@@ -67,12 +51,12 @@
                                     <li><a href="{{ url('/') }}">Beranda</a></li>
                                     <li><a href="#">Desa Mandiri Budaya</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ url('/desabudaya') }}">Desa Budaya </a></li>
+                                            <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
                                             <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
                                             <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
                                             <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
                                         </ul>
-                                    <li>   
+                                    </li>
                                     <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
                                     <li><a href="{{ url('/contact') }}">Kontak</a></li>
                                 </ul>
@@ -86,82 +70,89 @@
                             <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <!-- Search Box -->
-                        <div class="search d-none d-md-block">
-                            <ul class="d-flex align-items-center">
-                                <li class="mr-15">
-                                    <div class="nav-search search-switch">
-                                        <i class="ti-search"></i>
-                                    </div>
-                                </li>
-                               
-                            </ul>
-                        </div>
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <!-- Header End -->
-    </header>
-   <!-- header end -->
-   <main>
-          <!-- listing Area Start -->
-          <div class="category-area">
-            <div class="container">
-            <div class="row">
+    </div>
+</header>
+<!-- Header End -->
+<div class="container">
+    <div class="product-detail">
+        <!-- Gambar Produk -->
+        <div class="simple-carousel">
+            <div class="carousel-wrapper">
+                <div class="carousel-slide">
+                    <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Product Image 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ asset('themewagon/img/desaprima/produk2.jpeg') }}" alt="Product Image 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ asset('themewagon/img/desaprima/produk3.jpeg') }}" alt="Product Image 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-slide{{ $produk->id }}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel-slide{{ $produk->id }}" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </button>
+
+        </div>
+
+        <!-- Detail Produk -->
+        <div class="product-details">
+            <h2>{{ $produk->nama_produk }}</h2>
+            <p class="price">Rp {{ number_format($produk->harga_produk, 2, ',', '.') }}</p>
+            <p>{{ $produk->deskripsi }}</p> <!-- Menampilkan deskripsi produk dari database -->
+
+
+            <div class="input-row">
+                <div class="input-container">
+                    <label for="quantity">Jumlah:</label>
+                    <input type="number" id="quantity" min="1" value="1">
+                </div>
+                <div class="input-container">
+                    <label for="topping">Topping:</label>
+                    <select id="topping">
+                        <option value="Keju">Keju</option>
+                        <option value="Coklat">Coklat</option>
+                        <option value="Kacang">Kacang</option>
+                        <option value="Madu">Madu</option>
+                    </select>
+                </div>
+            </div>
+
+                <!-- Tombol Detail Pesanan -->
+                <div class="button-row">
+                <button id="detailBtn" data-product-name="Nama Produk" data-product-price="15000">Detail Pesanan</button>
+                <button id="whatsappBtn">Simpan dan Lanjutkan ke WhatsApp</button>
+                </div>
+                <!-- Chat Box -->
+                <div id="chatBox" style="display: none; border: 1px solid #ccc; padding: 20px; width: 300px; position: relative;">
+                    <!-- Tombol Close -->
+                    <span id="closeChat" style="cursor: pointer; font-size: 24px; font-weight: bold; color: #dc3545; position: absolute; top: 10px; right: 10px;">&times;</span>
+                    
+                    <h3>Detail Pesanan</h3>
+                    <p>Nama Produk: <span id="productName"></span></p>
+                    <p>Harga: <span id="productPrice"></span></p>
+                    <p>Jumlah: <span id="productQuantity"></span></p>
+                    <p>Topping: <span id="productTopping"></span></p>
+                    <p>Total Harga: <span id="totalPrice"></span></p>
+                </div>
+                </div>
+            </div>
+        </div>
             
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <div class="banner-container">
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Desa Wisata</div>
-
-            <!-- breadcrumb Start-->
-            <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Wisata</a></li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-
-<div class="container mt-4">
-    @foreach($wisata as $wisata)
-        <div class="card custom-card mb-4">
-            <!-- Gambar di sebelah kiri -->
-            <div class="location-img">
-                <img src="{{ asset('storage/' . $wisata->foto_card) }}" alt="{{ $wisata->nama_wisata }}">
-            </div>
-
-            <!-- Deskripsi di sebelah kanan -->
-            <div class="card-body">
-                <!-- Judul di atas -->
-                <h3 class="card-title">{{ $wisata->nama_wisata }}</h3>
-                
-                <!-- Deskripsi di bawah judul -->
-                <p class="card-text">{{ $wisata->deskripsi }}</p>
-                
-                <!-- Tombol Selengkapnya -->
-                <a href="{{ url('/detail_wisata/' . $wisata->id) }}" class="my-btn-primary">Selengkapnya</a>
-            </div>
-        </div>
-    @endforeach
+    </div>
 </div>
-
-</div>
-
-
-</div>
-</div>
-</main>
 
 <footer>
     <!-- Footer Start -->
@@ -252,6 +243,7 @@
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
 </div>
+    </footer>
 
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
@@ -295,12 +287,9 @@
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-<script>
-        AOS.init();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="{{ asset('themewagon/js/whatsapp.js') }}"></script>
+<script src="{{ asset('themewagon/js/detail.js') }}"></script>
 
 
 </body>

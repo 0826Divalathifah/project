@@ -160,25 +160,36 @@
       <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-center">
               <li class="breadcrumb-item"><a href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
-              <li class="breadcrumb-item"><a href="#"> Tambah Preneur</a></li>
+              <li class="breadcrumb-item"><a href="#"> Tambah Produk Preneur</a></li>
           </ol>
       </nav>
 
     <div class="col-12 grid-margin stretch-card">
     <div class="card">
-        <form id="formTambah" action="{{ url ('/tambahpreneur') }}" method="POST" enctype="multipart/form-data">
+        <form id="formTambah" action="{{ url('/simpanpreneur') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Produk</h4>
                 <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
 
+
+                <!-- Tampilkan pesan error di sini -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
                 <!-- Input Kategori -->
                 <div class="form-group">
                     <label>Pilih Kategori</label>
-                    <select name="kategori" class="js-example-basic-single w-100" required>
+                    <select name="kategori_produk" class="js-example-basic-single w-100" required>
                         <option value="">Pilih Kategori</option>
-                        <option value="makanan_dan_minuman">Makanan dan Minuman</option>
-                        <option value="kerajinan_dan_aksesoris">Kerajinan dan Aksesoris</option>
+                        <option value="makanan">Makanan dan Minuman</option>
+                        <option value="kerajinan">Kerajinan dan Aksesoris</option>
                     </select>
                 </div>
 
@@ -193,14 +204,14 @@
                     <label for="hargaPreneur" class="form-label">Harga</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaPreneur" name="harga" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
+                        <input type="text" class="form-control rounded" id="hargaPreneur" name="harga_produk" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
                     </div>
                 </div>
 
                 <!-- Input Nomor WhatsApp -->
                 <div class="form-group">
                     <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
-                    <input type="number" class="form-control" id="whatsappNumber" name="whatsapp" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+                    <input type="number" class="form-control" id="whatsappNumber" name="nomor_whatsapp" placeholder="Masukkan Nomor WhatsApp" min="0" required>
                 </div>
 
                 <!-- Input Deskripsi -->
@@ -236,9 +247,7 @@
                 <!-- Input Varian Produk -->
                 <div class="form-group">
                     <label for="varianProduk">Varian Produk (opsional)</label>
-                    <div id="varianContainer">
-                        <!-- Kolom varian akan ditambahkan di sini -->
-                    </div>
+                    <div id="varianContainer"></div>
                     <button type="button" class="btn btn-inverse-primary btn-fw" id="addVariantBtn">Tambah Varian</button>
                 </div>
 
@@ -246,8 +255,16 @@
                 <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
             </div>
         </form>
+        <script>
+            function formatCurrency(input) {
+                // Hapus simbol "Rp" dan format angka ke desimal
+                let value = input.value.replace(/[^0-9.]/g, ''); // Menghapus semua karakter kecuali angka dan titik
+                input.value = value; // Set nilai input hanya angka
+            }
+        </script>
     </div>
 </div>
+
 
 
 </div>

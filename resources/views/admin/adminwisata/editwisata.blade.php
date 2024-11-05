@@ -116,107 +116,156 @@
         </nav>
         <div class="main-panel">
     <div class="content-wrapper">
-    <div class="row">
-          
+    <div class="row">      
     <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/kelolawisata') }}">Kelola Wisata</a></li>
-                        <li class="breadcrumb-item"><a href="#"> Tambah Wisata</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
+                        <li class="breadcrumb-item"><a href="#"> Edit Budaya</a></li>
                     </ol>
                 </nav>
-
     <div class="col-12 grid-margin stretch-card">
     <div class="card">
-    <form id="formTambahWisata" action="/tambahwisata" method="POST" enctype="multipart/form-data">
-            @csrf 
-            <div class="card-body">
-                <h4 class="card-title">Formulir Tambah Wisata</h4>
-                <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+        <div class="card-body">
+            <h4 class="card-title">Formulir Edit Budaya</h4>
+            <p class="card-description">Ubah Budaya dengan mengedit kolom formulir di bawah ini</p>
 
-                <!-- Input Nama Wisata -->
+            {{-- Notifikasi berhasil atau error --}}
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
+
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            {{-- Form untuk mengupdate budaya --}}
+            <form action="/admin/update-budaya/{{ $budaya->id }}" method="POST" enctype="multipart/form-data">
+              @csrf
+              @method('PUT')
+
+                {{-- Nama Budaya --}}
                 <div class="form-group">
-                    <label for="namaWisata">Nama Wisata</label>
-                    <input type="text" class="form-control" id="namaWisata" name="nama_wisata" placeholder="Masukkan nama wisata" required>
+                    <label for="nama_budaya">Nama Budaya</label>
+                    <input type="text" name="nama_budaya" class="form-control" value="{{ old('nama_budaya', $budaya->nama_budaya) }}" placeholder="contoh: 'Karawitan Miguyoh Rasa'" required>
                 </div>
 
-                <!-- Input Harga (opsional) -->
-                <div class="mb-3">
-                    <label for="hargaWisata" class="form-label">Harga Tiket Masuk (opsional)</label>
+                {{-- Nama Desa Budaya --}}
+                <div class="form-group">
+                    <label for="nama_desa_budaya">Nama Desa Budaya</label>
+                    <input type="text" name="nama_desa_budaya" class="form-control" value="{{ old('nama_desa_budaya', $budaya->nama_desa_budaya) }}" placeholder="contoh: 'Desa Budaya Gentan'" required>
+                </div>
+
+                {{-- Alamat --}}
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" name="alamat" class="form-control" value="{{ old('alamat', $budaya->alamat) }}" placeholder="Alamat" required>
+                </div>
+
+                {{-- Harga Minimum --}}
+                <div class="form-group">
+                    <label for="harga_min">Harga Minimum (optional)</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaWisata" name="harga" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)">
+                        <input type="text" name="harga_min" class="form-control rounded" value="{{ old('harga_min', $budaya->harga_min) }}" placeholder="Masukkan harga minimum" oninput="formatCurrency(this)">
+                    </div>
+                </div>
+                {{-- Harga Maksimum --}}
+                <div class="form-group">
+                    <label for="harga_max">Harga Maksimum (optional)</label>
+                    <div class="input-group">
+                        <span class="input-group-text">Rp</span>
+                        <input type="text" name="harga_max" class="form-control rounded" value="{{ old('harga_max', $budaya->harga_max) }}" placeholder="Masukkan harga maksimum" oninput="formatCurrency(this)">
                     </div>
                 </div>
 
-                <!-- Input URL Google Maps -->
+                {{-- Link Youtube --}}
                 <div class="form-group">
-                    <label for="mapsLink">Link Google Maps</label>
-                    <input type="url" class="form-control" id="mapsLink" name="maps_link" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
+                    <label for="link_youtube">Link Youtube</label>
+                    <input type="url" name="link_youtube" class="form-control" value="{{ old('link_youtube', $budaya->link_youtube) }}" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
+                    <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
+                </div>
+
+                {{-- Nomor WhatsApp --}}
+                <div class="form-group">
+                    <label for="nomor_whatsapp">Nomor WhatsApp Aktif</label>
+                    <input type="text" name="nomor_whatsapp" class="form-control" value="{{ old('nomor_whatsapp', $budaya->nomor_whatsapp) }}" placeholder="Masukkan Nomor WhatsApp" required>
+                </div>
+
+                {{-- Link Google Maps --}}
+                <div class="form-group">
+                    <label for="link_google_maps">Link Google Maps</label>
+                    <input type="url" name="link_google_maps" class="form-control" value="{{ old('link_google_maps', $budaya->link_google_maps) }}" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
                     <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
                 </div>
 
-                <!-- Input Deskripsi -->
+                {{-- Deskripsi --}}
                 <div class="form-group">
-                    <label for="deskripsiWisata">Deskripsi Wisata</label>
-                    <textarea class="form-control" id="deskripsiWisata" name="deskripsi" rows="5" placeholder="Masukkan deskripsi wisata" required></textarea>
+                    <label for="deskripsi">Deskripsi</label>
+                    <textarea name="deskripsi" class="form-control" id="deskripsi" rows="5" required>{{ old('deskripsi', $budaya->deskripsi) }}</textarea>
                 </div>
 
-                <!-- Input Foto Card -->
+                {{-- Foto Card --}}
                 <div class="form-group">
-                    <label>Unggah Foto Card Wisata (Ukuran 300 x 150 px)</label>
-                    <input type="file" name="foto_card" class="file-upload-default" required>
+                    <label>Unggah Foto Card</label>
+                    <!-- Menampilkan Foto yang Sudah Ada (dengan opsi hapus) -->
+                    @if ($budaya->foto_card)
+                        <div class="photo-preview" style="display: inline-block; margin-right: 10px; position: relative;">
+                            <img src="{{ asset('uploads/budaya/' . $budaya->foto_card) }}" alt="Foto Card" width="150">
+                            <button type="button" class="btn-close remove-photo" aria-label="Close" style="position: absolute; top: 0; right: 0;" data-foto="{{ $budaya->foto_card }}"></button>
+                            <input type="hidden" name="existing_photos[]" value="{{ $budaya->foto_card }}">
+                        </div>
+                    @endif
+
+                    <!-- Field untuk Upload Gambar Baru -->
+                    <input type="file" name="foto_card" class="file-upload-default">
                     <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto card" required>
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
                         <span class="input-group-append ms-2">
                             <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
                         </span>
                     </div>
                 </div>
 
-                <!-- Input Foto Wisata -->
+                {{-- Foto Slider --}}
                 <div class="form-group">
-                    <label>Unggah Foto-Foto Wisata</label>
-                    <input type="file" name="foto_wisata[]" class="file-upload-default" id="fileInput" multiple required>
-                    <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto" required>
-                        <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                        </span>
+                <label>Unggah Foto-Foto Kebudayaan</label>
+
+                <!-- Menampilkan Foto yang Sudah Ada (dengan opsi hapus) -->
+                @if (!empty($budaya->foto_slider) && is_array(json_decode($budaya->foto_slider, true)))
+                    <div id="existing-photos" style="margin-bottom: 15px;">
+                        @foreach (json_decode($budaya->foto_slider, true) as $foto)
+                            <div class="photo-preview" style="display: inline-block; margin-right: 10px; position: relative;">
+                                <img src="{{ asset('uploads/budaya/' . $foto) }}" alt="Foto Slider" width="100">
+                                <button type="button" class="btn-close remove-photo" aria-label="Close" style="position: absolute; top: 0; right: 0;" data-foto="{{ $foto }}"></button>
+                                <input type="hidden" name="existing_photos[]" value="{{ $foto }}">
+                            </div>
+                        @endforeach
                     </div>
+                @endif
+
+                <!-- Field untuk Upload Gambar Baru -->
+                <input type="file" name="foto_slider[]" class="file-upload-default" multiple>
+                <div class="input-group col-xs-12 d-flex align-items-center">
+                    <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                    <span class="input-group-append ms-2">
+                        <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                    </span>
                 </div>
-                <!-- Input Dinamis untuk Hari dan Jam Kunjung -->
-              <div class="form-group">
-                  <label>Waktu Kunjung</label>
-                  <div id="waktuKunjungWrapper">
-                      <div class="input-group mb-3 waktu-kunjung">
-                          <select class="form-control me-2" name="hari[]" required>
-                              <option value="">Pilih Hari</option>
-                              <option value="Setiap Hari">Setiap Hari</option>
-                              <option value="Senin">Senin</option>
-                              <option value="Selasa">Selasa</option>
-                              <option value="Rabu">Rabu</option>
-                              <option value="Kamis">Kamis</option>
-                              <option value="Jumat">Jumat</option>
-                              <option value="Sabtu">Sabtu</option>
-                              <option value="Minggu">Minggu</option>
-                          </select>
-                          <input type="time" class="form-control me-2" name="jam_buka[]" required>
-                          <span class="input-group-text">s/d</span>
-                          <input type="time" class="form-control ms-2" name="jam_tutup[]" required>
-                          <button type="button" class="btn btn-danger btn-sm ms-2 removeWaktuKunjung">Hapus</button>
-                      </div>
-                  </div>
-                  <button type="button" class="btn btn-inverse-primary btn-fw" id="addWaktuKunjung">Tambah Waktu Kunjung</button>
-              </div>
-              
-                <!-- Submit Button -->
-                <button type="submit" id="submitWisata" class="btn btn-primary me-2">Submit</button>
             </div>
-        </form>
+                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                <a href="{{ url('/kelolabudaya') }}" class="btn btn-light">Kembali</a>
+            </form>
+        </div>
     </div>
 </div>
-</div>
+
 
 <!-- partial -->
 </div>
@@ -224,8 +273,7 @@
 </div>
 <!-- page-body-wrapper ends -->
 </div>
-
-    <!-- container-scroller -->
+<!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
@@ -248,7 +296,7 @@
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/waktuKunjung.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/photoManager.js') }}"></script>             
     <!-- End custom js for this page-->
 </body>
 </html>

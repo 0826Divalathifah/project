@@ -121,148 +121,116 @@
     </button>
   </div>
 </nav>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
+ <!-- partial -->
+ <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/penjual') }}">
+              <a class="nav-link" href="{{ asset('/adminprima') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
-            </li>
+          </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#budaya" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Budaya</span>
-                <i class="menu-arrow"></i>
+              <a class="nav-link" href="{{ url('/kelolaprima') }}">
+                <i class="mdi mdi-shape-plus menu-icon"></i>
+                <span class="menu-title">Kelola Produk</span>
               </a>
-              <div class="collapse" id="budaya">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudaya') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#preneur" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Preneur</span>
-                <i class="menu-arrow"></i>
+              <a class="nav-link" href="{{ url('/kelolahomepageprima') }}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Kelola Home Page</span>
               </a>
-              <div class="collapse" id="preneur">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksipreneur') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanpreneur') }}">Laporan</a></li>
-                </ul>
-              </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#prima" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Prima</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="prima">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprima') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprima') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#wisata" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Wisata</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="wisata">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolawisata') }}">Kelola Wisata</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiwisata') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanwisata') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/laporanpenjual') }}">
+              <a class="nav-link" href="{{ url('/laporanprima') }}">
                 <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Laporan Penjual</span>
+                <span class="menu-title">Laporan Desa Preneur</span>
               </a>
             </li>
-          </ul>
         </nav>
-      
-        <div class="main-panel">
-  <div class="content-wrapper">
-    <div class="row">
-      <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="card-title">Kelola Produk</h4>
-              <a href="{{ url('tambahpreneur') }}" class="btn btn-primary">Tambah Produk</a>
-            </div>
-            <div class="table-responsive">
-              <table class="table table-striped table-borderless">
-                <thead>
-                  <tr>
-                    <th>Nama Produk</th>
-                    <th>Kategori</th>
-                    <th>Varian</th>
-                    <th>Kisaran Harga</th>
-                    <th>Nomor WhatsApp</th>
-                    <th>Deskripsi</th>
-                    <th>Foto Card</th>
-                    <th>Foto Produk</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Produk 1</td>
-                    <td>Makanan</td>
-                    <td>Varian A</td>
-                    <td>Rp 50.000 - Rp 100.000</td>
-                    <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
-                    <td>Deskripsi singkat produk 1</td>
-                    <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
-                    <td><img src="path/to/foto-slider.jpg" alt="Foto Produk" width="100"></td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Produk 2</td>
-                    <td>Kerajinan</td>
-                    <td>Varian B</td>
-                    <td>Rp 75.000 - Rp 150.000</td>
-                    <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
-                    <td>Deskripsi singkat produk 2</td>
-                    <td><img src="path/to/foto-card2.jpg" alt="Foto Card" width="100"></td>
-                    <td><img src="path/to/foto-slider2.jpg" alt="Foto Produk" width="100"></td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                  </tr>
-                  <!-- Tambahkan baris produk lainnya di sini -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
 
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+            <div class="breadcrumb justify-content-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tambah Produk Prima</a></li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="card-title">Kelola Produk</h4>
+                            <a href="{{ url('tambahprima') }}" class="btn btn-primary">Tambah Produk</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Produk</th>
+                                        <th>Kategori</th>
+                                        <th>Varian</th>
+                                        <th>Kisaran Harga</th>
+                                        <th>Nomor WhatsApp</th>
+                                        <th>Deskripsi</th>
+                                        <th>Foto Card</th>
+                                        <th>Foto Produk</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($produks as $produk)
+                                    <tr>
+                                        <td>{{ $produk->nama_produk }}</td>
+                                        <td>{{ $produk->kategori_produk }}</td>
+                                        <td>{{ $produk->varian }}</td>
+                                        <td>{{ $produk->harga_produk }}</td>
+                                        <td><a href="https://wa.me/{{ $produk->nomor_whatsapp }}" target="_blank">Hubungi</a></td>
+                                        <td>{{ $produk->deskripsi }}</td>
+                                        <td><img src="{{ Storage::url($produk->foto_card) }}" alt="Foto Card" width="100"></td>
+                                        <td>
+                                            @php
+                                                // Decode JSON foto_produk menjadi array
+                                                $fotos = json_decode($produk->foto_produk, true);
+                                            @endphp
+
+                                            @if (is_array($fotos))
+                                                @foreach ($fotos as $foto)
+                                                    <img src="{{ Storage::url('uploads/foto_produk/' . $foto) }}" alt="Foto Produk" width="100">
+                                                @endforeach
+                                            @else
+                                                <p>Tidak ada foto produk.</p>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('editprima/' . $produk->id_produk) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <form action="{{ url('hapusprima/' . $produk->id_produk) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-    </div>
+</div>
+
+</div>
 </div>
 <!-- partial -->
 </div>

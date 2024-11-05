@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kelola Preneur</title>
+    <title>Kelola Desa Preneur</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -145,88 +145,90 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/laporanpreneur') }}">
+              <a class="nav-link" href="{{ url('/laporanpreneur ') }}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Laporan Desa Preneur</span>
               </a>
             </li>
         </nav>
-      
-<div class="main-panel">
-  <div class="content-wrapper">
-    <div class="row">
-      <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="card-title">Kelola Produk</h4>
-              <a href="{{ url('tambahpreneur') }}" class="btn btn-primary">Tambah Produk</a>
+      <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+            <div class="breadcrumb justify-content-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url('/kelolaprima') }}">Kelola Preneur</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tambah Produk Preneur</a></li>
+                    </ol>
+                </nav>
             </div>
-            <div class="table-responsive">
-              <table class="table table-striped table-borderless">
-                <thead>
-                  <tr>
-                    <th>Nama Produk</th>
-                    <th>Kategori</th>
-                    <th>Varian</th>
-                    <th>Kisaran Harga</th>
-                    <th>Nomor WhatsApp</th>
-                    <th>Deskripsi</th>
-                    <th>Foto Card</th>
-                    <th>Foto Produk</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Contoh Produk 1 -->
-                  <tr>
-                    <td>Produk 1</td>
-                    <td>Makanan</td>
-                    <td>Varian A</td>
-                    <td>Rp 50.000 - Rp 100.000</td>
-                    <td><a href="https://wa.me/628xxxxxxx" target="_blank">Hubungi</a></td>
-                    <td>Deskripsi singkat produk 1</td>
-                    <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
-                    <td><img src="path/to/foto-slider.jpg" alt="Foto Produk" width="100"></td>
-                    <td>
-                      <a href="{{ url('editproduk/1') }}" class="btn btn-primary btn-sm">Edit</a>
-                      <!-- Form Hapus Produk dengan CSRF Protection -->
-                      <form action="{{ url('hapusproduk/1') }}" method="POST" style="display:inline;">
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                      </form>
-                    </td>
-                  </tr>
-                  
-                  <!-- Contoh Produk 2 -->
-                  <tr>
-                    <td>Produk 2</td>
-                    <td>Kerajinan</td>
-                    <td>Varian B</td>
-                    <td>Rp 75.000 - Rp 150.000</td>
-                    <td><a href="https://wa.me/628xxxxxxx" target="_blank">Hubungi</a></td>
-                    <td>Deskripsi singkat produk 2</td>
-                    <td><img src="path/to/foto-card2.jpg" alt="Foto Card" width="100"></td>
-                    <td><img src="path/to/foto-slider2.jpg" alt="Foto Produk" width="100"></td>
-                    <td>
-                      <a href="{{ url('editproduk/2') }}" class="btn btn-primary btn-sm">Edit</a>
-                      <!-- Form Hapus Produk dengan CSRF Protection -->
-                      <form action="{{ url('hapusproduk/2') }}" method="POST" style="display:inline;">
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                      </form>
-                    </td>
-                  </tr>
-                  <!-- Tambahkan baris produk lainnya di sini -->
-                </tbody>
-              </table>
+
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="card-title">Kelola Produk</h4>
+                            <a href="{{ url('tambahprima') }}" class="btn btn-primary">Tambah Produk</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>Nama Produk</th>
+                                        <th>Kategori</th>
+                                        <th>Varian</th>
+                                        <th>Kisaran Harga</th>
+                                        <th>Nomor WhatsApp</th>
+                                        <th>Deskripsi</th>
+                                        <th>Foto Card</th>
+                                        <th>Foto Produk</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($produks as $produk)
+                                    <tr>
+                                        <td>{{ $produk->nama_produk }}</td>
+                                        <td>{{ $produk->kategori_produk }}</td>
+                                        <td>{{ $produk->varian }}</td>
+                                        <td>{{ $produk->harga_produk }}</td>
+                                        <td><a href="https://wa.me/{{ $produk->nomor_whatsapp }}" target="_blank">Hubungi</a></td>
+                                        <td>{{ $produk->deskripsi }}</td>
+                                        <td><img src="{{ Storage::url($produk->foto_card) }}" alt="Foto Card" width="100"></td>
+                                        <td>
+                                            @php
+                                                // Decode JSON foto_produk menjadi array
+                                                $fotos = json_decode($produk->foto_produk, true);
+                                            @endphp
+
+                                            @if (is_array($fotos))
+                                                @foreach ($fotos as $foto)
+                                                    <img src="{{ Storage::url('uploads/foto_produk/' . $foto) }}" alt="Foto Produk" width="100">
+                                                @endforeach
+                                            @else
+                                                <p>Tidak ada foto produk.</p>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('editproduk/' . $produk->id_produk) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            <form action="{{ url('hapusproduk/' . $produk->id_produk) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    </div>
-    </div>
+</div>
+
 </div>
 </div>
 <!-- partial -->

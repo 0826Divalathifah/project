@@ -3,9 +3,8 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Kelurahan</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Kelola Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -14,11 +13,12 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <!-- endinject -->
 
+
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/js/select.dataTables.min.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+ 
     <!-- End plugin css for this page -->
 
     <!-- inject:css -->
@@ -28,6 +28,7 @@
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}">
   </head>
   <body>
+    
   <div class="container-scroller">
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -77,6 +78,7 @@
         </a>
     </li>
 </ul>
+
 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
     <span class="icon-menu"></span>
 </button>
@@ -89,85 +91,94 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/adminwisata') }}">
+              <a class="nav-link" href="{{ asset('/adminkelurahan') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
           </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/kelolawisata') }}">
+              <a class="nav-link" href="{{ url('/kelolaAdmin') }}">
                 <i class="mdi mdi-shape-plus menu-icon"></i>
-                <span class="menu-title">Kelola Wisata</span>
+                <span class="menu-title">Kelola Admin</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/kelolahomepagewisata') }}">
+              <a class="nav-link" href="{{ url('/kelolafeedback') }}">
+                  <i class="mdi mdi-comment-text menu-icon"></i>
+                  <span class="menu-title">Kelola Feedback</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolahomepage') }}">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">Kelola Home Page</span>
               </a>
             </li>
-           <!-- <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="{{ url('/laporanbudaya') }}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Laporan Admin Budaya</span>
               </a>
             </li>-->
-        </ul>
+          </ul>
         </nav>
+      
         <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="card-title">Kelola Wisata</h4>
-                    <a href="{{ url('tambahwisata') }}" class="btn btn-primary">Tambah Wisata</a>
-                  </div>
-                  <div class="table-responsive">
-                    <table class="table table-striped table-borderless">
-                      <thead>
-                        <tr>
-                          <th>Nama Wisata</th>
-                          <th>Waktu Kunjung</th>
-                          <th>Deskripsi</th>
-                          <th>Foto Card</th>
-                          <th>Foto Wisata</th>
-                          <th>Aksi</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      @foreach($wisata as $item)
-                      <tr>
-                          <td>{{ $item->nama_wisata }}</td>
-                          <td>{{ $item->waktu_kunjung }}</td>
-                          <td>{{ $item->deskripsi }}</td>
-                          <td><img src="{{ asset('storage/' . $item->foto_card) }}" alt="Foto Card" width="100"></td>
-                          <td>
-                              @foreach(json_decode($item->foto_wisata) as $foto)
-                              <img src="{{ asset('storage/' . $foto) }}" alt="Foto Wisata" width="100">
-                              @endforeach
-                          </td>
-                          <td>
-                              <a href="{{ url('editwisata/' . $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                              <form action="{{ url('hapuswisata/' . $item->id) }}" method="POST" style="display:inline;">
-                                  @csrf
-                                  @method('DELETE')
-                                  <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                              </form>
-                          </td>
-                      </tr>
-                      @endforeach
-                  </tbody>
-              </table>
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="card-title">Kelola Admin</p>
+                                <a href="{{ url('tambahAdmin') }}" class="btn btn-primary">Tambah Admin</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Lengkap</th>
+                                            <th>Email</th>
+                                            <th>Nomor Telepon</th>
+                                            <th>Alamat</th>
+                                            <th>Role</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data Statis Admin -->
+                                        <tr>
+                                            <td>Ahmad Rudianto</td>
+                                            <td>ahmad@example.com</td>
+                                            <td>081234567890</td>
+                                            <td>Jl. Mangga No. 1</td>
+                                            <td>Super Admin</td>
+                                            <td>
+                                                <a href="{{ url('editadmin', ['id' => 1]) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Siti Mariani</td>
+                                            <td>siti@example.com</td>
+                                            <td>081298765432</td>
+                                            <td>Jl. Rambutan No. 2</td>
+                                            <td>Admin</td>
+                                            <td>
+                                                <a href="{{ url('editadmin', ['id' => 2]) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                            </td>
+                                        </tr>
+                                        <!-- Tambah data statis lainnya jika perlu -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</div>
-
     </div>
     </div>
     </div>

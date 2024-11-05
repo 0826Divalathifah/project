@@ -4,14 +4,22 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Laporan Prima</title>
+    <title>Edit Prima</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <!-- endinject -->  
+    <!-- endinject -->
+
+
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css') }}">
+    <!-- End plugin css for this page -->
 
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
@@ -21,9 +29,9 @@
   </head>
   <body>
     
-<div class="container-scroller">
-<!-- partial:../../partials/_navbar.html -->
-<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
@@ -31,7 +39,7 @@
           <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
-        </div>
+    </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
@@ -113,8 +121,8 @@
     </button>
   </div>
 </nav>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
+ <!-- partial -->
+ <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
@@ -143,82 +151,129 @@
               </a>
             </li>
         </nav>
-        
     <div class="main-panel">
     <div class="content-wrapper">
-    <div class="col-md-12 grid-margin transparent">
-    <div class="col-md-12 grid-margin transparent"> 
     <div class="row">
-        <!-- Card 1 -->
-        <div class="col-md-3 mb-4 stretch-card transparent">
-            <div class="card card-tale">
-                <div class="card-body">
-                    <p class="mb-4">Total Penjualan</p>
-                    <p class="fs-30 mb-2">4006</p>
-                    <p>10.00% (30 days)</p>
-                </div>
-            </div>
-        </div>
+          
+    <div class="breadcrumb">
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+              <li class="breadcrumb-item"><a href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
+              <li class="breadcrumb-item"><a href="#"> Edit Prima</a></li>
+          </ol>
+      </nav>
 
-        <!-- Card 2 -->
-        <div class="col-md-3 mb-4 stretch-card transparent">
-            <div class="card card-dark-blue">
-                <div class="card-body">
-                    <p class="mb-4">Total Pendapatan</p>
-                    <p class="fs-30 mb-2">15.678.907</p>
-                    <p>22.00% (30 days)</p>
-                </div>
-            </div>
-        </div>
+    <div class="col-12 grid-margin stretch-card">
+      <div class="card">
+        <form id="formEdit" action="{{ url('/admin/updateprima/' . $produk->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT') <!-- Tambahkan metode PUT untuk update -->
+            <div class="card-body">
+                <h4 class="card-title">Formulir Edit Produk</h4>
+                <p class="card-description">Perbarui kolom formulir di bawah ini</p>
 
-        <!-- Card 3 -->
-        <div class="col-md-3 mb-4 stretch-card transparent">
-            <div class="card card-light-blue">
-                <div class="card-body">
-                    <p class="mb-4">Total Produk</p>
-                    <p class="fs-30 mb-2">50</p>
-                    <p>2.00% (30 days)</p>
+                <!-- Input Kategori -->
+                <div class="form-group">
+                    <label>Pilih Kategori</label>
+                    <select name="kategori_produk" class="js-example-basic-single w-100" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="makanan" {{ $produk->kategori_produk == 'makanan' ? 'selected' : '' }}>Makanan dan Minuman</option>
+                        <option value="kerajinan" {{ $produk->kategori_produk == 'kerajinan' ? 'selected' : '' }}>Kerajinan dan Aksesoris</option>
+                    </select>
                 </div>
-            </div>
-        </div>
 
-        <!-- Card 4 -->
-        <div class="col-md-3 mb-4 stretch-card transparent">
-            <div class="card card-light-danger">
-                <div class="card-body">
-                    <p class="mb-4">Total Transaksi</p>
-                    <p class="fs-30 mb-2">567</p>
-                    <p>0.22% (30 days)</p>
+                <!-- Input Nama Produk -->
+                <div class="form-group">
+                    <label for="namaProduk">Nama Produk</label>
+                    <input type="text" class="form-control" id="namaProduk" name="nama_produk" value="{{ $produk->nama_produk }}" required>
                 </div>
-            </div>
-        </div>
-  </div>
-</div>
-<div class="col-md-8 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <p class="card-title">GrafikPenjualan</p>
-                      <a href="#" class="text-info">View all</a>
+
+                <!-- Input Harga -->
+                <div class="mb-3">
+                    <label for="hargaPreneur" class="form-label">Harga</label>
+                    <div class="input-group">
+                        <span class="input-group-text">Rp</span>
+                        <input type="text" class="form-control rounded" id="hargaPreneur" name="harga_produk" value="{{ $produk->harga_produk }}" oninput="formatCurrency(this)" required>
                     </div>
-                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                    <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
-                    <canvas id="sales-chart"></canvas>
-                  </div>
                 </div>
-              </div>
 
+                <!-- Input Nomor WhatsApp -->
+                <div class="form-group">
+                    <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
+                    <input type="number" class="form-control" id="whatsappNumber" name="nomor_whatsapp" value="{{ $produk->nomor_whatsapp }}" min="0" required>
+                </div>
 
-          <!-- partial -->
-        </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
+                <!-- Input Deskripsi -->
+                <div class="form-group">
+                    <label for="exampleTextarea1">Deskripsi</label>
+                    <textarea class="form-control" id="exampleTextarea1" name="deskripsi" rows="5" required>{{ $produk->deskripsi }}</textarea>
+                </div>
+
+                <!-- Input Foto Card -->
+                <div class="form-group">
+                    <label>Unggah Foto Card (Biarkan kosong jika tidak ingin mengubah)</label>
+                    <input type="file" name="foto_card" class="file-upload-default" accept="image/*">
+                    <div class="input-group col-xs-12 d-flex align-items-center">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                        <span class="input-group-append ms-2">
+                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Input Foto Produk -->
+                <div class="form-group">
+                    <label>Unggah Foto-Foto Produk (Biarkan kosong jika tidak ingin mengubah)</label>
+                    <input type="file" name="foto_produk[]" class="file-upload-default" id="fileInput" multiple accept="image/*">
+                    <div class="input-group col-xs-12 d-flex align-items-center">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                        <span class="input-group-append ms-2">
+                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Input Varian Produk -->
+                <div class="form-group">
+                    <label for="varianProduk">Varian Produk (opsional)</label>
+                    <div id="varianContainer"></div>
+                    <button type="button" class="btn btn-inverse-primary btn-fw" id="addVariantBtn">Tambah Varian</button>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submit" class="btn btn-primary me-2">Update</button>
+            </div>
+        </form>
+        <script>
+            function formatCurrency(input) {
+                let value = input.value.replace(/[^0-9.]/g, ''); // Menghapus semua karakter kecuali angka dan titik
+                input.value = value; // Set nilai input hanya angka
+            }
+        </script>
     </div>
-    
+</div>
+
+
+
+
+</div>
+
+<!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+
+    <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
+
+    <!-- Plugin js for this page -->
+    <script src="{{ asset('admin/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+    <script src="{{ asset('admin/assets/vendors/select2/select2.min.js') }}"></script>
+    <!-- End plugin js for this page -->
 
     <!-- inject:js -->
     <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
@@ -227,22 +282,13 @@
     <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
     <!-- endinject -->
 
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('admin/assets/vendors/chart.js/chart.umd.js') }}"></script>
-    <script src="{{ asset('admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-    <script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/dataTables.select..min.js') }}"></script>
-
     <!-- Custom js for this page-->
-    <script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/file-upload.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/typeahead.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/varianProduk.js') }}"></script>
     <!-- End custom js for this page-->
-
-    <!-- Plugin js for this page , untuk dropdown navbar-->
-    <script src="{{ asset('admin/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
-    <!-- End plugin js for this page -->
-
- 
-  </body>
+</body>
 </html>

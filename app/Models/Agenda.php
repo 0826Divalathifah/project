@@ -9,10 +9,12 @@ class Agenda extends Model
 {
     use HasFactory;
 
+    protected $table = 'agenda'; // Nama tabel di database
+
     protected $fillable = [
         'nama_acara',
         'tanggal_acara',
         'deskripsi_acara',
-        'alamat', // Tambahkan kolom alamat
+        'alamat', // Kolom 'alamat' sudah ditambahkan
     ];
 }

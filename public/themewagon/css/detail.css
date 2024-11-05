@@ -35,3 +35,117 @@
     border: none;
     border-radius: 10px;
 }
+
+/*detail produk*/
+body {
+    font-family: Arial, sans-serif;
+}
+.product-container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+.product-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3e2e4f;
+}
+.product-price {
+    color: #555;
+    margin: 5px 0;
+    font-size: 18px;
+}
+.product-description {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #666;
+}
+.input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.input-container label {
+    font-weight: bold;
+    margin-right: 10px;
+    width: 70px;
+}
+.input-container input,
+.input-container select {
+    padding: 5px;
+    font-size: 16px;
+    flex: 1;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+.button-container button {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    color: white;
+}
+#detailBtn {
+    background-color: #8a2be2;
+}
+#whatsappBtn {
+    background-color: #007bff;
+}
+#detailBtn:disabled, #whatsappBtn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/*corousel yang di detail produk*/
+.simple-carousel {
+    .simple-carousel {
+        position: relative;
+        width: 300px; /* Sesuaikan ukuran carousel */
+        overflow: hidden;
+    }
+    
+    .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    
+    .carousel-slide {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .carousel-slide img {
+        width: 100%;
+        display: block;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 10;
+    }
+    
+    .carousel-control-prev {
+        left: 10px;
+    }
+    
+    .carousel-control-next {
+        right: 10px;
+    }
+}    
+
+
+

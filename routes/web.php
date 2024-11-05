@@ -16,61 +16,83 @@ Route::get('/desabudaya', [PageController::class, 'desabudaya'])->name('desabuda
 Route::get('/desaprima', [PageController::class, 'desaprima'])->name('desaprima');
 Route::get('/desapreneur', [PageController::class, 'desapreneur'])->name('desapreneur');
 Route::get('/desawisata', [PageController::class, 'desawisata'])->name('desawisata');
-Route::match(['get', 'post'], '/detail_budaya', [PageController::class, 'detail_budaya'])->name('detail_budaya');
-Route::get('/detail_produk', [PageController::class, 'detail_produk'])->name('detail_produk');
-Route::get('/detail_wisata', [PageController::class, 'detail_wisata'])->name('detail_wisata');
+Route::match(['get', 'post'], '/detail_budaya', [PageController::class, 'detail_budaya']);
+Route::get('/detail_preneur/{id}', [PageController::class, 'detail_preneur']);
+Route::get('/detail_prima/{id}', [PageController::class, 'detail_prima']);
+Route::get('/detail_budaya/{id}', [PageController::class, 'detail_budaya']);
+Route::get('/detail_wisata/{id}', [PageController::class, 'detail_wisata']);
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi');
 
 
 // Rute untuk halaman dashboard superadmin kelurahan
 Route::get('/adminkelurahan', [AdminKelurahanController::class, 'showDashboard'])->name('admin.adminkelurahan.adminkelurahan');
-Route::get('/buttons', [AdminKelurahanController::class, 'uifeatures1'])->name('admin.adminkelurahan.ui-features.buttons');
-Route::get('/dropdowns', [AdminKelurahanController::class, 'uifeatures2'])->name('admin.adminkelurahan.ui-features.dropdowns');
-Route::get('/typography', [AdminKelurahanController::class, 'uifeatures3'])->name('admin.adminkelurahan.ui-features.typography');
-Route::get('/chartjs', [AdminKelurahanController::class, 'charts'])->name('admin.adminkelurahan.charts.chartjs');
-Route::get('/basic_elements', [AdminKelurahanController::class, 'forms'])->name('admin.adminkelurahan.forms.basic_elements');
-Route::get('/basic-table', [AdminKelurahanController::class, 'tables'])->name('admin.adminkelurahan.tables.basic-table');
-Route::get('/mdi', [AdminKelurahanController::class, 'icons'])->name('admin.adminkelurahan.icons.mdi');
-Route::get('/error-404', [AdminKelurahanController::class, 'samples1'])->name('admin.adminkelurahan.samples.error-404');
-Route::get('/error-500', [AdminKelurahanController::class, 'samples2'])->name('admin.adminkelurahan.samples.error-500');
-Route::get('/documentation', [AdminKelurahanController::class, 'docs'])->name('admin.adminkelurahan.docs.documentation');
+Route::get('/kelolaAdmin', [AdminKelurahanController::class, 'kelolaAdmin'])->name('admin.adminkelurahan.kelolaAdmin.kelolaAdmin');
+Route::get('/kelolahomepage', [AdminKelurahanController::class, 'kelolahomepage'])->name('admin.adminkelurahan.kelolahomepage.kelolahomepage');
+Route::post('/admin/simpan_admin', [AdminKelurahanController::class, 'simpanAdmin'])->name('admin.adminkelurahan.simpanAdmin');
+Route::get('/kelolafeedback', [AdminKelurahanController::class, 'kelolafeedback'])->name('admin.adminkelurahan.kelolafeedback.kelolafeedback');
 
 //Rute untuk halaman dashboard admin budaya
-// Route untuk menampilkan daftar budaya
-Route::get('/adminbudaya', [AdminDesaBudayaController::class, 'showDashboard'])->name('admin.adminbudaya.adminbudaya');
-Route::get('/kelolabudaya', [AdminDesaBudayaController::class, 'kelolaBudaya'])->name('admin.adminbudaya.kelolabudaya');
-Route::get('/kelolahomepagebudaya', [AdminDesaBudayaController::class, 'kelolaHomepage'])->name('admin.adminbudaya.kelolahomepagebudaya');
-Route::get('/kelolaagenda', [AdminDesaBudayaController::class, 'kelolaAgenda'])->name('admin.adminbudaya.kelolaagenda');
-Route::post('/kelolaagenda', [AdminDesaBudayaController::class, 'simpanAgenda'])->name('admin.simpanAgenda'); // Rute untuk menyimpan agenda
-Route::get('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya'])->name('admin.adminbudaya.tambahbudaya');
-Route::post('/tambahbudaya', [AdminDesaBudayaController::class, 'simpanBudaya'])->name('admin.simpanBudaya');
-Route::get('/laporanbudaya', [AdminDesaBudayaController::class, 'laporanBudaya'])->name('admin.adminbudaya.laporanbudaya');
-Route::get('/budaya/{id}', [AdminDesaBudayaController::class, 'show'])->name('budaya.show');
+Route::get('/adminbudaya', [AdminDesaBudayaController::class, 'showDashboard']);
+Route::get('/kelolabudaya', [AdminDesaBudayaController::class, 'kelolaBudaya']);
+Route::get('/kelolahomepagebudaya', [AdminDesaBudayaController::class, 'kelolaHomepage']);
+Route::get('/homepagebudaya/edit', [AdminDesaBudayaController::class, 'editHomepageBudaya']);
+Route::post('/update-homepagebudaya', [AdminDesaBudayaController::class, 'updateHomepageBudaya']);
+Route::get('/kelolaagenda', [AdminDesaBudayaController::class, 'kelolaAgenda']);
+Route::post('/kelolaagenda', [AdminDesaBudayaController::class, 'simpanAgenda']); 
+Route::get('/agenda/{id}/edit', [AdminDesaBudayaController::class, 'editAgenda']);
+Route::delete('/agenda/{id}', [AdminDesaBudayaController::class, 'deleteAgenda']);
+Route::put('/admin/update-agenda/{id}', [AdminDesaBudayaController::class, 'updateAgenda']);
+Route::get('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya']);
+Route::post('/tambahbudaya', [AdminDesaBudayaController::class, 'simpanBudaya']);
+Route::get('/laporanbudaya', [AdminDesaBudayaController::class, 'laporanBudaya']);
+Route::get('/budaya/{id}', [AdminDesaBudayaController::class, 'show']);
+Route::post('/admin/simpan-budaya', [AdminDesaBudayaController::class, 'simpanBudaya']);
+Route::get('/admin/edit-budaya/{id}', [AdminDesaBudayaController::class, 'editBudaya']);
+Route::put('/admin/update-budaya/{id}', [AdminDesaBudayaController::class, 'updateBudaya']);
+Route::delete('/admin/hapus-budaya/{id}', [AdminDesaBudayaController::class, 'hapusBudaya']);
+
 
 //Rute untuk halaman dashboard admin preneur
-Route::get('/adminpreneur', [AdminDesaPreneurController::class, 'showDashboard'])->name('admin.adminpreneur.adminpreneur');
-Route::get('/kelolahomepagepreneur', [AdminDesaPreneurController::class, 'kelolaHomepage'])->name('admin.adminbudaya.kelolahomepagepreneur');
-Route::get('/tambahpreneur', [AdminDesaPreneurController::class, 'tambahPreneur'])->name('admin.adminpreneur.tambahpreneur');
-Route::get('/transaksipreneur', [AdminDesaPreneurController::class, 'transaksiPreneur'])->name('admin.adminpreneur.transaksipreneur');
-Route::get('/laporanpreneur', [AdminDesaPreneurController::class, 'laporanPreneur'])->name('admin.adminpreneur.laporanpreneur');
-Route::get('/kelolapreneur', [AdminDesaPreneurController::class, 'kelolaPreneur'])->name('admin.adminpreneur.kelolapreneur');
+Route::get('/adminpreneur', [AdminDesaPreneurController::class, 'showDashboard']);
+Route::get('/tambahpreneur', [AdminDesaPreneurController::class, 'tambahPreneur']);
+Route::post('/simpanpreneur', [AdminDesaPreneurController::class, 'simpanPreneur']);
+Route::get('/kelolapreneur', [AdminDesaPreneurController::class, 'kelolaPreneur']);
+Route::get('/editpreneur/{id}', [AdminDesaPreneurController::class, 'editPreneur']);
+Route::post('/updatepreneur/{id}', [AdminDesaPreneurController::class, 'updatePreneur']);
+Route::delete('/hapuspreneur/{id}', [AdminDesaPreneurController::class, 'hapusPreneur']);
+Route::get('/transaksipreneur', [AdminDesaPreneurController::class, 'transaksiPreneur']);
+Route::get('/laporanpreneur', [AdminDesaPreneurController::class, 'laporanPreneur']);
+Route::get('/kelolahomepagepreneur', [AdminDesaPreneurController::class, 'kelolaHomepage']);
+
 
 //Rute untuk halaman dashboard admin prima
-Route::get('/adminprima', [AdminDesaPrimaController::class, 'showDashboard'])->name('admin.adminprima.adminprima');
-Route::get('/tambahprima', [AdminDesaPrimaController::class, 'tambahPrima'])->name('admin.adminprima.prima.tambahprima');
-Route::get('/transaksiprima', [AdminDesaPrimaController::class, 'transaksiPrima'])->name('admin.adminprima.transaksiprima');
-Route::get('/laporanprima', [AdminDesaPrimaController::class, 'laporanPrima'])->name('admin.adminprima.laporanprima');
-Route::get('/kelolaprima', [AdminDesaPrimaController::class, 'kelolaPrima'])->name('admin.adminprima.kelolaprima');
+Route::get('/adminprima', [AdminDesaPrimaController::class, 'showDashboard']);
+Route::get('/tambahprima', [AdminDesaPrimaController::class, 'tambahPrima']);
+Route::post('/simpanprima', [AdminDesaPrimaController::class, 'simpanPrima']);
+Route::get('editprima/{id}', [AdminDesaPrimaController::class, 'editPrima']);
+Route::get('/admin/edit-prima/{id}', [AdminDesaPrimaController::class, 'editPrima']);
+Route::put('/admin/update-prima/{id}', [AdminDesaPrimaController::class, 'updatePrima']);
+Route::get('/transaksiprima', [AdminDesaPrimaController::class, 'transaksiPrima']);
+Route::get('/laporanprima', [AdminDesaPrimaController::class, 'laporanPrima']);
+Route::get('/kelolaprima', [AdminDesaPrimaController::class, 'kelolaPrima']);
+Route::get('/kelolahomepageprima', [AdminDesaPrimaController::class, 'kelolaHomepage']);
 
-//Rute untuk halaman dashboard admin wisata
-Route::get('/adminwisata', [AdminDesaWisataController::class, 'showDashboard'])->name('admin.adminwisata.adminwisata');
-Route::get('/tambahwisata', [AdminDesaWisataController::class, 'tambahWisata'])->name('admin.adminwisata.tambahwisata');
-Route::get('/transaksiwisata', [AdminDesaWisataController::class, 'transaksiWisata'])->name('admin.adminwisata.transaksiwisata');
-Route::get('/laporanwisata', [AdminDesaWisataController::class, 'laporanWisata'])->name('admin.adminwisata.laporanwisata');
-Route::get('/kelolawisata', [AdminDesaWisataController::class, 'kelolaWisata'])->name('admin.adminwisata.kelolawisata');
-Route::get('/laporanwisata', [AdminDesaWisataController::class, 'laporanWisata'])->name('admin.adminwisata.laporanpenjual');
 
+
+// Rute untuk halaman dashboard admin wisata
+Route::get('/adminwisata', [AdminDesaWisataController::class, 'showDashboard']);
+Route::get('/tambahwisata', [AdminDesaWisataController::class, 'tambahWisata']);
+Route::post('/tambahwisata', [AdminDesaWisataController::class, 'simpanWisata']);
+Route::post('/storewisata', [AdminDesaWisataController::class, 'storeWisata']); 
+Route::get('/kelolawisata', [AdminDesaWisataController::class, 'kelolaWisata']);
+Route::get('/editwisata/{id}', [AdminDesaWisataController::class, 'editWisata']);
+Route::post('/updatewisata/{id}', [AdminDesaWisataController::class, 'updateWisata']); 
+Route::delete('/deletewisata/{id}', [AdminDesaWisataController::class, 'deleteWisata']); 
+Route::get('/transaksiwisata', [AdminDesaWisataController::class, 'transaksiWisata']);
+Route::get('/laporanwisata', [AdminDesaWisataController::class, 'laporanWisata']);
+Route::get('/kelolahomepagewisata', [AdminDesaWisataController::class, 'kelolaHomepage']);
+Route::get('/desawisata', [PageController::class, 'desawisata']);
 
 // Rute untuk halaman dashboard penjual
 //Route::get('/penjual', [PenjualController::class, 'showDashboard'])->name('admin.penjual.penjual');

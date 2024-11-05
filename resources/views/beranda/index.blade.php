@@ -191,7 +191,7 @@
 <!--? collection -->
 
 <div class="new-arrival">
-    <section class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" data-background="{{ asset('themewagon/img/gallery/gallery3.jpg') }}">
+    <section class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" data-background="{{ asset('storage/' . $gambar_banner) }}">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-9">

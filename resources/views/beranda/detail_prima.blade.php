@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Detail</title>
+    <title>Detail Produk</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/detail.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('themewagon/css/detail.css') }}">
 
 
 </head>
@@ -85,61 +85,68 @@
     <div class="product-detail">
         <!-- Gambar Produk -->
         <div class="simple-carousel">
-    <div class="carousel-wrapper">
-        <div class="carousel-slide">
-            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Product Image 1">
+            <div class="carousel-wrapper">
+            <div class="carousel-slide">
+                <img src="{{ asset('themewagon/img/desaprima/' . $produk->foto_card) }}" alt="Product Image">
+            </div>
+                <div class="carousel-slide">
+                    <img src="{{ asset('themewagon/img/desaprima/produk2.jpeg') }}" alt="Product Image 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="{{ asset('themewagon/img/desaprima/produk3.jpeg') }}" alt="Product Image 3">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-slide{{ $produk->id }}" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel-slide{{ $produk->id }}" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </button>
+
         </div>
-        <div class="carousel-slide">
-            <img src="{{ asset('themewagon/img/desaprima/produk2.jpeg') }}" alt="Product Image 2">
-        </div>
-        <div class="carousel-slide">
-            <img src="{{ asset('themewagon/img/desaprima/produk3.jpeg') }}" alt="Product Image 3">
-        </div>
-    </div>
-    <button class="prev">❮</button>
-    <button class="next">❯</button>
-</div>
 
         <!-- Detail Produk -->
         <div class="product-details">
-            <h2>Briza Brownies</h2>
-            <p class="price">Rp 30.000</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis possimus perspiciatis dolorem earum minus voluptatibus atque.</p>
+            <h2>{{ $produk->nama_produk }}</h2>
+            <p class="price">{{ $produk->harga_produk }}</p>
+            <p>{{ $produk->deskripsi }}</p> <!-- Menampilkan deskripsi produk dari database -->
 
-            <!-- Pilih Ukuran -->
-            <label for="Toping">Toping:</label>
-            <select id="size">
-                <option value="none">Pilih Toping</option>
-                <option value="1">Coklat</option>
-                <option value="2">Keju</option>
-            </select>
 
-            <!-- Tombol Beli -->
-            <div class="actions">
-                <button class="btn add-to-cart" id="beliBtn" style="background-color: #9F78FF; color: white; border: none; padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 5px;">
-                    Beli
-                </button>
+            <div class="input-row">
+                <div class="input-container">
+                    <label for="quantity">Jumlah:</label>
+                    <input type="number" id="quantity" min="1" value="1">
+                </div>
+                <div class="input-container">
+                    <label for="topping">Topping:</label>
+                    <select id="topping">
+                        <option value="Keju">Keju</option>
+                        <option value="Coklat">Coklat</option>
+                        <option value="Kacang">Kacang</option>
+                        <option value="Madu">Madu</option>
+                    </select>
+                </div>
             </div>
 
-            <!-- WhatsApp Chat Box (Detail Pesanan) -->
-                <div id="chatBox" style="display: none; margin-top: 30px; border: 1px solid #ddd; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); position: relative; width: 100%; max-width: 500px; background-color: #f9f9f9;">
-                    <div id="chatHeader" style="display: flex; justify-content: space-between; align-items: center;">
-                        <h3 style="margin: 0; font-size: 22px; color: #333;">Detail Pesanan</h3>
-                        <!-- Tombol Close -->
-                        <span id="closeChat" style="cursor: pointer; font-size: 24px; font-weight: bold; color: #dc3545;">&times;</span>
-                    </div>
+                <!-- Tombol Detail Pesanan -->
+                <div class="button-row">
+                <button id="detailBtn" data-product-name="Nama Produk" data-product-price="15000">Detail Pesanan</button>
+                <button id="whatsappBtn">Simpan dan Lanjutkan ke WhatsApp</button>
+                </div>
+                <!-- Chat Box -->
+                <div id="chatBox" style="display: none; border: 1px solid #ccc; padding: 20px; width: 300px; position: relative;">
+                    <!-- Tombol Close -->
+                    <span id="closeChat" style="cursor: pointer; font-size: 24px; font-weight: bold; color: #dc3545; position: absolute; top: 10px; right: 10px;">&times;</span>
                     
-                    <!-- Detail Produk dalam Kartu -->
-                    <div style="margin-top: 20px; background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                        <p style="margin: 0; font-size: 18px;"><strong>Produk:</strong> <span id="productName">Nama Produk</span></p>
-                        <p style="margin: 10px 0 0 0; font-size: 18px;"><strong>Harga:</strong> <span id="productPrice">Rp 150.000</span></p>
-                        <p style="margin: 10px 0 0 0; font-size: 18px;"><strong>Jumlah:</strong> <span id="productQuantity">1</span></p>
-                    </div>
-
-                    <!-- Tombol Simpan dan Kirim ke WhatsApp -->
-                    <button onclick="confirmOrderDetails()" style="background-color: #007bff; color: white; border: none; padding: 15px 30px; font-size: 18px; cursor: pointer; border-radius: 8px; margin-top: 20px; width: 100%;">
-                        Simpan dan Lanjutkan ke WhatsApp
-                    </button>
+                    <h3>Detail Pesanan</h3>
+                    <p>Nama Produk: <span id="productName"></span></p>
+                    <p>Harga: <span id="productPrice"></span></p>
+                    <p>Jumlah: <span id="productQuantity"></span></p>
+                    <p>Topping: <span id="productTopping"></span></p>
+                    <p>Total Harga: <span id="totalPrice"></span></p>
+                </div>
                 </div>
             </div>
         </div>
