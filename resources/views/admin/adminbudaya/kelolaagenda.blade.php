@@ -184,7 +184,7 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $agenda->nama_acara }}</td>
                                 <td>{{ $agenda->tanggal_acara }}</td>
-                                <td>{{ $agenda->deskripsi_acara }}</td>
+                                <td>{{ \Illuminate\Support\Str::limit($agenda>deskripsi_acara, 20, '...') }}</td>
                                 <td>{{ $agenda->alamat }}</td>
                                 <td>
                                     <!-- Ganti dengan URL absolut untuk Edit -->
