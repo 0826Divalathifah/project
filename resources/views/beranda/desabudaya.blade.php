@@ -116,18 +116,22 @@
     </header>
     <!-- header end -->
     <main>
-          <!-- listing Area Start -->
-          <div class="category-area">
-            <div class="container">
-            <div class="row">
-            
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!-- listing Area Start -->
+    <div class="container">
+    <div class="category-area">
+        <div class="row">   
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">  
         <div class="banner-container">
+            
             <div class="banner-overlay"></div>
             <div class="banner-text">Desa Budaya</div>
-
+            @if(isset($homepageData->gambar_banner))
+                <img src="{{ asset('storage/' . $homepageData->gambar_banner) }}" alt="Banner" class="banner-image">
+            @else
+                <!-- Gambar default jika gambar_banner tidak tersedia -->
+                <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+            @endif
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
@@ -144,11 +148,16 @@
             data-aos-offset="500"
             data-aos-duration="500">
         </div>
-        <div class="container mt-4">
+        <div class="container-fluid mt-4">
         <div class="card custom-card">
         <!-- Gambar di sebelah kiri -->
         <div class="location-img">
-            <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="Desa Budaya">
+        @if(isset($homepageData->gambar_welcome))
+                <img src="{{ asset('storage/' . $homepageData->gambar_welcome) }}" alt="Desa Budaya">
+            @else
+                <!-- Gambar default jika gambar_welcome tidak tersedia -->
+                <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="Desa Budaya">
+            @endif
         </div>
 
         <!-- Deskripsi di sebelah kanan -->
@@ -158,58 +167,33 @@
             
             <!-- Deskripsi di bawah judul -->
             <p class="card-text">
-            DESA BUDAYA adalah wahana sekelompok manusia yang melakukan aktivitas budaya yang mengekspresikan sistem kepercayaan (religi), sistem kesenian, sistem mata pencaharian, sistem teknologi, sistem komunikasi, sistem sosial, dan sistem lingkungan, tata ruang, dan arsitektur
+                {{ $deskripsi_welcome }}
             </p>
+
         </div>
     </div>
 </div>
 </div>
 </div>
 </div>
-@foreach($budaya as $item)
+
 <div class="carousel-container">
+    @foreach($budaya as $item)
     <div class="carousel-card">
-        <img src="{{ asset('uploads/budaya/' .$item->foto_card) }}" alt="Desa Budaya">
-        <h3><a href="{{ url('/detail_budaya/' . $item->id) }}">{{ $item->nama_budaya}}</a></h3>
-        <p>{{ $item->nama_desa_budaya}}</p>
-        <p>{{ $item->alamat}}</p>
+    @if($item->foto_card)
+    <img src="{{ asset('storage/' . $item->foto_card) }}" alt="{{ $item->nama_budaya }}" class="card-img-top">
+    @else
+        <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Gambar Tidak Tersedia" class="card-img-top">
+    @endif
+
+        <h3><a href="{{ url('/detail_budaya/' . $item->id) }}">{{ $item->nama_budaya }}</a></h3>
+        <p>{{ $item->nama_desa_budaya }}</p>
+        <p>{{ $item->alamat }}</p>
     </div>
-    <div class="carousel-card">
-        <img src="{{ asset('themewagon/img/desabudaya/budaya1.jpg') }}" alt="Image 2">
-        <h3>Seni Tari</h3>
-        <p>Desa Budaya Cianjur</p>
-        <p>Jalan Raya Cianjur KM 15, Cianjur, Jawa Barat...</p>
-    </div>
-    <div class="carousel-card">
-        <img src="{{ asset('themewagon/img/desabudaya/budaya1.jpg') }}" alt="Image 2">
-        <h3>Seni Tari</h3>
-        <p>Desa Budaya Cianjur</p>
-        <p>Jalan Raya Cianjur KM 15, Cianjur, Jawa Barat...</p>
-    </div>
-    <!-- Tambah card lainnya sesuai kebutuhan -->
+    @endforeach
 </div>
-<div class="carousel-container">
-    <div class="carousel-card">
-        <img src="{{ asset('themewagon/img/desabudaya/budaya1.jpg') }}" alt="Image 1">
-        <h3>Seni Pertunjukan</h3>
-        <p>Desa Budaya Banjarharjo</p>
-        <p>Jalan Sentolo Muntilan KM 20, Ngrajan, Banjarharjo...</p>
-    </div>
-    <div class="carousel-card">
-        <img src="{{ asset('themewagon/img/desabudaya/budaya1.jpg') }}" alt="Image 2">
-        <h3>Seni Tari</h3>
-        <p>Desa Budaya Cianjur</p>
-        <p>Jalan Raya Cianjur KM 15, Cianjur, Jawa Barat...</p>
-    </div>
-    <div class="carousel-card">
-        <img src="{{ asset('themewagon/img/desabudaya/budaya1.jpg') }}" alt="Image 2">
-        <h3>Seni Tari</h3>
-        <p>Desa Budaya Cianjur</p>
-        <p>Jalan Raya Cianjur KM 15, Cianjur, Jawa Barat...</p>
-    </div>
-    <!-- Tambah card lainnya sesuai kebutuhan -->
-</div>
-@endforeach
+
+
 
 </div>
 </div>
