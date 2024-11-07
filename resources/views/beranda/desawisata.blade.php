@@ -133,74 +133,27 @@
             </div>
         </div>
 
-        <div class="container mt-4">
-    <div class="card custom-card">
-        <!-- Gambar di sebelah kiri -->
-        <div class="location-img">
-            <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam">
-        </div>
-
-        <!-- Deskripsi di sebelah kanan -->
-        <div class="card-body">
-            <!-- Judul di atas -->
-            <h3 class="card-title">Wisata Alam Desa</h3>
-            
-            <!-- Deskripsi di bawah judul -->
-            <p class="card-text">
-                Desa ini menawarkan pengalaman wisata alam yang menakjubkan. Dengan suasana pedesaan yang asri, pengunjung dapat menikmati pemandangan yang indah serta kegiatan budaya yang unik. Lokasinya sangat cocok untuk bersantai dan melepaskan penat dari hiruk-pikuk perkotaan.
-            </p>
-            
-            <!-- Tombol Selengkapnya -->
-            <a href="{{ url('/detail_wisata') }}" class=" my-btn-primary">Selengkapnya</a>
-
-        </div>
-    </div>
-</div>
 <div class="container mt-4">
-    <div class="card custom-card">
-        <!-- Gambar di sebelah kiri -->
-        <div class="location-img">
-            <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam">
-        </div>
+    @foreach($wisata as $wisata)
+        <div class="card custom-card mb-4">
+            <!-- Gambar di sebelah kiri -->
+            <div class="location-img">
+                <img src="{{ asset('storage/' . $wisata->foto_card) }}" alt="{{ $wisata->nama_wisata }}">
+            </div>
 
-        <!-- Deskripsi di sebelah kanan -->
-        <div class="card-body">
-            <!-- Judul di atas -->
-            <h3 class="card-title">Wisata Alam Desa</h3>
-            
-            <!-- Deskripsi di bawah judul -->
-            <p class="card-text">
-                Desa ini menawarkan pengalaman wisata alam yang menakjubkan. Dengan suasana pedesaan yang asri, pengunjung dapat menikmati pemandangan yang indah serta kegiatan budaya yang unik. Lokasinya sangat cocok untuk bersantai dan melepaskan penat dari hiruk-pikuk perkotaan.
-            </p>
-            
-            <!-- Tombol Selengkapnya -->
-            <a href="{{ url('/detail_wisata') }}" class=" my-btn-primary">Selengkapnya</a>
-
+            <!-- Deskripsi di sebelah kanan -->
+            <div class="card-body">
+                <!-- Judul di atas -->
+                <h3 class="card-title">{{ $wisata->nama_wisata }}</h3>
+                
+                <!-- Deskripsi di bawah judul -->
+                <p class="card-text">{{ $wisata->deskripsi }}</p>
+                
+                <!-- Tombol Selengkapnya -->
+                <a href="{{ url('/detail_wisata/' . $wisata->id) }}" class="my-btn-primary">Selengkapnya</a>
+            </div>
         </div>
-    </div>
-</div>
-<div class="container mt-4">
-    <div class="card custom-card">
-        <!-- Gambar di sebelah kiri -->
-        <div class="location-img">
-            <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam">
-        </div>
-
-        <!-- Deskripsi di sebelah kanan -->
-        <div class="card-body">
-            <!-- Judul di atas -->
-            <h3 class="card-title">Wisata Alam Desa</h3>
-            
-            <!-- Deskripsi di bawah judul -->
-            <p class="card-text">
-                Desa ini menawarkan pengalaman wisata alam yang menakjubkan. Dengan suasana pedesaan yang asri, pengunjung dapat menikmati pemandangan yang indah serta kegiatan budaya yang unik. Lokasinya sangat cocok untuk bersantai dan melepaskan penat dari hiruk-pikuk perkotaan.
-            </p>
-            
-            <!-- Tombol Selengkapnya -->
-            <a href="{{ url('/detail_wisata') }}" class=" my-btn-primary">Selengkapnya</a>
-
-        </div>
-    </div>
+    @endforeach
 </div>
 
 </div>
