@@ -133,7 +133,7 @@
                         <li class="breadcrumb-item"><a href="#"> Edit Budaya</a></li>
                     </ol>
                 </nav>
-                <div class="col-12 grid-margin stretch-card">
+    <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Formulir Edit Budaya</h4>
@@ -224,14 +224,23 @@
                 {{-- Foto Card --}}
                 <div class="form-group">
                     <label>Unggah Foto Card</label>
+
+                    <!-- Menampilkan Foto yang Sudah Ada (dengan opsi hapus) -->
                     @if ($budaya->foto_card)
-                        <div class="mb-2">
-                            <img src="{{ asset('uploads/budaya/' . $budaya->foto_card) }}" alt="Foto Card" width="150">
-                            <label>
-                                <input type="checkbox" name="hapus_foto_card" value="1"> Hapus Foto Card
-                            </label>
+                    <div id="existing-photos" style="margin-bottom: 15px;">
+                        <div class="photo-preview" style="display: inline-block; margin-right: 10px; position: relative;">
+                            <!-- Gambar diatur block untuk memastikan berada di bawah label -->
+                            <img src="{{ asset('storage/' . $budaya->foto_card) }}" alt="Foto Card" width="100" >
+                            <button type="button" class="btn-close remove-photo" aria-label="Close" 
+                                    style="position: absolute; top: 5px; right: 5px; background-color: white; border: none; border-radius: 50%; padding: 2px 6px; cursor: pointer; color: red;" 
+                                    data-foto="{{ $budaya->foto_card }}">
+                                &times;
+                            </button>
+                            <input type="hidden" name="existing_photos[]" value="{{ $budaya->foto_card }}">
                         </div>
                     @endif
+
+                    <!-- Field untuk Upload Gambar Baru -->
                     <input type="file" name="foto_card" class="file-upload-default">
                     <div class="input-group col-xs-12 d-flex align-items-center">
                         <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
@@ -240,20 +249,26 @@
                         </span>
                     </div>
                 </div>
-
                 {{-- Foto Slider --}}
                 <div class="form-group">
                     <label>Unggah Foto-Foto Kebudayaan</label>
+
+                    <!-- Menampilkan Foto yang Sudah Ada (dengan opsi hapus) -->
                     @if (!empty($budaya->foto_slider) && is_array(json_decode($budaya->foto_slider, true)))
-                    @foreach (json_decode($budaya->foto_slider, true) as $foto)
-                        <div class="mb-2">
-                            <img src="{{ asset('uploads/budaya/' . $foto) }}" alt="Foto Slider" width="100">
-                            <label>
-                                <input type="checkbox" name="hapus_foto_slider[]" value="{{ $foto }}"> Hapus
-                            </label>
+                        <div id="existing-photos" style="margin-bottom: 15px;">
+                            @foreach (json_decode($budaya->foto_slider, true) as $foto)
+                                <div class="photo-preview" style="display: inline-block; margin-right: 10px; position: relative;">
+                                    <img src="{{ asset('storage/' . $foto) }}" alt="Foto Slider" width="100">
+                                    <button type="button" class="btn-close remove-photo" aria-label="Close" 
+                                            style="position: absolute; top: 5px; right: 5px; background-color: white; border: none; border-radius: 50%; padding: 2px 6px; cursor: pointer; color: red;"
+                                            data-foto="{{ $foto }}"></button>
+                                    <input type="hidden" name="existing_photos[]" value="{{ $foto }}">
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
-                @endif
+                    @endif
+
+                    <!-- Field untuk Upload Gambar Baru -->
                     <input type="file" name="foto_slider[]" class="file-upload-default" multiple>
                     <div class="input-group col-xs-12 d-flex align-items-center">
                         <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
@@ -262,6 +277,7 @@
                         </span>
                     </div>
                 </div>
+
                 <button type="submit" class="btn btn-primary me-2">Submit</button>
                 <a href="{{ url('/kelolabudaya') }}" class="btn btn-light">Kembali</a>
             </form>
@@ -300,7 +316,7 @@
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
-
+    <script src="{{ asset('admin/assets/js/photoManager.js') }}"></script>             
     <!-- End custom js for this page-->
 </body>
 </html>
