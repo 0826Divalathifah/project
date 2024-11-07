@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Budaya;
 use App\Models\Agenda;
+use App\Models\HomepageBudaya;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+
 
 class AdminDesaBudayaController extends Controller
 {
@@ -17,10 +20,7 @@ class AdminDesaBudayaController extends Controller
 
     public function kelolaBudaya()
     {
-        // Ambil semua data dari model Budaya
-        $budaya = Budaya::all(); // Anda dapat menyesuaikan query ini sesuai kebutuhan
-
-        // Kirim data ke view
+        $budaya = Budaya::all(); // Ambil semua data budaya
         return view('admin.adminbudaya.kelolabudaya', compact('budaya'));
     }
 
@@ -29,73 +29,76 @@ class AdminDesaBudayaController extends Controller
     {
         return view('admin.adminbudaya.tambahbudaya');
     }
-    // Menyimpan budaya
+
     public function simpanBudaya(Request $request)
-    {
-        // Validasi input form
-        $validator = Validator::make($request->all(), [
-            'nama_budaya' => 'required|string|max:255',
-            'nama_desa_budaya' => 'required|string|max:255',
-            'alamat' => 'required|string|max:255',
-            'harga_min' => 'nullable|numeric',
-            'harga_max' => 'nullable|numeric',
-            'link_youtube' => 'nullable|url|max:255',
-            'nomor_whatsapp' => 'required|string|max:15',
-            'link_google_maps' => 'nullable|url|max:255',
-            'deskripsi' => 'required|string',
-            'foto_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
-            'foto_slider.*' => 'image|mimes:jpeg,png,jpg,gif|max:5120',
-        ]);
+{
+    // Validasi input form
+    $validatedData = $request->validate([
+        'nama_budaya' => 'required|string|max:255',
+        'nama_desa_budaya' => 'required|string|max:255',
+        'alamat' => 'required|string|max:255',
+        'harga_min' => 'nullable|numeric',
+        'harga_max' => 'nullable|numeric',
+        'link_youtube' => 'nullable|url|max:255',
+        'nomor_whatsapp' => 'required|string|max:15',
+        'link_google_maps' => 'nullable|url|max:255',
+        'deskripsi' => 'required|string',
+        'foto_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+        'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+    ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+    // Konversi link YouTube ke format embed jika ada
+    $link_youtube = $request->input('link_youtube');
+    if ($link_youtube) {
+        if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $link_youtube, $matches)) {
+            $validatedData['link_youtube'] = 'https://www.youtube.com/embed/' . $matches[1];
         }
+    }
 
-        // Upload foto card
-        $fotoCardName = time() . '_card.' . $request->foto_card->extension();
-        $request->foto_card->move(public_path('uploads/budaya'), $fotoCardName);
-
-        // Upload foto slider
-        $fotoSliderPaths = [];
-        if ($request->hasFile('foto_slider')) {
-            foreach ($request->file('foto_slider') as $foto) {
-                if ($foto instanceof \Illuminate\Http\UploadedFile) {
-                    $fotoName = time() . '_' . $foto->getClientOriginalName();
-                    $foto->move(public_path('uploads/budaya'), $fotoName);
-                    $fotoSliderPaths[] = $fotoName;
+    // Konversi link Google Maps ke format embed jika ada
+    $link_google_maps = $request->input('link_google_maps');
+    if ($link_google_maps) {
+        $embed_map_link = $link_google_maps;
+        if (strpos($link_google_maps, 'embed') === false) {
+            $urlParts = parse_url($link_google_maps);
+            if (isset($urlParts['query'])) {
+                parse_str($urlParts['query'], $queryParams);
+                if (isset($queryParams['q'])) {
+                    $query = urlencode($queryParams['q']);
+                    $embed_map_link = "https://www.google.com/maps/embed?pb=" . $query;
                 }
             }
         }
-
-        // Konversi array foto slider menjadi JSON
-        $fotoSliderJson = json_encode($fotoSliderNames);
-
-        // Simpan data ke database
-        $budaya = new Budaya();
-        $budaya->nama_budaya = $request->nama_budaya;
-        $budaya->nama_desa_budaya = $request->nama_desa_budaya;
-        $budaya->alamat = $request->alamat;
-        $budaya->harga_min = $request->harga_min;
-        $budaya->harga_max = $request->harga_max;
-        $budaya->link_youtube = $request->link_youtube;
-        $budaya->nomor_whatsapp = $request->nomor_whatsapp;
-        $budaya->link_google_maps = $request->link_google_maps;
-        $budaya->deskripsi = $request->deskripsi;
-        $budaya->foto_card = $fotoCardName;
-        $budaya->foto_slider = json_encode($fotoSliderPaths);
-
-        $budaya->save();
-
-        return redirect()->back()->with('success', 'Data budaya berhasil ditambahkan');
+        $validatedData['link_google_maps'] = $embed_map_link;
     }
+
+    // Proses upload foto_card
+    $validatedData['foto_card'] = $request->file('foto_card')->store('uploads/budaya', 'public');
+
+    // Proses upload foto_slider
+    if ($request->hasFile('foto_slider')) {
+        foreach ($request->file('foto_slider') as $foto) {
+            $fotoSliderPaths[] = $foto->store('uploads/budaya', 'public');
+        }
+        $validatedData['foto_slider'] = json_encode($fotoSliderPaths);
+    } else {
+        $validatedData['foto_slider'] = json_encode([]);
+    }
+
+    // Simpan data ke database
+    Budaya::create($validatedData);
+
+    return redirect()->back()->with('success', 'Data budaya berhasil ditambahkan');
+    }
+
 
     // Menampilkan form edit budaya
     public function editBudaya($id)
     {
-        $budaya = Budaya::findOrFail($id); // Ambil data budaya berdasarkan ID
-        return view('admin.adminbudaya.editbudaya', compact('budaya')); // Kirim data ke view
-    }
-    
+        $budaya = Budaya::findOrFail($id); 
+        return view('admin.adminbudaya.editbudaya', compact('budaya'));
+    }   
+
     // Memperbarui budaya
     public function updateBudaya(Request $request, $id)
     {
@@ -120,79 +123,105 @@ class AdminDesaBudayaController extends Controller
 
         $budaya = Budaya::findOrFail($id);
 
-        // Hapus foto card jika opsi hapus dipilih
-        if ($request->has('hapus_foto_card') && $budaya->foto_card) {
-            if (file_exists(public_path('uploads/budaya/' . $budaya->foto_card))) {
-                unlink(public_path('uploads/budaya/' . $budaya->foto_card));
+        // Update foto card
+        if ($request->hasFile('foto_card')) {
+            if ($budaya->foto_card && Storage::disk('public')->exists($budaya->foto_card)) {
+                Storage::disk('public')->delete($budaya->foto_card);
             }
-            $budaya->foto_card = null; 
+            $fotoCardName = $request->file('foto_card')->store('uploads/budaya', 'public');
+            $budaya->foto_card = $fotoCardName;
         }
 
+        // Update foto slider
+        $fotoSliderPaths = json_decode($budaya->foto_slider, true) ?? [];
 
-         // Update foto card jika ada file baru
-            if ($request->hasFile('foto_card')) {
-                // Hapus file lama
-                if ($budaya->foto_card && file_exists(public_path('uploads/budaya/' . $budaya->foto_card))) {
-                    unlink(public_path('uploads/budaya/' . $budaya->foto_card));
-                }
-
-        // Upload file baru
-            $fotoCardName = time() . '_card.' . $request->foto_card->extension();
-            $request->foto_card->move(public_path('uploads/budaya'), $fotoCardName);
-            $budaya->foto_card = $fotoCardName;
-            }
-
-            // Proses foto slider
-            $fotoSliderPaths = json_decode($budaya->foto_slider, true) ?? [];
-
-            // Hapus foto slider yang dipilih
-            if ($request->has('hapus_foto_slider')) {
-                foreach ($request->hapus_foto_slider as $hapusFoto) {
-                    if (($key = array_search($hapusFoto, $fotoSliderPaths)) !== false) {
-                        if (file_exists(public_path('uploads/budaya/' . $hapusFoto))) {
-                            unlink(public_path('uploads/budaya/' . $hapusFoto));
-                        }
-                        unset($fotoSliderPaths[$key]);
+        // Hapus foto slider yang diinginkan
+        if ($request->has('hapus_foto_slider') && is_array($request->hapus_foto_slider)) {
+            foreach ($request->hapus_foto_slider as $hapusFoto) {
+                if (($key = array_search($hapusFoto, $fotoSliderPaths)) !== false) {
+                    if (Storage::disk('public')->exists($hapusFoto)) {
+                        Storage::disk('public')->delete($hapusFoto);
                     }
+                    unset($fotoSliderPaths[$key]);
                 }
             }
+        }
 
-    // Tambahkan foto baru ke slider
-    if ($request->hasFile('foto_slider')) {
-        foreach ($request->file('foto_slider') as $foto) {
-            if ($foto instanceof \Illuminate\Http\UploadedFile) {
-                $fotoName = time() . '_' . $foto->getClientOriginalName();
-                $foto->move(public_path('uploads/budaya'), $fotoName);
+        // Tambahkan foto slider baru
+        if ($request->hasFile('foto_slider')) {
+            foreach ($request->file('foto_slider') as $foto) {
+                $fotoName = $foto->store('uploads/budaya', 'public');
                 $fotoSliderPaths[] = $fotoName;
             }
         }
-    }
+
+        // Konversi link YouTube ke format embed jika tersedia
+        $link_youtube = $request->input('link_youtube');
+        if ($link_youtube) {
+            if (preg_match('/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/', $link_youtube, $matches)) {
+                $link_youtube = 'https://www.youtube.com/embed/' . $matches[1];
+            } elseif (preg_match('/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/', $link_youtube, $matches)) {
+                $link_youtube = 'https://www.youtube.com/embed/' . $matches[1];
+            }
+        }
+
+        // Konversi link Google Maps ke format embed jika tersedia
+        $link_google_maps = $request->input('link_google_maps');
+        if ($link_google_maps) {
+            $embed_map_link = $link_google_maps;
+            if (strpos($link_google_maps, 'embed') === false) {
+                $urlParts = parse_url($link_google_maps);
+                if (isset($urlParts['query'])) {
+                    parse_str($urlParts['query'], $queryParams);
+                    if (isset($queryParams['q'])) {
+                        $query = urlencode($queryParams['q']);
+                        $link_google_maps = "https://www.google.com/maps/embed?pb=" . $query;
+                    }
+                }
+            }
+        }
 
     // Update data di database
-    $budaya->nama_budaya = $request->nama_budaya;
-    $budaya->nama_desa_budaya = $request->nama_desa_budaya;
-    $budaya->alamat = $request->alamat;
-    $budaya->harga_min = $request->harga_min;
-    $budaya->harga_max = $request->harga_max;
-    $budaya->link_youtube = $request->link_youtube;
-    $budaya->nomor_whatsapp = $request->nomor_whatsapp;
-    $budaya->link_google_maps = $request->link_google_maps;
-    $budaya->deskripsi = $request->deskripsi;
-    $budaya->foto_slider = json_encode(array_values($fotoSliderPaths));
-
-    $budaya->save();
+    $budaya->update([
+        'nama_budaya' => $request->nama_budaya,
+        'nama_desa_budaya' => $request->nama_desa_budaya,
+        'alamat' => $request->alamat,
+        'harga_min' => $request->harga_min,
+        'harga_max' => $request->harga_max,
+        'link_youtube' => $link_youtube,
+        'nomor_whatsapp' => $request->nomor_whatsapp,
+        'link_google_maps' => $link_google_maps,
+        'deskripsi' => $request->deskripsi,
+        'foto_slider' => json_encode(array_values($fotoSliderPaths)),
+    ]);
 
     return redirect()->back()->with('success', 'Data budaya berhasil diperbarui');
 }
 
-public function hapusBudaya($id)
-{
-    // Temukan data budaya berdasarkan ID dan hapus
-    $budaya = Budaya::findOrFail($id);
-    $budaya->delete();
 
-    return redirect()->back()->with('success', 'Data budaya beserta semua foto terkait berhasil dihapus');
-}
+    // Menghapus budaya
+    public function hapusBudaya($id)
+    {
+        $budaya = Budaya::findOrFail($id);
+
+        // Hapus foto card
+        if ($budaya->foto_card && Storage::disk('public')->exists($budaya->foto_card)) {
+            Storage::disk('public')->delete($budaya->foto_card);
+        }
+
+        // Hapus semua foto slider
+        $fotoSliderPaths = json_decode($budaya->foto_slider, true) ?? [];
+        foreach ($fotoSliderPaths as $foto) {
+            if (Storage::disk('public')->exists($foto)) {
+                Storage::disk('public')->delete($foto);
+            }
+        }
+
+        $budaya->delete();
+
+        return redirect()->back()->with('success', 'Data budaya beserta semua foto terkait berhasil dihapus');
+    }
+
 
      // Mengelola agenda
      public function kelolaAgenda()
@@ -235,28 +264,28 @@ public function hapusBudaya($id)
  
      // Memperbarui agenda
      public function updateAgenda(Request $request, $id)
-{
-    $validator = Validator::make($request->all(), [
-        'nama_acara' => 'required|string|max:255',
-        'tanggal_acara' => 'required|date',
-        'deskripsi_acara' => 'required|string',
-        'alamat' => 'nullable|string|max:255',
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            'nama_acara' => 'required|string|max:255',
+            'tanggal_acara' => 'required|date',
+            'deskripsi_acara' => 'required|string',
+            'alamat' => 'nullable|string|max:255',
+        ]);
 
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $agenda = Agenda::findOrFail($id);
+        $agenda->update([
+            'nama_acara' => $request->nama_acara,
+            'tanggal_acara' => $request->tanggal_acara,
+            'deskripsi_acara' => $request->deskripsi_acara,
+            'alamat' => $request->alamat,
+        ]);
+
+        return redirect()->to('/kelolaagenda')->with('success', 'Agenda berhasil diperbarui');
     }
-
-    $agenda = Agenda::findOrFail($id);
-    $agenda->update([
-        'nama_acara' => $request->nama_acara,
-        'tanggal_acara' => $request->tanggal_acara,
-        'deskripsi_acara' => $request->deskripsi_acara,
-        'alamat' => $request->alamat,
-    ]);
-
-    return redirect()->to('/kelolaagenda')->with('success', 'Agenda berhasil diperbarui');
-}
  
      // Menghapus agenda
     public function deleteAgenda($id)
@@ -266,10 +295,48 @@ public function hapusBudaya($id)
 
         return redirect()->to('/kelolaagenda')->with('success', 'Agenda berhasil dihapus');
     }
-     public function kelolaHomepage()
+    public function kelolaHomepage()
     {
-        return view('admin.adminbudaya.kelolahomepagebudaya'); 
+        $homepageData = HomepageBudaya::first();
+        return view('admin.adminbudaya.kelolahomepagebudaya', compact('homepageData'));
     }
+
+    public function editHomepageBudaya()
+    {
+        $homepageData = HomepageBudaya::first();
+        return view('admin.edit_homepagebudaya', compact('homepageData'));
+    }
+
+    public function updateHomepageBudaya(Request $request)
+    {
+        // Mengambil data pertama atau membuat baru jika belum ada
+        $homepageData = HomepageBudaya::firstOrNew();
+
+        // Mengelola upload gambar banner jika ada
+        if ($request->hasFile('banner_image')) {
+            // Hapus gambar lama jika ada
+            if ($homepageData->gambar_banner && Storage::disk('public')->exists($homepageData->gambar_banner)) {
+                Storage::disk('public')->delete($homepageData->gambar_banner);
+            }
+            $homepageData->gambar_banner = $request->file('banner_image')->store('uploads', 'public');
+        }
+
+        // Mengelola upload gambar welcome jika ada
+        if ($request->hasFile('welcome_image')) {
+            // Hapus gambar lama jika ada
+            if ($homepageData->gambar_welcome && Storage::disk('public')->exists($homepageData->gambar_welcome)) {
+                Storage::disk('public')->delete($homepageData->gambar_welcome);
+            }
+            $homepageData->gambar_welcome = $request->file('welcome_image')->store('uploads', 'public');
+        }
+
+        // Menyimpan deskripsi welcome
+        $homepageData->deskripsi_welcome = $request->welcome_description;
+        $homepageData->save();
+
+        return redirect()->back()->with('success', 'Data berhasil disimpan');
+    }   
+
      public function laporanBudaya()
      {
          return view('admin.adminbudaya.laporanbudaya');
