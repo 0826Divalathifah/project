@@ -140,25 +140,34 @@
         </div>
         <div class="col-md-6">
             <!-- Deskripsi Singkat -->
-            <h2 class="text-primary">Wisata Alam Desa</h2>
+            <h2 class="text-primary">{{ $wisata->nama_wisata }}</h2>
             <p class="lead">
-                Nikmati keindahan alam Desa Wisata yang menawarkan pemandangan yang asri, udara segar, dan kegiatan budaya yang menarik. Cocok untuk melepas penat dan berinteraksi langsung dengan masyarakat lokal.
+                {{ $wisata->deskripsi }}
             </p>
+    
+        <!-- Informasi Harga -->
+        <h4 class="mt-4">Harga Masuk</h4>
+        <p class="lead">
+            Rp {{ number_format($wisata->harga_masuk, 0, ',', '.') }} / orang
+        </p>
 
-            <!-- Informasi Harga -->
-            <h4 class="mt-4">Harga Masuk</h4>
-            <p class="lead">Rp 30.000 / orang</p>
-            <!-- Informasi Hari dan Jam Buka -->
-            <h4 class="mt-4">Hari dan Jam Buka</h4>
-            <p class="lead">
-                Setiap hari: 08:00 - 18:00 WIB
-            </p>
+        <!-- Informasi Hari dan Jam Buka -->
+        <h4 class="mt-4">Hari dan Jam Buka</h4>
+        <p class="lead">
+            @if($wisata->waktu_kunjung)
+                @foreach(json_decode($wisata->waktu_kunjung) as $waktu)
+                    {{ $waktu->hari }}: {{ $waktu->jam_buka }} - {{ $waktu->jam_tutup }}<br>
+                @endforeach
+            @else
+                Tidak ada informasi waktu kunjung.
+            @endif
+        </p>
 
-            <!-- Alamat Desa Wisata -->
-            <h4 class="mt-4">Alamat</h4>
-            <p class="lead">
-                Desa Wisata Alam, Kecamatan Sardono, Kabupaten Sleman, Yogyakarta.
-            </p>
+        <!-- Alamat Desa Wisata -->
+        <h4 class="mt-4">Alamat</h4>
+        <p class="lead">
+            {{ $wisata->alamat }}
+        </p>
         </div>
     </div>
 
