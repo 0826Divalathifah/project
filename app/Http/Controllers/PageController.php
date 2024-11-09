@@ -7,6 +7,9 @@ use App\Models\Budaya;
 use App\Models\HomepageBudaya;
 use App\Models\Agenda;
 use App\Models\Wisata;
+use App\Models\Preneur;
+use App\Models\Prima;
+use App\Models\VarianPrima;
 
 
 class PageController extends Controller
@@ -96,7 +99,39 @@ class PageController extends Controller
                 $wisata = Wisata::findOrFail($id); // Mengambil data wisata berdasarkan ID
                 return view('beranda.detail_wisata', compact('wisata')); // Meneruskan data ke view
             }
+
+            public function detail_prima($id)
+            {
+                // Mengambil data produk berdasarkan ID
+                $produk = Prima::with('varianPrima')->findOrFail($id); // Mengambil data beserta variannya
+
+                // Mengembalikan tampilan detail produk dengan data yang diambil
+                return view('beranda.detail_prima', compact('produk'));
+
+            }
+            public function desaprima()
+            {
+                $makanan = Prima::where('kategori_produk', 'makanan')->get();
+                $kerajinan = Prima::where('kategori_produk', 'kerajinan')->get();
+        
+                return view('beranda.desaprima', compact('makanan', 'kerajinan'));
+            }
             
+
+            public function detail_preneur($id)
+            {
+                $produk = Preneur::with('varians')->findOrFail($id);
+                return view('beranda.detail_preneur', compact('produk'));
+            }
+            public function desapreneur()
+            {
+                $makanan = Preneur::where('kategori_produk', 'makanan')->get();
+                $kerajinan = Preneur::where('kategori_produk', 'kerajinan')->get();
+        
+                return view('beranda.desapreneur', compact('makanan', 'kerajinan'));
+            }
+            
+
 
             
     public function about()
