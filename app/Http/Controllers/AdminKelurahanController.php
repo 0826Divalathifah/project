@@ -4,54 +4,86 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AdminKelurahan;
+use App\Models\Feedback;
 use Illuminate\Support\Facades\Hash;
 
 class AdminKelurahanController extends Controller
 {
     public function kelolaAdmin()
     {
-        return view('admin.adminkelurahan.kelolaAdmin'); 
+        // Menampilkan daftar admin
+        $admins = AdminKelurahan::all();
+        return view('admin.adminkelurahan.kelolaAdmin', compact('admins'));
     }
 
     public function showDashboard()
     {
         return view('admin.adminkelurahan.adminkelurahan'); // pastikan file 'dashboard.blade.php' ada di dalam folder yang benar
     }
-    public function simpanAdmin(Request $request)
+
+
+    public function tambahadmin()
+    {
+        return view('admin.adminkelurahan.tambahadmin'); // Menampilkan halaman tambah admin
+    }
+        public function simpanAdmin(Request $request)
     {
         $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:admin_kelurahans,username',
-            'email' => 'required|string|email|max:255|unique:admin_kelurahans,email',
+            'username' => 'required|string|max:255|unique:admin_kelurahan,username',
+            'email' => 'required|string|email|max:255|unique:admin_kelurahan,email',
             'nomor_telepon' => 'required|string|max:20',
             'peran' => 'required|string',
             'password' => 'required|string|confirmed|min:6',
-            'status_aktif' => 'required|boolean',
-            'foto_profil' => 'nullable|image|max:2048',
+            'alamat' => 'nullable|string|max:255',
         ]);
 
         $admin = new AdminKelurahan();
-        $admin->nama_lengkap = $request->nama_lengkap;
         $admin->username = $request->username;
         $admin->email = $request->email;
         $admin->nomor_telepon = $request->nomor_telepon;
         $admin->peran = $request->peran;
-        $admin->password = Hash::make($request->password);
+        $admin->password = bcrypt($request->password); // Gunakan bcrypt untuk hashing password
         $admin->alamat = $request->alamat;
-        $admin->status_aktif = $request->status_aktif;
-
-        if ($request->hasFile('foto_profil')) {
-            $filename = time() . '.' . $request->foto_profil->getClientOriginalExtension();
-            $request->foto_profil->move(public_path('uploads/foto_profil'), $filename);
-            $admin->foto_profil = 'uploads/foto_profil/' . $filename;
-        }
-
         $admin->save();
 
-        return redirect()->route('admin.adminkelurahan.tambahAdmin')->with('success', 'Admin berhasil ditambahkan.');
+
+        return redirect()->back()->with('success', 'Admin berhasil ditambahkan.');
     }
-    public function tambahadmin()
-    {
-        return view('admin.adminkelurahan.tambahadmin'); // pastikan file 'tambahadmin.blade.php' ada di dalam folder yang benar
-    }
+
+     // Menampilkan halaman kelola feedback
+     public function kelolafeedback()
+     {
+         $feedback = AdminKelurahan::all();
+         return view('admin.adminkelurahan.kelolaFeedback', compact('feedback'));
+     }
+ 
+     // Menyimpan feedback dari form "Kesan dan Pesan"
+     public function simpanFeedback(Request $request)
+{
+    $request->validate([
+        'nama_pengguna' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255',
+        'pesan' => 'required|string',
+    ]);
+
+    Feedback::create([
+        'nama_pengguna' => $request->name,
+        'email' => $request->email,
+        'pesan' => $request->message,
+        'status_baca' => 0, // Set default status sebagai belum dibaca
+    ]);
+
+    return redirect()->back()->with('success', 'Feedback berhasil dikirim.');
+}
+
+ 
+     // Hapus feedback
+     public function hapusFeedback($id)
+     {
+         Feedback::destroy($id);
+         return redirect()->back()->with('success', 'Feedback berhasil dihapus.');
+     }
+
+
+    
 }
