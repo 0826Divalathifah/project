@@ -26,11 +26,18 @@ Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi'
 
 
 // Rute untuk halaman dashboard superadmin kelurahan
-Route::get('/adminkelurahan', [AdminKelurahanController::class, 'showDashboard'])->name('admin.adminkelurahan.adminkelurahan');
-Route::get('/kelolaAdmin', [AdminKelurahanController::class, 'kelolaAdmin'])->name('admin.adminkelurahan.kelolaAdmin.kelolaAdmin');
-Route::get('/kelolahomepage', [AdminKelurahanController::class, 'kelolahomepage'])->name('admin.adminkelurahan.kelolahomepage.kelolahomepage');
-Route::post('/admin/simpan_admin', [AdminKelurahanController::class, 'simpanAdmin'])->name('admin.adminkelurahan.simpanAdmin');
-Route::get('/kelolafeedback', [AdminKelurahanController::class, 'kelolafeedback'])->name('admin.adminkelurahan.kelolafeedback.kelolafeedback');
+Route::get('/adminkelurahan', [AdminKelurahanController::class, 'showDashboard']);
+Route::get('/kelolahomepage', [AdminKelurahanController::class, 'kelolahomepage']);
+Route::get('/tambahadmin', [AdminKelurahanController::class, 'tambahadmin']);
+Route::get('/kelolafeedback', [AdminKelurahanController::class, 'kelolafeedback']);
+Route::post('/kelolafeedback', [AdminKelurahanController::class, 'kelolafeedback']);
+Route::post('/admin/simpanFeedback', [AdminKelurahanController::class, 'simpanFeedback']);
+Route::post('/kirimfeedback', [AdminKelurahanController::class, 'simpanFeedback']);
+Route::post('/feedback/{id}/mark-as-read', [AdminKelurahanController::class, 'markAsRead']);
+Route::delete('/feedback/{id}', [AdminKelurahanController::class, 'hapusFeedback']);
+Route::get('/kelolaadmin', [AdminKelurahanController::class, 'kelolaAdmin']);
+Route::post('/admin/editadmin/{id}', [AdminKelurahanController::class, 'editAdmin']);
+Route::post('/admin/simpan-admin', [AdminKelurahanController::class, 'simpanAdmin']);
 
 //Rute untuk halaman dashboard admin budaya
 Route::get('/adminbudaya', [AdminDesaBudayaController::class, 'showDashboard']);
