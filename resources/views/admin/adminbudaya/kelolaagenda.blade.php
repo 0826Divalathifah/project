@@ -60,11 +60,7 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
+        
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -184,17 +180,22 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $agenda->nama_acara }}</td>
                                 <td>{{ $agenda->tanggal_acara }}</td>
-                                <td>{{ \Illuminate\Support\Str::limit($agenda>deskripsi_acara, 20, '...') }}</td>
+                                <td>{{ \Illuminate\Support\Str::limit($agenda->deskripsi_acara, 20, '...') }}</td>
                                 <td>{{ $agenda->alamat }}</td>
                                 <td>
                                     <!-- Ganti dengan URL absolut untuk Edit -->
                                     <a href="/agenda/{{ $agenda->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
                                     
                                     <!-- Ganti dengan URL absolut untuk Delete -->
-                                    <form action="/agenda/{{ $agenda->id }}" method="POST" style="display:inline;">
+                                    <form id="delete-form-{{ $agenda->id }}" action="/agenda/{{ $agenda->id }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus agenda ini?');">Hapus</button>
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-danger btn-sm" 
+                                            onclick="confirmDelete('{{ $agenda->name }}', {{ $agenda->id }});">
+                                            Hapus
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
