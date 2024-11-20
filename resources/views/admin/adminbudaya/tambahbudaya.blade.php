@@ -60,11 +60,6 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -211,10 +206,10 @@
         </div>
 
         <div class="form-group">
-            <label>Unggah Foto Card</label>
+            <label>Unggah Foto Card Budaya</label>
             <input type="file" name="foto_card" class="file-upload-default" required>
             <div class="input-group col-xs-12 d-flex align-items-center">
-                <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto card" required>
                 <span class="input-group-append ms-2">
                     <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
                 </span>
