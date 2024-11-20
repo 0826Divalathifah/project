@@ -4,18 +4,81 @@ namespace App\Http\Controllers;
 
 use App\Models\Budaya;
 use App\Models\Agenda;
+use App\Models\Visit;
 use App\Models\HomepageBudaya;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
-
 class AdminDesaBudayaController extends Controller
 {
-    // Menampilkan dashboard
-    public function showDashboard()
+    public function showDashboard(Request $request)
     {
-        return view('admin.adminbudaya.adminbudaya');
+        // Default period adalah mingguan (7 hari terakhir)
+        $period = $request->get('period', 'week');
+
+        // Menentukan tanggal mulai berdasarkan periode yang dipilih
+        $startDate = match ($period) {
+            'week' => Carbon::now()->subDays(6), // 7 hari terakhir
+            'month' => Carbon::now()->startOfMonth(), // Awal bulan
+            'year' => Carbon::now()->startOfYear(), // Awal tahun
+            default => Carbon::now()->subDays(6),
+        };
+
+        // Total budaya di database
+        $totalBudaya = Budaya::count();
+
+        // Total agenda di database
+        $totalAgenda = Agenda::count();
+
+        // Total kunjungan keseluruhan untuk Desa Budaya
+        $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count();
+
+        // Total kunjungan berdasarkan periode yang dipilih
+        $desaBudayaVisits = Visit::selectRaw('DATE(created_at) as date, COUNT(*) as total')
+            ->where('desa_name', 'Desa Budaya')
+            ->whereDate('created_at', '>=', $startDate)
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        $dataDesa = [
+            'budaya' => [
+                'date' => $desaBudayaVisits->pluck('date')->map(fn($date) => Carbon::parse($date)->format('d M')), // Format tanggal
+                'total' => $desaBudayaVisits->pluck('total'),
+            ],
+        ];
+
+        // Data agenda per bulan (untuk chart agenda bulanan)
+        $agendaPerMonth = Agenda::selectRaw('MONTH(created_at) as month, COUNT(*) as total_agenda')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $agendaMonths = $agendaPerMonth->pluck('month')->map(fn($month) => Carbon::create()->month($month)->format('F'));
+        $agendaTotals = $agendaPerMonth->pluck('total_agenda');
+
+        // Agenda yang akan datang
+        $agendaComing = Agenda::where('tanggal_acara', '>=', Carbon::now())
+            ->orderBy('tanggal_acara', 'asc')
+            ->get();
+
+        // Daftar budaya
+        $budaya = Budaya::all();
+
+        // Kirim data ke view
+        return view('admin.adminbudaya.adminbudaya', compact(
+            'totalBudaya',
+            'totalAgenda',
+            'totalVisitsDesaBudaya',
+            'dataDesa',
+            'agendaMonths',
+            'agendaTotals',
+            'agendaComing',
+            'budaya',
+            'period' // Mengirimkan periode yang dipilih untuk dropdown di view
+        ));
     }
 
     public function kelolaBudaya()
@@ -55,19 +118,26 @@ class AdminDesaBudayaController extends Controller
         }
     }
 
-    // Konversi link Google Maps ke format embed jika ada
+    // Ambil link Google Maps dari input pengguna
     $link_google_maps = $request->input('link_google_maps');
     if ($link_google_maps) {
-        $embed_map_link = $link_google_maps;
+        // Jika link bukan embed, coba konversi ke format embed
         if (strpos($link_google_maps, 'embed') === false) {
             $urlParts = parse_url($link_google_maps);
             if (isset($urlParts['query'])) {
                 parse_str($urlParts['query'], $queryParams);
                 if (isset($queryParams['q'])) {
                     $query = urlencode($queryParams['q']);
-                    $embed_map_link = "https://www.google.com/maps/embed?pb=" . $query;
+                    // Konversi ke format embed tanpa API key
+                    $embed_map_link = "https://www.google.com/maps/embed/v1/place?q=" . $query;
                 }
+            } else {
+                // Jika link langsung berupa alamat, langsung gunakan format embed
+                $embed_map_link = "https://www.google.com/maps/embed/v1/place?q=" . urlencode($link_google_maps);
             }
+        } else {
+            // Jika link sudah embed, gunakan langsung
+            $embed_map_link = $link_google_maps;
         }
         $validatedData['link_google_maps'] = $embed_map_link;
     }
@@ -307,10 +377,12 @@ class AdminDesaBudayaController extends Controller
         return view('admin.edit_homepagebudaya', compact('homepageData'));
     }
 
-    public function updateHomepageBudaya(Request $request)
+    public function updateBanner(Request $request)
     {
-        // Mengambil data pertama atau membuat baru jika belum ada
-        $homepageData = HomepageBudaya::firstOrNew();
+        $homepageData = HomepageBudaya::first();
+        if (!$homepageData) {
+            $homepageData = new HomepageBudaya;
+        }
 
         // Mengelola upload gambar banner jika ada
         if ($request->hasFile('banner_image')) {
@@ -318,24 +390,40 @@ class AdminDesaBudayaController extends Controller
             if ($homepageData->gambar_banner && Storage::disk('public')->exists($homepageData->gambar_banner)) {
                 Storage::disk('public')->delete($homepageData->gambar_banner);
             }
-            $homepageData->gambar_banner = $request->file('banner_image')->store('uploads', 'public');
+
+            // Simpan gambar baru ke folder 'uploads/budaya'
+            $bannerImageName = $request->file('banner_image')->store('uploads/budaya', 'public');
+            $homepageData->gambar_banner = $bannerImageName;
         }
 
+        $homepageData->save();
+
+        return redirect()->back()->with('success', 'Banner berhasil diperbarui');
+    }
+
+    
+    public function updateWelcomeCard(Request $request)
+    {
+        $homepageData = HomepageBudaya::firstOrNew();
+    
         // Mengelola upload gambar welcome jika ada
         if ($request->hasFile('welcome_image')) {
             // Hapus gambar lama jika ada
             if ($homepageData->gambar_welcome && Storage::disk('public')->exists($homepageData->gambar_welcome)) {
                 Storage::disk('public')->delete($homepageData->gambar_welcome);
             }
-            $homepageData->gambar_welcome = $request->file('welcome_image')->store('uploads', 'public');
+    
+            // Simpan gambar baru ke folder 'uploads/budaya'
+            $homepageData->gambar_welcome = $request->file('welcome_image')->store('uploads/budaya', 'public');
         }
-
+    
         // Menyimpan deskripsi welcome
         $homepageData->deskripsi_welcome = $request->welcome_description;
         $homepageData->save();
+    
+        return redirect()->back()->with('success', 'Card Selamat Datang berhasil diperbarui');
+    }    
 
-        return redirect()->back()->with('success', 'Data berhasil disimpan');
-    }   
 
      public function laporanBudaya()
      {
