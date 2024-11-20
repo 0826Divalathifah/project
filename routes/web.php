@@ -16,7 +16,7 @@ Route::get('/desabudaya', [PageController::class, 'desabudaya'])->name('desabuda
 Route::get('/desaprima', [PageController::class, 'desaprima'])->name('desaprima');
 Route::get('/desapreneur', [PageController::class, 'desapreneur'])->name('desapreneur');
 Route::get('/desawisata', [PageController::class, 'desawisata'])->name('desawisata');
-Route::match(['get', 'post'], '/detail_budaya', [PageController::class, 'detail_budaya']);
+Route::get('/detail_budaya/{id}', [PageController::class, 'detail_budaya']);
 Route::get('/detail_preneur/{id}', [PageController::class, 'detail_preneur']);
 Route::get('/detail_prima/{id}', [PageController::class, 'detail_prima']);
 Route::get('/detail_budaya/{id}', [PageController::class, 'detail_budaya']);
@@ -44,7 +44,8 @@ Route::get('/adminbudaya', [AdminDesaBudayaController::class, 'showDashboard']);
 Route::get('/kelolabudaya', [AdminDesaBudayaController::class, 'kelolaBudaya']);
 Route::get('/kelolahomepagebudaya', [AdminDesaBudayaController::class, 'kelolaHomepage']);
 Route::get('/homepagebudaya/edit', [AdminDesaBudayaController::class, 'editHomepageBudaya']);
-Route::post('/update-homepagebudaya', [AdminDesaBudayaController::class, 'updateHomepageBudaya']);
+Route::post('/update-banner', [AdminDesaBudayaController::class, 'updateBanner']);
+Route::post('/update-welcome-card', [AdminDesaBudayaController::class, 'updateWelcomeCard']);
 Route::get('/kelolaagenda', [AdminDesaBudayaController::class, 'kelolaAgenda']);
 Route::post('/kelolaagenda', [AdminDesaBudayaController::class, 'simpanAgenda']); 
 Route::get('/agenda/{id}/edit', [AdminDesaBudayaController::class, 'editAgenda']);
@@ -94,7 +95,8 @@ Route::post('/tambahwisata', [AdminDesaWisataController::class, 'simpanWisata'])
 Route::post('/storewisata', [AdminDesaWisataController::class, 'storeWisata']); 
 Route::get('/kelolawisata', [AdminDesaWisataController::class, 'kelolaWisata']);
 Route::get('/editwisata/{id}', [AdminDesaWisataController::class, 'editWisata']);
-Route::post('/updatewisata/{id}', [AdminDesaWisataController::class, 'updateWisata']); 
+Route::put('/admin/update-wisata/{id}', [AdminDesaWisataController::class, 'updateWisata']);
+Route::post('/admin/simpan-wisata', [AdminDesaWisataController::class, 'simpanWisata']);
 Route::delete('/deletewisata/{id}', [AdminDesaWisataController::class, 'deleteWisata']); 
 Route::get('/transaksiwisata', [AdminDesaWisataController::class, 'transaksiWisata']);
 Route::get('/laporanwisata', [AdminDesaWisataController::class, 'laporanWisata']);
