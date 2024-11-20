@@ -147,10 +147,12 @@
                 <h3 class="card-title">{{ $wisata->nama_wisata }}</h3>
                 
                 <!-- Deskripsi di bawah judul -->
-                <p class="card-text">{{ $wisata->deskripsi }}</p>
+                <p class="card-text">{{ \Illuminate\Support\Str::limit($wisata->deskripsi, 300, '...') }}</p>
                 
                 <!-- Tombol Selengkapnya -->
-                <a href="{{ url('/detail_wisata/' . $wisata->id) }}" class="my-btn-primary">Selengkapnya</a>
+                <div class="d-flex justify-content-center">
+                    <a href="{{ url('/detail_wisata/' . $wisata->id) }}" class="my-btn-primary">Selengkapnya</a>
+                </div>
             </div>
         </div>
     @endforeach
