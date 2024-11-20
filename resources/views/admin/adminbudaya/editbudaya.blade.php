@@ -60,11 +60,7 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
+        
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -192,6 +188,7 @@
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
                         <input type="text" name="harga_max" class="form-control rounded" value="{{ old('harga_max', $budaya->harga_max) }}" placeholder="Masukkan harga maksimum" oninput="formatCurrency(this)">
+                        
                     </div>
                 </div>
 
@@ -249,6 +246,8 @@
                         </span>
                     </div>
                 </div>
+
+                
                 {{-- Foto Slider --}}
                 <div class="form-group">
                     <label>Unggah Foto-Foto Kebudayaan</label>
