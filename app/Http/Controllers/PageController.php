@@ -10,6 +10,7 @@ use App\Models\Wisata;
 use App\Models\Preneur;
 use App\Models\Prima;
 use App\Models\VarianPrima;
+use App\Models\Visit;
 
 
 class PageController extends Controller
@@ -32,7 +33,7 @@ class PageController extends Controller
             return view('beranda.index', compact('gambar_banner'));
         }
        
-        public function desabudaya()
+         public function desabudaya()
         {
             // Mengambil semua data budaya
             $budaya = Budaya::all();
@@ -49,7 +50,17 @@ class PageController extends Controller
                 $deskripsi_welcome = 'Deskripsi default untuk Desa Budaya.'; // Nilai default
             }
 
-            return view('beranda.desabudaya', compact('budaya', 'deskripsi_welcome')); // Kirim kedua variabel ke view
+            // Menyimpan kunjungan ke tabel visits
+            Visit::create([
+                'url' => url()->current(), // Mengambil URL yang diakses
+                'desa_name' => 'Desa Budaya', // Nama desa
+            ]);
+
+            // Menghitung total kunjungan untuk Desa Budaya
+            $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count();
+
+            // Mengirimkan data ke view
+            return view('beranda.desabudaya', compact('budaya', 'deskripsi_welcome', 'totalVisitsDesaBudaya'));
         }
 
         public function detail_budaya($id)
@@ -72,7 +83,7 @@ class PageController extends Controller
 
             // Mengirim data ke tampilan
             return view('beranda.detail_budaya', compact('budaya', 'agenda', 'embed_map_link', 'embed_youtube_link', 'homepageData'));
-        }  
+        } 
                 
             public function desaprima()
             {
@@ -86,19 +97,31 @@ class PageController extends Controller
             {
                 return view('beranda.desapreneur'); // Mengarah ke resources/views/beranda/shop.blade.php
             }
-            public function desawisata()
+           public function desawisata()
             {
+                 // Menyimpan kunjungan ke tabel visits
+                Visit::create([
+                    'url' => url()->current(), // Mengambil URL yang diakses
+                    'desa_name' => 'Desa Wisata', // Nama desa
+                ]);
+
                 // Mengambil semua data wisata dari database
                 $wisata = Wisata::all();
                 
-                // Mengirim data wisata ke view
-                return view('beranda.desawisata', compact('wisata')); 
+                // Mengambil jumlah kunjungan untuk Desa Wisata bulan ini
+                $totalVisitsDesaWisata = Visit::where('desa_name', 'Desa Wisata')->count();
+
+                // Mengirim data wisata dan jumlah kunjungan ke view
+                return view('beranda.desawisata', compact('wisata', 'totalVisitsDesaWisata'));
             }
+
             public function detail_wisata($id)
             {
                 $wisata = Wisata::findOrFail($id); // Mengambil data wisata berdasarkan ID
                 return view('beranda.detail_wisata', compact('wisata')); // Meneruskan data ke view
             }
+            
+
 
             public function detail_prima($id)
             {
