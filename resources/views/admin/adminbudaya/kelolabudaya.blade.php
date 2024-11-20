@@ -60,11 +60,7 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
+   
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -156,7 +152,7 @@
                         <td>{{ $item->nama_budaya }}</td>
                         <td>{{ $item->nama_desa_budaya }}</td>
                         <td>{{ \Illuminate\Support\Str::limit($item->alamat, 20, '...') }}</td>
-                        <td>Rp {{ number_format(floatval($item->harga_min), 0, ',', '.') }} - Rp {{ number_format(floatval($item->harga_max), 0, ',', '.') }}</td>
+                        <td>Rp {{ $item->harga_min }} - Rp {{ $item->harga_max }}</td>
                         <td><a href="{{ $item->link_youtube }}">Lihat Video</a></td>
                         <td><a href="https://wa.me/{{ $item->nomor_whatsapp }}">Hubungi</a></td>
                         <td><a href="{{ $item->link_google_maps }}">Lihat Peta</a></td>
