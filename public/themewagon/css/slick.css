@@ -118,48 +118,54 @@
     display: none;
 }
 
+/* Styling for the banner */
+.banner-container {
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 300%; /* Lebarkan hingga penuh ke samping */
+    height: 600px; /* Tetap 500px untuk tinggi */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 60px; 
+}
 
+.banner-image {
+    width: 100%; /* Gambar akan mengisi lebar kontainer */
+    height: 100%; /* Gambar akan mengisi tinggi kontainer */
+    object-fit: cover; /* Mengatur gambar agar menutupi kontainer */
+    position: absolute; /* Mengatur posisi gambar */
+    top: 0;
+    left: 0;
+}
 
-        /* Styling for the banner */
-        .banner-container {
-            position: relative;
-            text-align: center;
-            color: white;
-            width: 300%; /* Lebarkan hingga penuh ke samping */
-            height: 600px; /* Tetap 500px untuk tinggi */
-            background: url('/themewagon/img/desabudaya/banner.jpg') no-repeat center center/cover; /* Gunakan URL absolut */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            margin-bottom: 60px;
-        }
-        
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan hitam */
-        }
-        
-        .banner-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-        
-        .banner-text {
-            position: relative;
-            z-index: 2;
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 80px; /* Untuk pusatkan teks secara vertikal */
-        }
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan hitam */
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.banner-text {
+    position: relative;
+    z-index: 2;
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+    margin-top: 80px; /* Untuk pusatkan teks secara vertikal */
+}
         
         @media screen and (max-width: 768px) {
             .banner-container {
@@ -181,7 +187,7 @@
         }
 
         .breadcrumb-item a {
-            color: #ffffff;
+            color: #9d8d8d;
             text-decoration: none;
             z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
             position: relative; /* Penting untuk memastikan z-index bekerja */
@@ -192,8 +198,6 @@
             text-decoration: underline;
         }
 
-        
-   
 /* Container Slider Produk */
 .slider {
     display: flex;               /* Menggunakan flexbox untuk mengatur card secara horizontal */
