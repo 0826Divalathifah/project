@@ -1,171 +1,155 @@
 (function($) {
   'use strict';
   $(function() {
-    if ($("#order-chart").length) {
-      const ctx = document.getElementById('order-chart');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["10","","","20","","","30","","","40","","", "50","","", "60","","","70"],
-          datasets: [
-            {
-              data: ["200", "480", "700", "600", "620", "350", "380", "350", "850", "600", "650", "350", "590", "350", "620", "500", "990", "780", "650"],
-              borderColor: [
-                '#4747A1'
-              ],
-              borderWidth: 2,
-              fill: false,
-              label: "Orders",
-              pointRadius: 0,
-            },
-            {
-              data: ["400", "450", "410", "500", "480", "600", "450", "550", "460", "560", "450", "700", "450", "640", "550", "650", "400", "850", "800"],
-              borderColor: [
-                '#F09397'
-              ],
-              borderWidth: 2,
-              fill: false,
-              label: "Downloads",
-              pointRadius: 0,
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          elements: {
-            line: {
-                tension: .4,
-            }
-          },
-          scales: {
-            x: {
-              border: {
-                display: false
-              },
-              grid: {
-                display: false,
-                drawTicks: true,
-              },
-              ticks: {
-                color: "#6C7383",
-              },
-            },
-            y: {
-              border: {
-                display: false
-              },
-              grid: {
-                display:true,
-              },
-              ticks: {
-                color: "#6C7383",
-                stepSize: 200,
-              },
-            }
-          },
-          plugins: {
-            legend: {
-                display: false,
-                labels: {
-                    color: 'rgb(255, 99, 132)'
-                }
-            }
-          }
-        },
-      });
+    const desaChartConfigs = {
+      budaya: {
+        elementId: "budaya-chart",
+        color: "#4747A1",
+        data: dataDesa.budaya, // Data untuk Desa Budaya
+      },
+      wisata: {
+        elementId: "wisata-chart",
+        color: "#1E88E5",
+        data: dataDesa.wisata, // Data untuk Desa Wisata
+      },
+      preneur: {
+        elementId: "preneur-chart",
+        color: "#43A047",
+        data: dataDesa.preneur, // Data untuk Desa Preneur
+      },
+      prima: {
+        elementId: "prima-chart",
+        color: "#FF5722",
+        data: dataDesa.prima, // Data untuk Desa Prima
+      },
+      kalurahan: {
+        elementId: "kalurahan-chart",
+        color: "#FFC107",
+        data: dataDesa.kalurahan, // Data untuk Desa Kalurahan
+      }
+    };
 
-    }
-    if ($("#sales-chart").length) {
-      const ctx = document.getElementById('sales-chart');
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    // Render Chart
+    function renderChart(config) {
+      const ctx = document.getElementById(config.elementId);
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: config.data.date,
             datasets: [{
-              label: 'Offline Sales',
-              data: [480, 230, 470, 210, 330],
-              backgroundColor: '#98BDFF',
-              borderRadius:5,
+              data: config.data.total,
+              borderColor: config.color,
+              borderWidth: 2,
+              fill: false,
+              label: "Jumlah Kunjungan",
+              pointRadius: 4,
+              pointBackgroundColor: config.color,
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: { color: "#6C7383", autoSkip: false },
+              },
+              y: {
+                grid: { display: true },
+                ticks: { color: "#6C7383", beginAtZero: true },
+              }
             },
-            {
-              label: 'Online Sales',
-              data: [400, 340, 550, 480, 170],
-              backgroundColor: '#4B49AC',
-              borderRadius:5,
+            plugins: {
+              legend: {
+                display: true,
+                labels: { color: 'rgb(75, 192, 192)' },
+              }
             }
-          ]
-        },
-        options: {
+          },
+        });
+      }
+    }
+
+    // Loop untuk setiap desa chart
+    Object.keys(desaChartConfigs).forEach(function(desaKey) {
+      renderChart(desaChartConfigs[desaKey]);
+    });
+
+    // Event Listener untuk Filter
+    const periodFilter = document.getElementById('filter-period');
+    if (periodFilter) {
+      periodFilter.addEventListener('change', function() {
+        const selectedPeriod = this.value;
+        const currentURL = new URL(window.location.href);
+        currentURL.searchParams.set('period', selectedPeriod);
+        window.location.href = currentURL.toString();
+      });
+    }
+ 
+
+// Chart Agenda Per Bulan (Menyesuaikan dengan format kode yang ada)
+if ($("#sales-chart").length) {
+  const ctx = document.getElementById('sales-chart');
+  new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: agendaLabels, // Menggunakan variabel dari Blade
+          datasets: [{
+              label: 'Jumlah Agenda',
+              data: agendaData, // Menggunakan variabel dari Blade
+              backgroundColor: '#4747A1', // Mengubah warna batang menjadi kuning
+              borderRadius: 5,
+          }]
+      },
+      options: {
           responsive: true,
           maintainAspectRatio: true,
           scales: {
-            x: {
-              border: {
-                display: false
+              x: {
+                  border: {
+                      display: false
+                  },
+                  grid: {
+                      display: false,
+                      drawTicks: true,
+                      color: "rgba(0, 0, 0, 0)",
+                  },
+                  ticks: {
+                      display: true,
+                      color: "#6C7383", // Warna teks sumbu x tetap
+                  },
               },
-              grid: {
-                display: false,
-                drawTicks: true,
-                color: "rgba(0, 0, 0, 0)",
-              },
-              ticks: {
-                display: true,
-                color:"#6C7383",
-                    
-              },
-            },
-            y: {
-              border: {
-                display: false
-              },
-              grid: {
-                display:true,
-              },
-              ticks: {
-                color: "#6C7383",
-                min: 0,
-                max: 560,
-                autoSkip: true,
-                maxTicksLimit: 10,
-                color:"#6C7383",
-                callback: function(value, index, values) {
-                  return  value + '$' ;
-                },
-                autoSkip: true,
-                maxTicksLimit: 10,
-              },
-            }
+              y: {
+                  border: {
+                      display: false
+                  },
+                  grid: {
+                      display: true,
+                  },
+                  ticks: {
+                      color: "#6C7383", // Warna teks sumbu y tetap
+                      min: 1, // Memastikan dimulai dari 1
+                      stepSize: 1, // Sumbu y hanya angka bulat
+                      maxTicksLimit: 20,
+                      callback: function (value) {
+                          return value; // Menampilkan nilai tanpa simbol tambahan
+                      }
+                  },
+              }
           },
           plugins: {
-            legend: {
-                display: false,
-                labels: {
-                    color: 'rgb(255, 99, 132)'
-                }
-            }
-          }
-        },
-        plugins: [{
-          afterDatasetUpdate: function (chart, args, options) {
-              const chartId = chart.canvas.id;
-              var i;
-              const legendId = `${chartId}-legend`;
-              const ul = document.createElement('ul');
-              for(i=0;i<chart.data.datasets.length; i++) {
-                  ul.innerHTML += `
-                  <li>
-                    <span style="background-color: ${chart.data.datasets[i].backgroundColor}"></span>
-                    ${chart.data.datasets[i].label}
-                  </li>
-                `;
+              legend: {
+                  display: true, // Menampilkan label legenda
+                  labels: {
+                      color: '#6C7383' // Warna teks label legenda tetap
+                  }
               }
-              return document.getElementById(legendId).appendChild(ul);
-            }
-        }]
-      });
-    
-    }
+          }
+      }
+  });
+}
+
     if ($("#north-america-chart").length) { 
       const doughnutChartCanvas = document.getElementById('north-america-chart');
       new Chart(doughnutChartCanvas, {
