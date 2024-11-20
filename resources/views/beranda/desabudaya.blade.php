@@ -116,66 +116,53 @@
     </header>
     <!-- header end -->
     <main>
-    <!-- listing Area Start -->
-    <div class="container">
+<!-- listing Area Start -->
+<div class="container">
     <div class="category-area">
         <div class="row">   
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-        <div class="banner-container">
-            
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Desa Budaya</div>
-            @if(isset($homepageData->gambar_banner))
-                <img src="{{ asset('storage/' . $homepageData->gambar_banner) }}" alt="Banner" class="banner-image">
-            @else
-                <!-- Gambar default jika gambar_banner tidak tersedia -->
-                <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
-            @endif
-            <!-- breadcrumb Start-->
-            <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Budaya</a></li>
-                    </ol>
-                </nav>
+            <div class="banner-container">
+                <div class="banner-overlay"></div>
+                <div class="banner-text">Desa Budaya</div>
+                @if(isset($homepageData->gambar_banner))
+                    <img src="{{ asset('storage/' . $homepageData->gambar_banner) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
+                <!-- breadcrumb Start-->
+                <div class="breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="#">Desa Budaya</a></li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
-        </div>
-        <div class="content-section" data-aos="fade-up" data-aos-duration="1000">
-        <div data-aos="fade-left"
-            data-aos-anchor="#example-anchor"
-            data-aos-offset="500"
-            data-aos-duration="500">
-        </div>
-        <div class="container-fluid mt-4">
+            <div class="content-section" data-aos="fade-up" data-aos-duration="1000">
         <div class="card custom-card">
-        <!-- Gambar di sebelah kiri -->
-        <div class="location-img">
-        @if(isset($homepageData->gambar_welcome))
-                <img src="{{ asset('storage/' . $homepageData->gambar_welcome) }}" alt="Desa Budaya">
-            @else
-                <!-- Gambar default jika gambar_welcome tidak tersedia -->
-                <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="Desa Budaya">
-            @endif
-        </div>
-
-        <!-- Deskripsi di sebelah kanan -->
+            <div class="location-img">
+                @if(isset($homepageData->gambar_welcome))
+                    <img src="{{ asset('storage/' . $homepageData->gambar_welcome) }}" alt="Desa Budaya">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="Desa Budaya">
+                @endif
+            </div>
         <div class="card-body">
-            <!-- Judul di atas -->
             <h3 class="card-title">Selamat Datang di Website Desa Budaya</h3>
-            
-            <!-- Deskripsi di bawah judul -->
             <p class="card-text">
                 {{ $deskripsi_welcome }}
             </p>
-
         </div>
     </div>
 </div>
+
 </div>
 </div>
 </div>
+</div>
+
 
 <div class="carousel-container">
     @foreach($budaya as $item)
