@@ -1,203 +1,173 @@
-(function($) {
+(function ($) {
   'use strict';
-  $(function() {
-    const desaChartConfigs = {
-      budaya: {
-        elementId: "budaya-chart",
-        color: "#4747A1",
-        data: dataDesa.budaya, // Data untuk Desa Budaya
-      },
-      wisata: {
-        elementId: "wisata-chart",
-        color: "#1E88E5",
-        data: dataDesa.wisata, // Data untuk Desa Wisata
-      },
-      preneur: {
-        elementId: "preneur-chart",
-        color: "#43A047",
-        data: dataDesa.preneur, // Data untuk Desa Preneur
-      },
-      prima: {
-        elementId: "prima-chart",
-        color: "#FF5722",
-        data: dataDesa.prima, // Data untuk Desa Prima
-      },
-      kalurahan: {
-        elementId: "kalurahan-chart",
-        color: "#FFC107",
-        data: dataDesa.kalurahan, // Data untuk Desa Kalurahan
-      }
-    };
+  $(function () {
+    // Fungsi untuk menginisialisasi chart
+    function initializeChart(canvasId, chartLabel, dataLabels, dataValues) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return; // Jika elemen tidak ditemukan, hentikan eksekusi
 
-    // Render Chart
-    function renderChart(config) {
-      const ctx = document.getElementById(config.elementId);
-      if (ctx) {
+        const ctx = canvas.getContext('2d');
+
         new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: config.data.date,
-            datasets: [{
-              data: config.data.total,
-              borderColor: config.color,
-              borderWidth: 2,
-              fill: false,
-              label: "Jumlah Kunjungan",
-              pointRadius: 4,
-              pointBackgroundColor: config.color,
-            }]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            scales: {
-              x: {
-                grid: { display: false },
-                ticks: { color: "#6C7383", autoSkip: false },
-              },
-              y: {
-                grid: { display: true },
-                ticks: { color: "#6C7383", beginAtZero: true },
-              }
+            type: 'line',
+            data: {
+                labels: dataLabels,
+                datasets: [
+                    {
+                        label: chartLabel,
+                        data: dataValues,
+                        backgroundColor: 'rgba(90, 79, 207, 0.5)',
+                        borderColor: 'rgba(90, 79, 207, 1)',
+                        borderWidth: 1,
+                        tension: 0.4,
+                    },
+                ],
             },
-            plugins: {
-              legend: {
-                display: true,
-                labels: { color: 'rgb(75, 192, 192)' },
-              }
-            }
-          },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
         });
-      }
     }
 
-    // Loop untuk setiap desa chart
-    Object.keys(desaChartConfigs).forEach(function(desaKey) {
-      renderChart(desaChartConfigs[desaKey]);
+    // Fungsi untuk membaca data dari elemen
+    function getChartData(canvasId) {
+        const canvas = $(`#${canvasId}`);
+        const dataLabels = canvas.attr('data-labels')?.split(',') || [];
+        const dataValues = canvas.attr('data-data')?.split(',').map(Number) || [];
+        return { dataLabels, dataValues };
+    }
+
+    // Inisialisasi chart untuk Desa Budaya
+    const budayaData = getChartData('desaBudayaChart');
+    initializeChart('desaBudayaChart', 'Jumlah Kunjungan Desa Budaya', budayaData.dataLabels, budayaData.dataValues);
+
+    // Inisialisasi chart untuk Desa Wisata
+    const wisataData = getChartData('desaWisataChart');
+    initializeChart('desaWisataChart', 'Jumlah Kunjungan Desa Wisata', wisataData.dataLabels, wisataData.dataValues);
+
+    // Inisialisasi chart untuk Desa Preneur
+    const preneurData = getChartData('desaPreneurChart');
+    initializeChart('desaPreneurChart', 'Jumlah Kunjungan Desa Preneur', preneurData.dataLabels, preneurData.dataValues);
+
+    // Inisialisasi chart untuk Desa Prima
+    const primaData = getChartData('desaPrimaChart');
+    initializeChart('desaPrimaChart', 'Jumlah Kunjungan Desa Prima', primaData.dataLabels, primaData.dataValues);
+
+    // Inisialisasi chart untuk Desa Kalurahan
+    const kalurahanData = getChartData('desaKalurahanChart');
+    initializeChart('desaKalurahanrChart', 'Jumlah Kunjungan Desa Kalurahan', kalurahanData.dataLabels, kalurahanData.dataValues);
+
+    // Event listener untuk filter perubahan
+    $('#filter').change(function () {
+        const selectedFilter = $(this).val(); // Ambil nilai filter
+        const desaName = $(this).data('desa'); // Ambil nama desa dari atribut data
+        window.location.href = `?desa=${desaName}&filter=${selectedFilter}`;
     });
 
-    // Event Listener untuk Filter
-    const periodFilter = document.getElementById('filter-period');
-    if (periodFilter) {
-      periodFilter.addEventListener('change', function() {
-        const selectedPeriod = this.value;
-        const currentURL = new URL(window.location.href);
-        currentURL.searchParams.set('period', selectedPeriod);
-        window.location.href = currentURL.toString();
-      });
-    }
- 
 
-// Chart Agenda Per Bulan (Menyesuaikan dengan format kode yang ada)
-if ($("#sales-chart").length) {
-  const ctx = document.getElementById('sales-chart');
-  new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: agendaLabels, // Menggunakan variabel dari Blade
-          datasets: [{
-              label: 'Jumlah Agenda',
-              data: agendaData, // Menggunakan variabel dari Blade
-              backgroundColor: '#4747A1', // Mengubah warna batang menjadi kuning
-              borderRadius: 5,
-          }]
-      },
-      options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          scales: {
-              x: {
-                  border: {
-                      display: false
-                  },
-                  grid: {
-                      display: false,
-                      drawTicks: true,
-                      color: "rgba(0, 0, 0, 0)",
-                  },
-                  ticks: {
-                      display: true,
-                      color: "#6C7383", // Warna teks sumbu x tetap
-                  },
-              },
-              y: {
-                  border: {
-                      display: false
-                  },
-                  grid: {
-                      display: true,
-                  },
-                  ticks: {
-                      color: "#6C7383", // Warna teks sumbu y tetap
-                      min: 1, // Memastikan dimulai dari 1
-                      stepSize: 1, // Sumbu y hanya angka bulat
-                      maxTicksLimit: 20,
-                      callback: function (value) {
-                          return value; // Menampilkan nilai tanpa simbol tambahan
-                      }
-                  },
-              }
-          },
-          plugins: {
-              legend: {
-                  display: true, // Menampilkan label legenda
-                  labels: {
-                      color: '#6C7383' // Warna teks label legenda tetap
-                  }
-              }
-          }
-      }
-  });
-}
+
+
+
+
+    // Agenda Chart Batang
+    if ($("#sales-chart").length) {
+        const agendaLabels = JSON.parse(document.getElementById('sales-chart').getAttribute('data-agenda-labels'));
+        const agendaTotals = JSON.parse(document.getElementById('sales-chart').getAttribute('data-agenda-totals'));
+    
+        new Chart(document.getElementById('sales-chart'), {
+            type: 'bar',
+            data: {
+                labels: agendaLabels,
+                datasets: [{
+                    label: 'Jumlah Agenda',
+                    data: agendaTotals,
+                    backgroundColor: '#4747A1',
+                    borderRadius: 5,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: "#6C7383" },
+                    },
+                    y: {
+                        grid: { display: true },
+                        ticks: { stepSize: 1, color: "#6C7383" },
+                    }
+                },
+                plugins: {
+                    legend: { display: true }
+                }
+            }
+        });
+    }    
+        
+
+
+
 
     if ($("#north-america-chart").length) { 
-      const doughnutChartCanvas = document.getElementById('north-america-chart');
-      new Chart(doughnutChartCanvas, {
-        type: 'doughnut',
-        data: {
-          labels: ["Offline sales", "Online sales", "Returns"],
-          datasets: [{
-              data: [100, 50, 50],
-              backgroundColor: [
-                 "#4B49AC","#FFC100", "#248AFD",
-              ],
-              borderColor: "rgba(0,0,0,0)"
-          }]
-        },
-        options: {
-          cutout: 70,
-          animationEasing: "easeOutBounce",
-          animateRotate: true,
-          animateScale: false,
-          responsive: true,
-          maintainAspectRatio: true,
-          showScale: false,
-          legend: false,
-          plugins: {
-            legend: {
-                display: false,
-            }
-          }
-        },
-        plugins: [{
-          afterDatasetUpdate: function (chart, args, options) {
-              const chartId = chart.canvas.id;
-              var i;
-              const legendId = `${chartId}-legend`;
-              const ul = document.createElement('ul');
-              for(i=0;i<chart.data.datasets[0].data.length; i++) {
-                  ul.innerHTML += `
-                  <li>
-                    <span style="background-color: ${chart.data.datasets[0].backgroundColor[i]}"></span>
-                    ${chart.data.labels[i]}
-                  </li>
-                `;
-              }
-              return document.getElementById(legendId).appendChild(ul);
-            }
-        }]
-      });
+        const doughnutChartCanvas = document.getElementById('north-america-chart');
+        new Chart(doughnutChartCanvas, {
+            type: 'doughnut',
+            data: {
+                labels: ["Offline sales", "Online sales", "Returns"],
+                datasets: [{
+                    data: [100, 50, 50],
+                    backgroundColor: [
+                        "#4B49AC","#FFC100", "#248AFD",
+                    ],
+                    borderColor: "rgba(0,0,0,0)"
+                }]
+            },
+            options: {
+                cutout: 70,
+                animationEasing: "easeOutBounce",
+                animateRotate: true,
+                animateScale: false,
+                responsive: true,
+                maintainAspectRatio: true,
+                showScale: false,
+                legend: false,
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                }
+            },
+            plugins: [{
+                afterDatasetUpdate: function (chart, args, options) {
+                    const chartId = chart.canvas.id;
+                    var i;
+                    const legendId = `${chartId}-legend`;
+                    const ul = document.createElement('ul');
+                    for(i = 0; i < chart.data.datasets[0].data.length; i++) {
+                        ul.innerHTML += `
+                        <li>
+                            <span style="background-color: ${chart.data.datasets[0].backgroundColor[i]}"></span>
+                            ${chart.data.labels[i]}
+                        </li>
+                        `;
+                    }
+                    return document.getElementById(legendId).appendChild(ul);
+                }
+            }]
+        });
     }
+
     if ($("#south-america-chart").length) { 
       const doughnutChartCanvas = document.getElementById('south-america-chart');
       new Chart(doughnutChartCanvas, {
