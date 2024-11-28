@@ -101,6 +101,7 @@
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
+                        
                     </div>
                     </div>
                 </div>
@@ -122,6 +123,12 @@
             <div class="banner-overlay"></div>
             <div class="banner-text">Desa Wisata</div>
 
+            @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                    <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
+
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
@@ -132,6 +139,7 @@
                 </nav>
             </div>
         </div>
+        
 
 <div class="container mt-4">
     @foreach($wisata as $wisata)
