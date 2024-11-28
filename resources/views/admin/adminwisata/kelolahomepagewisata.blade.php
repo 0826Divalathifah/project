@@ -119,22 +119,31 @@
           <!-- Kelola Banner -->
           <div class="col-12 grid-margin stretch-card">
               <div class="card">
-                  <div class="card-body">
-                      <h4 class="card-title">Kelola Banner</h4>
-                      <form class="forms-sample" action="{{ url('/update-banner') }}" method="POST" enctype="multipart/form-data">
+              <div class="card-body">
+                <h4 class="card-title">Kelola Banner Desa Wisata</h4>
+                <div class="card-body">
+                  <form class="forms-sample" action="{{ url('/update-banner-wisata') }}" method="POST" enctype="multipart/form-data">
                       @csrf
 
+                      <div class="form-group">
+                          <label for="bannerImage">Edit Banner</label>
+                          <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
+                      </div>
+                      
+                      <!-- Preview Gambar yang Tersimpan -->
+                      @if(isset($homepageData) && isset($homepageData->gambar_banner))
                           <div class="form-group">
-                              <label for="bannerImage">Edit Banner</label>
-                              <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
-                              @if(isset($homepageData->gambar_banner))
-                                  <p>Path Gambar: {{ $homepageData->gambar_banner }}</p>
-                                  <img src="{{ asset('storage/'.$homepageData->gambar_banner) }}" alt="Current Banner" width="100" class="mt-2">
-                              @endif
+                              <img src="{{ asset('storage/'.$homepageData->gambar_banner) }}" alt="Current Banner" width="300" class="mt-2">
                           </div>
-                          <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                      </form>
-                  </div>
+                      @else
+                          <div class="form-group">
+                              <p>Belum ada gambar banner yang diunggah untuk desa wisata.</p>
+                          </div>
+                      @endif
+
+                      <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                  </form>
+              </div>
               </div>
           </div>
       </div>
