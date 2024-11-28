@@ -70,7 +70,7 @@
                                     <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
                                     <li><a href="{{ url('/contact') }}">Kontak</a></li>
 
-                                    <li><a href="#" onclick="showAuthForm()">Login</a></li>
+                                    <li><a href="#" onclick="showLoginForm()">Login</a></li>
 
                                 </ul>
                             </nav>
@@ -114,46 +114,32 @@
                 </div>
                 <!-- /End mobile  Menu-->
 
-                <div class="slider-active dot-style fullwidth-slider">
-                    <!-- Single -->
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}'); 
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 200px;">
-
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}');
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 200px;">
-
-                    <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+                <div class="single-banner hero-overly slider-height d-flex align-items-center"
+     style="
+        background-image: url(
+            @if(isset($homepageData->gambar_banner) && file_exists(public_path('storage/' . $homepageData->gambar_banner)))
+                '{{ asset('storage/' . $homepageData->gambar_banner) }}'
+            @else
+                '{{ asset('themewagon/img/desabudaya/banner.jpg') }}'
+            @endif
+        ); 
+        background-size: cover; 
+        background-position: center; 
+        background-repeat: no-repeat; 
+        height: 200px;">
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-9">
+                <!-- Hero Caption -->
+                <div class="hero__caption">
+                    <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   
             </div>
         </div>
        
@@ -190,8 +176,11 @@
 
 <!--? collection -->
 
+<!-- Banner Section -->
 <div class="new-arrival">
-    <section class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" data-background="{{ asset('themewagon/img/gallery/gallery3.jpg') }}">
+    <section 
+        class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" 
+        data-background="{{ asset('storage/' . $gambar_banner) }}">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-9">
@@ -391,35 +380,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Fungsi untuk menampilkan pilihan Login/Register
-    async function showAuthForm() {
-        const { isConfirmed, isDismissed } = await Swal.fire({
-            title: "Pilih Opsi",
-            width: '500px', // menambah lebar modal
-            padding: '3em', // padding di dalam modal
-            confirmButtonText: 'Login',
-            confirmButtonColor: '#6A5ACD', // ganti warna tombol Login
-            cancelButtonText: 'Register',
-            cancelButtonColor: '#A9A9A9', // ganti warna tombol Register
-            showCancelButton: true,
-            icon: 'question',
-            customClass: {
-                title: 'swal-custom-title', // menambahkan class CSS untuk judul
-                actions: 'swal-custom-actions', // menambahkan class CSS untuk tombol
-            }
-        });
-
-        if (isConfirmed) {
-            showLoginForm();
-        } else if (isDismissed) {
-            showRegisterForm();
-        }
-    }
-
-    // Fungsi untuk menampilkan form Login
+    // Fungsi untuk menampilkan form Login dengan validasi
     async function showLoginForm() {
         const { value: formValues } = await Swal.fire({
-            title: "Login ",
+            title: "Login",
             width: '500px', // memperbesar lebar modal
             padding: '3em',
             html: `
@@ -431,9 +395,10 @@
                 const email = document.getElementById("swal-login-email").value;
                 const password = document.getElementById("swal-login-password").value;
 
+                // Validasi untuk memastikan email dan password tidak kosong
                 if (!email || !password) {
                     Swal.showValidationMessage(`Harap isi semua field!`);
-                    return false; // Menghentikan eksekusi jika field kosong
+                    return false;
                 }
 
                 return { email, password };
@@ -444,40 +409,6 @@
             Swal.fire(`Login Berhasil!`);
         }
     }
-
-    // Fungsi untuk menampilkan form Register
-    async function showRegisterForm() {
-        const { value: formValues } = await Swal.fire({
-            title: "Register ",
-            width: '500px',
-            padding: '3em',
-            html: `
-                <input id="swal-register-name" class="swal2-input" placeholder="Nama Lengkap" value="">
-                <input id="swal-register-email" class="swal2-input" placeholder="Email" value="">
-                <input id="swal-register-password" class="swal2-input" type="password" placeholder="Password" value="">
-                <input id="swal-register-confirm-password" class="swal2-input" type="password" placeholder="Konfirmasi Password" value="">
-            `,
-            focusConfirm: false,
-            preConfirm: () => {
-                const name = document.getElementById("swal-register-name").value;
-                const email = document.getElementById("swal-register-email").value;
-                const password = document.getElementById("swal-register-password").value;
-                const confirmPassword = document.getElementById("swal-register-confirm-password").value;
-
-                if (!name || !email || !password || !confirmPassword) {
-                    Swal.showValidationMessage(`Harap isi semua field!`);
-                    return false;
-                } else if (password !== confirmPassword) {
-                    Swal.showValidationMessage(`Password dan Konfirmasi Password tidak cocok!`);
-                    return false;
-                }
-
-                return { name, email, password };
-            }
-        });
-
-        if (formValues) {
-            Swal.fire(`Register Berhasil!`);
-        }
-    }
 </script>
+
+
