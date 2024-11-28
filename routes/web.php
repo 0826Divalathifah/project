@@ -118,6 +118,7 @@ Route::delete('/deletewisata/{id}', [AdminDesaWisataController::class, 'deleteWi
 Route::get('/transaksiwisata', [AdminDesaWisataController::class, 'transaksiWisata']);
 Route::get('/laporanwisata', [AdminDesaWisataController::class, 'laporanWisata']);
 Route::get('/kelolahomepagewisata', [AdminDesaWisataController::class, 'kelolaHomepage']);
+Route::post('/update-banner-wisata', [AdminDesaWisataController::class, 'updateBannerWisata']);
 Route::get('/desawisata', [PageController::class, 'desawisata']);
 
 // Rute untuk halaman dashboard penjual
