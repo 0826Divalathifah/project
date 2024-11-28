@@ -178,21 +178,27 @@
     </div>
 </div>
 
-            <div class="row">
-              <div class="col-md-7 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <p class="card-title">Daftar Kunjungan</p>
-                    <div class="d-flex flex-wrap mb-5">
-                      <div class="me-5 mt-3">
-                        <p class="text-muted">KETERANGAN</p>
-                        <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>
-                      </div>
-                    </div>
-                    <canvas id="wisata-chart"></canvas>
-                  </div>
-                </div>
-              </div>
+<div class="row">
+
+  <div class="col-md-7 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center">
+        <p class="card-title">Jumlah Kunjungan Desa Wisata</p>
+        <select id="filter" class="form-select w-25" data-desa="Desa Wisata">
+        <option value="daily" {{ $filter == 'daily' ? 'selected' : '' }}>Harian</option>
+        <option value="weekly" {{ $filter == 'weekly' ? 'selected' : '' }}>Mingguan</option>
+        <option value="monthly" {{ $filter == 'monthly' ? 'selected' : '' }}>Bulanan</option>
+        <option value="yearly" {{ $filter == 'yearly' ? 'selected' : '' }}>Tahunan</option>
+        </select>
+      </div>
+      <!-- Elemen untuk menyimpan data -->
+      <canvas id="desaWisataChart" height="150" 
+          data-labels="{{ implode(',', $labels) }}" 
+          data-data="{{ implode(',', $data) }}"></canvas>
+      </div>
+    </div>
+</div>
 
               <div class="col-md-5 grid-margin stretch-card">
                 <div class="card">
@@ -258,9 +264,7 @@
 <script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
 <script src="{{ asset('admin/assets/js/datetime.js') }}"></script>
-<script>
-    const dataDesa = @json($dataDesa);
-</script>
+
 <!-- End custom js for this page-->
 </body>
 </html>
