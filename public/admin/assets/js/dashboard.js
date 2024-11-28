@@ -33,6 +33,12 @@
                 scales: {
                     y: {
                         beginAtZero: true,
+                        ticks: {
+                        stepSize: 1, // Menampilkan angka bulat
+                        callback: function (value) {
+                            return Number.isInteger(value) ? value : ''; // Tampilkan angka bulat
+                        },
+                      },
                     },
                 },
             },
