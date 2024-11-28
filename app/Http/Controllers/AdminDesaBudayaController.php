@@ -4,82 +4,142 @@ namespace App\Http\Controllers;
 
 use App\Models\Budaya;
 use App\Models\Agenda;
+use App\Models\Homepage;
 use App\Models\Visit;
-use App\Models\HomepageBudaya;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+
 
 class AdminDesaBudayaController extends Controller
 {
+
     public function showDashboard(Request $request)
     {
-        // Default period adalah mingguan (7 hari terakhir)
-        $period = $request->get('period', 'week');
-
-        // Menentukan tanggal mulai berdasarkan periode yang dipilih
-        $startDate = match ($period) {
-            'week' => Carbon::now()->subDays(6), // 7 hari terakhir
-            'month' => Carbon::now()->startOfMonth(), // Awal bulan
-            'year' => Carbon::now()->startOfYear(), // Awal tahun
-            default => Carbon::now()->subDays(6),
-        };
-
         // Total budaya di database
-        $totalBudaya = Budaya::count();
+        $totalBudaya = Budaya::count(); // Menghitung jumlah budaya
 
         // Total agenda di database
-        $totalAgenda = Agenda::count();
+        $totalAgenda = Agenda::count(); // Menghitung jumlah agenda
 
         // Total kunjungan keseluruhan untuk Desa Budaya
-        $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count();
+        $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count(); // Menghitung jumlah kunjungan
 
-        // Total kunjungan berdasarkan periode yang dipilih
-        $desaBudayaVisits = Visit::selectRaw('DATE(created_at) as date, COUNT(*) as total')
-            ->where('desa_name', 'Desa Budaya')
-            ->whereDate('created_at', '>=', $startDate)
-            ->groupBy('date')
-            ->orderBy('date')
+        // Agenda yang akan datang
+        $agendaComing = Agenda::where('tanggal_acara', '>=', Carbon::now()) // Mengambil agenda yang tanggal acara-nya lebih besar dari atau sama dengan sekarang
+            ->orderBy('tanggal_acara', 'asc')
             ->get();
 
-        $dataDesa = [
-            'budaya' => [
-                'date' => $desaBudayaVisits->pluck('date')->map(fn($date) => Carbon::parse($date)->format('d M')), // Format tanggal
-                'total' => $desaBudayaVisits->pluck('total'),
-            ],
-        ];
-
         // Data agenda per bulan (untuk chart agenda bulanan)
-        $agendaPerMonth = Agenda::selectRaw('MONTH(created_at) as month, COUNT(*) as total_agenda')
+        $month = $request->input('month'); // Ambil bulan dari query string
+        $year = $request->input('year', date('Y')); // Ambil tahun, default ke tahun sekarang
+
+        // Data agenda berdasarkan filter bulan dan tahun
+        $agendaQuery = Agenda::query();
+
+        if ($month) {
+            $agendaQuery->whereMonth('created_at', $month);
+        }
+
+        if ($year) {
+            $agendaQuery->whereYear('created_at', $year);
+        }
+
+        $agendaPerMonth = $agendaQuery->selectRaw('MONTH(created_at) as month, COUNT(*) as total_agenda')
             ->groupBy('month')
             ->orderBy('month')
             ->get();
 
-        $agendaMonths = $agendaPerMonth->pluck('month')->map(fn($month) => Carbon::create()->month($month)->format('F'));
+        $agendaLabels = $agendaPerMonth->pluck('month')->map(fn($m) => Carbon::create()->month($m)->format('F'));
         $agendaTotals = $agendaPerMonth->pluck('total_agenda');
 
-        // Agenda yang akan datang
-        $agendaComing = Agenda::where('tanggal_acara', '>=', Carbon::now())
-            ->orderBy('tanggal_acara', 'asc')
-            ->get();
-
         // Daftar budaya
-        $budaya = Budaya::all();
+        $budaya = Budaya::all(); // Mengambil semua data budaya (tidak digunakan langsung untuk total)
 
+        // Mendapatkan nama desa dari URL, default ke 'Desa Budaya'
+        $desaName = $request->get('desa', 'Desa Budaya');
+
+        // Filter (default: daily)
+        $filter = $request->get('filter', 'daily');
+
+        $data = [];
+        $labels = [];
+
+        if ($filter === 'daily') {
+            // Contoh untuk filter harian
+            $dates = collect(range(0, 6))->map(function ($day) {
+                return now()->subDays($day)->format('Y-m-d');
+            })->reverse();
+
+            foreach ($dates as $date) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereDate('created_at', $date)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = $date;
+            }
+        } elseif ($filter === 'weekly') {
+            // Contoh untuk filter mingguan
+            $weeks = collect(range(0, 3))->map(function ($week) {
+                return now()->subWeeks($week)->format('W');
+            })->reverse();
+
+            foreach ($weeks as $week) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereRaw('WEEK(created_at) = ?', [$week])
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = 'Minggu ' . ($weeks->search($week) + 1);
+            }
+        } elseif ($filter === 'monthly') {
+            // Contoh untuk filter bulanan
+            $months = range(1, 12);
+
+            foreach ($months as $month) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', now()->year)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = Carbon::create()->month($month)->format('M');
+            }
+        } elseif ($filter === 'yearly') {
+            // Contoh untuk filter tahunan
+            $years = Visit::selectRaw('YEAR(created_at) as year')
+                ->distinct()
+                ->pluck('year');
+
+            foreach ($years as $year) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereYear('created_at', $year)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = $year;
+            }
+        }
         // Kirim data ke view
         return view('admin.adminbudaya.adminbudaya', compact(
             'totalBudaya',
             'totalAgenda',
             'totalVisitsDesaBudaya',
-            'dataDesa',
-            'agendaMonths',
+            'agendaComing', // Agenda yang akan datang
+            'agendaLabels',
             'agendaTotals',
-            'agendaComing',
-            'budaya',
-            'period' // Mengirimkan periode yang dipilih untuk dropdown di view
+            'year',
+            'month',
+            'budaya', // Data budaya jika diperlukan untuk ditampilkan
+            'desaName', 
+            'data',
+            'labels',
+            'filter'
         ));
     }
+
 
     public function kelolaBudaya()
     {
@@ -104,7 +164,6 @@ class AdminDesaBudayaController extends Controller
         'harga_max' => 'nullable|numeric',
         'link_youtube' => 'nullable|url|max:255',
         'nomor_whatsapp' => 'required|string|max:15',
-        'link_google_maps' => 'nullable|url|max:255',
         'deskripsi' => 'required|string',
         'foto_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
         'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
@@ -116,30 +175,6 @@ class AdminDesaBudayaController extends Controller
         if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $link_youtube, $matches)) {
             $validatedData['link_youtube'] = 'https://www.youtube.com/embed/' . $matches[1];
         }
-    }
-
-    // Ambil link Google Maps dari input pengguna
-    $link_google_maps = $request->input('link_google_maps');
-    if ($link_google_maps) {
-        // Jika link bukan embed, coba konversi ke format embed
-        if (strpos($link_google_maps, 'embed') === false) {
-            $urlParts = parse_url($link_google_maps);
-            if (isset($urlParts['query'])) {
-                parse_str($urlParts['query'], $queryParams);
-                if (isset($queryParams['q'])) {
-                    $query = urlencode($queryParams['q']);
-                    // Konversi ke format embed tanpa API key
-                    $embed_map_link = "https://www.google.com/maps/embed/v1/place?q=" . $query;
-                }
-            } else {
-                // Jika link langsung berupa alamat, langsung gunakan format embed
-                $embed_map_link = "https://www.google.com/maps/embed/v1/place?q=" . urlencode($link_google_maps);
-            }
-        } else {
-            // Jika link sudah embed, gunakan langsung
-            $embed_map_link = $link_google_maps;
-        }
-        $validatedData['link_google_maps'] = $embed_map_link;
     }
 
     // Proses upload foto_card
@@ -181,7 +216,6 @@ class AdminDesaBudayaController extends Controller
             'harga_max' => 'nullable|numeric',
             'link_youtube' => 'nullable|url|max:255',
             'nomor_whatsapp' => 'required|string|max:15',
-            'link_google_maps' => 'nullable|url|max:255',
             'deskripsi' => 'required|string',
             'foto_card' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
@@ -235,22 +269,6 @@ class AdminDesaBudayaController extends Controller
             }
         }
 
-        // Konversi link Google Maps ke format embed jika tersedia
-        $link_google_maps = $request->input('link_google_maps');
-        if ($link_google_maps) {
-            $embed_map_link = $link_google_maps;
-            if (strpos($link_google_maps, 'embed') === false) {
-                $urlParts = parse_url($link_google_maps);
-                if (isset($urlParts['query'])) {
-                    parse_str($urlParts['query'], $queryParams);
-                    if (isset($queryParams['q'])) {
-                        $query = urlencode($queryParams['q']);
-                        $link_google_maps = "https://www.google.com/maps/embed?pb=" . $query;
-                    }
-                }
-            }
-        }
-
     // Update data di database
     $budaya->update([
         'nama_budaya' => $request->nama_budaya,
@@ -260,7 +278,6 @@ class AdminDesaBudayaController extends Controller
         'harga_max' => $request->harga_max,
         'link_youtube' => $link_youtube,
         'nomor_whatsapp' => $request->nomor_whatsapp,
-        'link_google_maps' => $link_google_maps,
         'deskripsi' => $request->deskripsi,
         'foto_slider' => json_encode(array_values($fotoSliderPaths)),
     ]);
@@ -365,23 +382,23 @@ class AdminDesaBudayaController extends Controller
 
         return redirect()->to('/kelolaagenda')->with('success', 'Agenda berhasil dihapus');
     }
+    // Menampilkan halaman kelola homepage budaya
     public function kelolaHomepage()
     {
-        $homepageData = HomepageBudaya::first();
+        $homepageData = Homepage::where('desa_name', 'budaya')->first();
         return view('admin.adminbudaya.kelolahomepagebudaya', compact('homepageData'));
     }
 
-    public function editHomepageBudaya()
+    // Mengupdate banner gambar untuk homepage budaya
+    public function updateBannerBudaya(Request $request)
     {
-        $homepageData = HomepageBudaya::first();
-        return view('admin.edit_homepagebudaya', compact('homepageData'));
-    }
+        // Ambil data homepage budaya berdasarkan desa_name 'budaya'
+        $homepageData = Homepage::where('desa_name', 'budaya')->first();
 
-    public function updateBanner(Request $request)
-    {
-        $homepageData = HomepageBudaya::first();
+        // Jika data tidak ditemukan, buat data baru untuk desa budaya
         if (!$homepageData) {
-            $homepageData = new HomepageBudaya;
+            $homepageData = new Homepage;
+            $homepageData->desa_name = 'budaya'; // Tentukan desa yang sedang diproses
         }
 
         // Mengelola upload gambar banner jika ada
@@ -396,38 +413,42 @@ class AdminDesaBudayaController extends Controller
             $homepageData->gambar_banner = $bannerImageName;
         }
 
+        // Simpan perubahan ke dalam database
         $homepageData->save();
 
-        return redirect()->back()->with('success', 'Banner berhasil diperbarui');
+        // Redirect kembali dengan pesan sukses
+        return redirect()->back()->with('success', 'Banner Desa Budaya berhasil diperbarui');
     }
 
-    
+    // Mengupdate card welcome untuk homepage budaya
     public function updateWelcomeCard(Request $request)
     {
-        $homepageData = HomepageBudaya::firstOrNew();
-    
+        // Validasi input
+        $request->validate([
+            'deskripsi_welcome' => 'required|string|max:500',
+            'gambar_welcome' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        // Ambil atau buat data homepage budaya
+        $homepageData = Homepage::where('desa_name', 'budaya')->firstOrNew(['desa_name' => 'budaya']);
+
         // Mengelola upload gambar welcome jika ada
-        if ($request->hasFile('welcome_image')) {
+        if ($request->hasFile('gambar_welcome')) {
             // Hapus gambar lama jika ada
             if ($homepageData->gambar_welcome && Storage::disk('public')->exists($homepageData->gambar_welcome)) {
                 Storage::disk('public')->delete($homepageData->gambar_welcome);
             }
-    
+
             // Simpan gambar baru ke folder 'uploads/budaya'
-            $homepageData->gambar_welcome = $request->file('welcome_image')->store('uploads/budaya', 'public');
+            $homepageData->gambar_welcome = $request->file('gambar_welcome')->store('uploads/budaya', 'public');
         }
-    
+
         // Menyimpan deskripsi welcome
-        $homepageData->deskripsi_welcome = $request->welcome_description;
+        $homepageData->deskripsi = $request->deskripsi_welcome;
         $homepageData->save();
-    
+
+        // Redirect kembali dengan data terbaru
         return redirect()->back()->with('success', 'Card Selamat Datang berhasil diperbarui');
-    }    
-
-
-     public function laporanBudaya()
-     {
-         return view('admin.adminbudaya.laporanbudaya');
-     }
+    }
  
 }
