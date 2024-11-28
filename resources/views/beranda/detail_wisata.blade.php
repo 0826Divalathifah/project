@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/detail.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('themewagon/css/search.css') }}">
     
     
     
@@ -76,23 +76,33 @@
                         </div>
                     </div>
                     <div class="header-right1 d-flex align-items-center">
-                        <!-- Social -->
-                        <div class="header-social d-none d-md-block">
-                            <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
-                            <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        </div>
-                        <!-- Search Box -->
-                        <div class="search d-none d-md-block">
-                            <ul class="d-flex align-items-center">
-                                <li class="mr-15">
-                                    <div class="nav-search search-switch">
-                                        <i class="ti-search"></i>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+    <!-- Social -->
+    <div class="header-social d-none d-md-block">
+        <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+        <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <!-- Search Box -->
+    <div class="search d-none d-md-block ml-4">
+        <div class="nav-search search-switch" id="search-toggle">
+            <i class="ti-search"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden Search Form -->
+<div id="search-container" class="d-none mt-3">
+    <div class="input-group" style="max-width: 300px; margin: 0 auto;">
+        <input type="text" id="search-input" class="form-control" placeholder="Cari kata..." aria-label="Search">
+        <button id="search-btn" class="btn btn-primary ml-2">Cari</button>
+    </div>
+    <div class="navigation-buttons mt-2 text-center">
+        <button id="prev-result" class="btn btn-sm btn-outline-secondary">&uarr; Sebelumnya</button>
+        <button id="next-result" class="btn btn-sm btn-outline-secondary">&darr; Berikutnya</button>
+    </div>
+</div>
+
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
@@ -104,7 +114,7 @@
         <!-- Header End -->
     </header>
     <!-- header end -->
-    <main>
+    <main id="content">
        <!-- listing Area Start -->
        <div class="category-area">
             <div class="container">
@@ -118,6 +128,12 @@
             <div class="banner-overlay"></div>
             <div class="banner-text">Detail Wisata</div>
 
+            @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                    <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
+                
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
@@ -177,23 +193,25 @@
         </div>
     </div>
 
-            <!-- Menambahkan Google Maps -->
-            <div class="row mt-5">
-                <div class="col-12">
-                    <h3 class="text-center">Lokasi Wisata</h3>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe 
-                            class="embed-responsive-item" 
-                            src="{{ $wisata->link_google_maps }}" 
-                            width="100%" 
-                            height="450" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
+<!-- Menampilkan Brosur Wisata -->
+@if(!empty($wisata->brosur))
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3 class="text-center">Brosur Wisata</h3>
+        </div>
+        <div class="col-12 text-center">
+            <div 
+                style="width: 100%; max-height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+                <img 
+                    src="{{ asset('storage/' . $wisata->brosur) }}" 
+                    alt="Brosur Wisata" 
+                    style="width: 100%; height: auto; display: block;">
             </div>
+        </div>
+    </div>
+@endif
+
+
 
             <!-- Galeri Foto Slider -->
             <div class="row mt-5">
@@ -353,6 +371,9 @@
 
 <!-- calendar js -->
 <script src="{{ asset('themewagon/js/calendar.js') }}"></script>
+
+<!-- search js -->
+<script src="{{ asset('themewagon/js/search.js') }}"></script>
 
 <!-- whatsapp js -->
 <script src="{{ asset('themewagon/js/whatsapp.js') }}"></script>
