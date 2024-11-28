@@ -162,13 +162,6 @@
                         <input type="text" class="form-control rounded" id="hargaWisata" name="harga_masuk" value="{{ old('harga_masuk', $wisata->harga_masuk) }}" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)">
                     </div>
                 </div>
-
-                {{-- Google Maps --}}
-                <div class="form-group">
-                    <label for="mapsLink">Link Google Maps</label>
-                    <input type="url" class="form-control" id="mapsLink" name="link_google_maps" value="{{ old('link_google_maps', $wisata->link_google_maps) }}" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
-                    <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
-                </div>
                 
                 {{-- Alamat --}}
                 <div class="form-group">
