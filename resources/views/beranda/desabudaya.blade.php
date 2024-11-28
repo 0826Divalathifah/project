@@ -107,6 +107,7 @@
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
+                        
                     </div>
                     </div>
                 </div>
@@ -125,11 +126,13 @@
             <div class="banner-container">
                 <div class="banner-overlay"></div>
                 <div class="banner-text">Desa Budaya</div>
-                @if(isset($homepageData->gambar_banner))
-                    <img src="{{ asset('storage/' . $homepageData->gambar_banner) }}" alt="Banner" class="banner-image">
+
+                @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                    <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
                 @else
                     <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
                 @endif
+
                 <!-- breadcrumb Start-->
                 <div class="breadcrumb">
                     <nav aria-label="breadcrumb">
@@ -143,16 +146,17 @@
             <div class="content-section" data-aos="fade-up" data-aos-duration="1000">
         <div class="card custom-card">
             <div class="location-img">
-                @if(isset($homepageData->gambar_welcome))
-                    <img src="{{ asset('storage/' . $homepageData->gambar_welcome) }}" alt="Desa Budaya">
-                @else
-                    <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="Desa Budaya">
-                @endif
-            </div>
+            @if(isset($gambar_welcome) && file_exists(public_path('storage/' . $gambar_welcome)))
+                <img src="{{ asset('storage/' . $gambar_welcome) }}" alt="Desa Budaya">
+            @else
+                <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="Desa Budaya">
+            @endif
+        </div>
+
         <div class="card-body">
             <h3 class="card-title">Selamat Datang di Website Desa Budaya</h3>
             <p class="card-text">
-                {{ $deskripsi_welcome }}
+            {{ $deskripsi_welcome }}
             </p>
         </div>
     </div>
