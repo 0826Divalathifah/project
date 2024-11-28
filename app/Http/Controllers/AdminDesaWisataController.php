@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Visit;
 use App\Models\Wisata;
+use App\Models\Homepage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,38 +12,92 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminDesaWisataController extends Controller
 {
-    public function showDashboard()
+    public function showDashboard(Request $request)
     {
         // Mengambil semua data wisata
         $wisata = Wisata::all();
 
-        // Mengambil jumlah kunjungan untuk Desa Wisata bulan ini
-        $totalVisitsDesaWisata = Visit::getVisitCountByDesa('Desa Wisata');
+        // Total kunjungan keseluruhan untuk Desa Budaya
+        $totalVisitsDesaWisata = Visit::where('desa_name', 'Desa Wisata')->count(); // Menghitung jumlah kunjungan
         
         // Menghitung total wisata
         $totalWisata = Wisata::count();
 
-        $desaWisataVisits = Visit::selectRaw('DATE(created_at) as date, COUNT(*) as total')
-        ->where('desa_name', 'Desa Wisata')
-        ->whereDate('created_at', '>=', Carbon::now()->subDays(7))
-        ->groupBy('date')
-        ->orderBy('date')
-        ->get();
+        // Mendapatkan nama desa dari URL, default ke 'Desa Wisata'
+        $desaName = $request->get('desa', 'Desa Wisata');
 
-        // Mengubah data menjadi array untuk digunakan di chart
-        $dataDesa = [
-            'wisata' => [
-            'date' => $desaWisataVisits->pluck('date'),
-            'total' => $desaWisataVisits->pluck('total')
-            ],
-        ];
+        // Filter (default: daily)
+        $filter = $request->get('filter', 'daily');
+   
+        $data = [];
+        $labels = [];
+
+        if ($filter === 'daily') {
+            // Contoh untuk filter harian
+            $dates = collect(range(0, 6))->map(function ($day) {
+                return now()->subDays($day)->format('Y-m-d');
+            })->reverse();
+
+            foreach ($dates as $date) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereDate('created_at', $date)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = $date;
+            }
+        } elseif ($filter === 'weekly') {
+            // Contoh untuk filter mingguan
+            $weeks = collect(range(0, 3))->map(function ($week) {
+                return now()->subWeeks($week)->format('W');
+            })->reverse();
+
+            foreach ($weeks as $week) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereRaw('WEEK(created_at) = ?', [$week])
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = 'Minggu ' . ($weeks->search($week) + 1);
+            }
+        } elseif ($filter === 'monthly') {
+            // Contoh untuk filter bulanan
+            $months = range(1, 12);
+
+            foreach ($months as $month) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', now()->year)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = Carbon::create()->month($month)->format('M');
+            }
+        } elseif ($filter === 'yearly') {
+            // Contoh untuk filter tahunan
+            $years = Visit::selectRaw('YEAR(created_at) as year')
+                ->distinct()
+                ->pluck('year');
+
+            foreach ($years as $year) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereYear('created_at', $year)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = $year;
+            }
+        }
 
         // Kirim data ke view
         return view('admin.adminwisata.adminwisata', compact(
             'totalVisitsDesaWisata',
             'totalWisata',
-            'dataDesa',
-            'wisata'
+            'desaName', 
+            'wisata',
+            'data',
+            'labels',
+            'filter'
         ));
     }
 
@@ -70,7 +125,6 @@ class AdminDesaWisataController extends Controller
             'jam_buka' => 'required|array',
             'jam_tutup' => 'required|array',
             'alamat' => 'nullable|string|max:255',
-            'link_google_maps' => 'nullable|url|max:255',
             'harga_masuk' => 'nullable|numeric',
             'deskripsi' => 'nullable|string',
             'foto_card' => 'required|image|mimes:jpeg,png,jpg|max:5120',
@@ -78,26 +132,6 @@ class AdminDesaWisataController extends Controller
             'foto_wisata.*' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
-    
-        // Konversi link Google Maps ke format embed jika ada
-        $link_google_maps = $request->input('link_google_maps');
-        if ($link_google_maps) {
-            if (strpos($link_google_maps, 'embed') === false) {
-                $urlParts = parse_url($link_google_maps);
-                if (isset($urlParts['query'])) {
-                    parse_str($urlParts['query'], $queryParams);
-                    if (isset($queryParams['q'])) {
-                        $query = urlencode($queryParams['q']);
-                        $embed_map_link = "https://www.google.com/maps/embed/v1/place?q=" . $query;
-                    }
-                } else {
-                    $embed_map_link = "https://www.google.com/maps/embed/v1/place?q=" . urlencode($link_google_maps);
-                }
-            } else {
-                $embed_map_link = $link_google_maps;
-            }
-            $validatedData['link_google_maps'] = $embed_map_link;
-        }
     
         // Gabungkan hari, jam buka, dan jam tutup dalam satu array
         $jadwalKunjungan = [];
@@ -152,7 +186,6 @@ class AdminDesaWisataController extends Controller
             'jam_tutup' => 'nullable|array',
             'alamat' => 'nullable|string|max:255',
             'harga_masuk' => 'nullable|numeric',
-            'link_google_maps' => 'nullable|url|max:255',
             'waktu_kunjung' => 'nullable|string', // Sesuaikan di sini
             'deskripsi' => 'nullable|string',
             'foto_card' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
@@ -168,51 +201,6 @@ class AdminDesaWisataController extends Controller
     
         $wisata = Wisata::findOrFail($id);
         
-        // Konversi link Google Maps ke format embed jika ada
-        $link_google_maps = $request->input('link_google_maps');
-        if ($link_google_maps) {
-            // Cek apakah link sudah dalam format embed
-            if (strpos($link_google_maps, 'embed') === false) {
-                // Jika link adalah shortened URL (maps.app.goo.gl)
-                if (strpos($link_google_maps, 'goo.gl') !== false) {
-                    // Ambil URL asli dari shortened URL
-                    $headers = get_headers($link_google_maps, 1);
-                    if (isset($headers['Location'])) {
-                        $full_url = is_array($headers['Location']) ? end($headers['Location']) : $headers['Location'];
-                    } else {
-                        return redirect()->back()->with('error', 'Link Google Maps tidak valid atau tidak dapat diakses.');
-                    }
-                } else {
-                    $full_url = $link_google_maps;
-                }
-
-                // Parsir URL untuk mengonversi ke format embed
-                $urlParts = parse_url($full_url);
-                if (isset($urlParts['path'])) {
-                    if (strpos($urlParts['path'], '/place/') !== false) {
-                        // Untuk URL dengan "/place/"
-                        $embed_map_link = str_replace('/maps/place/', '/maps/embed?pb=', $full_url);
-                    } elseif (isset($urlParts['query'])) {
-                        parse_str($urlParts['query'], $queryParams);
-                        if (isset($queryParams['q'])) {
-                            // Konversi URL query (misalnya, dengan parameter `q`)
-                            $embed_map_link = "https://www.google.com/maps/embed/v1/place?q=" . urlencode($queryParams['q']);
-                        } else {
-                            $embed_map_link = "https://www.google.com/maps/embed/v1/place?q=" . urlencode($full_url);
-                        }
-                    } else {
-                        $embed_map_link = "https://www.google.com/maps/embed/v1/place?q=" . urlencode($full_url);
-                    }
-                } else {
-                    return redirect()->back()->with('error', 'Format link tidak valid.');
-                }
-            } else {
-                $embed_map_link = $link_google_maps; // Jika sudah dalam format embed
-            }
-
-            // Simpan link embed ke database
-            $validatedData['link_google_maps'] = $embed_map_link;
-        }
 
         // Update foto card
         if ($request->hasFile('foto_card')) {
@@ -290,7 +278,6 @@ class AdminDesaWisataController extends Controller
             'foto_card' => $wisata->foto_card,
             'brosur' => $wisata->brosur,
             'foto_wisata' => json_encode(array_values($fotoWisataPaths)),
-            'link_google_maps' => $request->link_google_maps,
             'waktu_kunjung' => json_encode($waktuKunjung),
         ]);
     
@@ -328,7 +315,39 @@ class AdminDesaWisataController extends Controller
 
     public function kelolaHomepage()
     {
-        return view('admin.adminwisata.kelolahomepagewisata');
+        $homepageData = Homepage::where('desa_name', 'wisata')->first();
+        return view('admin.adminwisata.kelolahomepagewisata', compact('homepageData'));
+    }
+
+    // Mengelola update banner gambar untuk homepage wisata
+    public function updateBannerWisata(Request $request)
+    {
+        // Ambil data homepage wisata berdasarkan desa_name 'wisata'
+        $homepageData = Homepage::where('desa_name', 'wisata')->first();
+
+        // Jika data tidak ditemukan, buat data baru untuk desa wisata
+        if (!$homepageData) {
+            $homepageData = new Homepage;
+            $homepageData->desa_name = 'wisata'; // Tentukan desa yang sedang diproses
+        }
+
+        // Mengelola upload gambar banner jika ada
+        if ($request->hasFile('banner_image')) {
+            // Hapus gambar lama jika ada
+            if ($homepageData->gambar_banner && Storage::disk('public')->exists($homepageData->gambar_banner)) {
+                Storage::disk('public')->delete($homepageData->gambar_banner);
+            }
+
+            // Simpan gambar baru ke folder 'uploads/wisata'
+            $bannerImageName = $request->file('banner_image')->store('uploads/wisata', 'public');
+            $homepageData->gambar_banner = $bannerImageName;
+        }
+
+        // Simpan perubahan ke dalam database
+        $homepageData->save();
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->back()->with('success', 'Banner Desa Wisata berhasil diperbarui');
     }
     
 }
