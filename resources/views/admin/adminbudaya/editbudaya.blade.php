@@ -205,13 +205,6 @@
                     <input type="text" name="nomor_whatsapp" class="form-control" value="{{ old('nomor_whatsapp', $budaya->nomor_whatsapp) }}" placeholder="Masukkan Nomor WhatsApp" required>
                 </div>
 
-                {{-- Link Google Maps --}}
-                <div class="form-group">
-                    <label for="link_google_maps">Link Google Maps</label>
-                    <input type="url" name="link_google_maps" class="form-control" value="{{ old('link_google_maps', $budaya->link_google_maps) }}" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
-                    <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
-                </div>
-
                 {{-- Deskripsi --}}
                 <div class="form-group">
                     <label for="deskripsi">Deskripsi</label>
