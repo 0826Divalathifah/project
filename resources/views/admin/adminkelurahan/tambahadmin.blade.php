@@ -60,11 +60,7 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
+        
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -112,7 +108,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/kelolahomepage') }}">
                 <i class="mdi mdi-home menu-icon"></i>
-                <span class="menu-title">Kelola Home Page</span>
+                <span class="menu-title">Kelola HomePage</span>
               </a>
             </li>
            <!-- <li class="nav-item">
@@ -130,69 +126,72 @@
     <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/kelolabudaya') }}">Kelola Admin</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/kelolaadmin') }}">Kelola Admin</a></li>
                         <li class="breadcrumb-item"><a href="#"> Tambah Admin</a></li>
                     </ol>
                 </nav>
                 <div class="col-12 grid-margin stretch-card">
             <div class="card">
-              <form id="formTambah" action="{{ url('/admin/simpanprima') }}" method="POST" enctype="multipart/form-data">
-              @csrf
-              <!-- form content -->
-             <div class="card-body">
-                <h4 class="card-title">Formulir Tambah Admin</h4>
-                <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+            <form id="formTambah" action="{{ url('/admin/simpanadmin') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <!-- form content -->
+                <div class="card-body">
+                    <h4 class="card-title">Formulir Tambah Admin</h4>
+                    <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+        
 
-                <!-- Notifikasi Sukses -->
-                @if(session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
+                    <!-- Input Nama Admin -->
+                    <div class="form-group">
+                        <label for="name">Nama Admin</label>
+                        <input type="text" name="name" class="form-control" placeholder="Masukkan Nama Admin" value="{{ old('name') }}" required>
                     </div>
-                @endif
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" name="username" class="form-control" placeholder="Masukkan Username" required>
-            </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Masukkan Email" required>
-            </div>
+                    <!-- Input Email Admin -->
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Masukkan Email" value="{{ old('email') }}" required>
+                    </div>
 
-            <div class="form-group">
-                <label for="nomor_telepon">Nomor Telepon</label>
-                <input type="text" name="nomor_telepon" class="form-control" placeholder="Masukkan Nomor Telepon" required>
-            </div>
+                    <!-- Input Role Admin -->
+                    <div class="form-group">
+                        <label for="role">Peran Admin</label>
+                        <select name="role" class="form-control" required>
+                            <option value="">Pilih Peran Admin</option>
+                            <option value="super_admin" {{ old('role') == 'super_admin' ? 'selected' : '' }}>Admin Kalurahan (Super Admin)</option>
+                            <option value="admin_budaya" {{ old('role') == 'admin_budaya' ? 'selected' : '' }}>Admin Desa Budaya</option>
+                            <option value="admin_preneur" {{ old('role') == 'admin_preneur' ? 'selected' : '' }}>Admin Desa Preneur</option>
+                            <option value="admin_prima" {{ old('role') == 'admin_prima' ? 'selected' : '' }}>Admin Desa Prima</option>
+                            <option value="admin_wisata" {{ old('role') == 'admin_wisata' ? 'selected' : '' }}>Admin Desa Wisata</option>
+                        </select>
+                    </div>
 
-            <div class="form-group">
-                <label for="peran">Peran Admin</label>
-                <select name="peran" class="form-control" required>
-                    <option value="">Pilih Peran Admin</option>
-                    <option value="Admin Budaya">Admin Desa Budaya</option>
-                    <option value="Admin Preneur">Admin Desa Preneur</option>
-                    <option value="Admin Wisata">Admin Desa Wisata</option>
-                    <option value="Admin Sewa">Admin  Desa Prima</option>
-                </select>
-            </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                      <label for="password">Kata Sandi</label>
+                      <div class="input-group">
+                          <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Kata Sandi" required>
+                          <span class="input-group-text" onclick="togglePassword('password')">
+                              <i class="fa fa-eye" id="togglePasswordIcon" style="cursor: pointer;"></i>
+                          </span>
+                      </div>
+                  </div>
 
-            <div class="form-group">
-                <label for="password">Kata Sandi</label>
-                <input type="password" name="password" class="form-control" placeholder="Masukkan Kata Sandi" required>
-            </div>
+                  <!--Confirm Password -->
+                  <div class="form-group">
+                      <label for="password_confirmation">Konfirmasi Kata Sandi</label>
+                      <div class="input-group">
+                          <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="Konfirmasi Kata Sandi" required>
+                          <span class="input-group-text" onclick="togglePassword('password_confirmation')">
+                              <i class="fa fa-eye" id="togglePasswordConfirmationIcon" style="cursor: pointer;"></i>
+                          </span>
+                      </div>
+                  </div>
 
-            <div class="form-group">
-                <label for="password_confirmation">Konfirmasi Kata Sandi</label>
-                <input type="password" name="password_confirmation" class="form-control" placeholder="Konfirmasi Kata Sandi" required>
-            </div>
+                    <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+                </div>
 
-            <div class="form-group">
-                <label for="alamat">Alamat</label>
-                <input type="text" name="alamat" class="form-control" placeholder="Masukkan Alamat">
-            </div>
+            </form>
 
-            <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
-        </div>
-    </form>
 </div>
 
 
@@ -229,7 +228,7 @@
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
-
+    <script src="{{ asset('admin/assets/js/password.js') }}"></script>
     <!-- End custom js for this page-->
 </body>
 </html>
