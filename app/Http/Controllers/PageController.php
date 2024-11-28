@@ -4,51 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Budaya;
-use App\Models\HomepageBudaya;
+use App\Models\AdminKalurahan;
+use App\Models\Homepage;
 use App\Models\Agenda;
 use App\Models\Wisata;
-use App\Models\Preneur;
-use App\Models\Prima;
-use App\Models\VarianPrima;
 use App\Models\Visit;
-
+use App\Models\Feedback;
 
 class PageController extends Controller
 {
 
         public function index()
         {
-            // Ambil data pertama dari `HomepageBudaya`
-            $homepageData = HomepageBudaya::first();
+           
 
-            // Periksa apakah data ditemukan
-            if ($homepageData) {
-                // Jika ditemukan, ambil gambar_banner dari database
-                $gambar_banner = $homepageData->gambar_banner;
-            } else {
-                // Jika tidak ada, beri nilai default
-                $gambar_banner = 'uploads/default_banner.jpg';
-            }
+            // Ambil data dari tabel `Homepage` dengan `desa_name` bernilai 'budaya'
+            $homepageData = Homepage::where('desa_name', 'kalurahan')->first();
 
-            return view('beranda.index', compact('gambar_banner'));
+
+            // Ambil data untuk desa budaya
+            $homepageData = Homepage::where('desa_name', 'budaya')->first();
+
+            // Tentukan nilai default jika data tidak ada
+            $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg';
+            $deskripsi_index = $homepageData->deskripsi ?? 'Deskripsi default untuk Desa Budaya.';
+            
+            return view('beranda.index', compact('gambar_banner','deskripsi_index'));
         }
        
-         public function desabudaya()
+        public function desabudaya()
         {
             // Mengambil semua data budaya
             $budaya = Budaya::all();
 
-            // Ambil data pertama dari `HomepageBudaya`
-            $homepageData = HomepageBudaya::first();
+            // Ambil data dari tabel `Homepage` dengan `desa_name` bernilai 'budaya'
+            $homepageData = Homepage::where('desa_name', 'budaya')->first();
 
-            // Periksa apakah data ditemukan
-            if ($homepageData) {
-                // Jika ditemukan, ambil deskripsi_welcome dari database
-                $deskripsi_welcome = $homepageData->deskripsi_welcome;
-            } else {
-                // Jika tidak ada, beri nilai default
-                $deskripsi_welcome = 'Deskripsi default untuk Desa Budaya.'; // Nilai default
-            }
+            // Pastikan data tersedia untuk view
+            $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg'; // Path default jika gambar tidak ditemukan
+            $gambar_welcome = $homepageData->gambar_welcome ?? 'uploads/default_welcome.jpg';
+            $deskripsi_welcome = $homepageData->deskripsi ?? 'Deskripsi default untuk Desa Budaya.'; // Deskripsi default jika tidak ada data
 
             // Menyimpan kunjungan ke tabel visits
             Visit::create([
@@ -60,7 +55,7 @@ class PageController extends Controller
             $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count();
 
             // Mengirimkan data ke view
-            return view('beranda.desabudaya', compact('budaya', 'deskripsi_welcome', 'totalVisitsDesaBudaya'));
+            return view('beranda.desabudaya', compact('budaya', 'gambar_banner', 'gambar_welcome', 'deskripsi_welcome', 'totalVisitsDesaBudaya'));
         }
 
         public function detail_budaya($id)
@@ -74,15 +69,17 @@ class PageController extends Controller
             // Mengambil semua agenda untuk kalender
             $agenda = Agenda::all();
 
-            // Mengambil data dari tabel HomepageBudaya
-            $homepageData = HomepageBudaya::first();
+            // Ambil data dari tabel `Homepage` dengan `desa_name` bernilai 'wisata'
+            $homepageData = Homepage::where('desa_name', 'wisata')->first();
+
+            // Pastikan data tersedia untuk view
+            $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg'; // Path default jika gambar tidak ditemukan
 
             // Langsung mengambil embed link Google Maps dan YouTube dari database
-            $embed_map_link = $budaya->link_google_maps;
             $embed_youtube_link = $budaya->link_youtube;
 
             // Mengirim data ke tampilan
-            return view('beranda.detail_budaya', compact('budaya', 'agenda', 'embed_map_link', 'embed_youtube_link', 'homepageData'));
+            return view('beranda.detail_budaya', compact('budaya', 'agenda', 'embed_youtube_link', 'homepageData', 'gambar_banner'));
         } 
                 
             public function desaprima()
@@ -97,64 +94,21 @@ class PageController extends Controller
             {
                 return view('beranda.desapreneur'); // Mengarah ke resources/views/beranda/shop.blade.php
             }
-           public function desawisata()
-            {
-                 // Menyimpan kunjungan ke tabel visits
-                Visit::create([
-                    'url' => url()->current(), // Mengambil URL yang diakses
-                    'desa_name' => 'Desa Wisata', // Nama desa
-                ]);
-
-                // Mengambil semua data wisata dari database
-                $wisata = Wisata::all();
-                
-                // Mengambil jumlah kunjungan untuk Desa Wisata bulan ini
-                $totalVisitsDesaWisata = Visit::where('desa_name', 'Desa Wisata')->count();
-
-                // Mengirim data wisata dan jumlah kunjungan ke view
-                return view('beranda.desawisata', compact('wisata', 'totalVisitsDesaWisata'));
-            }
+             
 
             public function detail_wisata($id)
             {
                 $wisata = Wisata::findOrFail($id); // Mengambil data wisata berdasarkan ID
-                return view('beranda.detail_wisata', compact('wisata')); // Meneruskan data ke view
+
+                // Ambil data dari tabel `Homepage` dengan `desa_name` bernilai 'budaya'
+                $homepageData = Homepage::where('desa_name', 'wisata')->first();
+
+                 // Pastikan data tersedia untuk view
+                $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg'; // Path default jika gambar tidak ditemukan
+
+                return view('beranda.detail_wisata', compact('wisata','homepageData', 'gambar_banner'));
             }
             
-
-
-            public function detail_prima($id)
-            {
-                // Mengambil data produk berdasarkan ID
-                $produk = Prima::with('varianPrima')->findOrFail($id); // Mengambil data beserta variannya
-
-                // Mengembalikan tampilan detail produk dengan data yang diambil
-                return view('beranda.detail_prima', compact('produk'));
-
-            }
-            public function desaprima()
-            {
-                $makanan = Prima::where('kategori_produk', 'makanan')->get();
-                $kerajinan = Prima::where('kategori_produk', 'kerajinan')->get();
-        
-                return view('beranda.desaprima', compact('makanan', 'kerajinan'));
-            }
-            
-
-            public function detail_preneur($id)
-            {
-                $produk = Preneur::with('varians')->findOrFail($id);
-                return view('beranda.detail_preneur', compact('produk'));
-            }
-            public function desapreneur()
-            {
-                $makanan = Preneur::where('kategori_produk', 'makanan')->get();
-                $kerajinan = Preneur::where('kategori_produk', 'kerajinan')->get();
-        
-                return view('beranda.desapreneur', compact('makanan', 'kerajinan'));
-            }
-            
-
 
             
     public function about()
@@ -166,6 +120,23 @@ class PageController extends Controller
     public function contact()
     {
         return view('beranda.contact'); // Mengarah ke resources/views/beranda/contact.blade.php
+    }
+
+    public function simpanFeedback(Request $request)
+    {
+        $request->validate([
+            'message' => 'required|string',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+        ]);
+    
+        Feedback::create([
+            'message' => $request->message,
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+    
+        return redirect()->back()->with('success', 'Pesan Anda berhasil dikirim!');
     }
 
     public function elements()
