@@ -60,11 +60,7 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
+        
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -134,44 +130,33 @@
                                 <a href="{{ url('tambahadmin') }}" class="btn btn-primary">Tambah Admin</a>
                             </div>
                             <div class="table-responsive">
-                                <table class="table table-striped table-borderless">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama Lengkap</th>
-                                            <th>Email</th>
-                                            <th>Nomor Telepon</th>
-                                            <th>Alamat</th>
-                                            <th>Role</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Data Statis Admin -->
-                                        <tr>
-                                            <td>Ahmad Rudianto</td>
-                                            <td>ahmad@example.com</td>
-                                            <td>081234567890</td>
-                                            <td>Jl. Mangga No. 1</td>
-                                            <td>Super Admin</td>
-                                            <td>
-                                                <a href="{{ url('editadmin', ['id' => 1]) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                <button class="btn btn-danger btn-sm">Hapus</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Siti Mariani</td>
-                                            <td>siti@example.com</td>
-                                            <td>081298765432</td>
-                                            <td>Jl. Rambutan No. 2</td>
-                                            <td>Admin</td>
-                                            <td>
-                                                <a href="{{ url('editadmin', ['id' => 2]) }}" class="btn btn-primary btn-sm">Edit</a>
-                                                <button class="btn btn-danger btn-sm">Hapus</button>
-                                            </td>
-                                        </tr>
-                                        <!-- Tambah data statis lainnya jika perlu -->
-                                    </tbody>
-                                </table>
+                            <table class="table table-striped table-borderless">
+                            <thead>
+                                <tr>
+                                    <th>Nama Lengkap</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($admins as $admin)
+                                <tr>
+                                    <td>{{ $admin->name }}</td>
+                                    <td>{{ $admin->email }}</td>
+                                    <td>{{ ucfirst(str_replace('_', ' ', $admin->role)) }}</td>
+                                    <td>
+                                        <a href="{{ url('admin/editadmin', ['id' => $admin->id]) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <form action="{{ url('admin/hapusadmin', ['id' => $admin->id]) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                             </div>
                         </div>
                     </div>
