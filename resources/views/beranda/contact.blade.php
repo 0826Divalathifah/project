@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Desa Budaya</title>
+    <title>Kontak</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -37,7 +37,6 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/contact.css') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
@@ -125,6 +124,66 @@
             
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+        /* Styling for the banner */
+        .banner-container {
+            position: relative;
+            text-align: center;
+            color: white;
+            height: 600px;
+            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            pointer-events: none; /* Membuat overlay tidak memblokir interaksi */
+        }
+
+        .banner-content {
+            position: relative;
+            z-index: 2; /* Pastikan ini berada di atas overlay */
+            text-align: center;
+        }
+
+        .banner-text {
+            font-size: 48px;
+            font-weight: bold;
+            z-index: 3; 
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            margin-top: 100px;
+        }
+
+        .breadcrumb {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .breadcrumb-item a {
+            color: #ffffff;
+            text-decoration: none;
+            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
+            position: relative; /* Penting untuk memastikan z-index bekerja */
+        }
+
+        .breadcrumb-item a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        
+    </style>
 
         <div class="banner-container">
             <div class="banner-overlay"></div>
@@ -140,103 +199,98 @@
             <!-- Breadcrumb End -->
         </div>
         
-                <!--?  Contact Area start  -->
-                <section class="contact-section">
-                    <div class="container">
-                        <hr>
-                            <!-- Contact Information Start -->
-                            <div class="row contact-info-boxes">
-                                <div class="col-lg-3 col-md-6 col-sm-6">
-                                    <div class="info-box">
-                                        <span class="info-icon"><i class="ti-home"></i></span>
-                                        <h4>Alamat</h4>
-                                        <p>Jl. Mijil Nomor 98, Karangjati, Sindudadi, Kec. Mlati, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55284</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6">
-                                    <div class="info-box">
-                                        <span class="info-icon"><i class="ti-email"></i></span>
-                                        <h4>Email</h4>
-                                        <p>mail@beecons.co.id</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 col-sm-6">
-                                    <div class="info-box">
-                                        <span class="info-icon"><i class="ti-mobile"></i></span>
-                                        <h4>WhatsApp</h4>
-                                        <p>08112632799</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6">
-                                    <div class="info-box">
-                                        <span class="info-icon"><i class="ti-time"></i></span>
-                                        <h4>Operations</h4>
-                                        <p>Senin – Jumat 08:00 – 16:00 WIB</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Contact Information End -->
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.6740283935355!2d110.40316631744383!3d-7.718081099999983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59c8182df777%3A0x4b7a5afe863a3e07!2sKantor%20Kalurahan%20Sinduharjo!5e0!3m2!1sen!2sid!4v1724989066318!5m2!1sen!2sid" 
-                                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            <div class="d-none d-sm-block mb-5 pb-4">
-                                <script>
-                                    function initMap() {
-                                        var uluru = { lat: -25.363, lng: 131.044 };
-                                        var grayStyles = [{
-                                            featureType: "all",
-                                            stylers: [{ saturation: -90 }, { lightness: 50 }]
-                                        }, {
-                                            elementType: 'labels.text.fill',
-                                            stylers: [{ color: '#ccdee9' }]
-                                        }];
-                                        var map = new google.maps.Map(document.getElementById('map'), {
-                                            center: { lat: -31.197, lng: 150.744 },
-                                            zoom: 9,
-                                            styles: grayStyles,
-                                            scrollwheel: false
-                                        });
-                                    }
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" style="margin-top: 20px;">
-                        <div class="col-24">
-                            <h3 class="contact-title">
-                                Kesan dan Pesan
-                            </h3>
-                        </div>
-                    </div>
-                <div class="col-lg-12">
-                <form class="form-contact contact_form" action="{{ url('admin/simpanFeedback') }}"method="POST" id="contactForm" novalidate="novalidate">
-                    @csrf
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <textarea class="form-control w-100" name="pesan" id="pesan" cols="30" rows="9" placeholder="Kirim Pesan"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input class="form-control valid" name="nama" id="nama" type="text" placeholder="Masukkan Nama Anda">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <input class="form-control valid" name="email" id="email" type="email" placeholder="Email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group mt-3"> 
-                        <button type="submit" id="submit" class="button button-contactForm boxed-btn">Kirim</button>
-                    </div>
-                </form>
+        <!--?  Contact Area start  -->
+        <section class="contact-section">
+        <div class="container" style="max-width: 100%; height: auto;">
+    <hr>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.6740283935355!2d110.40316631744383!3d-7.718081099999983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59c8182df777%3A0x4b7a5afe863a3e07!2sKantor%20Kalurahan%20Sinduharjo!5e0!3m2!1sen!2sid!4v1724989066318!5m2!1sen!2sid" 
+        width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="d-none d-sm-block mb-5 pb-4">
+        <script>
+            function initMap() {
+                var uluru = { lat: -25.363, lng: 131.044 };
+                var grayStyles = [{
+                    featureType: "all",
+                    stylers: [{ saturation: -90 }, { lightness: 50 }]
+                }, {
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#ccdee9' }]
+                }];
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -31.197, lng: 150.744 },
+                    zoom: 9,
+                    styles: grayStyles,
+                    scrollwheel: false
+                });
+            }
+        </script>
+    </div>
+</div>
+    
+                    
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                <div class="col-24">
+                    <h3 class="contact-title">
+                        Kesan dan Pesan
+                    </h3>
+                </div>
             </div>
+
+            <div class="col-lg-12">
+            <form class="form-contact contact_form" action="{{ route('simpanFeedback') }}" method="POST" id="contactForm" novalidate="novalidate">
+            @csrf
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Kirim Pesan" required></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input class="form-control valid" name="name" id="name" type="text" placeholder="Masukkan Nama Anda" required>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input class="form-control valid" name="email" id="email" type="email" placeholder="Email" required>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="button button-contactForm boxed-btn">Kirim Pesan</button>
             </div>
         </div>
-    </section>
-    <!-- Contact Area End --> 
+    </form>
+</div>
+
+
+                    <div class="col-lg-3 offset-lg-1">
+                        <div class="media contact-info">
+                            <span class="contact-info__icon"><i class="ti-home"></i></span>
+                            <div class="media-body">
+                                <h3>Kalurahan Sinduharjo</h3>
+                                <p>Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</p>
+                            </div>
+                        </div>
+                        <div class="media contact-info">
+                            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                            <div class="media-body">
+                                <h3>(0274) 882723</h3>
+                                <p>Senin-Jumat 08.00 WIB - 15.00 WIB</p>
+                            </div>
+                        </div>
+                        <div class="media contact-info">
+                            <span class="contact-info__icon"><i class="ti-email"></i></span>
+                            <div class="media-body">
+                                <h3>sinduharjomantep@gmail.com</h3>
+                                <p>Kirimkan pertanyaan Anda kepada kami kapan saja</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Area End -->
     </main>
     <footer>
     <!-- Footer Start -->
