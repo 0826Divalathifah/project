@@ -195,12 +195,6 @@
         </div>
 
         <div class="form-group">
-            <label for="link_google_maps">Link Google Maps</label>
-            <input type="url" name="link_google_maps" class="form-control" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
-            <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
-        </div>
-
-        <div class="form-group">
             <label for="deskripsi">Deskripsi</label>
             <textarea name="deskripsi" class="form-control" id="deskripsi" rows="5" required></textarea>
         </div>
