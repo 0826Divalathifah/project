@@ -186,114 +186,135 @@
   </div>
 </div>
 <div class="row">
-    <div class="col-md-6 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <p class="card-title">Jumlah Kunjungan Desa Budaya</p>
-                    <div>
-                        <select id="filter-period" class="form-control-sm" name="period">
-                            <option value="week" {{ $period === 'week' ? 'selected' : '' }}>Mingguan</option>
-                            <option value="month" {{ $period === 'month' ? 'selected' : '' }}>Bulanan</option>
-                            <option value="year" {{ $period === 'year' ? 'selected' : '' }}>Tahunan</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="d-flex flex-wrap mb-5"></div>
-                <canvas id="budaya-chart"></canvas>
+  <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+          <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                  <p class="card-title">Jumlah Kunjungan Desa Budaya</p>
+                  <select id="filter" class="form-select w-25" data-desa="Desa Budaya">
+                      <option value="daily" {{ $filter == 'daily' ? 'selected' : '' }}>Harian</option>
+                      <option value="weekly" {{ $filter == 'weekly' ? 'selected' : '' }}>Mingguan</option>
+                      <option value="monthly" {{ $filter == 'monthly' ? 'selected' : '' }}>Bulanan</option>
+                      <option value="yearly" {{ $filter == 'yearly' ? 'selected' : '' }}>Tahunan</option>
+                  </select>
+              </div>
+              <!-- Elemen untuk menyimpan data -->
+              <canvas id="desaBudayaChart" height="150" 
+                  data-labels="{{ implode(',', $labels) }}" 
+                  data-data="{{ implode(',', $data) }}">
+              </canvas>
+          </div>
+      </div>
+  </div>
+
+  <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+          <div class="card-body">
+              <div class="d-flex justify-content-between">
+                  <p class="card-title">Jumlah Agenda</p>
+                  <a href="{{ url('/kelolaagenda') }}" class="text-info">View all</a>
+              </div>
+
+              <!-- Dropdown Filter -->
+              <form method="GET" action="{{ url('/adminbudaya') }}" id="filterForm">
+                  <div class="row mb-3">
+                      <div class="col-md-6">
+                          <select name="year" class="form-control" onchange="document.getElementById('filterForm').submit();">
+                              @for ($i = 2024; $i <= date('Y'); $i++)
+                                  <option value="{{ $i }}" {{ request('year') == $i ? 'selected' : '' }}>{{ $i }}</option>
+                              @endfor
+                          </select>
+                      </div>
+                      <div class="col-md-6">
+                          <select name="month" class="form-control" onchange="document.getElementById('filterForm').submit();">
+                              <option value="">Semua Bulan</option>
+                              @foreach (range(1, 12) as $m)
+                                  <option value="{{ $m }}" {{ request('month') == $m ? 'selected' : '' }}>
+                                      {{ Carbon\Carbon::create()->month($m)->format('F') }}
+                                  </option>
+                              @endforeach
+                          </select>
+                      </div>
+                  </div>
+              </form>
+
+              <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
+              <canvas id="sales-chart" 
+                  data-agenda-labels="{{ json_encode($agendaLabels) }}" 
+                  data-agenda-totals="{{ json_encode($agendaTotals) }}">
+              </canvas>
+          </div>
+      </div>
+  </div>
+
+      
+<div class="row">
+  <div class="col-12 grid-margin stretch-card">
+      <div class="card">
+          <div class="card-body">
+            <p class="card-title mb-10">Daftar Agenda Yang Akan Datang</p>
+            <div class="table-responsive">
+                <table class="table table-striped table-borderless">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Acara</th>
+                            <th>Tanggal Acara</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      @forelse($agendaComing as $index => $agenda)
+                          <tr>
+                              <td>{{ $index + 1 }}</td>
+                              <td>{{ $agenda->nama_acara }}</td>
+                              <td>{{ \Carbon\Carbon::parse($agenda->tanggal_acara)->format('d M Y') }}</td>
+                          </tr>
+                      @empty
+                          <tr>
+                              <td colspan="3" class="text-center">Tidak ada agenda yang akan datang.</td>
+                          </tr>
+                      @endforelse
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-
-              <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
-                  <div class="card-body">
-                      <!-- Header dengan judul dan link -->
-                      <div class="d-flex justify-content-between">
-                          <p class="card-title">Jumlah Agenda</p>
-                          <a href="{{ url('/kelolaagenda') }}" class="text-info">View all</a>
-                      </div>
-
-                      <!-- Chart legend -->
-                      <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
-
-                      <!-- Chart canvas -->
-                      <canvas id="sales-chart" 
-                          data-agenda-months="{{ json_encode($agendaMonths) }}"  
-                          data-agenda-totals="{{ json_encode($agendaTotals) }}">   <!-- Data total agenda per bulan -->
-                      </canvas>
-                  </div>
-              </div>
-          </div>
-
-            
-          <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-                <div class="card">
-                    <div class="card-body">
-                      <p class="card-title mb-10">Daftar Agenda Yang Akan Datang</p>
-                      <div class="table-responsive">
-                          <table class="table table-striped table-borderless">
-                              <thead>
-                                  <tr>
-                                      <th>No</th>
-                                      <th>Nama Acara</th>
-                                      <th>Tanggal Acara</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                @forelse($agendaComing as $index => $agend)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $agend->nama_acara }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($agend->tanggal_acara)->format('d M Y') }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="3" class="text-center">Tidak ada agenda yang akan datang.</td>
-                                    </tr>
-                                @endforelse
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        </div>
+</div>
+</div>
           
-        <div class= "row">
-        <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
-                <div class="card-body">
-                <div class="d-flex justify-content-between">
-                    <p class="card-title mb-10">Daftar Budaya</p>
-                    <a href="{{ url('/kelolabudaya') }}" class="text-info">View all</a>
-                </div>
-                      <div class="table-responsive">
-                        <table id="example" class="display expandable-table" style="width:100%" >
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Budaya</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse($budaya as $index => $item)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $item->nama_budaya }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="2" class="text-center">Tidak ada budaya yang tersedia.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+<div class= "row">
+  <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+          <div class="card-body">
+          <div class="d-flex justify-content-between">
+              <p class="card-title mb-10">Daftar Budaya</p>
+              <a href="{{ url('/kelolabudaya') }}" class="text-info">View all</a>
           </div>
+                <div class="table-responsive">
+                  <table id="example" class="display expandable-table" style="width:100%" >
+                      <thead>
+                          <tr>
+                              <th>No</th>
+                              <th>Nama Budaya</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          @forelse($budaya as $index => $item)
+                              <tr>
+                                  <td>{{ $index + 1 }}</td>
+                                  <td>{{ $item->nama_budaya }}</td>
+                              </tr>
+                          @empty
+                              <tr>
+                                  <td colspan="2" class="text-center">Tidak ada budaya yang tersedia.</td>
+                              </tr>
+                          @endforelse
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
 
 <!-- main-panel ends -->
 </div>
@@ -321,11 +342,8 @@
 <script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
 <script src="{{ asset('admin/assets/js/datetime.js') }}"></script>
-<script>
-    const dataDesa = @json($dataDesa);
-    const agendaLabels = <?php echo json_encode($agendaMonths); ?>; 
-    const agendaData = <?php echo json_encode($agendaTotals); ?>;  // Array PHP ke JS
-</script>
+
+
 
 <!-- End custom js for this page-->
 </body>
