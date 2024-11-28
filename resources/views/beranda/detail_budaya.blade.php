@@ -98,6 +98,7 @@
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -116,6 +117,16 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             
             <div class="banner-container">
+                <!-- Mobile Device Show Menu-->
+                <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
                 @if(isset($homepageData->gambar_banner))
                     <img src="{{ asset('storage/' . $homepageData->gambar_banner) }}" alt="Banner" class="banner-image">
                 @else
@@ -252,57 +263,6 @@
                     Kirim
                 </button>
             </div>
-
-            <div class="row mt-5">
-    <div class="col-12">
-        <h3 class="text-center">Lokasi Wisata</h3>
-    </div>
-
-    @if(!empty($wisata->brosur) && !empty($wisata->link_google_maps))
-        <!-- Jika ada brosur dan Google Maps -->
-        <div class="col-md-6">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe 
-                    class="embed-responsive-item" 
-                    src="{{ $wisata->link_google_maps }}" 
-                    width="100%" 
-                    height="300" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy">
-                </iframe>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <img 
-                src="{{ asset('storage/' . $wisata->brosur) }}" 
-                alt="brosur" 
-                class="img-fluid" 
-                style="max-height: 300px; object-fit: cover;">
-        </div>
-    @elseif(!empty($wisata->link_google_maps))
-        <!-- Jika hanya ada Google Maps -->
-        <div class="col-12">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe 
-                    class="embed-responsive-item" 
-                    src="{{ $wisata->link_google_maps }}" 
-                    width="100%" 
-                    height="450" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy">
-                </iframe>
-            </div>
-        </div>
-    @else
-        <!-- Jika tidak ada Google Maps -->
-        <div class="col-12 text-center">
-            <p>Lokasi wisata tidak tersedia.</p>
-        </div>
-    @endif
-</div>
-
 
         </div>
     </div>
