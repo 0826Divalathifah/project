@@ -128,7 +128,6 @@
                         <tr>
                           <th>Nama Wisata</th>
                           <th>Harga Tiket</th>
-                          <th>Link Google Maps</th>
                           <th>Alamat</th>
                           <th>Waktu Kunjung</th>
                           <th>Deskripsi</th>
@@ -143,7 +142,6 @@
                       <tr>
                           <td>{{ $item->nama_wisata }}</td>
                           <td>{{ $item->harga_masuk }}</td>
-                          <td><a href="{{ $item->link_google_maps }}">Lihat Peta</a></td>
                           <td>{{ \Illuminate\Support\Str::limit($item->alamat, 20, '...') }}</td>
                           <td>
                               @php
@@ -162,7 +160,13 @@
                           </td>
                           <td>{{ \Illuminate\Support\Str::limit($item->deskripsi, 20, '...') }}</td>
                           <td><img src="{{ asset('storage/' . $item->foto_card) }}" alt="Foto Card" width="100"></td>
-                          <td><img src="{{ asset('storage/' . $item->brosur) }}" alt="brosur" width="100"></td>
+                          <td>
+                              @if(!empty($item->brosur))
+                                  <img src="{{ asset('storage/' . $item->brosur) }}" alt="Brosur" width="100">
+                              @else
+                                  -
+                              @endif
+                          </td>
                           <td>
                               @php
                                   $fotoWisata = json_decode($item->foto_wisata); // Decode JSON foto_wisata
