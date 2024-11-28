@@ -139,7 +139,6 @@
                             <th>Kisaran Harga</th>
                             <th>Link Youtube</th>
                             <th>Nomor WhatsApp</th>
-                            <th>Link Google Maps</th>
                             <th>Deskripsi</th>
                             <th>Foto Card</th>
                             <th>Foto Slider</th>
@@ -155,7 +154,6 @@
                         <td>Rp {{ $item->harga_min }} - Rp {{ $item->harga_max }}</td>
                         <td><a href="{{ $item->link_youtube }}">Lihat Video</a></td>
                         <td><a href="https://wa.me/{{ $item->nomor_whatsapp }}">Hubungi</a></td>
-                        <td><a href="{{ $item->link_google_maps }}">Lihat Peta</a></td>
                         <td>{{ \Illuminate\Support\Str::limit($item->deskripsi, 20, '...') }}</td>
                         
                         <!-- Foto Card -->
