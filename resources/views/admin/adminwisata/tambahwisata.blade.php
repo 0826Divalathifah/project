@@ -147,13 +147,6 @@
                     </div>
                 </div>
 
-                <!-- Input URL Google Maps -->
-                <div class="form-group">
-                    <label for="mapsLink">Link Google Maps</label>
-                    <input type="url" class="form-control" id="mapsLink" name="link_google_maps" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
-                    <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
-                </div>
-                
                 <!-- Input Alamat -->
                 <div class="form-group">
                   <label for="alamat">Alamat</label>
