@@ -117,23 +117,22 @@
             </li>-->
           </ul>
         </nav>
-        <div class="main-panel">
-    <div class="content-wrapper">
-        <div class="row"></div>
+
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row"></div>
 
         <!-- Kelola Banner -->
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Kelola Banner</h4>
-                    <form class="forms-sample" action="{{ url('/update-banner') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-
+                    <form class="forms-sample" action="{{ url('/update-banner-budaya') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
                             <label for="bannerImage">Edit Banner</label>
                             <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
                             @if(isset($homepageData->gambar_banner))
-                                <p>Path Gambar: {{ $homepageData->gambar_banner }}</p>
                                 <img src="{{ asset('storage/'.$homepageData->gambar_banner) }}" alt="Current Banner" width="100" class="mt-2">
                             @endif
                         </div>
@@ -149,24 +148,33 @@
                 <div class="card-body">
                     <h4 class="card-title">Kelola Card Selamat Datang</h4>
                     <form class="forms-sample" action="{{ url('/update-welcome-card') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+                      @csrf
+                      <div class="form-group">
+                          <label for="welcomeImage">Edit Foto</label>
+                          <input type="file" name="welcome_image" class="form-control" id="welcomeImage" accept="image/*">
 
-                        <div class="form-group">
-                            <label for="welcomeImage">Edit Foto</label>
-                            <input type="file" name="welcome_image" class="form-control" id="welcomeImage" accept="image/*">
-                            @if(isset($homepageData->gambar_welcome))
-                                <img src="{{ asset('storage/'.$homepageData->gambar_welcome) }}" alt="Current Welcome Image" width="100" class="mt-2">
-                            @endif
-                        </div>
-
-                        <div class="form-group">
-                            <label for="welcomeDescription">Edit Deskripsi</label>
-                            <textarea class="form-control" name="welcome_description" id="welcomeDescription" rows="4" placeholder="Deskripsi..." required>{{ $homepageData->deskripsi_welcome ?? '' }}</textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                    </form>
+                          @if(!empty($homepageData->gambar_welcome) && Storage::disk('public')->exists($homepageData->gambar_welcome))
+                              <div class="mt-3">
+                                  <img src="{{ asset('storage/' . $homepageData->gambar_welcome) }}" alt="Gambar Welcome" class="img-fluid" style="max-width: 200px; border: 1px solid #ddd;">
+                              </div>
+                          @endif
+                      </div>
+                      <div class="form-group">
+                          <label for="welcomeDescription">Edit Deskripsi</label>
+                          <textarea 
+                              class="form-control" 
+                              name="deskripsi_welcome" 
+                              id="welcomeDescription" 
+                              rows="4" 
+                              placeholder="Deskripsi..." 
+                              required>{{ old('deskripsi_welcome', $homepageData->deskripsi ?? '') }}</textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                  </form>
                 </div>
             </div>
+        </div>
+
         </div>
     </div>
 </div>
