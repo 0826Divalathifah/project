@@ -60,11 +60,7 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
+        
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -132,43 +128,57 @@
                 <h4 class="card-title">Kelola Feedback Pengguna</h4>
                 <p class="card-description">Tabel ini menampilkan semua masukan atau tanggapan dari pengguna website.</p>
                 <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nama Pengguna</th>
-                                <th>Email</th>
-                                <th>Pesan</th>
-                                <th>Tanggal Masukan</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Ahmad Fadhil</td>
-                                <td>ahmad.fadhil@example.com</td>
-                                <td>Saya sangat terbantu dengan informasi di website ini.</td>
-                                <td>2024-11-01</td>
-                                <td>
-                                    <button class="btn btn-success btn-sm">Tandai Baca</button>
-                                    <button class="btn btn-danger btn-sm">Hapus</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Siti Aisyah</td>
-                                <td>siti.aisyah@example.com</td>
-                                <td>Mohon tambahkan informasi tentang acara mendatang.</td>
-                                <td>2024-10-30</td>
-                                <td>
-                                    <button class="btn btn-success btn-sm">Tandai Baca</button>
-                                    <button class="btn btn-danger btn-sm">Hapus</button>
-                                </td>
-                            </tr>
-                            <!-- Tambahkan lebih banyak baris sesuai dengan data feedback -->
-                        </tbody>
-                    </table>
+                <table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nama Pengguna</th>
+            <th>Email</th>
+            <th>Pesan</th>
+            <th>Tanggal Masukan</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($feedback as $index => $feedback)
+        <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ $feedback->name }}</td>
+            <td>{{ $feedback->email }}</td>
+            <td>{{ $feedback->message }}</td>
+            <td>{{ $feedback->created_at->format('Y-m-d') }}</td>
+            <td>
+                <!-- Tombol Tanggapi -->
+                @if (!$feedback->is_responded)
+                    <button 
+                        class="btn btn-primary btn-sm tanggapi-btn" 
+                        data-feedback-id="{{ $feedback->id }}"
+                    >
+                        Tanggapi
+                    </button>
+                @else
+                    <button 
+                        class="btn btn-secondary btn-sm tanggapi-btn" 
+                        disabled
+                    >
+                        Sudah Ditanggapi
+                    </button>
+                @endif
+
+                <!-- Tombol Hapus -->
+                <button 
+                    class="btn btn-danger btn-sm hapus-btn" 
+                    data-feedback-id="{{ $feedback->id }}"
+                    onclick="hapusFeedback(this)"
+                >
+                    Hapus
+                </button>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
                 </div>
             </div>
         </div>
@@ -208,6 +218,7 @@
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/feedback.js') }}"></script>
     <!-- End custom js for this page-->
 
 </body>
