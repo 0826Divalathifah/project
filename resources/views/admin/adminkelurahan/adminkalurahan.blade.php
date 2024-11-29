@@ -1,429 +1,842 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-<head>
-<meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Kontak</title>
-    <meta name="description" content="">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
+    <title>Admin Kelurahan</title>
 
-    <meta name="description" content="" />
-    <meta name="keywords" content="bootstrap, bootstrap4" />
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <!-- endinject -->
 
-    <!-- Bootstrap CSS -->
-    <link href="{{ asset('furni/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="{{ asset('furni/css/tiny-slider.css') }}" rel="stylesheet">
-    <link href="{{ asset('furni/css/style.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
-
-        <!-- CSS themewagon -->
-    <link rel="stylesheet" href="{{ asset('themewagon/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/slicknav.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/progressbar_barfiller.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/gijgo.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/animated-headline.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/fontawesome-all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-
-</head>
-<body class="full-wrapper">
-    <!-- Preloader Start -->
-    <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Preloader End -->
-<header>
-    <!-- Header Start -->
-    <div class="header-area">
-        <div class="main-header header-sticky">
-            <div class="container-fluid">
-                <div class="menu-wrapper d-flex align-items-center justify-content-between">
-                    <div class="header-left d-flex align-items-center">
-                         <!-- Logo -->
-                         <div class="logo">
-                            <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
-                                </a></div>
-                        <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="{{ url('/') }}">Beranda</a></li>
-                                    <li><a href="#">Desa Mandiri Budaya</a>
-                                        <ul class="submenu">
-                                            <li><a href="{{ url('/desabudaya') }}">Desa Budaya </a></li>
-                                            <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
-                                            <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
-                                            <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
-                                        </ul>
-                                    <li>   
-                                    <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
-                                    <li><a href="{{ url('/contact') }}">Kontak</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                    <div class="header-right1 d-flex align-items-center">
-                        <!-- Social -->
-                        <div class="header-social d-none d-md-block">
-                        <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
-                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                                <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        </div>
-                        <!-- Search Box -->
-                        <div class="search d-none d-md-block">
-                            <ul class="d-flex align-items-center">
-                                <li class="mr-15">
-                                    <div class="nav-search search-switch">
-                                        <i class="ti-search"></i>
-                                    </div>
-                                </li>
-                               
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Mobile Menu -->
-                    <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
-    </header>
-    <main>
-        <!-- header end -->
-        <!-- listing Area Start -->
-            <div class="category-area">
-            <div class="container">
-            <div class="row">
-            
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-        /* Styling for the banner */
-        .banner-container {
-            position: relative;
-            text-align: center;
-            color: white;
-            height: 600px;
-            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            pointer-events: none; /* Membuat overlay tidak memblokir interaksi */
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2; /* Pastikan ini berada di atas overlay */
-            text-align: center;
-        }
-
-        .banner-text {
-            font-size: 48px;
-            font-weight: bold;
-            z-index: 3; 
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 100px;
-        }
-
-        .breadcrumb {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ffffff;
-        }
-
-        .breadcrumb-item a {
-            color: #ffffff;
-            text-decoration: none;
-            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
-            position: relative; /* Penting untuk memastikan z-index bekerja */
-        }
-
-        .breadcrumb-item a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-        
-    </style>
-
-        <div class="banner-container">
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Kontak</div>
-
-            <!-- Breadcrumb Start -->
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('#') }}">Kontak</a></li>
-                </ol>
-            </nav>
-            <!-- Breadcrumb End -->
-        </div>
-        
-        <!--?  Contact Area start  -->
-        <section class="contact-section">
-        <div class="container" style="max-width: 100%; height: auto;">
-    <hr>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.6740283935355!2d110.40316631744383!3d-7.718081099999983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59c8182df777%3A0x4b7a5afe863a3e07!2sKantor%20Kalurahan%20Sinduharjo!5e0!3m2!1sen!2sid!4v1724989066318!5m2!1sen!2sid" 
-        width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    <div class="d-none d-sm-block mb-5 pb-4">
-        <script>
-            function initMap() {
-                var uluru = { lat: -25.363, lng: 131.044 };
-                var grayStyles = [{
-                    featureType: "all",
-                    stylers: [{ saturation: -90 }, { lightness: 50 }]
-                }, {
-                    elementType: 'labels.text.fill',
-                    stylers: [{ color: '#ccdee9' }]
-                }];
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: -31.197, lng: 150.744 },
-                    zoom: 9,
-                    styles: grayStyles,
-                    scrollwheel: false
-                });
-            }
-        </script>
-    </div>
-</div>
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/js/select.dataTables.min.css') }}">
     
-                    
-                </div>
-                <div class="row" style="margin-top: 20px;">
-                <div class="col-24">
-                    <h3 class="contact-title">
-                        Kesan dan Pesan
-                    </h3>
-                </div>
-            </div>
+    <!-- End plugin css for this page -->
 
-            <div class="col-lg-12">
-            <form class="form-contact contact_form" action="{{ route('simpanFeedback') }}" method="POST" id="contactForm" novalidate="novalidate">
-            @csrf
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Kirim Pesan" required></textarea>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input class="form-control valid" name="name" id="name" type="text" placeholder="Masukkan Nama Anda" required>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="form-group">
-                    <input class="form-control valid" name="email" id="email" type="email" placeholder="Email" required>
-                </div>
-            </div>
-            <div class="form-group mt-3">
-                <button type="submit" class="button button-contactForm boxed-btn">Kirim Pesan</button>
-            </div>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
+    <!-- endinject -->
+
+    <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}">
+  </head>
+  <div class="container-scroller">
+<!-- partial:../../partials/_navbar.html -->
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
+            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
+          </a>
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
+            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
+          </a>
         </div>
-    </form>
-</div>
-
-
-                    <div class="col-lg-3 offset-lg-1">
-                        <div class="media contact-info">
-                            <span class="contact-info__icon"><i class="ti-home"></i></span>
-                            <div class="media-body">
-                                <h3>Kalurahan Sinduharjo</h3>
-                                <p>Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</p>
-                            </div>
-                        </div>
-                        <div class="media contact-info">
-                            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
-                            <div class="media-body">
-                                <h3>(0274) 882723</h3>
-                                <p>Senin-Jumat 08.00 WIB - 15.00 WIB</p>
-                            </div>
-                        </div>
-                        <div class="media contact-info">
-                            <span class="contact-info__icon"><i class="ti-email"></i></span>
-                            <div class="media-body">
-                                <h3>sinduharjomantep@gmail.com</h3>
-                                <p>Kirimkan pertanyaan Anda kepada kami kapan saja</p>
-                            </div>
-                        </div>
-                    </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="icon-menu"></span>
+          </button>
+          <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+              <div class="input-group">
+                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                  <span class="input-group-text" id="search">
+                    <i class="icon-search"></i>
+                  </span>
                 </div>
-            </div>
-        </section>
-        <!-- Contact Area End -->
-    </main>
-    <footer>
-    <!-- Footer Start -->
-    <div class="footer-area footer-padding">
-        <div class="container-fluid">
-            <div class="row d-flex justify-content-around">
-                <!-- Logo and Social Media -->
-                <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8 d-flex justify-content-center">
-                    <div class="single-footer-caption mb-50">
-                        <!-- Logo -->
-                        <div class="footer-logo mb-35" style="text-align: right;">
-                            <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_footer.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 120px;">
-                            </a>
-                        </div>
-                        <!-- Social Media Icons -->
-                        <div class="footer-social">
-                            <a href="https://sinduharjosid.slemankab.go.id/first" class="mr-2"><i class="fas fa-globe"></i></a>
-                            <a href="https://www.instagram.com/kalurahan_sinduharjo" class="mr-2"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Links -->
-                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
-                    <div class="single-footer-caption mb-50">
-                        <div class="footer-tittle">
-                            <h4>Link</h4>
-                            <ul>
-                                <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
-                                <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
-                                <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
-                                <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
-                    <div class="single-footer-caption mb-35" style= "text-align: left;">
-                        <div class="footer-tittle">
-                            <h4>Kontak</h4>
-                            <ul>
-                                <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
-                                <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+          <div class="header-right1 d-flex align-items-center justify-content-center">
+    <!-- Social -->
+    <div class="header-social d-flex align-items-center">
+        
+        <!-- Icon Power -->
+        <a class="nav-link d-flex align-items-center mx-3" href="#">
+            <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+            <span style="font-size: 16px;">Logout</span>
+        </a>
     </div>
+</div>    
+    <li class="nav-item nav-settings d-none d-lg-flex">
+        <a class="nav-link" href="#">
+            <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
+        </a>
+    </li>
+</ul>
 
-    <!-- Footer-Bottom Area -->
-    <div class="footer-bottom-area">
-        <div class="container">
-            <div class="footer-border">
-                <div class="row d-flex align-items-center">
-                    <div class="col-xl-12">
-                        <div class="footer-copy-right text-center">
-                            <p>
-                                Copyright &copy; <script>document.write(new Date().getFullYear());</script>
-                                All rights reserved | Kalurahan Sinduharjo
-                            </p>
+<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+    <span class="icon-menu"></span>
+</button>
+
+  </div>
+</nav>
+     <!-- partial -->
+     <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ asset('/adminkelurahan') }}">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+              </a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolaadmin') }}">
+                <i class="mdi mdi-shape-plus menu-icon"></i>
+                <span class="menu-title">Kelola Admin</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolafeedback') }}">
+                  <i class="mdi mdi-comment-text menu-icon"></i>
+                  <span class="menu-title">Kelola Feedback</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolahomepage') }}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Kelola Home Page</span>
+              </a>
+            </li>
+        </nav>
+
+       <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="row">
+                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold"></h3>
+                  </div>
+                  <!--<div class="col-12 col-xl-4">
+                    <div class="justify-content-end d-flex">
+                      <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                        <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                          <a class="dropdown-item" href="#">January - March</a>
+                          <a class="dropdown-item" href="#">March - June</a>
+                          <a class="dropdown-item" href="#">June - August</a>
+                          <a class="dropdown-item" href="#">August - November</a>
                         </div>
+                      </div>
                     </div>
+                  </div>-->
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-    <!-- Footer End -->
+            <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="row">
+                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                    <h3 class="font-weight-bold">Selamat Datang, </h3>
+                  </div>
+                  <!--<div class="col-12 col-xl-4">
+                    <div class="justify-content-end d-flex">
+                      <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                        <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                          <a class="dropdown-item" href="#">January - March</a>
+                          <a class="dropdown-item" href="#">March - June</a>
+                          <a class="dropdown-item" href="#">June - August</a>
+                          <a class="dropdown-item" href="#">August - November</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>-->
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 grid-margin transparent">
+            <div class="row">
+                  <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="card card-tale">
+                      <div class="card-body">
+                        <p class="mb-4">Statistik Pengunjung Wisata</p>
+                        <p class="fs-30 mb-2">1200</p>
+                        <p>5.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="card card-dark-blue">
+                      <div class="card-body">
+                        <p class="mb-4">Jumlah Budaya Terdaftar</p>
+                        <p class="fs-30 mb-2">20</p>
+                        <p>3.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+                    <div class="card card-light-blue">
+                      <div class="card-body">
+                        <p class="mb-4">Number of Meetings</p>
+                        <p class="fs-30 mb-2">34040</p>
+                        <p>2.00% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 stretch-card transparent">
+                    <div class="card card-light-danger">
+                      <div class="card-body">
+                        <p class="mb-4">Number of Clients</p>
+                        <p class="fs-30 mb-2">47033</p>
+                        <p>0.22% (30 days)</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-title">Detail Transaksi UMKM Terbaru</p>
+                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                    <div class="d-flex flex-wrap mb-5">
+                      <div class="me-5 mt-3">
+                        <p class="text-muted">Total Transaksi</p>
+                        <h3 class="text-primary fs-30 font-weight-medium">12.3k</h3>
+                      </div>
+                      <div class="me-5 mt-3">
+                        <p class="text-muted">Jumlah UMKM</p>
+                        <h3 class="text-primary fs-30 font-weight-medium">14k</h3>
+                      </div>
+                      <div class="me-5 mt-3">
+                        <p class="text-muted">Event Budaya</p>
+                        <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>
+                      </div>
+                    </div>
+                    <canvas id="order-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <p class="card-title">Sales Report</p>
+                      <a href="#" class="text-info">View all</a>
+                    </div>
+                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                    <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
+                    <canvas id="sales-chart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 grid-margin stretch-card">
+                <div class="card position-relative">
+                  <div class="card-body">
+                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-bs-ride="carousel">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <div class="row">
+                            <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
+                              <div class="ml-xl-4 mt-3">
+                                <p class="card-title">Detailed Reports</p>
+                                <h1 class="text-primary">$34040</h1>
+                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
+                                <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                              </div>
+                            </div>
+                            <div class="col-md-12 col-xl-9">
+                              <div class="row">
+                                <div class="col-md-6 border-right">
+                                  <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                    <table class="table table-borderless report-table">
+                                      <tr>
+                                        <td class="text-muted">Illinois</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">713</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Washington</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">583</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Mississippi</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">924</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">California</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">664</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Maryland</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">560</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Alaska</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">793</h5>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                  <div class="daoughnutchart-wrapper">
+                                    <canvas id="north-america-chart"></canvas>
+                                  </div>
+                                  <div id="north-america-chart-legend">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="carousel-item">
+                          <div class="row">
+                            <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
+                              <div class="ml-xl-4 mt-3">
+                                <p class="card-title">Detailed Reports</p>
+                                <h1 class="text-primary">$34040</h1>
+                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
+                                <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                              </div>
+                            </div>
+                            <div class="col-md-12 col-xl-9">
+                              <div class="row">
+                                <div class="col-md-6 border-right">
+                                  <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                    <table class="table table-borderless report-table">
+                                      <tr>
+                                        <td class="text-muted">Illinois</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">713</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Washington</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">583</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Mississippi</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">924</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">California</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">664</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Maryland</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">560</h5>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td class="text-muted">Alaska</td>
+                                        <td class="w-100 px-0">
+                                          <div class="progress progress-md mx-4">
+                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                          </div>
+                                        </td>
+                                        <td>
+                                          <h5 class="font-weight-bold mb-0">793</h5>
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </div>
+                                <div class="col-md-6 mt-3">
+                                  <div class="daoughnutchart-wrapper">
+                                    <canvas id="south-america-chart"></canvas>
+                                  </div>
+                                  <div id="south-america-chart-legend"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <a class="carousel-control-prev" href="#detailedReports" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      </a>
+                      <a class="carousel-control-next" href="#detailedReports" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-7 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-title mb-0">Top Products</p>
+                    <div class="table-responsive">
+                      <table class="table table-striped table-borderless">
+                        <thead>
+                          <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Search Engine Marketing</td>
+                            <td class="font-weight-bold">$362</td>
+                            <td>21 Sep 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-success">Completed</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Search Engine Optimization</td>
+                            <td class="font-weight-bold">$116</td>
+                            <td>13 Jun 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-success">Completed</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Display Advertising</td>
+                            <td class="font-weight-bold">$551</td>
+                            <td>28 Sep 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-warning">Pending</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Pay Per Click Advertising</td>
+                            <td class="font-weight-bold">$523</td>
+                            <td>30 Jun 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-warning">Pending</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>E-Mail Marketing</td>
+                            <td class="font-weight-bold">$781</td>
+                            <td>01 Nov 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-danger">Cancelled</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Referral Marketing</td>
+                            <td class="font-weight-bold">$283</td>
+                            <td>20 Mar 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-warning">Pending</div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Social media marketing</td>
+                            <td class="font-weight-bold">$897</td>
+                            <td>26 Oct 2018</td>
+                            <td class="font-weight-medium">
+                              <div class="badge badge-success">Completed</div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">To Do Lists</h4>
+                    <div class="list-wrapper pt-2">
+                      <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
+                        <li>
+                          <div class="form-check form-check-flat">
+                            <label class="form-check-label">
+                              <input class="checkbox" type="checkbox"> Meeting with Urban Team </label>
+                          </div>
+                          <i class="remove ti-close"></i>
+                        </li>
+                        <li class="completed">
+                          <div class="form-check form-check-flat">
+                            <label class="form-check-label">
+                              <input class="checkbox" type="checkbox" checked> Duplicate a project for new customer </label>
+                          </div>
+                          <i class="remove ti-close"></i>
+                        </li>
+                        <li>
+                          <div class="form-check form-check-flat">
+                            <label class="form-check-label">
+                              <input class="checkbox" type="checkbox"> Project meeting with CEO </label>
+                          </div>
+                          <i class="remove ti-close"></i>
+                        </li>
+                        <li class="completed">
+                          <div class="form-check form-check-flat">
+                            <label class="form-check-label">
+                              <input class="checkbox" type="checkbox" checked> Follow up of team zilla </label>
+                          </div>
+                          <i class="remove ti-close"></i>
+                        </li>
+                        <li>
+                          <div class="form-check form-check-flat">
+                            <label class="form-check-label">
+                              <input class="checkbox" type="checkbox"> Level up for Antony </label>
+                          </div>
+                          <i class="remove ti-close"></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="add-items d-flex mb-0 mt-2">
+                      <input type="text" class="form-control todo-list-input" placeholder="Add new task">
+                      <button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i class="icon-circle-plus"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-title mb-0">Projects</p>
+                    <div class="table-responsive">
+                      <table class="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th class="ps-0  pb-2 border-bottom">Places</th>
+                            <th class="border-bottom pb-2">Orders</th>
+                            <th class="border-bottom pb-2">Users</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="ps-0">Kentucky</td>
+                            <td>
+                              <p class="mb-0"><span class="font-weight-bold me-2">65</span>(2.15%)</p>
+                            </td>
+                            <td class="text-muted">65</td>
+                          </tr>
+                          <tr>
+                            <td class="ps-0">Ohio</td>
+                            <td>
+                              <p class="mb-0"><span class="font-weight-bold me-2">54</span>(3.25%)</p>
+                            </td>
+                            <td class="text-muted">51</td>
+                          </tr>
+                          <tr>
+                            <td class="ps-0">Nevada</td>
+                            <td>
+                              <p class="mb-0"><span class="font-weight-bold me-2">22</span>(2.22%)</p>
+                            </td>
+                            <td class="text-muted">32</td>
+                          </tr>
+                          <tr>
+                            <td class="ps-0">North Carolina</td>
+                            <td>
+                              <p class="mb-0"><span class="font-weight-bold me-2">46</span>(3.27%)</p>
+                            </td>
+                            <td class="text-muted">15</td>
+                          </tr>
+                          <tr>
+                            <td class="ps-0">Montana</td>
+                            <td>
+                              <p class="mb-0"><span class="font-weight-bold me-2">17</span>(1.25%)</p>
+                            </td>
+                            <td class="text-muted">25</td>
+                          </tr>
+                          <tr>
+                            <td class="ps-0">Nevada</td>
+                            <td>
+                              <p class="mb-0"><span class="font-weight-bold me-2">52</span>(3.11%)</p>
+                            </td>
+                            <td class="text-muted">71</td>
+                          </tr>
+                          <tr>
+                            <td class="ps-0 pb-0">Louisiana</td>
+                            <td class="pb-0">
+                              <p class="mb-0"><span class="font-weight-bold me-2">25</span>(1.32%)</p>
+                            </td>
+                            <td class="pb-0">14</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="row">
+                  <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                        <p class="card-title">Charts</p>
+                        <div class="charts-data">
+                          <div class="mt-3">
+                            <p class="mb-0">Data 1</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="progress progress-md flex-grow-1 me-4">
+                                <div class="progress-bar bg-inf0" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <p class="mb-0">5k</p>
+                            </div>
+                          </div>
+                          <div class="mt-3">
+                            <p class="mb-0">Data 2</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="progress progress-md flex-grow-1 me-4">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <p class="mb-0">1k</p>
+                            </div>
+                          </div>
+                          <div class="mt-3">
+                            <p class="mb-0">Data 3</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="progress progress-md flex-grow-1 me-4">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 48%" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <p class="mb-0">992</p>
+                            </div>
+                          </div>
+                          <div class="mt-3">
+                            <p class="mb-0">Data 4</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="progress progress-md flex-grow-1 me-4">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                              <p class="mb-0">687</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
+                    <div class="card data-icon-card-primary">
+                      <div class="card-body">
+                        <p class="card-title text-white">Number of Meetings</p>
+                        <div class="row">
+                          <div class="col-8 text-white">
+                            <h3>34040</h3>
+                            <p class="text-white font-weight-500 mb-0">The total number of sessions within the date range.It is calculated as the sum . </p>
+                          </div>
+                          <div class="col-4 background-icon">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 stretch-card grid-margin">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-title">Notifications</p>
+                    <ul class="icon-data-list">
+                      <li>
+                        <div class="d-flex">
+                          <img src="assets/images/faces/face1.jpg" alt="user">
+                          <div>
+                            <p class="text-info mb-1">Isabella Becker</p>
+                            <p class="mb-0">Sales dashboard have been created</p>
+                            <small>9:30 am</small>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex">
+                          <img src="assets/images/faces/face2.jpg" alt="user">
+                          <div>
+                            <p class="text-info mb-1">Adam Warren</p>
+                            <p class="mb-0">You have done a great job #TW111</p>
+                            <small>10:30 am</small>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex">
+                          <img src="assets/images/faces/face3.jpg" alt="user">
+                          <div>
+                            <p class="text-info mb-1">Leonard Thornton</p>
+                            <p class="mb-0">Sales dashboard have been created</p>
+                            <small>11:30 am</small>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex">
+                          <img src="assets/images/faces/face4.jpg" alt="user">
+                          <div>
+                            <p class="text-info mb-1">George Morrison</p>
+                            <p class="mb-0">Sales dashboard have been created</p>
+                            <small>8:50 am</small>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="d-flex">
+                          <img src="assets/images/faces/face5.jpg" alt="user">
+                          <div>
+                            <p class="text-info mb-1">Ryan Cortez</p>
+                            <p class="mb-0">Herbs are fun and easy to grow.</p>
+                            <small>9:00 am</small>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-title">Advanced Table</p>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="table-responsive">
+                          <table id="example" class="display expandable-table" style="width:100%">
+                            <thead>
+                              <tr>
+                                <th>Quote#</th>
+                                <th>Product</th>
+                                <th>Business type</th>
+                                <th>Policy holder</th>
+                                <th>Premium</th>
+                                <th>Status</th>
+                                <th>Updated at</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+  <div class="d-sm-flex justify-content-center justify-content-sm-between">
+    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ms-1"></i></span>
+  </div>
 </footer>
-<!--? Search model Begin -->
-<div class="search-model-box">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-btn">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Searching key.....">
-        </form>
+        <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
     </div>
-</div>
-<!-- Search model end -->
-<!-- Scroll Up -->
-<div id="back-top" >
-    <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
-</div>
+    <!-- container-scroller -->
+    
+<!-- plugins:js -->
+<script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
+<!-- endinject -->
+ <!-- Plugin js for this page -->
+<script src="{{ asset('admin/assets/vendors/chart.js/chart.umd.js') }}"></script>
+<script src="{{ asset('admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+<script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+<script src="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
+<script src="{{ asset('admin/assets/js/dataTables.select..min.js') }}"></script>
 
+<!-- Custom js for this page-->
+<script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
+<script src="{{ asset('admin/assets/js/template.js') }}"></script>
+<script src="{{ asset('admin/assets/js/settings.js') }}"></script>
+<script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
 
-
-<!-- JS here -->
-<!-- Jquery, Popper, Bootstrap -->
-<script src="{{ asset('themewagon/js/vendor/modernizr-3.5.0.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/vendor/jquery-1.12.4.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/popper.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/bootstrap.min.js') }}"></script>
-
-
-<!-- Slick-slider , Owl-Carousel ,slick-nav -->
-<script src="{{ asset('themewagon/js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/slick.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.slicknav.min.js') }}"></script>
-
-<!-- One Page, Animated-HeadLin, Date Picker -->
-<script src="{{ asset('themewagonjs/wow.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/animated.headline.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.magnific-popup.js') }}"></script>
-<script src="{{ asset('themewagon/js/gijgo.min.js') }}"></script>
-
-
-<!-- Nice-select, sticky,Progress -->
-<script src="{{ asset('themewagon/js/jquery.nice-select.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.sticky.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.barfiller.js') }}"></script>
-
-<!-- counter , waypoint,Hover Direction -->
-<script src="{{ asset('themewagon/js/jquery.counterup.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/waypoints.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.countdown.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/hover-direction-snake.min.js') }}"></script>
-
-<!-- contact js -->
-<script src="{{ asset('themewagon/js/contact.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.form.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/mail-script.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script>
-
-<!-- Jquery Plugins, main Jquery -->	
-<script src="{{ asset('themewagon/js/plugins.js') }}"></script>
-<script src="{{ asset('themewagon/js/main.js') }}"></script>
-
+<!-- Custom js for this page-->
+<script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
+<script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+<!-- End custom js for this page-->
 </body>
 </html>
