@@ -8,6 +8,8 @@ use App\Models\AdminKalurahan;
 use App\Models\Homepage;
 use App\Models\Agenda;
 use App\Models\Wisata;
+use App\Models\Preneur;
+use App\Models\Prima;
 use App\Models\Visit;
 use App\Models\Feedback;
 
@@ -82,17 +84,69 @@ class PageController extends Controller
             return view('beranda.detail_budaya', compact('budaya', 'agenda', 'embed_youtube_link', 'homepageData', 'gambar_banner'));
         } 
                 
+             public function detail_prima($id)
+            {
+                // Mengambil data produk berdasarkan ID yang ada di tabel prima
+                $produk = Preneur::findOrFail($id);
+                // Periksa apakah foto_produk adalah JSON string atau array
+                if (is_string($produk->foto_produk)) {
+                    $foto_produk = json_decode($produk->foto_produk, true); // Decode JSON ke array
+                } else {
+                    $foto_produk = $produk->foto_produk; // Jika sudah berupa array, gunakan langsung
+                }
+
+                // Mengembalikan tampilan detail produk dengan data yang diambil
+                return view('beranda.detail_prima', compact('produk', 'foto_produk'));
+            }
+
+            
             public function desaprima()
             {
-                return view('beranda.desaprima'); // Mengarah ke resources/views/beranda/shop.blade.php
+                // Mengambil semua data budaya
+                $prima = Prima::all();
+            
+                // Menyimpan kunjungan ke tabel visits
+                Visit::create([
+                    'url' => url()->current(), // Mengambil URL yang diakses
+                    'desa_name' => 'Desa Prima', // Nama desa
+                ]);
+            
+                // Menghitung total kunjungan untuk Desa Budaya
+                $totalVisitsDesaPrima = Visit::where('desa_name', 'Desa Prima')->count();
+            
+                // Mengambil data makanan dan kerajinan
+                $makanan = Prima::where('kategori_produk', 'makanan')->get();
+                $kerajinan = Prima::where('kategori_produk', 'kerajinan')->get();
+            
+                // Mengirimkan semua data ke view
+                return view('beranda.desaprima', compact('prima', 'totalVisitsDesaPrima', 'makanan', 'kerajinan'));
             }
-                public function detail_produk()
-                {
-                    return view('beranda.detail_produk'); // Mengarah ke resources/views/beranda/shop.blade.php
-                }
+           public function detail_preneur($id)
+            {
+                $produk = Preneur::findOrFail($id);
+                return view('beranda.detail_preneur', compact('produk'));
+            }
+
             public function desapreneur()
             {
-                return view('beranda.desapreneur'); // Mengarah ke resources/views/beranda/shop.blade.php
+                // Mengambil semua data budaya
+                $preneur = Preneur::all();
+            
+                // Menyimpan kunjungan ke tabel visits
+                Visit::create([
+                    'url' => url()->current(), // Mengambil URL yang diakses
+                    'desa_name' => 'Desa Preneur', // Nama desa
+                ]);
+            
+                // Menghitung total kunjungan untuk Desa Budaya
+                $totalVisitsDesaPreneur = Visit::where('desa_name', 'Desa Preneur')->count();
+            
+                // Mengambil data makanan dan kerajinan
+                $makanan = Preneur::where('kategori_produk', 'makanan')->get();
+                $kerajinan = Preneur::where('kategori_produk', 'kerajinan')->get();
+            
+                // Mengirimkan semua data ke view
+                return view('beranda.desapreneur', compact('preneur', 'totalVisitsDesaPreneur', 'makanan', 'kerajinan'));
             }
              
 
