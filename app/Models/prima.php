@@ -10,8 +10,9 @@ class Prima extends Model
     use HasFactory;
 
     protected $table = 'prima';
-
-    protected $primaryKey = 'id_produk';
+    
+    // Ubah primary key ke 'id' sesuai permintaan
+    protected $primaryKey = 'id';
 
     public $incrementing = true;
     protected $keyType = 'int';
@@ -24,7 +25,6 @@ class Prima extends Model
         'deskripsi',
         'foto_card',
         'foto_produk', // Untuk menyimpan path gambar produk dalam format JSON
-        'varian',
     ];
 
     // Mutator untuk menyimpan array sebagai JSON
@@ -34,34 +34,21 @@ class Prima extends Model
     }
 
     // Accessor untuk mendapatkan data JSON sebagai array
-    protected function getFotoProdukAttribute($value)
+    public function getFotoProdukAttribute($value)
     {
-        return json_decode($value, true) ?? [];
+        return is_array(json_decode($value, true)) ? json_decode($value, true) : [];
     }
 
     // Accessor untuk memformat harga
     public function getHargaProdukAttribute($value)
     {
-        // Pastikan nilai asli tetap disimpan di database sebagai angka (misalnya 10000),
-        // tetapi tampilannya diformat saat diambil
-        return 'Rp ' . number_format($value, 0, ',', '.'); // Format ke "Rp 10.000"
+        return 'Rp ' . number_format($value, 0, ',', '.');
     }
 
-    // Jika Anda ingin mengatur akses untuk menyimpan harga dengan format tertentu
     public function setHargaProdukAttribute($value)
     {
-        // Menghapus titik untuk menyimpan harga sebagai angka asli tanpa format
         $this->attributes['harga_produk'] = str_replace('.', '', $value);
     }
 
-    public function show($id)
-    {
-        $produk = Prima::with(['varia_prima', 'foto_produk'])->findOrFail($id);
-        return view('detail_produk', compact('produk'));
-    }
-
-    public function varianPrima()
-    {
-        return $this->hasMany(VarianPrima::class, 'id_produk'); // id_produk adalah foreign key di tabel varian_prima
-    }
+    // Sesuaikan foreign key 'id_produk' menjadi 'id'
 }
