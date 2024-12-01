@@ -92,6 +92,7 @@
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
+                            
                     </div>
                     </div>
                 </div>
@@ -109,8 +110,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <div class="banner-container">
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Desa Prima</div>
+                        <div class="banner-overlay"></div>
+                        <div class="banner-text">Desa Prima</div>
+
+                        @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                                <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                            @else
+                                <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                            @endif
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
@@ -153,7 +160,7 @@
                             <h5 class="card-title"><a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a></h5>
                             <span style="color: #FF5733;">{{ $produk->harga_produk }}</span>
                             <p class="card-text">{{ $produk->deskripsi }}</p>
-                            <a href="{{ url('/detail_prima', ['id' => $produk->id_produk]) }}" class="btn btn-primary">Selengkapnya</a>
+                            <a href="{{ url('/detail_prima', $produk->id) }}" class="btn btn-primary">Selengkapnya</a>
                         </div>
                     </div>
                 @endforeach
@@ -172,7 +179,8 @@
                             <h5 class="card-title"><a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a></h5>
                             <span style="color: #FF5733;"> {{ $produk->harga_produk}}</span>
                             <p class="card-text">{{ $produk->deskripsi }}</p>
-                            <a href="{{ url('/detail_prima', $produk->id) }}" class="btn">Selengkapnya</a>
+                            <a href="{{ url('/detail_prima', $produk->id) }}" class="btn btn-primary">Selengkapnya</a>
+
                         </div>
                     </div>
                 @endforeach
