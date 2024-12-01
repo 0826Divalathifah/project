@@ -87,7 +87,7 @@ class PageController extends Controller
              public function detail_prima($id)
             {
                 // Mengambil data produk berdasarkan ID yang ada di tabel prima
-                $produk = Preneur::findOrFail($id);
+                $produk = Prima::findOrFail($id);
                 // Periksa apakah foto_produk adalah JSON string atau array
                 if (is_string($produk->foto_produk)) {
                     $foto_produk = json_decode($produk->foto_produk, true); // Decode JSON ke array
@@ -123,8 +123,17 @@ class PageController extends Controller
             }
            public function detail_preneur($id)
             {
+                // Mengambil data produk berdasarkan ID yang ada di tabel prima
                 $produk = Preneur::findOrFail($id);
-                return view('beranda.detail_preneur', compact('produk'));
+                // Periksa apakah foto_produk adalah JSON string atau array
+                if (is_string($produk->foto_produk)) {
+                    $foto_produk = json_decode($produk->foto_produk, true); // Decode JSON ke array
+                } else {
+                    $foto_produk = $produk->foto_produk; // Jika sudah berupa array, gunakan langsung
+                }
+
+                // Mengembalikan tampilan detail produk dengan data yang diambil
+                return view('beranda.detail_preneur', compact('produk', 'foto_produk'));
             }
 
             public function desapreneur()
