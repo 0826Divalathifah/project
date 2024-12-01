@@ -29,240 +29,193 @@
   </head>
   <body>
     
-<div class="container-scroller">
+  <div class="container-scroller">
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
-          </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
-            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
-          </a>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="icon-menu"></span>
-          </button>
-          <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
-              <div class="input-group">
-                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                  <span class="input-group-text" id="search">
-                    <i class="icon-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                  <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
+                      <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
+                    </a>
+                    <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
+                      <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
+                    </a>
+                  </div>
+                  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                      <span class="icon-menu"></span>
+                    </button>
+                    <ul class="navbar-nav mr-lg-2">
+                      <li class="nav-item nav-search d-none d-lg-block">
+                        <div class="input-group">
+                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                            <span class="input-group-text" id="search">
+                              <i class="icon-search"></i>
+                            </span>
+                          </div>
+                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                        </div>
+                      </li>
+                    </ul>
+                    <ul class="navbar-nav navbar-nav-right">
+                    <div class="header-right1 d-flex align-items-center justify-content-center">
+              <!-- Social -->
+              <div class="header-social d-flex align-items-center">
+                  <!-- Icon Power -->
+                  <a class="nav-link d-flex align-items-center mx-3" href="#">
+                      <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+                      <span style="font-size: 16px;">Logout</span>
+                  </a>
               </div>
-            </li>
+          </div>    
+              <li class="nav-item nav-settings d-none d-lg-flex">
+                  <a class="nav-link" href="#">
+                      <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
+                  </a>
+              </li>
           </ul>
-          <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                <i class="icon-bell mx-0"></i>
-                <span class="count"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="ti-info-alt mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Just now </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="ti-settings mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Private message </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="ti-user mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> 2 days ago </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item nav-profile dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                <img src="{{ asset('admin/assets/images/faces/face28.jpg') }}" alt="profile" />
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item">
-                  <i class="ti-settings text-primary"></i> Settings </a>
-                <a class="dropdown-item">
-                  <i class="ti-power-off text-primary"></i> Logout </a>
-              </div>
-            </li>
-            <li class="nav-item nav-settings d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
-              </a>
-            </li>
-          </ul>
-      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-      <span class="icon-menu"></span>
-    </button>
-  </div>
-</nav>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-        <!-- partial:../../partials/_sidebar.html -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/penjual') }}">
-                <i class="icon-grid menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#budaya" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Budaya</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="budaya">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolabudaya') }}">Kelola Budaya</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksibudaya') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanbudaya') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#preneur" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Preneur</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="preneur">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksipreneur') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanpreneur') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#prima" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Prima</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="prima">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiprima') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanprima') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="collapse" href="#wisata" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Desa Wisata</span>
-                <i class="menu-arrow"></i>
-              </a>
-              <div class="collapse" id="wisata">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/kelolawisata') }}">Kelola Wisata</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/transaksiwisata') }}">Transaksi</a></li>
-                  <li class="nav-item"> <a class="nav-link" href="{{ url('/laporanwisata') }}">Laporan</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/laporanpenjual') }}">
-                <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Laporan Penjual</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      
-        <div class="main-panel">
-  <div class="content-wrapper">
-    <div class="row">
-      <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <h4 class="card-title">Kelola Produk</h4>
-              <a href="{{ url('tambahpreneur') }}" class="btn btn-primary">Tambah Produk</a>
-            </div>
-            <div class="table-responsive">
-              <table class="table table-striped table-borderless">
-                <thead>
-                  <tr>
-                    <th>Nama Produk</th>
-                    <th>Kategori</th>
-                    <th>Varian</th>
-                    <th>Kisaran Harga</th>
-                    <th>Nomor WhatsApp</th>
-                    <th>Deskripsi</th>
-                    <th>Foto Card</th>
-                    <th>Foto Produk</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Produk 1</td>
-                    <td>Makanan</td>
-                    <td>Varian A</td>
-                    <td>Rp 50.000 - Rp 100.000</td>
-                    <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
-                    <td>Deskripsi singkat produk 1</td>
-                    <td><img src="path/to/foto-card.jpg" alt="Foto Card" width="100"></td>
-                    <td><img src="path/to/foto-slider.jpg" alt="Foto Produk" width="100"></td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Produk 2</td>
-                    <td>Kerajinan</td>
-                    <td>Varian B</td>
-                    <td>Rp 75.000 - Rp 150.000</td>
-                    <td><a href="https://wa.me/628xxxxxxx">Hubungi</a></td>
-                    <td>Deskripsi singkat produk 2</td>
-                    <td><img src="path/to/foto-card2.jpg" alt="Foto Card" width="100"></td>
-                    <td><img src="path/to/foto-slider2.jpg" alt="Foto Produk" width="100"></td>
-                    <td>
-                      <button class="btn btn-primary btn-sm">Edit</button>
-                      <button class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                  </tr>
-                  <!-- Tambahkan baris produk lainnya di sini -->
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
 
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="icon-menu"></span>
+          </button>
+
+            </div>
+          </nav>
+          <!-- partial -->
+          <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link"  href="{{ url('/adminprima') }}">
+                    <i class="icon-grid menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                  </a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/kelolaprima') }}">
+                    <i class="mdi mdi-shape-plus menu-icon"></i>
+                    <span class="menu-title">Kelola Produk</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/kelolahomepageprima') }}">
+                    <i class="mdi mdi-home menu-icon"></i>
+                    <span class="menu-title">Kelola Home Page</span>
+                  </a>
+                </li>
+                <!--<li class="nav-item">
+                  <a class="nav-link" href="{{ url('/laporanprima') }}">
+                    <i class="icon-paper menu-icon"></i>
+                    <span class="menu-title">Laporan Desa Prima</span>
+                  </a>
+                </li>-->
+            </nav>
+
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="row">
+            <!--<div class="breadcrumb justify-content-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
+                        <li class="breadcrumb-item"><a href="#">Tambah Produk Prima</a></li>
+                    </ol>
+                </nav>
+            </div>-->
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                      <h4 class="card-title">Kelola Produk</h4>
+                      <a href="{{ url('tambahprima') }}" class="btn btn-primary">Tambah Produk</a>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-striped table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Nama Produk</th>
+                                <th>Kategori</th>
+                                <th>Nomor WhatsApp</th>
+                                <th>Deskripsi</th>
+                                <th>Foto Card</th>
+                                <th>Foto Produk</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($produks as $produk)
+                            <tr>
+                                <!-- Kolom Nama Produk -->
+                                <td>{{ $produk->nama_produk }}</td>
+                                
+                                <!-- Kolom Kategori Produk -->
+                                <td>{{ $produk->kategori_produk }}</td>
+                                
+                                
+                                <!-- Kolom Nomor WhatsApp -->
+                                <td>
+                                    <a href="https://wa.me/{{ $produk->nomor_whatsapp }}" target="_blank" class="btn btn-success btn-sm">
+                                        Hubungi
+                                    </a>
+                                </td>
+                                
+                                <!-- Kolom Deskripsi -->
+                                <td>{{ $produk->deskripsi }}</td>
+                                
+                                <!-- Kolom Foto Card -->
+                                <td>
+                                    @if ($produk->foto_card)
+                                        <img src="{{ Storage::url($produk->foto_card) }}" alt="Foto Card" width="100">
+                                    @else
+                                        <p>Tidak ada foto card.</p>
+                                    @endif
+                                </td>
+                                
+                                <!-- Kolom Foto Produk -->
+                                <td>
+                                    @php
+                                        $fotos = is_array($produk->foto_produk) ? $produk->foto_produk : json_decode($produk->foto_produk, true);
+                                    @endphp
+
+                                    @if (is_array($fotos) && count($fotos))
+                                        @foreach ($fotos as $foto)
+                                            <img src="{{ Storage::url($foto) }}" alt="Foto Produk" width="100" class="mb-2">
+                                        @endforeach
+                                    @else
+                                        <p>Tidak ada foto produk.</p>
+                                    @endif
+                                </td>
+                                
+                                <!-- Kolom Aksi -->
+                                <td>
+                                    <!-- Tombol Edit -->
+                                    <a href="{{ url('/admin/editprima/' . $produk->id) }}" class="btn btn-primary btn-sm mb-2">
+                                        Edit
+                                    </a>
+                                    
+                                    <!-- Tombol Hapus -->
+                                    <form action="{{ url('hapusprima', $produk->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+
+        </div>
     </div>
+</div>
+
+  </div>
     </div>
-    </div>
-    </div>
+</div>
+
+</div>
 </div>
 <!-- partial -->
 </div>
