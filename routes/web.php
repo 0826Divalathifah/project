@@ -82,26 +82,29 @@ Route::delete('/admin/hapus-budaya/{id}', [AdminDesaBudayaController::class, 'ha
 Route::get('/adminpreneur', [AdminDesaPreneurController::class, 'showDashboard']);
 Route::get('/tambahpreneur', [AdminDesaPreneurController::class, 'tambahPreneur']);
 Route::post('/simpanpreneur', [AdminDesaPreneurController::class, 'simpanPreneur']);
-Route::get('/kelolapreneur', [AdminDesaPreneurController::class, 'kelolaPreneur']);
-Route::get('/editpreneur/{id}', [AdminDesaPreneurController::class, 'editPreneur']);
-Route::post('/updatepreneur/{id}', [AdminDesaPreneurController::class, 'updatePreneur']);
-Route::delete('/hapuspreneur/{id}', [AdminDesaPreneurController::class, 'hapusPreneur']);
+Route::get('/kelolapreneur', [AdminDesaPreneurController::class, 'kelolaPreneur'])->name('kelolapreneur');
+Route::get('/admin/editpreneur/{id}', [AdminDesaPreneurController::class, 'editPreneur']);
+Route::put('/updatepreneur/{id}', [AdminDesaPreneurController::class, 'updatePreneur'])->name('updatepreneur');
+Route::delete('/hapusPreneur/{id}', [AdminDesaPreneurController::class, 'hapusPreneur']);
 Route::get('/transaksipreneur', [AdminDesaPreneurController::class, 'transaksiPreneur']);
 Route::get('/laporanpreneur', [AdminDesaPreneurController::class, 'laporanPreneur']);
 Route::get('/kelolahomepagepreneur', [AdminDesaPreneurController::class, 'kelolaHomepage']);
+Route::post('/update-banner-preneur', [AdminDesaPreneurController::class, 'updateBannerPreneur']);
 
 
 //Rute untuk halaman dashboard admin prima
 Route::get('/adminprima', [AdminDesaPrimaController::class, 'showDashboard']);
 Route::get('/tambahprima', [AdminDesaPrimaController::class, 'tambahPrima']);
 Route::post('/simpanprima', [AdminDesaPrimaController::class, 'simpanPrima']);
-Route::get('editprima/{id}', [AdminDesaPrimaController::class, 'editPrima']);
-Route::get('/admin/edit-prima/{id}', [AdminDesaPrimaController::class, 'editPrima']);
-Route::put('/admin/update-prima/{id}', [AdminDesaPrimaController::class, 'updatePrima']);
+Route::get('/admin/editprima/{id}', [AdminDesaPrimaController::class, 'editPrima']);
+Route::put('/updatePrima/{id}', [AdminDesaPrimaController::class, 'updatePrima'])->name('updatePrima');
+Route::delete('/hapusprima/{id}', [AdminDesaPrimaController::class, 'hapusPrima'])->name('hapusPrima');
 Route::get('/transaksiprima', [AdminDesaPrimaController::class, 'transaksiPrima']);
 Route::get('/laporanprima', [AdminDesaPrimaController::class, 'laporanPrima']);
 Route::get('/kelolaprima', [AdminDesaPrimaController::class, 'kelolaPrima']);
-Route::get('/kelolahomepageprima', [AdminDesaPrimaController::class, 'kelolaHomepage']);
+Route::get('/kelolahomepageprima', [AdminDesaPreneurController::class, 'kelolaHomepage']);
+Route::post('/update-banner-prima', [AdminDesaPreneurController::class, 'updateBannerPrima']);
+Route::get('/search', [AdminDesaPrimaController::class, 'searchPrima'])->name('search.prima');
 
 
 
@@ -120,6 +123,15 @@ Route::get('/laporanwisata', [AdminDesaWisataController::class, 'laporanWisata']
 Route::get('/kelolahomepagewisata', [AdminDesaWisataController::class, 'kelolaHomepage']);
 Route::post('/update-banner-wisata', [AdminDesaWisataController::class, 'updateBannerWisata']);
 Route::get('/desawisata', [PageController::class, 'desawisata']);
+
+
+// Route untuk login
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'registerAdmin'])->name('register.process');
+
+
 
 // Rute untuk halaman dashboard penjual
 //Route::get('/penjual', [PenjualController::class, 'showDashboard'])->name('admin.penjual.penjual');
