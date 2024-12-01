@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminDesaPreneurController;
 use App\Http\Controllers\AdminDesaPrimaController;
 use App\Http\Controllers\AdminDesaWisataController;
 use App\Http\Controllers\PenjualController;
-use App\Http\Controllers\Auth;
+use App\Http\Controllers\AuthController;
 
 // Routes untuk Website
 Route::get('/', [PageController::class, 'index'])->name('home');
