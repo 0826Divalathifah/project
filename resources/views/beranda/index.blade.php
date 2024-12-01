@@ -7,7 +7,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
+    <!-- Link ke site.webmanifest -->
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('themewagon/css/bootstrap.min.css') }}">
@@ -114,32 +118,46 @@
                 </div>
                 <!-- /End mobile  Menu-->
 
-                <div class="single-banner hero-overly slider-height d-flex align-items-center"
-     style="
-        background-image: url(
-            @if(isset($homepageData->gambar_banner) && file_exists(public_path('storage/' . $homepageData->gambar_banner)))
-                '{{ asset('storage/' . $homepageData->gambar_banner) }}'
-            @else
-                '{{ asset('themewagon/img/desabudaya/banner.jpg') }}'
-            @endif
-        ); 
-        background-size: cover; 
-        background-position: center; 
-        background-repeat: no-repeat; 
-        height: 200px;">
-    
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-9">
-                <!-- Hero Caption -->
-                <div class="hero__caption">
-                    <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-   
+                <div class="slider-active dot-style fullwidth-slider">
+                    <!-- Single -->
+                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
+                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}'); 
+                                background-size: cover; 
+                                background-position: center; 
+                                background-repeat: no-repeat; 
+                                height: 200px;">
+
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-8 col-lg-9">
+                                    <!-- Hero Caption -->
+                                    <div class="hero__caption">
+                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single -->
+                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
+                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}');
+                                background-size: cover; 
+                                background-position: center; 
+                                background-repeat: no-repeat; 
+                                height: 200px;">
+
+                    <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-8 col-lg-9">
+                                    <!-- Hero Caption -->
+                                    <div class="hero__caption">
+                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
             </div>
         </div>
        
@@ -176,11 +194,8 @@
 
 <!--? collection -->
 
-<!-- Banner Section -->
 <div class="new-arrival">
-    <section 
-        class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" 
-        data-background="{{ asset('storage/' . $gambar_banner) }}">
+    <section class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" data-background="{{ asset('themewagon/img/gallery/gallery3.jpg') }}">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-9">
@@ -380,35 +395,71 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Fungsi untuk menampilkan form Login dengan validasi
+   
+
+    // Fungsi untuk menampilkan form Login
     async function showLoginForm() {
-        const { value: formValues } = await Swal.fire({
-            title: "Login",
-            width: '500px', // memperbesar lebar modal
-            padding: '3em',
-            html: `
-                <input id="swal-login-email" class="swal2-input" placeholder="Email" value="">
-                <input id="swal-login-password" class="swal2-input" type="password" placeholder="Password" value="">
-            `,
-            focusConfirm: false,
-            preConfirm: () => {
-                const email = document.getElementById("swal-login-email").value;
-                const password = document.getElementById("swal-login-password").value;
+    const { value: formValues } = await Swal.fire({
+        title: "Login",
+        width: '500px',
+        padding: '3em',
+        html: `
+            <input id="swal-login-email" class="swal2-input" placeholder="Email">
+            <input id="swal-login-password" class="swal2-input" type="password" placeholder="Password">
+        `,
+        focusConfirm: false,
+        preConfirm: () => {
+            const email = document.getElementById("swal-login-email").value;
+            const password = document.getElementById("swal-login-password").value;
 
-                // Validasi untuk memastikan email dan password tidak kosong
-                if (!email || !password) {
-                    Swal.showValidationMessage(`Harap isi semua field!`);
-                    return false;
-                }
-
-                return { email, password };
+            if (!email || !password) {
+                Swal.showValidationMessage(`Harap isi semua field!`);
+                return false;
             }
-        });
+            return { email, password };
+        }
+    });
 
-        if (formValues) {
-            Swal.fire(`Login Berhasil!`);
+    if (formValues) {
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify(formValues)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Berhasil!',
+                    text: 'Mengalihkan ke halaman dashboard...',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = result.redirect;
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Gagal',
+                    text: result.message,
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Kesalahan',
+                text: 'Terjadi kesalahan saat memproses permintaan.',
+            });
         }
     }
+}
 </script>
 
-
+</body>
+</html>
