@@ -16,6 +16,8 @@ Route::get('/desabudaya', [PageController::class, 'desabudaya'])->name('desabuda
 Route::get('/detail_budaya/{id}', [PageController::class, 'detail_budaya']);
 Route::get('/desaprima', [PageController::class, 'desaprima'])->name('desaprima');
 Route::get('/desapreneur', [PageController::class, 'desapreneur'])->name('desapreneur');
+Route::get('/detail_preneur/{id}', [PageController::class, 'detail_preneur']);
+Route::get('/detail_prima/{id}', [PageController::class, 'detail_prima']);
 Route::get('/desawisata', [PageController::class, 'desawisata'])->name('desawisata');
 Route::get('/detail_produk', [PageController::class, 'detail_produk'])->name('detail_produk');
 Route::get('/detail_wisata/{id}', [PageController::class, 'detail_wisata']);
