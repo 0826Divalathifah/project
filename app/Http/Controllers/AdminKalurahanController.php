@@ -2,20 +2,147 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminKalurahan;
-use Illuminate\Support\Facades\Hash; 
 use App\Models\Admin;
-use App\Models\User;
-use App\Models\Homepage;
+use App\Models\Agenda;
+use App\Models\Budaya;
 use App\Models\Feedback;
+use App\Models\Homepage;
+use App\Models\Preneur;
+use App\Models\Prima;
+use App\Models\User;
+use App\Models\Visit;
+use App\Models\Wisata;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminKalurahanController extends Controller
 {
     // Method untuk menampilkan halaman dashboard admin
-    public function showDashboard()
+    public function showDashboard(Request $request)
     {
-        return view('admin.adminkalurahan.adminkalurahan'); 
+        // Total kunjungan keseluruhan untuk Setiap Desa 
+        $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count();
+        $totalVisitsDesaPreneur = Visit::where('desa_name', 'Desa Preneur')->count();
+        $totalVisitsDesaPrima = Visit::where('desa_name', 'Desa Prima')->count();
+        $totalVisitsDesaWisata = Visit::where('desa_name', 'Desa Wisata')->count();
+
+        // Total item untuk setiap kategori (Budaya, Preneur, Prima, Wisata)
+        $totalBudaya = Budaya::count();
+        $totalPreneur = Preneur::count();
+        $totalPrima = Prima::count();
+        $totalWisata = Wisata::count();
+
+        // Daftar Setiap Desa
+        $budaya = Budaya::all();
+        $preneur = Preneur::all();
+        $prima = Prima::all();
+        $wisata = Wisata::all();
+
+        // Ambil semua data admin dari database
+        $admins = Admin::all();
+
+        // Mendapatkan nama desa dari URL (misalnya: Desa Budaya, Desa Wisata)
+        $desaName = $request->get('desa', 'total'); // Menggunakan 'total' untuk statistik keseluruhan
+
+        // Filter (default: daily)
+        $filter = $request->get('filter', 'daily');
+    
+        $data = [];
+        $labels = [];
+
+        if ($filter === 'daily') {
+            // Contoh untuk filter harian
+            $dates = collect(range(0, 6))->map(function ($day) {
+                return now()->subDays($day)->format('Y-m-d');
+            })->reverse();
+
+            foreach ($dates as $date) {
+                $visitCount = Visit::where(function ($query) use ($desaName) {
+                        if ($desaName !== 'total') {
+                            $query->where('desa_name', $desaName);
+                        }
+                    })
+                    ->whereDate('created_at', $date)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = $date;
+            }
+        } elseif ($filter === 'weekly') {
+            // Contoh untuk filter mingguan
+            $weeks = collect(range(0, 3))->map(function ($week) {
+                return now()->subWeeks($week)->format('W');
+            })->reverse();
+
+            foreach ($weeks as $week) {
+                $visitCount = Visit::where(function ($query) use ($desaName) {
+                        if ($desaName !== 'total') {
+                            $query->where('desa_name', $desaName);
+                        }
+                    })
+                    ->whereRaw('WEEK(created_at) = ?', [$week])
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = 'Minggu ' . ($weeks->search($week) + 1);
+            }
+        } elseif ($filter === 'monthly') {
+            // Contoh untuk filter bulanan
+            $months = range(1, 12);
+
+            foreach ($months as $month) {
+                $visitCount = Visit::where(function ($query) use ($desaName) {
+                        if ($desaName !== 'total') {
+                            $query->where('desa_name', $desaName);
+                        }
+                    })
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', now()->year)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = Carbon::create()->month($month)->format('M');
+            }
+        } elseif ($filter === 'yearly') {
+            // Contoh untuk filter tahunan
+            $years = Visit::selectRaw('YEAR(created_at) as year')
+                ->distinct()
+                ->pluck('year');
+
+            foreach ($years as $year) {
+                $visitCount = Visit::where(function ($query) use ($desaName) {
+                        if ($desaName !== 'total') {
+                            $query->where('desa_name', $desaName);
+                        }
+                    })
+                    ->whereYear('created_at', $year)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = $year;
+            }
+        }
+
+        return view('admin.adminkalurahan.adminkalurahan', compact(
+            'totalVisitsDesaBudaya',
+            'totalVisitsDesaPreneur',
+            'totalVisitsDesaPrima',
+            'totalVisitsDesaWisata',
+            'totalBudaya',
+            'totalPreneur',
+            'totalPrima',
+            'totalWisata',
+            'budaya',
+            'preneur',
+            'prima',
+            'wisata',
+            'admins',
+            'desaName',
+            'data',
+            'labels',
+            'filter'
+        ));
     }
 
     public function kelolaAdmin()
@@ -106,9 +233,9 @@ class AdminKalurahanController extends Controller
     public function simpanFeedback(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
             'message' => 'required|string',
+            'name' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255',
         ]);
     
         Feedback::create([
@@ -120,21 +247,36 @@ class AdminKalurahanController extends Controller
         return redirect('/kelolafeedback')->with('success', 'Pesan berhasil disimpan!');
     }
     
-    
-
-    public function hapusAdmin($id)
+    public function respond($id, Request $request)
     {
-        // Cari admin berdasarkan ID
-        $admin = Admin::find($id);
-
-        // Hapus admin
-        $admin->delete();
-
-        // Redirect dengan pesan sukses
-        return redirect('/kelolaadmin')->with('success', 'Admin berhasil dihapus!');
+        // Cari feedback berdasarkan ID
+        $feedback = Feedback::find($id);
+    
+        if ($feedback) {
+            // Update status is_responded menjadi true/false
+            $feedback->is_responded = $request->is_responded;
+            $feedback->save();
+    
+            return response()->json(['success' => true, 'message' => 'Feedback berhasil ditanggapi']);
+        }
+    
+        return response()->json(['success' => false, 'message' => 'Feedback tidak ditemukan'], 404);
     }
-
-
+    
+    public function deleteFeedback($id)
+    {
+        // Cari feedback berdasarkan ID
+        $feedback = Feedback::find($id);
+    
+        if ($feedback) {
+            // Hapus feedback
+            $feedback->delete();
+    
+            return response()->json(['success' => true, 'message' => 'Feedback berhasil dihapus']);
+        }
+    
+        return response()->json(['success' => false, 'message' => 'Feedback tidak ditemukan'], 404);
+    }    
 
      // Menampilkan halaman kelola homepage kalurahan
     public function kelolaHomepage()
@@ -148,7 +290,7 @@ class AdminKalurahanController extends Controller
     {
         // Validasi input
         $request->validate([
-            'deskripsi_index' => 'nullable|string|max:500',
+            'deskripsi_index' => 'required|string|max:500',
             'banner_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -167,64 +309,13 @@ class AdminKalurahanController extends Controller
         }
 
         // Menyimpan deskripsi 
-        if ($request->filled('deskripsi_index')) {
-            $homepageData->deskripsi = $request->deskripsi_index;
-        }
+        $homepageData->deskripsi = $request->deskripsi_index;
+        $homepageData->save();
 
         // Simpan perubahan ke dalam database
         $homepageData->save();
 
         // Redirect kembali dengan pesan sukses
         return redirect()->back()->with('success', 'Homepage Kalurahan berhasil diperbarui');
-    }
-
-
-
-
-
-
-
-
-
-
-    public function charts()
-    {
-        return view('admin.adminkalurahan.charts.chartjs'); 
-    }
-    public function forms()
-    {
-        return view('admin.adminkalurahan.forms.basic_elements'); 
-    }
-    public function tables()
-    {
-        return view('admin.adminkalurahan.tables.basic-table'); 
-    }
-    public function icons()
-    {
-        return view('admin.adminkalurahan.icons.mdi'); 
-    }
-    public function samples1()
-    {
-        return view('admin.adminkalurahan.samples.error-404'); 
-    }
-    public function samples2()
-    {
-        return view('admin.adminkalurahan.samples.error-500'); 
-    }
-    public function docs()
-    {
-        return view('admin.adminkalurahan.docs.documentation'); 
-    }
-    public function uifeatures1()
-    {
-        return view('admin.adminkalurahan.ui-features.buttons'); 
-    }
-    public function uifeatures2()
-    {
-        return view('admin.adminkalurahan.ui-features.dropdowns'); 
-    }
-    public function uifeatures3()
-    {
-        return view('admin.adminkalurahn.ui-features.typography'); 
     }
 }
