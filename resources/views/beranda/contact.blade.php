@@ -248,16 +248,16 @@
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input class="form-control valid" name="name" id="name" type="text" placeholder="Masukkan Nama Anda" required>
+                <input class="form-control valid" name="name" id="name" type="text" placeholder="Masukkan Nama Anda">
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-group">
-                    <input class="form-control valid" name="email" id="email" type="email" placeholder="Email" required>
+                    <input class="form-control valid" name="email" id="email" type="email" placeholder="Email">
                 </div>
             </div>
             <div class="form-group mt-3">
-                <button type="submit" class="button button-contactForm boxed-btn">Kirim Pesan</button>
+                <button type="button" id="submitFeedback" class="button button-contactForm boxed-btn">Kirim Pesan</button>
             </div>
         </div>
     </form>
@@ -282,7 +282,7 @@
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-email"></i></span>
                             <div class="media-body">
-                                <h3>sinduharjomantep@gmail.com</h3>
+                                <h3>sinduharjo@gmail.com</h3>
                                 <p>Kirimkan pertanyaan Anda kepada kami kapan saja</p>
                             </div>
                         </div>
@@ -415,11 +415,13 @@
 <script src="{{ asset('themewagon/js/hover-direction-snake.min.js') }}"></script>
 
 <!-- contact js -->
-<script src="{{ asset('themewagon/js/contact.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.form.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/mail-script.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script>
+ <script src="{{ asset('themewagon/js/contact.js') }}"></script> 
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- <script src="{{ asset('themewagon/js/jquery.form.js') }}"></script> -->
+<!-- <script src="{{ asset('themewagon/js/jquery.validate.min.js') }}"></script> -->
+<!-- <script src="{{ asset('themewagon/js/mail-script.js') }}"></script> -->
+<!-- <script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script> -->
 
 <!-- Jquery Plugins, main Jquery -->	
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
