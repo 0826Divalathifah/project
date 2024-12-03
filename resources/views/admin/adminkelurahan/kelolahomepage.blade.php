@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kelola Ho</title>
+    <title>Kelola Homepage</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -33,10 +33,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkalurahan') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminklurahan') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
@@ -87,7 +87,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/adminkelurahan') }}">
+              <a class="nav-link" href="{{ asset('/adminkalurahan') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
@@ -147,9 +147,10 @@
                         <textarea 
                             class="form-control" 
                             name="deskripsi_index" 
-                            id="welcomeDescription" 
+                            id="indexDescription" 
                             rows="4" 
-                            placeholder="Deskripsi...">{{ old('deskripsi_index', $homepageData->deskripsi ?? '') }}</textarea>
+                            placeholder="Deskripsi..."
+                            required>{{ old('deskripsi_index', $homepageData->deskripsi ?? '') }}</textarea>
                     </div>
                     
                     <!-- Tombol Simpan -->
