@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Kelola Feedback</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
@@ -33,10 +35,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkalurahan') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkalurahan') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
@@ -87,7 +89,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/adminkelurahan') }}">
+              <a class="nav-link" href="{{ asset('/adminkalurahan') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
@@ -122,63 +124,64 @@
         <div class="main-panel">
         <div class="content-wrapper">
         <div class="row">
-    <div class="col-md-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Kelola Feedback Pengguna</h4>
-                <p class="card-description">Tabel ini menampilkan semua masukan atau tanggapan dari pengguna website.</p>
-                <div class="table-responsive">
-                <table class="table table-hover">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nama Pengguna</th>
-            <th>Email</th>
-            <th>Pesan</th>
-            <th>Tanggal Masukan</th>
-            <th>Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($feedback as $index => $feedback)
-        <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>{{ $feedback->name }}</td>
-            <td>{{ $feedback->email }}</td>
-            <td>{{ $feedback->message }}</td>
-            <td>{{ $feedback->created_at->format('Y-m-d') }}</td>
-            <td>
-                <!-- Tombol Tanggapi -->
-                @if (!$feedback->is_responded)
-                    <button 
-                        class="btn btn-primary btn-sm tanggapi-btn" 
-                        data-feedback-id="{{ $feedback->id }}"
-                    >
-                        Tanggapi
-                    </button>
-                @else
-                    <button 
-                        class="btn btn-secondary btn-sm tanggapi-btn" 
-                        disabled
-                    >
-                        Sudah Ditanggapi
-                    </button>
-                @endif
+          <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                  <div class="card-body">
+                      <h4 class="card-title">Kelola Feedback Pengguna</h4>
+                      <p class="card-description">Tabel ini menampilkan semua masukan atau tanggapan dari pengguna website.</p>
+                      <div class="table-responsive">
+                      <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama Pengguna</th>
+                                <th>Email</th>
+                                <th>Pesan</th>
+                                <th>Tanggal Masukan</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($feedback as $index => $feedback)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $feedback->name ?? '-' }}</td>
+                                <td>{{ $feedback->email ?? '-' }}</td>
+                                <td>{{ $feedback->message }}</td>
+                                <td>{{ $feedback->created_at->format('Y-m-d') }}</td>
+                                <td>
+                                  <!-- Tombol Tanggapi -->
+                                  @if (!$feedback->is_responded)
+                                      <button 
+                                          class="btn btn-primary btn-sm tanggapi-btn" 
+                                          data-feedback-id="{{ $feedback->id }}"
+                                          data-responded="0" 
+                                      >
+                                          Tanggapi
+                                      </button>
+                                  @else
+                                      <button 
+                                          class="btn btn-inverse-primary btn-sm tanggapi-btn" 
+                                          data-feedback-id="{{ $feedback->id }}"
+                                          data-responded="1"
+                                      >
+                                          Sudah Ditanggapi
+                                      </button>
+                                  @endif
 
-                <!-- Tombol Hapus -->
-                <button 
-                    class="btn btn-danger btn-sm hapus-btn" 
-                    data-feedback-id="{{ $feedback->id }}"
-                    onclick="hapusFeedback(this)"
-                >
-                    Hapus
-                </button>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
+                                    <!-- Tombol Hapus -->
+                                    <button 
+                                        class="btn btn-danger btn-sm hapus-btn" 
+                                        data-feedback-id="{{ $feedback->id }}"
+                                        onclick="hapusFeedback(this)"
+                                    >
+                                        Hapus
+                                    </button>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
