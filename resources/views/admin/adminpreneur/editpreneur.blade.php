@@ -153,7 +153,7 @@
                   <label for="hargaPreneur">Harga</label>
                   <div class="input-group">
                       <span class="input-group-text">Rp</span>
-                      <input type="text" class="form-control" id="hargaPreneur" name="harga_produk" value="{{ number_format($produk->harga_produk, 0, ',', '.') }}" oninput="formatCurrency(this)" required>
+                      <input type="text" class="form-control" id="hargaPreneur" name="harga_produk" value="{{$produk->harga_produk }}" oninput="formatCurrency(this)" required>
                   </div>
               </div>
 
