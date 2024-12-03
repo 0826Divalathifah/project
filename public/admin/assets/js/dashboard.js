@@ -34,11 +34,11 @@
                     y: {
                         beginAtZero: true,
                         ticks: {
-                        stepSize: 1, // Menampilkan angka bulat
-                        callback: function (value) {
-                            return Number.isInteger(value) ? value : ''; // Tampilkan angka bulat
+                            stepSize: 1, // Menampilkan angka bulat
+                            callback: function (value) {
+                                return Number.isInteger(value) ? value : ''; // Tampilkan angka bulat
+                            },
                         },
-                      },
                     },
                 },
             },
@@ -52,6 +52,10 @@
         const dataValues = canvas.attr('data-data')?.split(',').map(Number) || [];
         return { dataLabels, dataValues };
     }
+
+    // Inisialisasi chart untuk statistik utama (Seluruh Website Desa Mandiri Budaya)
+    const totalData = getChartData('totalChart');
+    initializeChart('totalChart', 'Jumlah Kunjungan Website Desa Mandiri Budaya', totalData.dataLabels, totalData.dataValues);
 
     // Inisialisasi chart untuk Desa Budaya
     const budayaData = getChartData('desaBudayaChart');
@@ -69,17 +73,11 @@
     const primaData = getChartData('desaPrimaChart');
     initializeChart('desaPrimaChart', 'Jumlah Kunjungan Desa Prima', primaData.dataLabels, primaData.dataValues);
 
-    // Inisialisasi chart untuk Desa Kalurahan
-    const kalurahanData = getChartData('desaKalurahanChart');
-    initializeChart('desaKalurahanrChart', 'Jumlah Kunjungan Desa Kalurahan', kalurahanData.dataLabels, kalurahanData.dataValues);
-
     // Event listener untuk filter perubahan
     $('#filter').change(function () {
         const selectedFilter = $(this).val(); // Ambil nilai filter
-        const desaName = $(this).data('desa'); // Ambil nama desa dari atribut data
-        window.location.href = `?desa=${desaName}&filter=${selectedFilter}`;
+        window.location.href = `?filter=${selectedFilter}`; // Navigasi berdasarkan filter
     });
-
 
 
 
@@ -120,108 +118,57 @@
             }
         });
     }    
-        
-
-
-
+      
 
     if ($("#north-america-chart").length) { 
-        const doughnutChartCanvas = document.getElementById('north-america-chart');
-        new Chart(doughnutChartCanvas, {
-            type: 'doughnut',
-            data: {
-                labels: ["Offline sales", "Online sales", "Returns"],
-                datasets: [{
-                    data: [100, 50, 50],
-                    backgroundColor: [
-                        "#4B49AC","#FFC100", "#248AFD",
-                    ],
-                    borderColor: "rgba(0,0,0,0)"
-                }]
-            },
-            options: {
-                cutout: 70,
-                animationEasing: "easeOutBounce",
-                animateRotate: true,
-                animateScale: false,
-                responsive: true,
-                maintainAspectRatio: true,
-                showScale: false,
-                legend: false,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                }
-            },
-            plugins: [{
-                afterDatasetUpdate: function (chart, args, options) {
-                    const chartId = chart.canvas.id;
-                    var i;
-                    const legendId = `${chartId}-legend`;
-                    const ul = document.createElement('ul');
-                    for(i = 0; i < chart.data.datasets[0].data.length; i++) {
-                        ul.innerHTML += `
-                        <li>
-                            <span style="background-color: ${chart.data.datasets[0].backgroundColor[i]}"></span>
-                            ${chart.data.labels[i]}
-                        </li>
-                        `;
-                    }
-                    return document.getElementById(legendId).appendChild(ul);
-                }
-            }]
-        });
-    }
+      const doughnutChartCanvas = document.getElementById('north-america-chart');
 
-    if ($("#south-america-chart").length) { 
-      const doughnutChartCanvas = document.getElementById('south-america-chart');
       new Chart(doughnutChartCanvas, {
-        type: 'doughnut',
-        data: {
-          labels: ["Offline sales", "Online sales", "Returns"],
-          datasets: [{
-              data: [100, 50, 50],
-              backgroundColor: [
-                 "#4B49AC","#FFC100", "#248AFD",
-              ],
-              borderColor: "rgba(0,0,0,0)"
-          }]
-        },
-        options: {
-          cutout: 70,
-          animationEasing: "easeOutBounce",
-          animateRotate: true,
-          animateScale: false,
-          responsive: true,
-          maintainAspectRatio: true,
-          showScale: false,
-          legend: false,
-          plugins: {
-            legend: {
-                display: false,
-            }
-          }
-        },
-        plugins: [{
-          afterDatasetUpdate: function (chart, args, options) {
-              const chartId = chart.canvas.id;
-              var i;
-              const legendId = `${chartId}-legend`;
-              const ul = document.createElement('ul');
-              for(i=0;i<chart.data.datasets[0].data.length; i++) {
-                  ul.innerHTML += `
-                  <li>
-                    <span style="background-color: ${chart.data.datasets[0].backgroundColor[i]}"></span>
-                    ${chart.data.labels[i]}
-                  </li>
-                `;
+          type: 'doughnut',
+          data: northAmericaChartData,
+          options: {
+              cutout: 70,
+              responsive: true,
+              maintainAspectRatio: true,
+              plugins: {
+                  legend: { display: false }
               }
-              return document.getElementById(legendId).appendChild(ul);
-            }
-        }]
+          },
+          plugins: [{
+              afterDatasetUpdate: function (chart, args, options) {
+                  const chartId = chart.canvas.id;
+                  const legendId = `${chartId}-legend`;
+                  const legendContainer = document.getElementById(legendId);
+
+                  // Kosongkan legend jika sudah ada
+                  legendContainer.innerHTML = '';
+
+                  // Buat legend custom
+                  chart.data.labels.forEach((label, index) => {
+                      const legendItem = document.createElement('li');
+                      legendItem.style.display = 'inline-block'; // Set legend item agar horizontal
+                      legendItem.style.width = '50%'; // Set ukuran 50% agar 2 legend per baris
+                      legendItem.style.marginBottom = '10px'; // Jarak antar baris
+                      legendItem.style.fontSize = '12px'; // Ukuran font lebih kecil
+                      legendItem.style.textAlign = 'center'; // Memastikan teks berada di tengah
+                      legendItem.style.margin = '0 auto'; // Agar item berada di tengah kontainer
+
+                      // Membuat item legend dengan lingkaran yang lebih kecil
+                      legendItem.innerHTML = `
+                          <span style="margin-right: 10px; display: inline-block; width: 15px; height: 15px; background-color: ${chart.data.datasets[0].backgroundColor[index]}; border-radius: 50%;"></span>
+                          ${label}
+                      `;
+
+                      legendContainer.appendChild(legendItem);
+                  });
+              }
+          }]
       });
-    }
+  }
+
+
+    
+  
 
     if ($.cookie('skydash-pro-banner')!="true") {
       document.querySelector('#proBanner').classList.add('d-flex');
