@@ -157,7 +157,8 @@ class AdminDesaPreneurController extends Controller
             'deskripsi' => 'required',
             'foto_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'foto_produk.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi foto slider
+            'foto_slider' => 'required|array',
+            'foto_slider.*' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
     
         // Menghilangkan simbol "Rp" dan menyimpan harga dalam format numerik
@@ -187,10 +188,11 @@ class AdminDesaPreneurController extends Controller
     
         // Menyimpan foto slider (opsional, multiple upload)
         if ($request->hasFile('foto_slider')) {
-            $fotoSliderPaths = array_map(
-                fn($file) => $file->store('uploads/desapreneur', 'public'),
-                $request->file('foto_slider')
-            );
+            $fotoSliderPaths = [];
+            foreach ($request->file('foto_slider') as $file) {
+                $path = $file->store('uploads/foto_slider', 'public');
+                $fotoSliderPaths[] = str_replace('\\', '/', $path); // Pastikan path menggunakan '/'
+            }
             $produk->foto_slider = json_encode($fotoSliderPaths);
         }
     
@@ -212,10 +214,10 @@ class AdminDesaPreneurController extends Controller
     public function editPreneur($id)
     {
         $produk = Preneur::findOrFail($id);
-        $foto_produk = json_decode($produk->foto_produk, true) ?? []; // Decode foto_produk dari database
-        dd($foto_produk); // Debug isi variabel
-        return view('admin.adminpreneur.editpreneur', compact('produk', 'foto_produk'));
+
+        return view('admin.adminpreneur.editpreneur', compact('produk'));
     }
+
 
     public function updatePreneur(Request $request, $id)
     {
