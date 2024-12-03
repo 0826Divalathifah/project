@@ -116,52 +116,36 @@
                     <!-- Ikon Login dan Sign Up -->
                     </div>
                 </div>
-                <!-- /End mobile  Menu-->
-
-                <div class="slider-active dot-style fullwidth-slider">
-                    <!-- Single -->
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}'); 
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 200px;">
-
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}');
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 200px;">
-
-                    <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="single-banner hero-overly slider-height d-flex align-items-center"
+                     style="
+                        background-image: url(
+                            @if(isset($homepageData->gambar_banner) && file_exists(public_path('storage/' . $homepageData->gambar_banner)))
+                                '{{ asset('storage/' . $homepageData->gambar_banner) }}'
+                            @else
+                                '{{ asset('themewagon/img/desabudaya/banner.jpg') }}'
+                            @endif
+                        ); 
+                        background-size: cover; 
+                        background-position: center; 
+                        background-repeat: no-repeat; 
+                        height: 200px;">
                     
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-8 col-lg-9">
+                                <!-- Hero Caption -->
+                                <div class="hero__caption">
+                                    <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-       
-<!-- Popular Items End -->
+</div>
+
 <!--? New Arrival Start -->
 <div class="new-arrival">
 <style>
