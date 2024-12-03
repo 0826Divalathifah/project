@@ -157,11 +157,7 @@
     </style>
         <div class="container">
             <p class="justified-text">
-                Desa Mandiri Budaya (DMB) adalah desa yang memiliki potensi, inovasi, dan kemandirian untuk mengembangkan nilai-nilai budaya lokal. Program ini melibatkan warga untuk aktif berpartisipasi, sehingga disebut mandiri. DMB menggabungkan empat pilar utama: Desa Wisata, Desa Preneur, Desa Prima, dan Desa Budaya, dan didasarkan pada Peraturan Daerah Istimewa (Perdais) No. 3 Tahun 2017 tentang Pemeliharaan dan Pengembangan Kebudayaan.
-                <br><br>
-                Kalurahan Sinduharjo, Kabupaten Sleman, DI Yogyakarta, ditetapkan sebagai DMB berdasarkan Keputusan Gubernur DIY No. 262/KEP/2016. Untuk mendukung keberhasilannya, diperlukan pendampingan dan pelatihan bagi masyarakat oleh Dinas Pariwisata DIY (Dinpar DIY) dan akademisi. Pelatihan ini meliputi materi tentang pengenalan USP, pemasaran digital, pengemasan paket wisata, analisis keuangan, dan SOP untuk kelestarian desa wisata.
-                <br><br>
-                Tujuan dari program ini adalah agar masyarakat memiliki pengetahuan yang cukup untuk melestarikan, melindungi, mengembangkan, dan memanfaatkan budaya lokal, sehingga Desa Sinduharjo dapat terus mengedepankan keunikannya dan menjadi DMB yang berkelanjutan dan kompetitif di sektor pariwisata.
+                {{ $deskripsi_index }}
             </p>
         </div>
 
