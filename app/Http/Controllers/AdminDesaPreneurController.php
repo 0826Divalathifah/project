@@ -157,8 +157,7 @@ class AdminDesaPreneurController extends Controller
             'deskripsi' => 'required',
             'foto_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'foto_produk.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'foto_slider' => 'required|array',
-            'foto_slider.*' => 'image|mimes:jpeg,png,jpg|max:2048'
+            'foto_produk' => 'required|array',
         ]);
     
         // Menghilangkan simbol "Rp" dan menyimpan harga dalam format numerik
@@ -187,11 +186,11 @@ class AdminDesaPreneurController extends Controller
         }
     
         // Menyimpan foto slider (opsional, multiple upload)
-        if ($request->hasFile('foto_slider')) {
+        if ($request->hasFile('foto_produk')) {
             $fotoSliderPaths = [];
-            foreach ($request->file('foto_slider') as $file) {
-                $path = $file->store('uploads/foto_slider', 'public');
-                $fotoSliderPaths[] = str_replace('\\', '/', $path); // Pastikan path menggunakan '/'
+            foreach ($request->file('foto_produk') as $file) {
+                $path = $file->store('uploads/foto_produk', 'public');
+                $fotoProdukPaths[] = str_replace('\\', '/', $path); // Pastikan path menggunakan '/'
             }
             $produk->foto_slider = json_encode($fotoSliderPaths);
         }
@@ -259,9 +258,17 @@ class AdminDesaPreneurController extends Controller
             $produk->foto_card = $fotoCardName;
         }
     
-        // Update foto produk
-        $fotoProdukPaths = json_decode($produk->foto_produk, true) ?? [];
-    
+        
+       // Update foto produk
+        $fotoProdukData = $produk->foto_produk;
+
+        // Pastikan $fotoProdukData adalah string sebelum di-decode
+        if (is_string($fotoProdukData)) {
+            $fotoProdukPaths = json_decode($fotoProdukData, true) ?? [];
+        } else {
+            $fotoProdukPaths = is_array($fotoProdukData) ? $fotoProdukData : [];
+        }
+
         // Hapus foto produk yang diinginkan
         if ($request->has('hapus_foto_produk') && is_array($request->hapus_foto_produk)) {
             foreach ($request->hapus_foto_produk as $hapusFoto) {
@@ -288,7 +295,7 @@ class AdminDesaPreneurController extends Controller
         // Simpan perubahan produk
         $produk->save();
     
-        return redirect()->route('kelolapreneur')->with('success', 'Produk dan varian berhasil diperbarui');
+        return redirect()->to('/kelolapreneur')->with('success', 'Produk dan varian berhasil diperbarui');
     }
     
 
