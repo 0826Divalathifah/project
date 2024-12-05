@@ -31,7 +31,7 @@
     
     <div class="container-scroller">
     <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
@@ -39,7 +39,7 @@
           <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
-    </div>
+        </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
@@ -57,72 +57,31 @@
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown">
-              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-                <i class="icon-bell mx-0"></i>
-                <span class="count"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-success">
-                      <i class="ti-info-alt mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Just now </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-warning">
-                      <i class="ti-settings mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">Settings</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> Private message </p>
-                  </div>
-                </a>
-                <a class="dropdown-item preview-item">
-                  <div class="preview-thumbnail">
-                    <div class="preview-icon bg-info">
-                      <i class="ti-user mx-0"></i>
-                    </div>
-                  </div>
-                  <div class="preview-item-content">
-                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                    <p class="font-weight-light small-text mb-0 text-muted"> 2 days ago </p>
-                  </div>
-                </a>
-              </div>
-            </li>
-            <li class="nav-item nav-profile dropdown">
-              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                <img src="{{ asset('admin/assets/images/faces/face28.jpg') }}" alt="profile" />
-              </a>
-              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item">
-                  <i class="ti-settings text-primary"></i> Settings </a>
-                <a class="dropdown-item">
-                  <i class="ti-power-off text-primary"></i> Logout </a>
-              </div>
-            </li>
-            <li class="nav-item nav-settings d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
-              </a>
-            </li>
-          </ul>
-      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-      <span class="icon-menu"></span>
-    </button>
+          <div class="header-right1 d-flex align-items-center justify-content-center">
+    <!-- Social -->
+    <div class="header-social d-flex align-items-center">
+        <!-- Icon Power -->
+        <a class="nav-link d-flex align-items-center mx-3" href="#">
+            <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+            <span style="font-size: 16px;">Logout</span>
+        </a>
+    </div>
+</div>    
+    <li class="nav-item nav-settings d-none d-lg-flex">
+        <a class="nav-link" href="#">
+            <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
+        </a>
+    </li>
+</ul>
+
+<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+    <span class="icon-menu"></span>
+</button>
+
   </div>
 </nav>
- <!-- partial -->
- <div class="container-fluid page-body-wrapper">
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
@@ -144,29 +103,29 @@
                 <span class="menu-title">Kelola Home Page</span>
               </a>
             </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
               <a class="nav-link" href="{{ url('/laporanpreneur') }}">
                 <i class="icon-paper menu-icon"></i>
                 <span class="menu-title">Laporan Desa Preneur</span>
               </a>
-            </li>
+            </li>-->
         </nav>
-
-    <div class="main-panel">
-    <div class="content-wrapper">
+<!-- partial -->
+<div class="main-panel">
+  <div class="content-wrapper">
     <div class="row">
           
-    <div class="breadcrumb">
-      <nav aria-label="breadcrumb">
-          <ol class="breadcrumb justify-content-center">
-              <li class="breadcrumb-item"><a href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
-              <li class="breadcrumb-item"><a href="#"> Tambah Preneur</a></li>
-          </ol>
-      </nav>
-
-    <div class="col-12 grid-margin stretch-card">
-    <div class="card">
-        <form id="formTambah" action="{{ url ('/tambahpreneur') }}" method="POST" enctype="multipart/form-data">
+      <!--<div class="breadcrumb">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a href="{{ url('/kelolapreneur') }}">Kelola Preneur</a></li>
+                <li class="breadcrumb-item"><a href="#"> Tambah Produk Preneur</a></li>
+            </ol>
+        </nav>
+      </div>-->
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <form id="formTambah" action="{{ url('/simpanpreneur') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Produk</h4>
@@ -175,10 +134,10 @@
                 <!-- Input Kategori -->
                 <div class="form-group">
                     <label>Pilih Kategori</label>
-                    <select name="kategori" class="js-example-basic-single w-100" required>
+                    <select name="kategori_produk" class="js-example-basic-single w-100" required>
                         <option value="">Pilih Kategori</option>
-                        <option value="makanan_dan_minuman">Makanan dan Minuman</option>
-                        <option value="kerajinan_dan_aksesoris">Kerajinan dan Aksesoris</option>
+                        <option value="makanan">Makanan dan Minuman</option>
+                        <option value="kerajinan">Kerajinan dan Aksesoris</option>
                     </select>
                 </div>
 
@@ -193,14 +152,14 @@
                     <label for="hargaPreneur" class="form-label">Harga</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaPreneur" name="harga" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
+                        <input type="text" class="form-control rounded" id="hargaPreneur" name="harga_produk" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
                     </div>
                 </div>
 
                 <!-- Input Nomor WhatsApp -->
                 <div class="form-group">
                     <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
-                    <input type="number" class="form-control" id="whatsappNumber" name="whatsapp" placeholder="Masukkan Nomor WhatsApp" min="0" required>
+                    <input type="number" class="form-control" id="whatsappNumber" name="nomor_whatsapp" placeholder="Masukkan Nomor WhatsApp" min="0" required>
                 </div>
 
                 <!-- Input Deskripsi -->
@@ -221,10 +180,9 @@
                     </div>
                 </div>
 
-                <!-- Input Foto Produk -->
                 <div class="form-group">
                     <label>Unggah Foto-Foto Produk</label>
-                    <input type="file" name="foto_produk[]" class="file-upload-default" id="fileInput" multiple accept="image/*" required>
+                    <input type="file" name="foto_produk[]" class="file-upload-default" id="fileInput" multiple required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
                         <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
                         <span class="input-group-append ms-2">
@@ -233,21 +191,23 @@
                     </div>
                 </div>
 
-                <!-- Input Varian Produk -->
-                <div class="form-group">
-                    <label for="varianProduk">Varian Produk (opsional)</label>
-                    <div id="varianContainer">
-                        <!-- Kolom varian akan ditambahkan di sini -->
-                    </div>
-                    <button type="button" class="btn btn-inverse-primary btn-fw" id="addVariantBtn">Tambah Varian</button>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+                <!-- Tombol Submit -->
+                <button type="submit" class="btn btn-primary mt-4">Submit</button>
             </div>
         </form>
+
+        <script>
+            // Fungsi formatCurrency untuk input harga
+            function formatCurrency(input) {
+                let value = input.value.replace(/[^0-9]/g, ''); // Hanya mengambil angka
+                input.value = 'Rp ' + value; // Menambahkan simbol Rp
+            }
+        </script>
+
     </div>
 </div>
+
+
 
 
 </div>
@@ -282,7 +242,10 @@
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/varianProduk.js') }}"></script>
+  
     <!-- End custom js for this page-->
+
+  
+
 </body>
 </html>
