@@ -30,8 +30,8 @@
   <body>
     
     <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+   <!-- partial:../../partials/_navbar.html -->
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
@@ -66,143 +66,138 @@
             <span style="font-size: 16px;">Logout</span>
         </a>
     </div>
-    </div>    
+</div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
             <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
         </a>
     </li>
-    </ul>
+</ul>
 
-    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
     <span class="icon-menu"></span>
-    </button>
+</button>
 
-    </div>
-    </nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-    <!-- partial:../../partials/_sidebar.html -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
-    <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link"  href="{{ url('/adminprima') }}">
-          <i class="icon-grid menu-icon"></i>
-          <span class="menu-title">Dashboard</span>
-        </a>
-    </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/kelolaprima') }}">
-          <i class="mdi mdi-shape-plus menu-icon"></i>
-          <span class="menu-title">Kelola Produk</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url('/kelolahomepageprima') }}">
-          <i class="mdi mdi-home menu-icon"></i>
-          <span class="menu-title">Kelola Home Page</span>
-        </a>
-      </li>
-      <!--<li class="nav-item">
-        <a class="nav-link" href="{{ url('/laporanprima') }}">
-          <i class="icon-paper menu-icon"></i>
-          <span class="menu-title">Laporan Desa Prima</span>
-        </a>
-      </li>-->
-    </nav>
+  </div>
+</nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ asset('/adminprima') }}">
+                <i class="icon-grid menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+              </a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolaprima') }}">
+                <i class="mdi mdi-shape-plus menu-icon"></i>
+                <span class="menu-title">Kelola Produk</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('/kelolahomepageprima') }}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Kelola Home Page</span>
+              </a>
+            </li>
+            <!--<li class="nav-item">
+              <a class="nav-link" href="{{ url('/laporanprima') }}">
+                <i class="icon-paper menu-icon"></i>
+                <span class="menu-title">Laporan Desa Prima</span>
+              </a>
+            </li>-->
+        </nav>
+<!-- partial -->
     <div class="main-panel">
     <div class="content-wrapper">
-    <div class="row">   
+    <div class="row">     
     <!--<div class="breadcrumb">
       <nav aria-label="breadcrumb">
           <ol class="breadcrumb justify-content-center">
-              <li class="breadcrumb-item"><a href="{{ url('/kelolaprima') }}">Kelola Prima</a></li>
+              <li class="breadcrumb-item"><a href="{{ url('/kelolaprima') }}">Kelola prima</a></li>
               <li class="breadcrumb-item"><a href="#"> Edit Prima</a></li>
           </ol>
-      </nav>-->
-
+      </nav>
+    </div>-->
     <div class="col-12 grid-margin stretch-card">
       <div class="card">
-      <form action="{{ url('updatePrima', $produk->id) }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ url('updateprima/' . $produk->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')<!-- Tambahkan metode PUT untuk update -->
-            <div class="card-body">
-                <h4 class="card-title">Formulir Edit Produk</h4>
-                <p class="card-description">Perbarui kolom formulir di bawah ini</p>
+        @method('PUT')
 
-                <!-- Input Kategori -->
-                <div class="form-group">
-                    <label>Pilih Kategori</label>
-                    <select name="kategori_produk" class="js-example-basic-single w-100" required>
-                        <option value="">Pilih Kategori</option>
-                        <option value="makanan" {{ $produk->kategori_produk == 'makanan' ? 'selected' : '' }}>Makanan dan Minuman</option>
-                        <option value="kerajinan" {{ $produk->kategori_produk == 'kerajinan' ? 'selected' : '' }}>Kerajinan dan Aksesoris</option>
-                    </select>
-                </div>
+          <div class="card-body">
+              <h4 class="card-title">Formulir Edit Produk</h4>
+              <p class="card-description">Perbarui kolom formulir di bawah ini</p>
 
-                <!-- Input Nama Produk -->
-                <div class="form-group">
-                    <label for="namaProduk">Nama Produk</label>
-                    <input type="text" class="form-control" id="namaProduk" name="nama_produk" value="{{ $produk->nama_produk }}" required>
-                </div>
+              <!-- Input Kategori -->
+              <div class="form-group">
+                  <label>Pilih Kategori</label>
+                  <select name="kategori_produk" class="form-control w-100" required>
+                      <option value="">Pilih Kategori</option>
+                      <option value="makanan" {{ $produk->kategori_produk == 'makanan' ? 'selected' : '' }}>Makanan dan Minuman</option>
+                      <option value="kerajinan" {{ $produk->kategori_produk == 'kerajinan' ? 'selected' : '' }}>Kerajinan dan Aksesoris</option>
+                  </select>
+              </div>
 
-                <!-- Input Harga -->
-                <div class="mb-3">
-                    <label for="hargaPreneur" class="form-label">Harga</label>
-                    <div class="input-group">
-                        <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaPreneur" name="harga_produk" value="{{ $produk->harga_produk }}" oninput="formatCurrency(this)" required>
-                    </div>
-                </div>
+              <!-- Input Nama Produk -->
+              <div class="form-group">
+                  <label for="namaProduk">Nama Produk</label>
+                  <input type="text" class="form-control" id="namaProduk" name="nama_produk" value="{{ $produk->nama_produk }}" required>
+              </div>
 
-                <!-- Input Nomor WhatsApp -->
-                <div class="form-group">
-                    <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
-                    <input type="number" class="form-control" id="whatsappNumber" name="nomor_whatsapp" value="{{ $produk->nomor_whatsapp }}" min="0" required>
-                </div>
-
-                <!-- Input Deskripsi -->
-                <div class="form-group">
-                    <label for="exampleTextarea1">Deskripsi</label>
-                    <textarea class="form-control" id="exampleTextarea1" name="deskripsi" rows="5" required>{{ $produk->deskripsi }}</textarea>
-                </div>
-
-                  <!-- Input Foto Card -->
-                  <div class="form-group">
-                    <label>Unggah Foto Card (Biarkan kosong jika tidak ingin mengubah)</label>
-                    <input type="file" name="foto_card" class="file-upload-default" accept="image/*">
-                    <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
-                        <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                        </span>
-                    </div>
+              <!-- Input Harga -->
+              <div class="form-group">
+                  <label for="hargaPrima">Harga</label>
+                  <div class="input-group">
+                      <span class="input-group-text">Rp</span>
+                      <input type="text" class="form-control" id="hargaPrima" name="harga_produk" value="{{$produk->harga_produk }}" oninput="formatCurrency(this)" required>
                   </div>
-                  <!-- Input Foto Produk -->
-                  <div class="form-group">
-                      <label>Unggah Foto-Foto Produk (Biarkan kosong jika tidak ingin mengubah)</label>
-                      <input type="file" name="foto_produk[]" class="file-upload-default" id="fileInput" multiple accept="image/*">
-                      <div class="input-group col-xs-12 d-flex align-items-center">
-                          <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
-                          <span class="input-group-append ms-2">
-                              <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                          </span>
-                      </div>
-                      <!-- Tampilkan Foto Sebelumnya -->
-                      <div class="mt-3">
-                          <p>Foto Produk Sebelumnya:</p>
-                          <div class="d-flex flex-wrap">
-                              @foreach ($produk->foto_produk as $foto)
-                                  <img src="{{ asset('storage/' . $foto) }}" alt="Foto Produk" class="me-2 mb-2" style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd;">
-                              @endforeach
-                          </div>
-                      </div>
-                  </div>
+              </div>
 
-                <!-- Submit Button -->
-                <button type="submit" id="submit" class="btn btn-primary me-2">Update</button>
-            </div>
-        </form>
+              <!-- Input Nomor WhatsApp -->
+              <div class="form-group">
+                  <label for="whatsappNumber">Nomor WhatsApp Aktif</label>
+                  <input type="tel" class="form-control" id="whatsappNumber" name="nomor_whatsapp" value="{{ $produk->nomor_whatsapp }}" required>
+              </div>
+
+              <!-- Input Deskripsi -->
+              <div class="form-group">
+                  <label for="deskripsi">Deskripsi</label>
+                  <textarea class="form-control" id="deskripsi" name="deskripsi" rows="5" required>{{ $produk->deskripsi }}</textarea>
+              </div>
+
+              <!-- Input Foto Card -->
+              <div class="form-group">
+                  <label>Unggah Foto Card (Opsional)</label>
+                  <input type="file" name="foto_card" class="form-control" accept="image/*">
+                  @if($produk->foto_card)
+                      <p class="mt-2">Foto Card Saat Ini:</p>
+                      <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="Foto Card" style="width: 150px; height: auto;">
+                  @endif
+              </div>
+
+              <!-- Input Foto Produk -->
+              <div class="form-group">
+                  <label>Unggah Foto Produk (Opsional)</label>
+                  <input type="file" name="foto_produk[]" class="form-control" multiple accept="image/*">
+                  @if($produk->foto_produk)
+                      <p class="mt-2">Foto Produk Sebelumnya:</p>
+                      <div class="d-flex flex-wrap">
+                          @foreach (json_decode($produk->foto_produk, true) as $foto)
+                              <img src="{{ asset('storage/' . $foto) }}" alt="Foto Produk" class="me-2 mb-2" style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd;">
+                          @endforeach
+                      </div>
+                  @endif
+              </div>
+
+              <!-- Tombol Submit -->
+              <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+      </form>
+
         <script>
             function formatCurrency(input) {
                 let value = input.value.replace(/\D/g, ''); // Hapus semua karakter non-digit
@@ -248,7 +243,6 @@
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
-    <script src="{{ asset('admin/assets/js/varianProduk.js') }}"></script>
     <!-- End custom js for this page-->
 </body>
 </html>
