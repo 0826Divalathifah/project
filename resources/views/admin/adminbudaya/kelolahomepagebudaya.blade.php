@@ -127,7 +127,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Kelola Banner</h4>
-                    <form class="forms-sample" action="{{ url('/update-banner-budaya') }}" method="POST" enctype="multipart/form-data">
+                    <form class="forms-sample" action="{{ url('/updateBannerBudaya') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="bannerImage">Edit Banner</label>
@@ -147,7 +147,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Kelola Card Selamat Datang</h4>
-                    <form class="forms-sample" action="{{ url('/update-welcome-card') }}" method="POST" enctype="multipart/form-data">
+                    <form class="forms-sample" action="{{ url('/updateWelcomeCard') }}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group">
                           <label for="welcomeImage">Edit Foto</label>
