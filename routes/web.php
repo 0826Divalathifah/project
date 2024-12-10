@@ -55,6 +55,8 @@ Route::put('/admin/update-admin/{id}', [AdminKalurahanController::class, 'update
 Route::get('/kelolaadmin', [AdminKalurahanController::class, 'kelolaAdmin']); // Halaman kelola admin
 Route::get('/admin/editadmin/{id}', [AdminKalurahanController::class, 'editAdmin']); // Aksi edit admin
 Route::delete('/admin/hapusadmin/{id}', [AdminKalurahanController::class, 'hapusAdmin']); // Aksi hapus admin
+Route::post('/update-homepage-tentangkami', [AdminKalurahanController::class, 'updateHomepageTentangKami']);
+Route::post('/update-homepage-kontak', [AdminKalurahanController::class, 'updateHomepageKontak']);
 
 
 
