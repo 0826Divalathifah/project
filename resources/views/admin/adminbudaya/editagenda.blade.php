@@ -150,7 +150,7 @@
             @endif
 
             {{-- Form untuk mengupdate agenda --}}
-            <form action="/admin/update-agenda/{{ $agenda->id }}" method="POST">
+            <form action="/updateAgenda/{{ $agenda->id }}" method="POST">
                 @csrf
                 @method('PUT')
 
