@@ -46,7 +46,7 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
+          <!--<ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
                 <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -57,7 +57,7 @@
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
               </div>
             </li>
-          </ul>
+          </ul>-->
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
@@ -129,6 +129,19 @@
                   <div class="card-body">
                       <h4 class="card-title">Kelola Feedback Pengguna</h4>
                       <p class="card-description">Tabel ini menampilkan semua masukan atau tanggapan dari pengguna website.</p>
+                      
+                      <div id="messages" style="display: none;">
+                      <!-- Pesan sukses dari session -->
+                      @if(session('success'))
+                          <div data-success="{{ session('success') }}"></div>
+                      @endif
+
+                      <!-- Pesan error dari session -->
+                      @if(session('error'))
+                          <div data-error="{{ session('error') }}"></div>
+                      @endif
+                  </div>
+                      
                       <div class="table-responsive">
                       <table class="table table-hover">
                         <thead>
@@ -170,13 +183,12 @@
                                   @endif
 
                                     <!-- Tombol Hapus -->
-                                    <button 
-                                        class="btn btn-danger btn-sm hapus-btn" 
-                                        data-feedback-id="{{ $feedback->id }}"
-                                        onclick="hapusFeedback(this)"
-                                    >
-                                        Hapus
-                                    </button>
+                                    <form id="delete-form-{{ $feedback->id }}" action="{{ url('hapusFeedback/' . $feedback->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $feedback->id }}, 'feedback')">Hapus</button>
+                                    </form>
+
                                 </td>
                             </tr>
                             @endforeach
