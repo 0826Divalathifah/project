@@ -33,10 +33,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkalurahan') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkalurahan') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
@@ -44,18 +44,7 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
-              <div class="input-group">
-                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                  <span class="input-group-text" id="search">
-                    <i class="icon-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-              </div>
-            </li>
-          </ul>
+          
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
@@ -87,7 +76,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/adminkelurahan') }}">
+              <a class="nav-link" href="{{ asset('/adminkalurahan') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
@@ -108,7 +97,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/kelolahomepage') }}">
                 <i class="mdi mdi-home menu-icon"></i>
-                <span class="menu-title">Kelola HomePage</span>
+                <span class="menu-title">Kelola Home Page</span>
               </a>
             </li>
            <!-- <li class="nav-item">
@@ -132,7 +121,7 @@
         </nav>
         <div class="col-12 grid-margin stretch-card">
     <div class="card">
-    <form id="formEdit" action="{{ url('/admin/update-admin/' . $admin->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="formEdit" action="{{ url('/updateAdmin/' . $admin->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT') <!-- Ini untuk menggunakan HTTP PUT method, yang menunjukkan bahwa ini adalah update -->
     <!-- form content -->
