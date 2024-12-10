@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kelola Homepage Prima</title>
+    <title>Kelola Home Page Prima</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -44,18 +44,18 @@
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                       <span class="icon-menu"></span>
                     </button>
-                    <ul class="navbar-nav mr-lg-2">
-                      <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                            <span class="input-group-text" id="search">
-                              <i class="icon-search"></i>
-                            </span>
-                          </div>
-                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                    <!--<ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item nav-search d-none d-lg-block">
+                      <div class="input-group">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                          <span class="input-group-text" id="search">
+                            <i class="icon-search"></i>
+                          </span>
                         </div>
-                      </li>
-                    </ul>
+                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                      </div>
+                    </li>
+                  </ul>-->
                     <ul class="navbar-nav navbar-nav-right">
                     <div class="header-right1 d-flex align-items-center justify-content-center">
               <!-- Social -->
@@ -121,7 +121,7 @@
               <div class="card-body">
                 <h4 class="card-title">Kelola Banner Desa Prima</h4>
                 <div class="card-body">
-                  <form class="forms-sample" action="{{ url('/update-banner-prima') }}" method="POST" enctype="multipart/form-data">
+                  <form class="forms-sample" action="{{ url('/updateBannerPrima') }}" method="POST" enctype="multipart/form-data">
                       @csrf
 
                       <div class="form-group">
