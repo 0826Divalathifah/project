@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
@@ -41,7 +42,7 @@
                 </div>
             </div>
         </div>
-    <!-- Preloader Start -->
+    <!-- Preloader end -->
 
     <header>
     <!-- Header Start -->
@@ -83,7 +84,7 @@
                             <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <!-- Search Box -->
+                        <!-- Search Box 
                         <div class="search d-none d-md-block">
                             <ul class="d-flex align-items-center">
                                 <li class="mr-15">
@@ -92,7 +93,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
@@ -140,7 +141,7 @@
                     <div class="breadcrumb">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
                                 <li class="breadcrumb-item"><a href="#">Detail budaya</a></li>
                             </ol>
                         </nav>
@@ -341,7 +342,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -380,7 +381,6 @@
     </div>
 </div>
 
-<!-- Search model end -->
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
