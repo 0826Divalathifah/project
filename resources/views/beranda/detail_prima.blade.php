@@ -26,13 +26,13 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/detail.min.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/detail.css') }}">
-
+    
 
 </head>
 <body>
 
-<!-- Header Start -->
 <header>
+    <!-- Header Start -->
     <div class="header-area">
         <div class="main-header header-sticky">
             <div class="container-fluid">
@@ -41,7 +41,7 @@
                         <!-- Logo -->
                         <div class="logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 200px; height: 70px;">
+                            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
                             </a>
                         </div>
                         <!-- Main-menu -->
@@ -49,14 +49,15 @@
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="{{ url('/') }}">Beranda</a></li>
-                                    <li><a href="#">Desa Mandiri Budaya</a>
+                                    <li>
+                                        <a href="#">Desa Mandiri Budaya</a>
                                         <ul class="submenu">
                                             <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
                                             <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
                                             <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
                                             <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
                                         </ul>
-                                    </li>
+                                    </li>  
                                     <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
                                     <li><a href="{{ url('/contact') }}">Kontak</a></li>
                                 </ul>
@@ -70,64 +71,114 @@
                             <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
+                        <!-- Search Box 
+                        <div class="search d-none d-md-block">
+                            <ul class="d-flex align-items-center">
+                                <li class="mr-15">
+                                    <div class="nav-search search-switch">
+                                        <i class="ti-search"></i>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>-->
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Header End -->
 </header>
-<!-- Header End -->
+
+
+<main>
+    <!-- listing Area Start -->
+        <div class="container">
+        <div class="category-area">
+        <div class="row">
+
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            <div class="banner-container">
+                <!-- Mobile Device Show Menu-->
+                <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
+                <div class="banner-overlay"></div>
+                <div class="banner-text">Detail Produk</div>
+
+                @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                        <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                    @else
+                        <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                    @endif
+
+                    
+                <!-- breadcrumb Start-->
+                    <div class="breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
+                                <li class="breadcrumb-item"><a href="#">Detail Produk</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>  
+                </div>
+<!-- Banner End -->
+
+<!-- Content -->
 <div class="container py-5">
     <div class="row">
         <!-- Bagian Gambar Produk -->
         <div class="col-md-6">
-            <div id="carousel-slide{{ $produk->id }}" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-    @php
-        // Decode JSON jika data dalam format string
-        $foto_produk = is_array($produk->foto_produk) ? $produk->foto_produk : json_decode($produk->foto_produk, true);
-    @endphp
+            <div id="carousel-slide{{ $prima->id }}" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" >
+                    @php
+                        // Ambil data foto slider dari database seperti logika Budaya
+                        $fotoSlider = $prima->foto_slider ?? [];
+                    @endphp
 
-    @if (!empty($foto_produk) && is_array($foto_produk))
-        @foreach ($foto_produk as $key => $file_path)
-            <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                @if (Storage::exists($file_path)) 
-                    <!-- Gunakan Storage::url untuk memastikan path benar -->
-                    <img src="{{ Storage::url($file_path) }}" class="d-block w-100 rounded" alt="Foto Produk {{ $key + 1 }}">
-                @else
-                    <p class="text-muted">Foto tidak ditemukan: {{ $file_path }}</p>
-                @endif
-            </div>
-        @endforeach
-    @else
-        <div class="carousel-item active">
-            <img src="{{ asset('storage/uploads/desapreneur/default.jpg') }}" class="d-block w-100 rounded" alt="Default Foto Produk">
-        </div>
-    @endif
+                    @if (!empty($fotoSlider))
+                        @foreach ($fotoSlider as $index => $foto)
+                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                            <img src="{{ asset('storage/' . $foto) }}" class="d-block w-100 rounded" alt="Foto Slider {{ $index + 1 }}" style="object-fit: cover;">
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="carousel-item active">
+                            <img src="{{ asset('storage/uploads/desaprima/default.jpg') }}" class="d-block w-100 rounded" alt="Default Foto Produk">
+                        </div>
+                    @endif
+                </div>
+
+    <!-- Tombol navigasi slider -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-slide{{ $prima->id }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel-slide{{ $prima->id }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
 </div>
-
-                <!-- Tombol navigasi slider -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-slide{{ $produk->id }}" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-slide{{ $produk->id }}" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
+</div>
 
         <!-- Bagian Detail Produk -->
         <div class="col-md-6">
             <div class="product-details">
-                <h2 class="fw-bold mb-3">{{ $produk->nama_produk }}</h2>
-                <p class="text-success fw-bold h4 mb-3">{{ $produk->harga_produk }}</p>
-                <p class="text-muted">{{ $produk->deskripsi }}</p>
+                <h2 class="fw-bold mb-3">{{ $prima->nama_produk }}</h2>
+                <p class="text-success fw-bold h4 mb-3">{{ $prima->harga_produk }}</p>
+                <p class="text-muted">{{ $prima->deskripsi }}</p>
 
                 <!-- Input Jumlah 
                 <div class="mt-4">
@@ -140,9 +191,9 @@
                     <button 
                         class="btn btn-primary me-2" 
                         id="detailBtn" 
-                        data-product-id="{{ $produk->id }}" 
-                        data-product-name="{{ $produk->nama_produk }}" 
-                        data-product-price="{{ $produk->harga_produk ?? '0' }}" 
+                        data-product-id="{{ $prima->id }}" 
+                        data-product-name="{{ $prima->nama_produk }}" 
+                        data-product-price="{{ $prima->harga_produk ?? '0' }}" 
                         data-product-quantity="1">
                         Detail Pesanan-->
                     <!-- Chatbox 
@@ -164,9 +215,9 @@
                     <!-- Tombol Lanjut ke WhatsApp -->
                    <!-- Tombol dengan data produk dari model Prima -->
                     <button id="whatsappBtn" 
-                        data-nama_produk="{{ $produk->nama_produk }}" 
-                        data-harga_produk="{{ $produk->harga_produk }}" 
-                        data-nomor_whatsapp="{{ $produk->nomor_whatsapp }}">
+                        data-nama_produk="{{ $prima->nama_produk }}" 
+                        data-harga_produk="{{ $prima->harga_produk }}" 
+                        data-nomor_whatsapp="{{ $prima->nomor_whatsapp }}">
                         Pesan via WhatsApp
                     </button>
 
@@ -176,8 +227,6 @@
         </div>
     </div>
 </div>
-
-
 
 <footer>
     <!-- Footer Start -->
@@ -224,7 +273,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -254,7 +303,7 @@
     <!-- Footer End -->
 </footer>
 
-<!--? Search model Begin -->
+<!--? Search model Begin
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-btn">+</div>
@@ -262,7 +311,7 @@
             <input type="text" id="search-input" placeholder="Searching key.....">
         </form>
     </div>
-</div>
+</div> -->
 <!-- Search model end -->
 <!-- Scroll Up -->
 <div id="back-top" >
@@ -312,7 +361,8 @@
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
 
-
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('themewagon/js/whatsapp.js') }}"></script>
 <script src="{{ asset('themewagon/js/detail.js') }}"></script>
 
