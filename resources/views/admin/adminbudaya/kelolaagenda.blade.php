@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Kelola Agenda</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
@@ -44,23 +46,11 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
-              <div class="input-group">
-                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                  <span class="input-group-text" id="search">
-                    <i class="icon-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-              </div>
-            </li>
-          </ul>
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
-    <!-- Social -->
-    <div class="header-social d-flex align-items-center">
-        
+          <!-- Social -->
+          <div class="header-social d-flex align-items-center">
+              
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -130,7 +120,23 @@
                     <div class="card-body">
                     <h4 class="card-title">Tambah Agenda Budaya</h4>
                     <form class="forms-sample" action="/kelolaagenda" method="POST">
-                        @csrf <!-- Token CSRF untuk keamanan -->
+                        @csrf
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                        <!-- Token CSRF untuk keamanan -->
                         <div class="form-group">
                             <label for="namaAcara">Nama Acara</label>
                             <input type="text" class="form-control" id="namaAcara" name="nama_acara" placeholder="Masukkan nama acara" required>
@@ -183,19 +189,15 @@
                                 <td>{{ \Illuminate\Support\Str::limit($agenda->deskripsi_acara, 20, '...') }}</td>
                                 <td>{{ $agenda->alamat }}</td>
                                 <td>
-                                    <!-- Ganti dengan URL absolut untuk Edit -->
+                                    <!-- Edit button -->
                                     <a href="/agenda/{{ $agenda->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
                                     
-                                    <!-- Ganti dengan URL absolut untuk Delete -->
-                                    <form id="delete-form-{{ $agenda->id }}" action="/agenda/{{ $agenda->id }}" method="POST" style="display:inline;">
+                                    <!-- Delete form -->
+                                    <!-- Tombol Hapus -->
+                                    <form id="delete-form-{{ $agenda->id }}" action="{{ url('hapusAgenda/' . $agenda->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button 
-                                            type="button" 
-                                            class="btn btn-danger btn-sm" 
-                                            onclick="confirmDelete('{{ $agenda->name }}', {{ $agenda->id }});">
-                                            Hapus
-                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $agenda->id }}, 'agenda')">Hapus</button>
                                     </form>
                                 </td>
                             </tr>
