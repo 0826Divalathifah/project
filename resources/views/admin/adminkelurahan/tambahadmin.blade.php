@@ -33,10 +33,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkalurahan') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkalurahan') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
@@ -44,7 +44,7 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
+          <!--<ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
                 <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -55,7 +55,7 @@
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
               </div>
             </li>
-          </ul>
+          </ul>-->
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
@@ -87,7 +87,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/adminkelurahan') }}">
+              <a class="nav-link" href="{{ asset('/adminkalurahan') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
@@ -108,7 +108,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/kelolahomepage') }}">
                 <i class="mdi mdi-home menu-icon"></i>
-                <span class="menu-title">Kelola HomePage</span>
+                <span class="menu-title">Kelola Home Page</span>
               </a>
             </li>
            <!-- <li class="nav-item">
@@ -132,13 +132,27 @@
                 </nav>
                 <div class="col-12 grid-margin stretch-card">
             <div class="card">
-            <form id="formTambah" action="{{ url('/admin/simpanadmin') }}" method="POST" enctype="multipart/form-data">
+            <form id="formTambah" action="{{ url('/simpanAdmin') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- form content -->
                 <div class="card-body">
                     <h4 class="card-title">Formulir Tambah Admin</h4>
                     <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
         
+                    {{-- Notifikasi berhasil atau error --}}
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <!-- Input Nama Admin -->
                     <div class="form-group">
