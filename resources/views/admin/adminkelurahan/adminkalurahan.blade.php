@@ -47,14 +47,13 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-    <form action="{{ route('logout') }}" method="POST">
-        @csrf
-        <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
+        
+        <!-- Icon Power -->
+        <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
             <span style="font-size: 16px;">Logout</span>
-        </button>
-    </form>
-</div>
+        </a>
+    </div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
@@ -95,7 +94,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/kelolahomepage') }}">
                 <i class="mdi mdi-home menu-icon"></i>
-                <span class="menu-title">Kelola HomePage</span>
+                <span class="menu-title">Kelola Home Page</span>
               </a>
             </li>
         </nav>
