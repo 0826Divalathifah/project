@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminDesaPreneurController;
 use App\Http\Controllers\AdminDesaPrimaController;
 use App\Http\Controllers\AdminDesaWisataController;
 use App\Http\Controllers\PenjualController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth;
 
 // Routes untuk Website
 Route::get('/', [PageController::class, 'index'])->name('home');
@@ -19,7 +19,6 @@ Route::get('/desapreneur', [PageController::class, 'desapreneur'])->name('desapr
 Route::get('/detail_preneur/{id}', [PageController::class, 'detail_preneur']);
 Route::get('/detail_prima/{id}', [PageController::class, 'detail_prima']);
 Route::get('/desawisata', [PageController::class, 'desawisata'])->name('desawisata');
-Route::get('/detail_produk', [PageController::class, 'detail_produk'])->name('detail_produk');
 Route::get('/detail_wisata/{id}', [PageController::class, 'detail_wisata']);
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/simpanFeedback', [PageController::class, 'simpanFeedback'])->name('simpanFeedback');
@@ -37,80 +36,78 @@ Route::get('/mdi', [AdminKalurahanController::class, 'icons'])->name('admin.admi
 Route::get('/error-404', [AdminKalurahanController::class, 'samples1'])->name('admin.adminkalurahan.samples.error-404');
 Route::get('/error-500', [AdminKalurahanController::class, 'samples2'])->name('admin.adminkalurahan.samples.error-500');
 Route::get('/documentation', [AdminKalurahanController::class, 'docs'])->name('admin.adminkalurahan.docs.documentation');
+
 // Rute untuk halaman dashboard superadmin kalurahan
-Route::get('/adminkalurahan', [AdminKalurahanController::class, 'showDashboard']);
+
 Route::get('/kelolahomepage', [AdminKalurahanController::class, 'kelolahomepage']);
 Route::post('/update-homepage-kalurahan', [AdminKalurahanController::class, 'updateHomepageKalurahan']);
 Route::get('/tambahadmin', [AdminKalurahanController::class, 'tambahadmin']);
 Route::get('/kelolafeedback', [AdminKalurahanController::class, 'kelolafeedback']);
 Route::post('/kelolafeedback', [AdminKalurahanController::class, 'simpanFeedback']);
-Route::post('/admin/simpanFeedback', [AdminKalurahanController::class, 'simpanFeedback']);
+Route::post('/simpanFeedback', [AdminKalurahanController::class, 'simpanFeedback']);
 Route::post('/kirimfeedback', [AdminKalurahanController::class, 'simpanFeedback']);
-Route::post('/feedback/{id}/mark-as-read', [AdminKalurahanController::class, 'markAsRead']);
-Route::delete('/feedback/{id}', [AdminKalurahanController::class, 'hapusFeedback']);
+Route::patch('/adminkalurahan/respond/{id}', [AdminKalurahanController::class, 'respond']);
+Route::delete('/hapusFeedback/{id}', [AdminKalurahanController::class, 'hapusFeedback']);
 Route::get('/kelolaadmin', [AdminKalurahanController::class, 'kelolaAdmin']);
-Route::post('/admin/editadmin/{id}', [AdminKalurahanController::class, 'editAdmin']);
-Route::post('/admin/simpanadmin', [AdminKalurahanController::class, 'simpanadmin']);
-Route::put('/admin/update-admin/{id}', [AdminKalurahanController::class, 'updateAdmin'])->name('update-admin');
+Route::post('/editadmin/{id}', [AdminKalurahanController::class, 'editAdmin']);
+Route::post('/simpanAdmin', [AdminKalurahanController::class, 'simpanadmin']);
+Route::put('/updateAdmin/{id}', [AdminKalurahanController::class, 'updateAdmin'])->name('update-admin');
 Route::get('/kelolaadmin', [AdminKalurahanController::class, 'kelolaAdmin']); // Halaman kelola admin
-Route::get('/admin/editadmin/{id}', [AdminKalurahanController::class, 'editAdmin']); // Aksi edit admin
-Route::delete('/admin/hapusadmin/{id}', [AdminKalurahanController::class, 'hapusAdmin']); // Aksi hapus admin
+Route::get('/editadmin/{id}', [AdminKalurahanController::class, 'editAdmin']); // Aksi edit admin
+Route::delete('/hapusAdmin/{id}', [AdminKalurahanController::class, 'hapusAdmin']); // Aksi hapus admin
 Route::post('/update-homepage-tentangkami', [AdminKalurahanController::class, 'updateHomepageTentangKami']);
 Route::post('/update-homepage-kontak', [AdminKalurahanController::class, 'updateHomepageKontak']);
-
 
 
 //Rute untuk halaman dashboard admin budaya
 Route::get('/adminbudaya', [AdminDesaBudayaController::class, 'showDashboard']);
 Route::get('/kelolabudaya', [AdminDesaBudayaController::class, 'kelolaBudaya']);
 Route::get('/kelolahomepagebudaya', [AdminDesaBudayaController::class, 'kelolaHomepage']);
-Route::post('/update-banner-budaya', [AdminDesaBudayaController::class, 'updateBannerBudaya']);
-Route::post('/update-welcome-card', [AdminDesaBudayaController::class, 'updateWelcomeCard']);
+Route::post('/updateBannerBudaya', [AdminDesaBudayaController::class, 'updateBannerBudaya']);
+Route::post('/updateWelcomeCard', [AdminDesaBudayaController::class, 'updateWelcomeCard']);
+Route::get('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya']);
+Route::post('/tambahbudaya', [AdminDesaBudayaController::class, 'simpanBudaya']);
+Route::post('/simpanBudaya', [AdminDesaBudayaController::class, 'simpanBudaya']);
+Route::get('/editBudaya/{id}', [AdminDesaBudayaController::class, 'editBudaya']);
+Route::put('/updateBudaya/{id}', [AdminDesaBudayaController::class, 'updateBudaya']);
+Route::delete('/hapusBudaya/{id}', [AdminDesaBudayaController::class, 'hapusBudaya']);
+
 Route::get('/kelolaagenda', [AdminDesaBudayaController::class, 'kelolaAgenda']);
 Route::post('/kelolaagenda', [AdminDesaBudayaController::class, 'simpanAgenda']); 
 Route::get('/agenda/{id}/edit', [AdminDesaBudayaController::class, 'editAgenda']);
 Route::delete('/agenda/{id}', [AdminDesaBudayaController::class, 'deleteAgenda']);
-Route::put('/admin/update-agenda/{id}', [AdminDesaBudayaController::class, 'updateAgenda']);
-Route::get('/tambahbudaya', [AdminDesaBudayaController::class, 'tambahBudaya']);
-Route::post('/tambahbudaya', [AdminDesaBudayaController::class, 'simpanBudaya']);
-Route::get('/laporanbudaya', [AdminDesaBudayaController::class, 'laporanBudaya']);
-Route::get('/budaya/{id}', [AdminDesaBudayaController::class, 'show']);
-Route::post('/admin/simpan-budaya', [AdminDesaBudayaController::class, 'simpanBudaya']);
-Route::get('/admin/edit-budaya/{id}', [AdminDesaBudayaController::class, 'editBudaya']);
-Route::put('/admin/update-budaya/{id}', [AdminDesaBudayaController::class, 'updateBudaya']);
-Route::delete('/admin/hapus-budaya/{id}', [AdminDesaBudayaController::class, 'hapusBudaya']);
+Route::put('/updateAgenda/{id}', [AdminDesaBudayaController::class, 'updateAgenda']);
+Route::delete('/hapusAgenda/{id}', [AdminDesaBudayaController::class, 'hapusAgenda']);
 
 
 
 //Rute untuk halaman dashboard admin preneur
 Route::get('/adminpreneur', [AdminDesaPreneurController::class, 'showDashboard']);
 Route::get('/tambahpreneur', [AdminDesaPreneurController::class, 'tambahPreneur']);
-Route::post('/simpanpreneur', [AdminDesaPreneurController::class, 'simpanPreneur']);
-Route::get('/kelolapreneur', [AdminDesaPreneurController::class, 'kelolaPreneur'])->name('kelolapreneur');
-Route::get('/admin/editpreneur/{id}', [AdminDesaPreneurController::class, 'editPreneur']);
-Route::put('/updatepreneur/{id}', [AdminDesaPreneurController::class, 'updatePreneur'])->name('updatepreneur');
+Route::post('/tambahpreneur', [AdminDesaPreneurController::class, 'simpanPreneur']);
+Route::get('/editpreneur/{id}', [AdminDesaPreneurController::class, 'editPreneur']);
+Route::put('/updatepreneur/{id}', [AdminDesaPreneurController::class, 'updatePreneur']);
+Route::get('/kelolapreneur', [AdminDesaPreneurController::class, 'kelolaPreneur']);
+Route::put('/updatePreneur/{id}', [AdminDesaPreneurController::class, 'updatePreneur']);
 Route::delete('/hapusPreneur/{id}', [AdminDesaPreneurController::class, 'hapusPreneur']);
 Route::get('/transaksipreneur', [AdminDesaPreneurController::class, 'transaksiPreneur']);
 Route::get('/laporanpreneur', [AdminDesaPreneurController::class, 'laporanPreneur']);
 Route::get('/kelolahomepagepreneur', [AdminDesaPreneurController::class, 'kelolaHomepage']);
-Route::post('/update-banner-preneur', [AdminDesaPreneurController::class, 'updateBannerPreneur']);
+Route::post('/updateBannerPreneur', [AdminDesaPreneurController::class, 'updateBannerPreneur']);
 
 
 //Rute untuk halaman dashboard admin prima
 Route::get('/adminprima', [AdminDesaPrimaController::class, 'showDashboard']);
 Route::get('/tambahprima', [AdminDesaPrimaController::class, 'tambahPrima']);
-Route::post('/simpanprima', [AdminDesaPrimaController::class, 'simpanPrima']);
-Route::get('/admin/editprima/{id}', [AdminDesaPrimaController::class, 'editPrima']);
-Route::put('/updatePrima/{id}', [AdminDesaPrimaController::class, 'updatePrima'])->name('updatePrima');
-Route::delete('/hapusprima/{id}', [AdminDesaPrimaController::class, 'hapusPrima'])->name('hapusPrima');
+Route::post('/tambahprima', [AdminDesaPrimaController::class, 'simpanPrima']);
+Route::get('/editprima/{id}', [AdminDesaPrimaController::class, 'editPrima']);
+Route::put('/updatePrima/{id}', [AdminDesaPrimaController::class, 'updatePrima']);
+Route::delete('/hapusPrima/{id}', [AdminDesaPrimaController::class, 'hapusPrima']);
 Route::get('/transaksiprima', [AdminDesaPrimaController::class, 'transaksiPrima']);
 Route::get('/laporanprima', [AdminDesaPrimaController::class, 'laporanPrima']);
 Route::get('/kelolaprima', [AdminDesaPrimaController::class, 'kelolaPrima']);
-Route::get('/kelolahomepageprima', [AdminDesaPreneurController::class, 'kelolaHomepage']);
-Route::post('/update-banner-prima', [AdminDesaPreneurController::class, 'updateBannerPrima']);
-Route::get('/search', [AdminDesaPrimaController::class, 'searchPrima'])->name('search.prima');
-
-
+Route::get('/kelolahomepageprima', [AdminDesaPrimaController::class, 'kelolaHomepage']);
+Route::post('/updateBannerPrima', [AdminDesaPrimaController::class, 'updateBannerPrima']);
 
 // Rute untuk halaman dashboard admin wisata
 Route::get('/adminwisata', [AdminDesaWisataController::class, 'showDashboard']);
@@ -119,8 +116,8 @@ Route::post('/tambahwisata', [AdminDesaWisataController::class, 'simpanWisata'])
 Route::post('/storewisata', [AdminDesaWisataController::class, 'storeWisata']); 
 Route::get('/kelolawisata', [AdminDesaWisataController::class, 'kelolaWisata']);
 Route::get('/editwisata/{id}', [AdminDesaWisataController::class, 'editWisata']);
-Route::put('/admin/update-wisata/{id}', [AdminDesaWisataController::class, 'updateWisata']);
-Route::post('/admin/simpan-wisata', [AdminDesaWisataController::class, 'simpanWisata']);
+Route::put('/updateWisata/{id}', [AdminDesaWisataController::class, 'updateWisata']);
+Route::post('/simpanWisata', [AdminDesaWisataController::class, 'simpanWisata']);
 Route::delete('/deletewisata/{id}', [AdminDesaWisataController::class, 'deleteWisata']); 
 Route::get('/transaksiwisata', [AdminDesaWisataController::class, 'transaksiWisata']);
 Route::get('/laporanwisata', [AdminDesaWisataController::class, 'laporanWisata']);
@@ -129,36 +126,14 @@ Route::post('/update-banner-wisata', [AdminDesaWisataController::class, 'updateB
 Route::get('/desawisata', [PageController::class, 'desawisata']);
 
 
+
 // Route untuk login
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerAdmin'])->name('register.process');
 
 
-
-// Rute untuk halaman dashboard penjual
-//Route::get('/penjual', [PenjualController::class, 'showDashboard'])->name('admin.penjual.penjual');
-//Route::get('/kelolabudaya', [PenjualController::class, 'kelolaBudaya'])->name('admin.penjual.budaya.kelolabudaya');
-//Route::get('/tambahbudaya', [PenjualController::class, 'tambahBudaya'])->name('admin.penjual.budaya.tambahbudaya');
-//Route::get('/transaksibudaya', [PenjualController::class, 'transaksiBudaya'])->name('admin.penjual.budaya.transaksibudaya');
-//Route::get('/laporanbudaya', [PenjualController::class, 'laporanBudaya'])->name('admin.penjual.budaya.laporanbudaya');
-//Route::get('/tambahpreneur', [PenjualController::class, 'tambahPreneur'])->name('admin.penjual.preneur.tambahpreneur');
-//Route::get('/transaksipreneur', [PenjualController::class, 'transaksiPreneur'])->name('admin.penjual.preneur.transaksipreneur');
-//Route::get('/laporanpreneur', [PenjualController::class, 'laporanPreneur'])->name('admin.penjual.preneur.laporanpreneur');
-//Route::get('/kelolapreneur', [PenjualController::class, 'kelolaPreneur'])->name('admin.penjual.preneur.kelolapreneur');
-//Route::get('/tambahprima', [PenjualController::class, 'tambahPrima'])->name('admin.penjual.prima.tambahprima');
-//Route::get('/transaksiprima', [PenjualController::class, 'transaksiPrima'])->name('admin.penjual.prima.transaksiprima');
-//Route::get('/laporanprima', [PenjualController::class, 'laporanPrima'])->name('admin.penjual.prima.laporanprima');
-//Route::get('/kelolaprima', [PenjualController::class, 'kelolaPrima'])->name('admin.penjual.prima.kelolaprima');
-//Route::get('/tambahwisata', [PenjualController::class, 'tambahWisata'])->name('admin.penjual.wisata.tambahwisata');
-//Route::get('/transaksiwisata', [PenjualController::class, 'transaksiWisata'])->name('admin.penjual.wisata.transaksiwisata');
-//Route::get('/laporanwisata', [PenjualController::class, 'laporanWisata'])->name('admin.penjual.wisata.laporanwisata');
-//Route::get('/kelolawisata', [PenjualController::class, 'kelolaWisata'])->name('admin.penjual.wisata.kelolawisata');
-//Route::get('/laporanpenjual', [PenjualController::class, 'laporanPenjual'])->name('admin.penjual.laporanpenjual');
-
 // Rute untuk Auth
 Route::get('/login', [Auth::class, 'login'])->name('admin.adminkelurahan.samples.login');
 Route::get('/register', [Auth::class, 'register'])->name('admin.adminkelurahan.samples.register');
-
