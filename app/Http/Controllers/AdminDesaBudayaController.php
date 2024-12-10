@@ -154,46 +154,46 @@ class AdminDesaBudayaController extends Controller
     }
 
     public function simpanBudaya(Request $request)
-{
-    // Validasi input form
-    $validatedData = $request->validate([
-        'nama_budaya' => 'required|string|max:255',
-        'nama_desa_budaya' => 'required|string|max:255',
-        'alamat' => 'required|string|max:255',
-        'harga_min' => 'nullable|numeric',
-        'harga_max' => 'nullable|numeric',
-        'link_youtube' => 'nullable|url|max:255',
-        'nomor_whatsapp' => 'required|string|max:15',
-        'deskripsi' => 'required|string',
-        'foto_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
-        'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
-    ]);
+    {
+        // Validasi input form
+        $validatedData = $request->validate([
+            'nama_budaya' => 'required|string|max:255',
+            'nama_desa_budaya' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'harga_min' => 'nullable|numeric',
+            'harga_max' => 'nullable|numeric',
+            'link_youtube' => 'nullable|url|max:255',
+            'nomor_whatsapp' => 'required|string|max:15',
+            'deskripsi' => 'required|string',
+            'foto_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+        ]);
 
-    // Konversi link YouTube ke format embed jika ada
-    $link_youtube = $request->input('link_youtube');
-    if ($link_youtube) {
-        if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $link_youtube, $matches)) {
-            $validatedData['link_youtube'] = 'https://www.youtube.com/embed/' . $matches[1];
+        // Konversi link YouTube ke format embed jika ada
+        $link_youtube = $request->input('link_youtube');
+        if ($link_youtube) {
+            if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $link_youtube, $matches)) {
+                $validatedData['link_youtube'] = 'https://www.youtube.com/embed/' . $matches[1];
+            }
         }
-    }
 
-    // Proses upload foto_card
-    $validatedData['foto_card'] = $request->file('foto_card')->store('uploads/budaya', 'public');
+        // Proses upload foto_card
+        $validatedData['foto_card'] = $request->file('foto_card')->store('uploads/budaya', 'public');
 
-    // Proses upload foto_slider
-    if ($request->hasFile('foto_slider')) {
-        foreach ($request->file('foto_slider') as $foto) {
-            $fotoSliderPaths[] = $foto->store('uploads/budaya', 'public');
+        // Proses upload foto_slider
+        if ($request->hasFile('foto_slider')) {
+            foreach ($request->file('foto_slider') as $foto) {
+                $fotoSliderPaths[] = $foto->store('uploads/budaya', 'public');
+            }
+            $validatedData['foto_slider'] = json_encode($fotoSliderPaths);
+        } else {
+            $validatedData['foto_slider'] = json_encode([]);
         }
-        $validatedData['foto_slider'] = json_encode($fotoSliderPaths);
-    } else {
-        $validatedData['foto_slider'] = json_encode([]);
-    }
 
-    // Simpan data ke database
-    Budaya::create($validatedData);
+        // Simpan data ke database
+        Budaya::create($validatedData);
 
-    return redirect()->back()->with('success', 'Data budaya berhasil ditambahkan');
+        return redirect()->to('/kelolabudaya')->with('success', 'Data budaya berhasil ditambahkan');
     }
 
 
@@ -375,13 +375,16 @@ class AdminDesaBudayaController extends Controller
     }
  
      // Menghapus agenda
-    public function deleteAgenda($id)
+     public function hapusAgenda($id)
     {
-        $agenda = Agenda::findOrFail($id);
-        $agenda->delete();
+        // Cari dan hapus agenda berdasarkan ID
+        Agenda::findOrFail($id)->delete();
 
-        return redirect()->to('/kelolaagenda')->with('success', 'Agenda berhasil dihapus');
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Agenda berhasil dihapus.');
     }
+
+         
     // Menampilkan halaman kelola homepage budaya
     public function kelolaHomepage()
     {
@@ -451,4 +454,5 @@ class AdminDesaBudayaController extends Controller
         return redirect()->back()->with('success', 'Card Selamat Datang berhasil diperbarui');
     }
  
+    
 }
