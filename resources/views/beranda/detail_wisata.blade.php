@@ -76,32 +76,36 @@
                         </div>
                     </div>
                     <div class="header-right1 d-flex align-items-center">
-    <!-- Social -->
-    <div class="header-social d-none d-md-block">
-        <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
-        <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
-        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-    </div>
+                    <!-- Social -->
+                    <div class="header-social d-none d-md-block">
+                        <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                        <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    </div>
 
-    <!-- Search Box -->
-    <div class="search d-none d-md-block ml-4">
-        <div class="nav-search search-switch" id="search-toggle">
-            <i class="ti-search"></i>
-        </div>
-    </div>
-</div>
+                    <!-- Search Box 
+                    <div class="search d-none d-md-block">
+                        <ul class="d-flex align-items-center">
+                            <li class="mr-15">
+                                <div class="nav-search search-switch">
+                                    <i class="ti-search"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>-->
+                </div>
 
-<!-- Hidden Search Form -->
-<div id="search-container" class="d-none mt-3">
-    <div class="input-group" style="max-width: 300px; margin: 0 auto;">
-        <input type="text" id="search-input" class="form-control" placeholder="Cari kata..." aria-label="Search">
-        <button id="search-btn" class="btn btn-primary ml-2">Cari</button>
-    </div>
-    <div class="navigation-buttons mt-2 text-center">
-        <button id="prev-result" class="btn btn-sm btn-outline-secondary">&uarr; Sebelumnya</button>
-        <button id="next-result" class="btn btn-sm btn-outline-secondary">&darr; Berikutnya</button>
-    </div>
-</div>
+                <!-- Hidden Search Form -->
+                <div id="search-container" class="d-none mt-3">
+                    <div class="input-group" style="max-width: 300px; margin: 0 auto;">
+                        <input type="text" id="search-input" class="form-control" placeholder="Cari kata..." aria-label="Search">
+                        <button id="search-btn" class="btn btn-primary ml-2">Cari</button>
+                    </div>
+                    <div class="navigation-buttons mt-2 text-center">
+                        <button id="prev-result" class="btn btn-sm btn-outline-secondary">&uarr; Sebelumnya</button>
+                        <button id="next-result" class="btn btn-sm btn-outline-secondary">&darr; Berikutnya</button>
+                    </div>
+                </div>
 
                     <!-- Mobile Menu -->
                     <div class="col-12">
@@ -125,6 +129,16 @@
         
 
         <div class="banner-container">
+            <!-- Mobile Device Show Menu-->
+            <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
             <div class="banner-overlay"></div>
             <div class="banner-text">Detail Wisata</div>
 
@@ -297,7 +311,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -337,7 +351,16 @@
 </div>
 
 
-<!-- Search model end -->
+<!--? Search model Begin
+<div class="search-model-box">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-btn">+</div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Searching key.....">
+        </form>
+    </div>
+</div> -->
+
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
