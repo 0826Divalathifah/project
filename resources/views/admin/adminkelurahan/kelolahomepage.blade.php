@@ -159,6 +159,80 @@
             </div>
         </div>
     </div>
+        <!-- Kelola Menu Tentang Kami -->
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Kelola Menu Tentang Kami</h4>
+                <form class="forms-sample" action="{{ url('/update-homepage-tentangkami') }}" method="POST" enctype="multipart/form-data">
+                 @csrf
+                <!-- Edit Banner -->
+                <div class="form-group">
+                    <label for="bannerImage">Edit Banner</label>
+                    <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
+                    @if(isset($homepageData->banner_image))
+                        <div class="mt-2">
+                            <img src="{{ asset('storage/' . $homepageData->banner_image) }}" alt="Current Banner" width="100">
+                        </div>
+                    @endif
+                </div>
+                
+                <!-- Edit Deskripsi -->
+                <div class="form-group">
+                    <label for="indexDescription">Edit Deskripsi</label>
+                    <textarea 
+                        class="form-control" 
+                        name="deskripsi_index" 
+                        id="indexDescription" 
+                        rows="4" 
+                        placeholder="Deskripsi..."
+                        required>{{ old('deskripsi_index', $homepageData->deskripsi ?? '') }}</textarea>
+                </div>
+                
+                <!-- Gambar Slider -->
+                <div class="form-group">
+                    <label for="sliderImage">Upload Gambar Slider</label>
+                    <input type="file" name="slider_images[]" class="form-control" id="sliderImage" accept="image/*" multiple>
+                    @if(isset($homepageData->slider_images))
+                        <div class="mt-2">
+                            @foreach($homepageData->slider_images as $image)
+                                <img src="{{ asset('storage/' . $image) }}" alt="Slider Image" width="100">
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+                
+                <!-- Tombol Simpan -->
+                <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kelola Menu Kontak -->
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Kelola Menu Kontak</h4>
+                <form class="forms-sample" action="{{ url('/update-homepage-kontak') }}" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  <!-- Edit Banner -->
+                  <div class="form-group">
+                      <label for="bannerImage">Edit Banner</label>
+                      <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
+                      @if(isset($homepageData->banner_image))
+                          <div class="mt-2">
+                              <img src="{{ asset('storage/' . $homepageData->banner_image) }}" alt="Current Banner" width="100">
+                          </div>
+                      @endif
+                  </div>
+                  
+                  <!-- Tombol Simpan -->
+                  <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
 </div>
 </div>
