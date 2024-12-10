@@ -44,7 +44,7 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
+          <!--<ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
                 <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -55,7 +55,7 @@
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
               </div>
             </li>
-          </ul>
+          </ul>-->
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
@@ -183,11 +183,12 @@
                           </td>
                           <td>
                               <a href="{{ url('editwisata/' . $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                              <form action="{{ url('/deletewisata/' . $item->id) }}" method="POST" style="display:inline;">
+                              <form id="delete-form-{{ $item->id }}" action="{{ url('/deletewisata/' . $item->id) }}" method="POST" style="display:inline;">
                                   @csrf
                                   @method('DELETE')
-                                  <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                  <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $item->id }}, 'wisata')">Hapus</button>
                               </form>
+
                           </td>
                       </tr>
                       @endforeach
