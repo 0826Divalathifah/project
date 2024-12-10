@@ -43,30 +43,16 @@
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                       <span class="icon-menu"></span>
                     </button>
-                    <ul class="navbar-nav mr-lg-2">
-                      <!--<li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                            <span class="input-group-text" id="search">
-                              <i class="icon-search"></i>
-                            </span>
-                          </div>
-                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-                        </div>
-                      </li>-->
-                    </ul>
                     <ul class="navbar-nav navbar-nav-right">
                     <div class="header-right1 d-flex align-items-center justify-content-center">
               <!-- Social -->
               <div class="header-social d-flex align-items-center">
-              <form action="{{ route('logout') }}" method="POST">
-                  @csrf
-                  <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
+                  <!-- Icon Power -->
+                  <a class="nav-link d-flex align-items-center mx-3" href="#">
                       <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
                       <span style="font-size: 16px;">Logout</span>
-                  </button>
-              </form>
-          </div>
+                  </a>
+              </div>
           </div>    
               <li class="nav-item nav-settings d-none d-lg-flex">
                   <a class="nav-link" href="#">
@@ -147,7 +133,7 @@
                       <div class="card-body d-flex align-items-center">
                           <!-- Background Icon -->
                           <div class="col-4 background-icon d-flex align-items-center justify-content-center">
-                          <i class="mdi mdi-archive-outline text-primary" style="font-size: 48px;"></i>
+                              <i class="mdi mdi-image-filter-hdr text-primary" style="font-size: 48px;"></i>
                           </div>
                           <!-- Text Content -->
                           <div>
@@ -208,7 +194,7 @@
         <p class="card-title mb-10">Daftar Produk Prima</p>
         <a href="{{ url('/kelolaproduk') }}" class="text-info">View all</a>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive" style="max-height: 200px; overflow-y: auto;">
         <table id="example" class="display expandable-table" style="width:100%">
             <thead>
                 <tr>
