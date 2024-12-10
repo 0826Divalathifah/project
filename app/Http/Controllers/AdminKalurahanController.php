@@ -7,6 +7,7 @@ use App\Models\Agenda;
 use App\Models\Budaya;
 use App\Models\Feedback;
 use App\Models\Homepage;
+use App\Models\KelolaHomepage;
 use App\Models\Preneur;
 use App\Models\Prima;
 use App\Models\User;
@@ -318,4 +319,65 @@ class AdminKalurahanController extends Controller
         // Redirect kembali dengan pesan sukses
         return redirect()->back()->with('success', 'Homepage Kalurahan berhasil diperbarui');
     }
+
+    public function updateHomepageTentangKami(Request $request)
+{
+        $request->validate([
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'deskripsi_index' => 'required|string',
+            'slider_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Simpan banner image
+        if ($request->hasFile('banner_image')) {
+            $bannerPath = $request->file('banner_image')->store('uploads/homepage', 'public');
+        } else {
+            $bannerPath = $request->input('existing_banner');
+        }
+
+        // Simpan slider images
+        $sliderPaths = [];
+        if ($request->hasFile('slider_images')) {
+            foreach ($request->file('slider_images') as $image) {
+                $sliderPaths[] = $image->store('uploads/homepage', 'public');
+            }
+        }
+
+        // Update data di database untuk Tentang Kami
+        KelolaHomepage::updateOrCreate(
+            ['nama_menu' => 'tentang_kami'],
+            [
+                'banner_image' => $bannerPath ?? null,
+                'deskripsi' => $request->deskripsi_index,
+                'slider_images' => $sliderPaths ? json_encode($sliderPaths) : null,
+            ]
+        );
+
+        return back()->with('success', 'Halaman Tentang Kami berhasil diperbarui.');
+}
+
+public function updateHomepageKontak(Request $request)
+    {
+        $request->validate([
+            'banner_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Simpan banner image
+        if ($request->hasFile('banner_image')) {
+            $bannerPath = $request->file('banner_image')->store('uploads/homepage', 'public');
+        }
+
+        // Update data di database untuk Kontak
+        KelolaHomepage::updateOrCreate(
+            ['nama_menu' => 'kontak'],
+            [
+                'banner_image' => $bannerPath ?? null,
+                'deskripsi' => null,
+                'slider_images' => null,
+            ]
+        );
+
+        return back()->with('success', 'Banner Kontak berhasil diperbarui.');
+    }
+
 }
