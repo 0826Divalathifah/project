@@ -78,7 +78,7 @@
                             <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <!-- Search Box -->
+                        <!-- Search Box 
                         <div class="search d-none d-md-block">
                             <ul class="d-flex align-items-center">
                                 <li class="mr-15">
@@ -87,7 +87,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
@@ -110,14 +110,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <div class="banner-container">
-                        <div class="banner-overlay"></div>
-                        <div class="banner-text">Desa Prima</div>
+            <!-- Mobile Device Show Menu-->
+            <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
+            <div class="banner-overlay"></div>
+            <div class="banner-text">Desa Prima</div>
 
-                        @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
-                                <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
-                            @else
-                                <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
-                            @endif
+            @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                    <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
@@ -130,34 +140,38 @@
             </div>
         </div>
         </main>
-        <div class="row">
-        <!--? Left content -->
-        <div class="col-xl-3 col-lg-3 col-md-4">
-            <div class="category-listing mb-50">
-                <div class="single-listing">
-                    <div class="select-job-items2">
-                        <select name="select2" id="categorySelect" onchange="navigateToSection()">
-                            <option value="">--Pilih Kategori--</option>
-                            <option value="makanan">Makanan dan Minuman</option>
-                            <option value="kerajinan">Kerajinan dan Aksesoris</option>
-                        </select>
-                    </div>
+
+        
+    <div class="row">
+    <!-- Left content -->
+    <div class="col-xl-3 col-lg-3 col-md-4">
+        <div class="category-listing mb-50">
+            <div class="single-listing">
+                <div class="select-job-items2">
+                    <select name="select2" id="categorySelect" onchange="navigateToSection()">
+                        <option value="">--Pilih Kategori--</option>
+                        <option value="makanan">Makanan dan Minuman</option>
+                        <option value="kerajinan">Kerajinan dan Aksesoris</option>
+                    </select>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="col-xl-9 col-lg-9 col-md-8">
+</div>
+
+    <div class="col-xl-12 col-lg-9 col-md-8">
         <!-- Makanan Section -->
-        <div id="makanan" class="slider" >
+        <div id="makanan" class="slider">
             @if($makanan->isEmpty())
                 <p>Tidak ada produk makanan tersedia.</p>
             @else
                 @foreach($makanan as $produk)
                     <div class="card">
-                        <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="{{ $produk->nama_produk }}">
+                        <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title"><a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a></h5>
+                            <h5 class="card-title">
+                                <a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a>
+                            </h5>
                             <span style="color: #FF5733;">{{ $produk->harga_produk }}</span>
                             <p class="card-text">{{ $produk->deskripsi }}</p>
                             <a href="{{ url('/detail_prima', $produk->id) }}" class="btn btn-primary">Selengkapnya</a>
@@ -168,39 +182,44 @@
         </div>
 
         <!-- Kerajinan Section -->
-        <div id="kerajinan" class="slider" >
+        <div id="kerajinan" class="slider">
             @if($kerajinan->isEmpty())
                 <p>Tidak ada produk kerajinan tersedia.</p>
             @else
                 @foreach($kerajinan as $produk)
                     <div class="card">
-                        <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="{{ $produk->nama_produk }}">
+                        <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
                         <div class="card-body">
-                            <h5 class="card-title"><a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a></h5>
-                            <span style="color: #FF5733;"> {{ $produk->harga_produk}}</span>
+                            <h5 class="card-title">
+                                <a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a>
+                            </h5>
+                            <span style="color: #FF5733;">{{ $produk->harga_produk }}</span>
                             <p class="card-text">{{ $produk->deskripsi }}</p>
                             <a href="{{ url('/detail_prima', $produk->id) }}" class="btn btn-primary">Selengkapnya</a>
-
                         </div>
                     </div>
                 @endforeach
             @endif
         </div>
     </div>
-   
+</div>
+
 <script>
     function navigateToSection() {
+        // Sembunyikan semua kategori
         document.getElementById("makanan").style.display = "none";
         document.getElementById("kerajinan").style.display = "none";
 
+        // Tampilkan kategori yang dipilih
         var selectedCategory = document.getElementById("categorySelect").value;
 
         if (selectedCategory) {
-            document.getElementById(selectedCategory).style.display = "block";
+            document.getElementById(selectedCategory).style.display = "flex";
         }
     }
 </script>
-<!-- listing-area Area End -->
+
+
 
 <footer>
     <!-- Footer Start -->
@@ -247,7 +266,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -286,7 +305,8 @@
         </form>
     </div>
 </div>
-<!-- Search model end -->
+
+
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
