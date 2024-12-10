@@ -44,7 +44,7 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
+          <!--<ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
                 <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -55,7 +55,7 @@
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
               </div>
             </li>
-          </ul>
+          </ul>-->
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
@@ -107,7 +107,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/kelolahomepage') }}">
                 <i class="mdi mdi-home menu-icon"></i>
-                <span class="menu-title">Kelola HomePage</span>
+                <span class="menu-title">Kelola Home Page</span>
               </a>
             </li>
             <!-- <li class="nav-item">
@@ -123,7 +123,7 @@
     <div class="content-wrapper">
     <div class="row"></div>
 
-    <!-- Kelola Beranda -->
+<!-- Kelola Beranda -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -133,17 +133,17 @@
                     <!-- Edit Banner -->
                     <div class="form-group">
                         <label for="bannerImage">Edit Banner</label>
-                        <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
+                        <input type="file" name="gambar_banner" class="form-control" id="gambarBanner" accept="image/*">
                         @if(isset($homepageData->gambar_banner))
                             <div class="mt-2">
-                                <img src="{{ asset('storage/'.$homepageData->gambar_banner) }}" alt="Current Banner" width="100">
-                            </div>
+                                <img src="{{ asset('storage/'. $homepageData->gambar_banner) }}" alt="Current Banner" width="100">
+                              </div>
                         @endif
                     </div>
                     
                     <!-- Edit Deskripsi -->
                     <div class="form-group">
-                        <label for="welcomeDescription">Edit Deskripsi</label>
+                        <label for="indexDescription">Edit Deskripsi</label>
                         <textarea 
                             class="form-control" 
                             name="deskripsi_index" 
@@ -159,7 +159,8 @@
             </div>
         </div>
     </div>
-        <!-- Kelola Menu Tentang Kami -->
+
+<!-- Kelola Menu Tentang Kami -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -192,7 +193,7 @@
                 <!-- Gambar Slider -->
                 <div class="form-group">
                     <label for="sliderImage">Upload Gambar Slider</label>
-                    <input type="file" name="slider_images[]" class="form-control" id="sliderImage" accept="image/*" multiple>
+                    <input type="file" name="slider_images[]" class="file-upload-default" id="fileInput" accept="image/*" multiple>
                     @if(isset($homepageData->slider_images))
                         <div class="mt-2">
                             @foreach($homepageData->slider_images as $image)
@@ -209,7 +210,7 @@
         </div>
     </div>
 
-    <!-- Kelola Menu Kontak -->
+<!-- Kelola Menu Kontak -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
@@ -233,6 +234,7 @@
             </div>
         </div>
     </div>
+
 
 </div>
 </div>
