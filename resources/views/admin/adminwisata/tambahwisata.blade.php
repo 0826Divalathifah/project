@@ -44,7 +44,7 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
+          <!--<ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
                 <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -55,7 +55,7 @@
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
               </div>
             </li>
-          </ul>
+          </ul>-->
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
@@ -126,11 +126,26 @@
 
     <div class="col-12 grid-margin stretch-card">
     <div class="card">
-    <form id="formTambahWisata" action="/tambahwisata" method="POST" enctype="multipart/form-data">
+    <form id="formTambahWisata" action="{{ url('/simpanWisata') }}" method="POST" enctype="multipart/form-data">
             @csrf 
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Wisata</h4>
                 <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+
+                {{-- Notifikasi berhasil atau error --}}
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <!-- Input Nama Wisata -->
                 <div class="form-group">
@@ -173,10 +188,10 @@
 
                 <!-- Input Foto Brosur -->
                 <div class="form-group">
-                    <label>Unggah Foto Brosur Wisata</label>
+                    <label>Unggah Foto Brosur Wisata (Optional)</label>
                     <input type="file" name="brosur" class="file-upload-default" required>
                     <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto brosur jika ada" required>
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto brosur jika ada" >
                         <span class="input-group-append ms-2">
                             <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
                         </span>
