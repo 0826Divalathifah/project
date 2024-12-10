@@ -106,6 +106,18 @@
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">  
             <div class="banner-container">
+                <!-- Mobile Device Show Menu-->
+                <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
+
+
                 <div class="banner-overlay"></div>
                 <div class="banner-text">Tentang Kami</div>
 
