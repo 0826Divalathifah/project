@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Budaya;
 use App\Models\AdminKalurahan;
 use App\Models\Homepage;
+use App\Models\KelolaHomepage;
 use App\Models\Agenda;
 use App\Models\Wisata;
 use App\Models\Preneur;
@@ -175,15 +176,50 @@ class PageController extends Controller
 
             
     public function about()
-    {
-        return view('beranda.about'); // Mengarah ke resources/views/beranda/about.blade.php
+{
+    // Ambil data dari model KelolaHomepage untuk halaman Tentang Kami
+    $homepageData = KelolaHomepage::where('nama_menu', 'tentang_kami')->first();
+
+    // Pastikan data ditemukan
+    if (!$homepageData) {
+        return back()->with('error', 'Data halaman Tentang Kami tidak ditemukan.');
     }
+
+    // Ambil gambar banner
+    $gambar_banner = $homepageData->banner_image;
+
+    // Ambil slider images (json_decode untuk memastikan menjadi array)
+    $sliderFotos = json_decode($homepageData->slider_images, true); // memastikan menjadi array
+
+    // Pastikan sliderFotos adalah array
+    if (!is_array($sliderFotos)) {
+        $sliderFotos = []; // Kalau bukan array, kita set sebagai array kosong
+    }
+
+    return view('beranda.about', [
+        'deskripsi' => $homepageData->deskripsi, // Kirimkan deskripsi
+        'gambar_banner' => $gambar_banner, // Kirimkan gambar banner
+        'sliderFotos' => $sliderFotos, // Kirimkan data slider images
+    ]);
+}
+
     
 
     public function contact()
-    {
-        return view('beranda.contact'); // Mengarah ke resources/views/beranda/contact.blade.php
-    }
+{
+    // Ambil data deskripsi dan gambar banner dari model KelolaHomepage untuk halaman Kontak
+    $homepageData = KelolaHomepage::where('nama_menu', 'kontak')->first();
+    $gambar_banner = $homepageData ? $homepageData->banner_image : null;
+
+    // Ambil data feedback
+    $feedback = Feedback::all();
+
+    // Mengirimkan data ke view
+    return view('beranda.contact', [
+        'gambar_banner' => $gambar_banner,
+        'feedback' => $feedback,
+    ]);
+}
 
     public function simpanFeedback(Request $request)
     {
