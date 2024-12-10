@@ -44,18 +44,18 @@
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                       <span class="icon-menu"></span>
                     </button>
-                    <ul class="navbar-nav mr-lg-2">
-                      <li class="nav-item nav-search d-none d-lg-block">
-                        <div class="input-group">
-                          <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                            <span class="input-group-text" id="search">
-                              <i class="icon-search"></i>
-                            </span>
-                          </div>
-                          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                    <!--<ul class="navbar-nav mr-lg-2">
+                    <li class="nav-item nav-search d-none d-lg-block">
+                      <div class="input-group">
+                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                          <span class="input-group-text" id="search">
+                            <i class="icon-search"></i>
+                          </span>
                         </div>
-                      </li>
-                    </ul>
+                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+                      </div>
+                    </li>
+                  </ul>-->
                     <ul class="navbar-nav navbar-nav-right">
                     <div class="header-right1 d-flex align-items-center justify-content-center">
               <!-- Social -->
@@ -129,81 +129,86 @@
                       <h4 class="card-title">Kelola Produk</h4>
                       <a href="{{ url('tambahprima') }}" class="btn btn-primary">Tambah Produk</a>
                   </div>
+
+                  <div id="messages" style="display: none;">
+                    <!-- Pesan sukses dari session -->
+                      @if(session('success'))
+                          <div data-success="{{ session('success') }}"></div>
+                      @endif
+
+                      <!-- Pesan error dari session -->
+                      @if(session('error'))
+                          <div data-error="{{ session('error') }}"></div>
+                      @endif
+                  </div>
+
                   <div class="table-responsive">
-                    <table class="table table-striped table-borderless">
-                        <thead>
+                  <table class="table table-striped table-borderless">
+                          <thead>
+                              <tr>
+                                  <th>Nama Produk</th>
+                                  <th>Kategori</th>
+                                  <th>Harga</th>
+                                  <th>Nomor WhatsApp</th>
+                                  <th>Deskripsi</th>
+                                  <th>Foto Card</th>
+                                  <th>Foto Produk</th>
+                                  <th>Aksi</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                            @foreach ($prima as $produk)
                             <tr>
-                                <th>Nama Produk</th>
-                                <th>Kategori</th>
-                                <th>Nomor WhatsApp</th>
-                                <th>Deskripsi</th>
-                                <th>Foto Card</th>
-                                <th>Foto Produk</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($produks as $produk)
-                            <tr>
-                                <!-- Kolom Nama Produk -->
                                 <td>{{ $produk->nama_produk }}</td>
-                                
-                                <!-- Kolom Kategori Produk -->
-                                <td>{{ $produk->kategori_produk }}</td>
-                                
-                                
-                                <!-- Kolom Nomor WhatsApp -->
+                                <td>{{ ucfirst($produk->kategori_produk) }}</td>
+                                <td> {{ $produk->harga_produk }}</td>
                                 <td>
                                     <a href="https://wa.me/{{ $produk->nomor_whatsapp }}" target="_blank" class="btn btn-success btn-sm">
                                         Hubungi
                                     </a>
                                 </td>
-                                
-                                <!-- Kolom Deskripsi -->
-                                <td>{{ $produk->deskripsi }}</td>
-                                
-                                <!-- Kolom Foto Card -->
-                                <td>
-                                    @if ($produk->foto_card)
-                                        <img src="{{ Storage::url($produk->foto_card) }}" alt="Foto Card" width="100">
-                                    @else
-                                        <p>Tidak ada foto card.</p>
-                                    @endif
+                                <td style="max-width: 200px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    {{ \Illuminate\Support\Str::limit($produk->deskripsi, 20, '...') }}
                                 </td>
-                                
-                                <!-- Kolom Foto Produk -->
-                                <td>
-                                    @php
-                                        $fotos = is_array($produk->foto_produk) ? $produk->foto_produk : json_decode($produk->foto_produk, true);
-                                    @endphp
 
-                                    @if (is_array($fotos) && count($fotos))
-                                        @foreach ($fotos as $foto)
-                                            <img src="{{ Storage::url($foto) }}" alt="Foto Produk" width="100" class="mb-2">
+                                <!-- Foto Card -->
+                                <td>
+                                    <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="Foto Card" width="100">
+                                </td>
+
+                                <!-- Foto Slider -->
+                                <td>
+                                    @if (!empty($produk->foto_slider) && is_array(json_decode($produk->foto_slider, true)))
+                                        @foreach (json_decode($produk->foto_slider, true) as $index => $foto)
+                                            @if ($index < 3) <!-- Tampilkan hanya 3 foto pertama -->
+                                                <img src="{{ asset('storage/' . $foto) }}" alt="Foto Slider" width="100" style="margin-bottom: 5px;">
+                                            @endif
                                         @endforeach
+                                        @if (count(json_decode($produk->foto_slider, true)) > 3)
+                                            <p>...dan lainnya</p> <!-- Indikasi ada lebih banyak foto -->
+                                        @endif
                                     @else
-                                        <p>Tidak ada foto produk.</p>
+                                        <p>Tidak ada foto slider</p>
                                     @endif
                                 </td>
-                                
-                                <!-- Kolom Aksi -->
+
+                                <!-- Tombol Edit dan Hapus -->
                                 <td>
                                     <!-- Tombol Edit -->
-                                    <a href="{{ url('/admin/editprima/' . $produk->id) }}" class="btn btn-primary btn-sm mb-2">
-                                        Edit
-                                    </a>
-                                    
+                                    <a href="{{ url('/editprima/' . $produk->id) }}" class="btn btn-primary btn-sm">Edit</a>
+
                                     <!-- Tombol Hapus -->
-                                    <form action="{{ url('hapusprima', $produk->id) }}" method="POST" style="display:inline;">
+                                    <form id="delete-form-{{ $produk->id }}" action="{{ url('hapusPrima/' . $produk->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $produk->id }}, 'prima')">Hapus</button>
                                     </form>
+
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
-                    </table>
+                      </table>
                 </div>
 
 
