@@ -118,86 +118,29 @@
     <main>
         <!-- header end -->
         <!-- listing Area Start -->
-            <div class="category-area">
-            <div class="container">
-            <div class="row">
-            
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-        /* Styling for the banner */
-        .banner-container {
-            position: relative;
-            text-align: center;
-            color: white;
-            height: 600px;
-            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
+        <div class="container">
+    <div class="category-area">
+        <div class="row">   
+            <meta charset="UTF-8">xa
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+            <div class="banner-container">
+                <div class="banner-overlay"></div>
+                    <div class="banner-text">Kontak</div>
 
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            pointer-events: none; /* Membuat overlay tidak memblokir interaksi */
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2; /* Pastikan ini berada di atas overlay */
-            text-align: center;
-        }
-
-        .banner-text {
-            font-size: 48px;
-            font-weight: bold;
-            z-index: 3; 
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 100px;
-        }
-
-        .breadcrumb {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ffffff;
-        }
-
-        .breadcrumb-item a {
-            color: #ffffff;
-            text-decoration: none;
-            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
-            position: relative; /* Penting untuk memastikan z-index bekerja */
-        }
-
-        .breadcrumb-item a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-        
-    </style>
-
-        <div class="banner-container">
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Kontak</div>
-
-            <!-- Breadcrumb Start -->
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('#') }}">Kontak</a></li>
-                </ol>
-            </nav>
-            <!-- Breadcrumb End -->
-        </div>
+                        @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                            <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                        @else
+                            <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                        @endif
+                        <!-- Breadcrumb Start -->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('#') }}">Kontak</a></li>
+                            </ol>
+                        </nav>
+                        <!-- Breadcrumb End -->
+                    </div>
         
         <!--?  Contact Area start  -->
         <section class="contact-section">
