@@ -33,10 +33,10 @@
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkalurahan') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkalurahan') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
@@ -44,7 +44,7 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
+          <!--<ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
                 <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -55,7 +55,7 @@
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
               </div>
             </li>
-          </ul>
+          </ul>-->
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
@@ -87,7 +87,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/adminkelurahan') }}">
+              <a class="nav-link" href="{{ asset('/adminkalurahan') }}">
                 <i class="icon-grid menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
               </a>
@@ -129,6 +129,19 @@
                                 <p class="card-title">Kelola Admin</p>
                                 <a href="{{ url('tambahadmin') }}" class="btn btn-primary">Tambah Admin</a>
                             </div>
+
+                            <div id="messages" style="display: none;">
+                            <!-- Pesan sukses dari session -->
+                            @if(session('success'))
+                                <div data-success="{{ session('success') }}"></div>
+                            @endif
+
+                            <!-- Pesan error dari session -->
+                            @if(session('error'))
+                                <div data-error="{{ session('error') }}"></div>
+                            @endif
+                        </div>
+
                             <div class="table-responsive">
                             <table class="table table-striped table-borderless">
                             <thead>
@@ -146,12 +159,14 @@
                                     <td>{{ $admin->email }}</td>
                                     <td>{{ ucfirst(str_replace('_', ' ', $admin->role)) }}</td>
                                     <td>
-                                        <a href="{{ url('admin/editadmin', ['id' => $admin->id]) }}" class="btn btn-primary btn-sm">Edit</a>
-                                        <form action="{{ url('admin/hapusadmin', ['id' => $admin->id]) }}" method="POST" style="display:inline;">
+                                        <a href="{{ url('/editadmin', ['id' => $admin->id]) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <!-- Tombol Hapus -->
+                                        <form id="delete-form-{{ $admin->id }}" action="{{ url('hapusAdmin/' . $admin->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $admin->id }}, 'admin')">Hapus</button>
                                         </form>
+
                                     </td>
                                 </tr>
                                 @endforeach
