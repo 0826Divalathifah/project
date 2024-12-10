@@ -47,5 +47,3 @@ document.getElementById("whatsappBtn").addEventListener("click", function () {
     // Buka link WhatsApp
     window.open(url, "_blank");
 });
-
-
