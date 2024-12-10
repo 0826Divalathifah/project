@@ -146,10 +146,11 @@ class AdminKalurahanController extends Controller
         ));
     }
 
+
     public function kelolaAdmin()
     {
         // Ambil semua data admin dari database
-        $admins = Admin::all(); // Anda bisa menambahkan filter jika perlu
+        $admin = Admin::all(); 
 
         // Kirim data admin ke view
         return view('admin.adminkalurahan.kelolaadmin', compact('admins'));
@@ -186,7 +187,6 @@ class AdminKalurahanController extends Controller
         }
     }
     
-
     public function editAdmin($id)
     {
         $admin = Admin::findOrFail($id);
@@ -223,6 +223,16 @@ class AdminKalurahanController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat memperbarui admin.']);
         }
+    }
+
+    // Menghapus Admin
+     public function hapusAdmin($id)
+    {
+        // Cari dan hapus agenda berdasarkan ID
+        Admin::findOrFail($id)->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Admin berhasil dihapus.');
     }
 
     public function kelolafeedback()
@@ -264,20 +274,15 @@ class AdminKalurahanController extends Controller
         return response()->json(['success' => false, 'message' => 'Feedback tidak ditemukan'], 404);
     }
     
-    public function deleteFeedback($id)
+    // Menghapus agenda
+    public function hapusFeedback($id)
     {
-        // Cari feedback berdasarkan ID
-        $feedback = Feedback::find($id);
-    
-        if ($feedback) {
-            // Hapus feedback
-            $feedback->delete();
-    
-            return response()->json(['success' => true, 'message' => 'Feedback berhasil dihapus']);
-        }
-    
-        return response()->json(['success' => false, 'message' => 'Feedback tidak ditemukan'], 404);
-    }    
+        // Cari dan hapus agenda berdasarkan ID
+        Feedback::findOrFail($id)->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Feedback berhasil dihapus.');
+    }   
 
      // Menampilkan halaman kelola homepage kalurahan
     public function kelolaHomepage()
@@ -321,42 +326,42 @@ class AdminKalurahanController extends Controller
     }
 
     public function updateHomepageTentangKami(Request $request)
-{
-        $request->validate([
-            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'deskripsi_index' => 'required|string',
-            'slider_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+    {
+            $request->validate([
+                'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'deskripsi_index' => 'required|string',
+                'slider_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
 
-        // Simpan banner image
-        if ($request->hasFile('banner_image')) {
-            $bannerPath = $request->file('banner_image')->store('uploads/homepage', 'public');
-        } else {
-            $bannerPath = $request->input('existing_banner');
-        }
-
-        // Simpan slider images
-        $sliderPaths = [];
-        if ($request->hasFile('slider_images')) {
-            foreach ($request->file('slider_images') as $image) {
-                $sliderPaths[] = $image->store('uploads/homepage', 'public');
+            // Simpan banner image
+            if ($request->hasFile('banner_image')) {
+                $bannerPath = $request->file('banner_image')->store('uploads/homepage', 'public');
+            } else {
+                $bannerPath = $request->input('existing_banner');
             }
-        }
 
-        // Update data di database untuk Tentang Kami
-        KelolaHomepage::updateOrCreate(
-            ['nama_menu' => 'tentang_kami'],
-            [
-                'banner_image' => $bannerPath ?? null,
-                'deskripsi' => $request->deskripsi_index,
-                'slider_images' => $sliderPaths ? json_encode($sliderPaths) : null,
-            ]
-        );
+            // Simpan slider images
+            $sliderPaths = [];
+            if ($request->hasFile('slider_images')) {
+                foreach ($request->file('slider_images') as $image) {
+                    $sliderPaths[] = $image->store('uploads/homepage', 'public');
+                }
+            }
 
-        return back()->with('success', 'Halaman Tentang Kami berhasil diperbarui.');
-}
+            // Update data di database untuk Tentang Kami
+            KelolaHomepage::updateOrCreate(
+                ['nama_menu' => 'tentang_kami'],
+                [
+                    'banner_image' => $bannerPath ?? null,
+                    'deskripsi' => $request->deskripsi_index,
+                    'slider_images' => $sliderPaths ? json_encode($sliderPaths) : null,
+                ]
+            );
 
-public function updateHomepageKontak(Request $request)
+            return back()->with('success', 'Halaman Tentang Kami berhasil diperbarui.');
+    }
+
+    public function updateHomepageKontak(Request $request)
     {
         $request->validate([
             'banner_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
