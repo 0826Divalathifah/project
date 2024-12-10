@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Kelola Budaya</title>
+    <title>Kelola Homepage</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
- 
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css') }}">
     <!-- End plugin css for this page -->
 
     <!-- inject:css -->
@@ -44,11 +44,22 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
+          <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+              <div class="input-group">
+                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                  <span class="input-group-text" id="search">
+                    <i class="icon-search"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+              </div>
+            </li>
+          </ul>
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-   
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -69,8 +80,8 @@
 
   </div>
 </nav>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
+       <!-- partial -->
+       <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
@@ -106,103 +117,70 @@
             </li>-->
           </ul>
         </nav>
-      
-        <div class="main-panel">
-        <div class="content-wrapper">
-        <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-          <div class="card">
-            <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center">
-              <p class="card-title">Kelola Budaya</p>
-              <a href="{{ url('tambahbudaya') }}" class="btn btn-primary">Tambah Budaya</a>
-            </div>
 
-            <div id="messages" style="display: none;">
-                <!-- Pesan sukses dari session -->
-                @if(session('success'))
-                    <div data-success="{{ session('success') }}"></div>
-                @endif
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row"></div>
 
-                <!-- Pesan error dari session -->
-                @if(session('error'))
-                    <div data-error="{{ session('error') }}"></div>
-                @endif
-            </div>
-
-            <div class="table-responsive">
-                <table class="table table-striped table-borderless">
-                    <thead>
-                        <tr>
-                            <th>Nama Budaya</th>
-                            <th>Nama Desa Budaya</th>
-                            <th>Alamat</th>
-                            <th>Kisaran Harga</th>
-                            <th>Link Youtube</th>
-                            <th>Nomor WhatsApp</th>
-                            <th>Deskripsi</th>
-                            <th>Foto Card</th>
-                            <th>Foto Slider</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($budaya as $item)
-                    <tr>
-                        <td>{{ $item->nama_budaya }}</td>
-                        <td>{{ $item->nama_desa_budaya }}</td>
-                        <td>{{ \Illuminate\Support\Str::limit($item->alamat, 20, '...') }}</td>
-                        <td>Rp {{ $item->harga_min }} - Rp {{ $item->harga_max }}</td>
-                        <td><a href="{{ $item->link_youtube }}">Lihat Video</a></td>
-                        <td><a href="https://wa.me/{{ $item->nomor_whatsapp }}">Hubungi</a></td>
-                        <td>{{ \Illuminate\Support\Str::limit($item->deskripsi, 20, '...') }}</td>
-                        
-                        <!-- Foto Card -->
-                        <td><img src="{{ asset('storage/' . $item->foto_card) }}" alt="Foto Card" width="100"></td>
-
-                        <!-- Foto Slider -->
-                        <td>
-                            @if (!empty($item->foto_slider) && is_array(json_decode($item->foto_slider, true)))
-                                @foreach (json_decode($item->foto_slider, true) as $index => $foto)
-                                    @if ($index < 3) <!-- Tampilkan hanya 3 foto pertama -->
-                                        <img src="{{ asset('storage/' . $foto) }}" alt="Foto Slider" width="100" style="margin-bottom: 5px;">
-                                    @endif
-                                @endforeach
-                                @if (count(json_decode($item->foto_slider, true)) > 3)
-                                    <p>...dan lainnya</p> <!-- Indikasi ada lebih banyak foto -->
-                                @endif
-                            @else
-                                <p>Tidak ada foto slider</p>
+        <!-- Kelola Banner -->
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Kelola Banner</h4>
+                    <form class="forms-sample" action="{{ url('/updateBannerBudaya') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="bannerImage">Edit Banner</label>
+                            <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
+                            @if(isset($homepageData->gambar_banner))
+                                <img src="{{ asset('storage/'.$homepageData->gambar_banner) }}" alt="Current Banner" width="100" class="mt-2">
                             @endif
-                        </td>
-                       
-                        <!-- Tombol Edit dan Hapus -->
-                        <td>
-                            <!-- Tombol Edit -->
-                            <a href="{{ url('/editBudaya/' . $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
-
-                            <!-- Tombol Hapus -->
-                            <form id="delete-form-{{ $item->id }}" action="{{ url('hapusBudaya/' . $item->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $item->id }}, 'budaya')">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-                    </tbody>
-                </table>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                    </form>
+                </div>
             </div>
-
-            </div>
-          </div>
         </div>
 
-    </div>
-    </div>
-    </div>
+        <!-- Kelola Card Selamat Datang -->
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Kelola Card Selamat Datang</h4>
+                    <form class="forms-sample" action="{{ url('/updateWelcomeCard') }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group">
+                          <label for="welcomeImage">Edit Foto</label>
+                          <input type="file" name="welcome_image" class="form-control" id="welcomeImage" accept="image/*">
+
+                          @if(!empty($homepageData->gambar_welcome) && Storage::disk('public')->exists($homepageData->gambar_welcome))
+                              <div class="mt-3">
+                                  <img src="{{ asset('storage/' . $homepageData->gambar_welcome) }}" alt="Gambar Welcome" class="img-fluid" style="max-width: 200px; border: 1px solid #ddd;">
+                              </div>
+                          @endif
+                      </div>
+                      <div class="form-group">
+                          <label for="welcomeDescription">Edit Deskripsi</label>
+                          <textarea 
+                              class="form-control" 
+                              name="deskripsi_welcome" 
+                              id="welcomeDescription" 
+                              rows="4" 
+                              placeholder="Deskripsi..." 
+                              required>{{ old('deskripsi_welcome', $homepageData->deskripsi ?? '') }}</textarea>
+                      </div>
+                      <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                  </form>
+                </div>
+            </div>
+        </div>
+
+        </div>
     </div>
 </div>
+
+
+
 <!-- partial -->
 </div>
 <!-- main-panel ends -->
@@ -214,23 +192,26 @@
     <!-- plugins:js -->
     <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
+
     <!-- Plugin js for this page -->
     <script src="{{ asset('admin/assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
     <script src="{{ asset('admin/assets/vendors/select2/select2.min.js') }}"></script>
     <!-- End plugin js for this page -->
+
     <!-- inject:js -->
     <script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
     <script src="{{ asset('admin/assets/js/template.js') }}"></script>
     <script src="{{ asset('admin/assets/js/settings.js') }}"></script>
     <script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
     <!-- endinject -->
+
     <!-- Custom js for this page-->
     <script src="{{ asset('admin/assets/js/file-upload.js') }}"></script>
     <script src="{{ asset('admin/assets/js/typeahead.js') }}"></script>
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
-    <!-- End custom js for this page-->
 
+    <!-- End custom js for this page-->
 </body>
 </html>
