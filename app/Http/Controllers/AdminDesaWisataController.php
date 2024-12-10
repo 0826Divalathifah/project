@@ -101,8 +101,6 @@ class AdminDesaWisataController extends Controller
         ));
     }
 
-
-
     // Tampilkan daftar wisata untuk dikelola
     public function kelolaWisata()
     {
@@ -128,8 +126,8 @@ class AdminDesaWisataController extends Controller
             'harga_masuk' => 'nullable|numeric',
             'deskripsi' => 'nullable|string',
             'foto_card' => 'required|image|mimes:jpeg,png,jpg|max:5120',
-            'brosur' => 'required|image|mimes:jpeg,png,jpg|max:5120',
-            'foto_wisata.*' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'brosur' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'foto_wisata.*' => 'required|image|mimes:jpeg,png,jpg|max:5120',
         ]);
 
     
@@ -176,113 +174,95 @@ class AdminDesaWisataController extends Controller
         return view('admin.adminwisata.editwisata', compact('wisata'));
     }
 
-    public function updateWisata(Request $request, $id)
-    {
-        // Validasi input form
-        $validator = Validator::make($request->all(), [
-            'nama_wisata' => 'required|string|max:100',
-            'hari' => 'nullable|array',
-            'jam_buka' => 'nullable|array',
-            'jam_tutup' => 'nullable|array',
-            'alamat' => 'nullable|string|max:255',
-            'harga_masuk' => 'nullable|numeric',
-            'waktu_kunjung' => 'nullable|string', // Sesuaikan di sini
-            'deskripsi' => 'nullable|string',
-            'foto_card' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'brosur' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
-            'foto_wisata' => 'nullable|array',
-            'foto_wisata.*' => 'image|mimes:jpeg,png,jpg|max:5120',
-        ]);
-        
-    
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+      public function updateWisata(Request $request, $id)
+      {
+          $request->validate([
+              'nama_wisata' => 'required|string|max:255',
+              'harga_masuk' => 'nullable|numeric',
+              'alamat' => 'required|string|max:255',
+              'deskripsi' => 'required|string',
+              'foto_card' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+              'brosur' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+              'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+              'hari.*' => 'nullable|string',
+              'jam_buka.*' => 'nullable|date_format:H:i',
+              'jam_tutup.*' => 'nullable|date_format:H:i',
+              'hapus_foto_slider.*' => 'nullable|string', // Tambahan untuk input foto yang dihapus
+          ]);
+      
+          $wisata = Wisata::findOrFail($id);
+      
+          // Update field dasar
+          $wisata->nama_wisata = $request->nama_wisata;
+          $wisata->harga_masuk = $request->harga_masuk;
+          $wisata->alamat = $request->alamat;
+          $wisata->deskripsi = $request->deskripsi;
+      
+          // Update foto_card
+          if ($request->hasFile('foto_card')) {
+              if ($wisata->foto_card) {
+                  Storage::disk('public')->delete($wisata->foto_card);
+              }
+              $wisata->foto_card = $request->file('foto_card')->store('images', 'public');
+          }
+      
+          // Update brosur
+          if ($request->hasFile('brosur')) {
+              if ($wisata->brosur) {
+                  Storage::disk('public')->delete($wisata->brosur);
+              }
+              $wisata->brosur = $request->file('brosur')->store('images', 'public');
+          }
+      
+          // Update foto_slider
+          $fotoSliderLama = json_decode($wisata->foto_wisata, true) ?? [];
+          $fotoSliderBaru = [];
+      
+          // Hapus foto_slider yang dipilih untuk dihapus
+          if ($request->has('hapus_foto_slider')) {
+              foreach ($request->hapus_foto_slider as $hapusFoto) {
+                  if (in_array($hapusFoto, $fotoSliderLama)) {
+                      // Hapus file dari storage
+                      Storage::disk('public')->delete($hapusFoto);
+                      // Hapus path dari array
+                      $fotoSliderLama = array_filter($fotoSliderLama, fn($foto) => $foto !== $hapusFoto);
+                  }
+              }
+          }
+      
+          // Tambahkan foto_slider baru
+          if ($request->hasFile('foto_slider')) {
+              foreach ($request->file('foto_slider') as $file) {
+                  $fotoSliderBaru[] = $file->store('images', 'public');
+              }
+          }
+      
+          // Gabungkan foto lama yang tersisa dengan foto baru
+          $wisata->foto_wisata = json_encode(array_merge($fotoSliderLama, $fotoSliderBaru));
+      
+          // Update waktu kunjung
+          $waktuKunjung = [];
+          if ($request->has('hari')) {
+              foreach ($request->hari as $index => $hari) {
+                  $waktuKunjung[] = [
+                      'hari' => $hari,
+                      'jam_buka' => $request->jam_buka[$index] ?? null,
+                      'jam_tutup' => $request->jam_tutup[$index] ?? null,
+                  ];
+              }
+          }
+          $wisata->waktu_kunjung = json_encode($waktuKunjung);
+          
+        // Jika user ingin menghapus brosur
+        if ($wisata->brosur) {
+            Storage::disk('public')->delete($wisata->brosur);
+            $wisata->brosur = null;
         }
-    
-        $wisata = Wisata::findOrFail($id);
-        
 
-        // Update foto card
-        if ($request->hasFile('foto_card')) {
-            if ($wisata->foto_card && Storage::disk('public')->exists($wisata->foto_card)) {
-                Storage::disk('public')->delete($wisata->foto_card);
-            }
-            $fotoCardPath = $request->file('foto_card')->store('uploads/wisata', 'public');
-            $wisata->foto_card = $fotoCardPath;
-        }
-
-        // Update brosur
-        if ($request->hasFile('brosur')) {
-            if ($wisata->brosur && Storage::disk('public')->exists($wisata->brosur)) {
-                Storage::disk('public')->delete($wisata->brosur);
-            }
-            $fotoCardPath = $request->file('brosur')->store('uploads/wisata', 'public');
-            $wisata->brosur = $fotoCardPath;
-        }
-    
-        // Update foto wisata
-        $fotoWisataPaths = json_decode($wisata->foto_wisata, true) ?? [];
-    
-        // Hapus foto wisata lama yang ingin dihapus
-        if ($request->has('hapus_foto_wisata') && is_array($request->hapus_foto_wisata)) {
-            foreach ($request->hapus_foto_wisata as $hapusFoto) {
-                if (($key = array_search($hapusFoto, $fotoWisataPaths)) !== false) {
-                    if (Storage::disk('public')->exists($hapusFoto)) {
-                        Storage::disk('public')->delete($hapusFoto);
-                    }
-                    unset($fotoWisataPaths[$key]);
-                }
-            }
-        }
-    
-        // Tambahkan foto wisata baru
-        if ($request->hasFile('foto_wisata')) {
-            foreach ($request->file('foto_wisata') as $foto) {
-                $fotoWisataPaths[] = $foto->store('uploads/wisata', 'public');
-            }
-        }
-    
-        // Logika untuk menyimpan waktu kunjungan
-        $waktuKunjung = [];
-        if ($request->has('hari') && $request->has('jam_buka') && $request->has('jam_tutup')) {
-            $setiapHariDipilih = in_array('Setiap Hari', $request->hari);
-    
-            if ($setiapHariDipilih) {
-                // Jika "Setiap Hari" dipilih, simpan hanya satu set jadwal
-                $index = array_search('Setiap Hari', $request->hari);
-                $waktuKunjung[] = [
-                    'hari' => 'Setiap Hari',
-                    'jam_buka' => $request->jam_buka[$index],
-                    'jam_tutup' => $request->jam_tutup[$index],
-                ];
-            } else {
-                // Jika "Setiap Hari" tidak dipilih, simpan setiap hari yang dipilih dengan jamnya
-                foreach ($request->hari as $index => $hari) {
-                    if (isset($request->jam_buka[$index]) && isset($request->jam_tutup[$index])) {
-                        $waktuKunjung[] = [
-                            'hari' => $hari,
-                            'jam_buka' => $request->jam_buka[$index],
-                            'jam_tutup' => $request->jam_tutup[$index],
-                        ];
-                    }
-                }
-            }
-        }
-    
-        // Update data di database
-        $wisata->update([
-            'nama_wisata' => $request->nama_wisata,
-            'alamat' => $request->alamat,
-            'harga_masuk' => $request->harga_masuk,
-            'deskripsi' => $request->deskripsi,
-            'foto_card' => $wisata->foto_card,
-            'brosur' => $wisata->brosur,
-            'foto_wisata' => json_encode(array_values($fotoWisataPaths)),
-            'waktu_kunjung' => json_encode($waktuKunjung),
-        ]);
-    
-        return redirect()->back()->with('success', 'Wisata berhasil diperbarui!');
-    }
+          $wisata->save();
+      
+          return redirect('/kelolawisata')->with('success', 'Data wisata berhasil diperbarui!');
+      }      
 
 
     public function deleteWisata($id)
