@@ -57,13 +57,15 @@
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
-    <div class="header-social d-flex align-items-center">
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
+   <div class="header-social d-flex align-items-center">
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
             <span style="font-size: 16px;">Logout</span>
-        </a>
-    </div>
+        </button>
+    </form>
+</div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
