@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminDesaPreneurController;
 use App\Http\Controllers\AdminDesaPrimaController;
 use App\Http\Controllers\AdminDesaWisataController;
 use App\Http\Controllers\PenjualController;
-use App\Http\Controllers\Auth;
+use App\Http\Controllers\AuthController;
 
 // Routes untuk Website
 Route::get('/', [PageController::class, 'index'])->name('home');
@@ -130,6 +130,7 @@ Route::get('/desawisata', [PageController::class, 'desawisata']);
 // Route untuk login
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'registerAdmin'])->name('register.process');
 
