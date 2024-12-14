@@ -266,6 +266,7 @@
 <script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
 <script src="{{ asset('admin/assets/js/datetime.js') }}"></script>
+<script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
 
 <!-- End custom js for this page-->
 </body>
