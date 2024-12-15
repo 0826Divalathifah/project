@@ -7,7 +7,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
+    <!-- Link ke site.webmanifest -->
+    <link rel="manifest" href="/site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <!-- CSS here -->
     <link rel="stylesheet" href="{{ asset('themewagon/css/bootstrap.min.css') }}">
@@ -69,8 +73,7 @@
                                     <li>   
                                     <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
                                     <li><a href="{{ url('/contact') }}">Kontak</a></li>
-
-                                    <li><a href="#" onclick="showAuthForm()">Login</a></li>
+                                    <li><a href="#" onclick="showLoginForm()">Login</a></li>
 
                                 </ul>
                             </nav>
@@ -110,55 +113,33 @@
                     <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                     <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                     <!-- Ikon Login dan Sign Up -->
+                </div>
+                </div>
+                <div class="slider-active dot-style fullwidth-slider">
+                    <div class="single-banner hero-overly slider-height d-flex align-items-center"
+
+                        style="
+                            background-image: url('{{ asset('storage/' . $gambar_banner) }}'); 
+                            background-size: cover; 
+                            background-position: center; 
+                            background-repeat: no-repeat; 
+                            height: 130px;">
+                            
+                    
+                        <div class="container-fluid">
+                            <div class="slider-area">
+                                <div class="row justify-content-center">
+                                    <div class="col-xl-8 col-lg-9">
+                                        <!-- Hero Caption -->
+                                        <div class="hero__caption">
+                                            <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- /End mobile  Menu-->
-
-                <div class="slider-active dot-style fullwidth-slider">
-                    <!-- Single -->
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}'); 
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 200px;">
-
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}');
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 200px;">
-
-                    <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-            </div>
-        </div>
-       
-<!-- Popular Items End -->
-<!--? New Arrival Start -->
 <div class="new-arrival">
 <style>
         .justified-text {
@@ -169,11 +150,7 @@
     </style>
         <div class="container">
             <p class="justified-text">
-                Desa Mandiri Budaya (DMB) adalah desa yang memiliki potensi, inovasi, dan kemandirian untuk mengembangkan nilai-nilai budaya lokal. Program ini melibatkan warga untuk aktif berpartisipasi, sehingga disebut mandiri. DMB menggabungkan empat pilar utama: Desa Wisata, Desa Preneur, Desa Prima, dan Desa Budaya, dan didasarkan pada Peraturan Daerah Istimewa (Perdais) No. 3 Tahun 2017 tentang Pemeliharaan dan Pengembangan Kebudayaan.
-                <br><br>
-                Kalurahan Sinduharjo, Kabupaten Sleman, DI Yogyakarta, ditetapkan sebagai DMB berdasarkan Keputusan Gubernur DIY No. 262/KEP/2016. Untuk mendukung keberhasilannya, diperlukan pendampingan dan pelatihan bagi masyarakat oleh Dinas Pariwisata DIY (Dinpar DIY) dan akademisi. Pelatihan ini meliputi materi tentang pengenalan USP, pemasaran digital, pengemasan paket wisata, analisis keuangan, dan SOP untuk kelestarian desa wisata.
-                <br><br>
-                Tujuan dari program ini adalah agar masyarakat memiliki pengetahuan yang cukup untuk melestarikan, melindungi, mengembangkan, dan memanfaatkan budaya lokal, sehingga Desa Sinduharjo dapat terus mengedepankan keunikannya dan menjadi DMB yang berkelanjutan dan kompetitif di sektor pariwisata.
+                {{ $deskripsi_index }}
             </p>
         </div>
 
@@ -191,7 +168,7 @@
 <!--? collection -->
 
 <div class="new-arrival">
-    <section class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" data-background="{{ asset('storage/' . $gambar_banner) }}">
+    <section class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" data-background="{{ asset('themewagon/img/gallery/gallery3.jpg') }}">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-9">
@@ -391,93 +368,136 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Fungsi untuk menampilkan pilihan Login/Register
-    async function showAuthForm() {
-        const { isConfirmed, isDismissed } = await Swal.fire({
-            title: "Pilih Opsi",
-            width: '500px', // menambah lebar modal
-            padding: '3em', // padding di dalam modal
-            confirmButtonText: 'Login',
-            confirmButtonColor: '#6A5ACD', // ganti warna tombol Login
-            cancelButtonText: 'Register',
-            cancelButtonColor: '#A9A9A9', // ganti warna tombol Register
-            showCancelButton: true,
-            icon: 'question',
-            customClass: {
-                title: 'swal-custom-title', // menambahkan class CSS untuk judul
-                actions: 'swal-custom-actions', // menambahkan class CSS untuk tombol
-            }
-        });
+   
 
-        if (isConfirmed) {
-            showLoginForm();
-        } else if (isDismissed) {
-            showRegisterForm();
+ // Fungsi untuk menampilkan form Login
+async function showLoginForm() {
+    const { value: formValues } = await Swal.fire({
+        title: "Login",
+        width: '500px',
+        padding: '3em',
+        html: `
+            <input id="swal-login-email" class="swal2-input" placeholder="Email">
+            <input id="swal-login-password" class="swal2-input" type="password" placeholder="Password">
+            <div style="margin-top: 10px; text-align: right;">
+                <a href="#" id="forget-password" style="color: #007bff; font-size: 0.9em;">Lupa Password?</a>
+            </div>
+        `,
+        focusConfirm: false,
+        didOpen: () => {
+            // Tambahkan event listener untuk tombol "Lupa Password"
+            document.getElementById('forget-password').addEventListener('click', (e) => {
+                e.preventDefault();
+                showForgetPasswordForm();
+            });
+        },
+        preConfirm: () => {
+            const email = document.getElementById("swal-login-email").value;
+            const password = document.getElementById("swal-login-password").value;
+
+            if (!email || !password) {
+                Swal.showValidationMessage(`Harap isi semua field!`);
+                return false;
+            }
+            return { email, password };
+        }
+    });
+
+    if (formValues) {
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify(formValues)
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Berhasil!',
+                    text: 'Mengalihkan ke halaman dashboard...',
+                    timer: 2000,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = result.redirect;
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Gagal',
+                    text: result.message,
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Kesalahan',
+                text: 'Terjadi kesalahan saat memproses permintaan.',
+            });
         }
     }
+}
 
-    // Fungsi untuk menampilkan form Login
-    async function showLoginForm() {
-        const { value: formValues } = await Swal.fire({
-            title: "Login ",
-            width: '500px', // memperbesar lebar modal
-            padding: '3em',
-            html: `
-                <input id="swal-login-email" class="swal2-input" placeholder="Email" value="">
-                <input id="swal-login-password" class="swal2-input" type="password" placeholder="Password" value="">
-            `,
-            focusConfirm: false,
-            preConfirm: () => {
-                const email = document.getElementById("swal-login-email").value;
-                const password = document.getElementById("swal-login-password").value;
-
-                if (!email || !password) {
-                    Swal.showValidationMessage(`Harap isi semua field!`);
-                    return false; // Menghentikan eksekusi jika field kosong
-                }
-
-                return { email, password };
+// Fungsi untuk menampilkan form Forget Password
+async function showForgetPasswordForm() {
+    const { value: email } = await Swal.fire({
+        title: "Lupa Password",
+        input: "email",
+        inputPlaceholder: "Masukkan email Anda",
+        showCancelButton: true,
+        confirmButtonText: "Kirim Reset Link",
+        preConfirm: (email) => {
+            if (!email) {
+                Swal.showValidationMessage("Harap isi email!");
+                return false;
             }
-        });
+            return email;
+        }
+    });
 
-        if (formValues) {
-            Swal.fire(`Login Berhasil!`);
+    if (email) {
+        try {
+            const response = await fetch('/forgot-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify({ email })
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Email Terkirim',
+                    text: 'Link reset password telah dikirim ke email Anda.',
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal',
+                    text: result.message,
+                });
+            }
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Kesalahan',
+                text: 'Terjadi kesalahan saat memproses permintaan.',
+            });
         }
     }
+}
 
-    // Fungsi untuk menampilkan form Register
-    async function showRegisterForm() {
-        const { value: formValues } = await Swal.fire({
-            title: "Register ",
-            width: '500px',
-            padding: '3em',
-            html: `
-                <input id="swal-register-name" class="swal2-input" placeholder="Nama Lengkap" value="">
-                <input id="swal-register-email" class="swal2-input" placeholder="Email" value="">
-                <input id="swal-register-password" class="swal2-input" type="password" placeholder="Password" value="">
-                <input id="swal-register-confirm-password" class="swal2-input" type="password" placeholder="Konfirmasi Password" value="">
-            `,
-            focusConfirm: false,
-            preConfirm: () => {
-                const name = document.getElementById("swal-register-name").value;
-                const email = document.getElementById("swal-register-email").value;
-                const password = document.getElementById("swal-register-password").value;
-                const confirmPassword = document.getElementById("swal-register-confirm-password").value;
 
-                if (!name || !email || !password || !confirmPassword) {
-                    Swal.showValidationMessage(`Harap isi semua field!`);
-                    return false;
-                } else if (password !== confirmPassword) {
-                    Swal.showValidationMessage(`Password dan Konfirmasi Password tidak cocok!`);
-                    return false;
-                }
-
-                return { name, email, password };
-            }
-        });
-
-        if (formValues) {
-            Swal.fire(`Register Berhasil!`);
-        }
-    }
 </script>
+
+</body>
+</html>

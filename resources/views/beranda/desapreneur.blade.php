@@ -78,7 +78,7 @@
                             <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <!-- Search Box -->
+                        <!-- Search Box 
                         <div class="search d-none d-md-block">
                             <ul class="d-flex align-items-center">
                                 <li class="mr-15">
@@ -87,7 +87,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
@@ -100,28 +100,46 @@
         <!-- Header End -->
     </header>
     <main>
-                 <!-- listing Area Start -->
+        <!-- listing Area Start -->
         <div class="category-area">
             <div class="container">
-            <div class="row">
+                <div class="row">
             
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <div class="banner-container">
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Desa Preneur</div>
+                    <div class="banner-container">
+                        <!-- Mobile Device Show Menu-->
+                <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
+                        <div class="banner-overlay"></div>
+                        <div class="banner-text">Desa Preneur</div>
 
-            <!-- breadcrumb Start-->
-            <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Preneur</a></li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
+                        @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                                <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                            @else
+                                <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                            @endif
+
+                    <!-- breadcrumb Start-->
+                    <div class="breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                                <li class="breadcrumb-item"><a href="#">Desa Preneur</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+
 </main>
     <div class="row">
        <!--? Left content -->
@@ -140,7 +158,7 @@
         </div>
     </div>
     
-    <div class="col-xl-9 col-lg-9 col-md-8">
+    <div class="col-xl-12 col-lg-9 col-md-8">
         <!-- Makanan Section -->
         <div id="makanan" class="slider" >
             @if($makanan->isEmpty())
@@ -150,10 +168,10 @@
                     <div class="card">
                         <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="{{ $produk->nama_produk }}">
                         <div class="card-body">
-                            <h5 class="card-title"><a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a></h5>
-                            <span style="color: #FF5733;">{{ $produk->harga_produk }}</span>
+                            <h5 class="card-title"><a href="{{ url('/detail_preneur', $produk->id) }}">{{ $produk->nama_produk }}</a></h5>
+                            <span style="color: #FF5733;">Rp {{ $produk->harga_produk }}</span>
                             <p class="card-text">{{ $produk->deskripsi }}</p>
-                            <a href="{{ url('/detail_prima', ['id' => $produk->id_produk]) }}" class="btn btn-primary">Selengkapnya</a>
+                            <a href="{{ url('/detail_preneur', ['id' => $produk->id]) }}" class="btn btn-primary">Selengkapnya</a>
                         </div>
                     </div>
                 @endforeach
@@ -169,8 +187,8 @@
                     <div class="card">
                         <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="{{ $produk->nama_produk }}">
                         <div class="card-body">
-                            <h5 class="card-title"><a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a></h5>
-                            <span style="color: #FF5733;"> {{$produk->harga_produk }}</span>
+                            <h5 class="card-title"><a href="{{ url('/detail_preneur', $produk->id) }}">{{ $produk->nama_produk }}</a></h5>
+                            <span style="color: #FF5733;">Rp {{$produk->harga_produk }}</span>
                             <p class="card-text">{{ $produk->deskripsi }}</p>
                             <a href="{{ url('/detail_preneur', $produk->id) }}" class="btn">Selengkapnya</a>
                         </div>
@@ -240,7 +258,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -270,7 +288,7 @@
     <!-- Footer End -->
 </footer>
 
-<!--? Search model Begin -->
+<!--? Search model Begin
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-btn">+</div>
@@ -278,8 +296,8 @@
             <input type="text" id="search-input" placeholder="Searching key.....">
         </form>
     </div>
-</div>
-<!-- Search model end -->
+</div> -->
+
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>

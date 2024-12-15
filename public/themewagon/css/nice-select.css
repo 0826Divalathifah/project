@@ -9,26 +9,12 @@
   align-items: center;
   gap: 10px; /* Jarak antara label dan input */
 }
-.button-row {
+/* Kontainer untuk item */
+.item-container {
   display: flex;
-  gap: 10px; /* Jarak antara tombol Detail Pesanan dan tombol WhatsApp */
-  button {
-    padding: 10px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#detailBtn {
-    background-color: #d8b8f7;
-    color: #fff;
-}
-
-#whatsappBtn {
-    background-color: #d8b8f7;
-    color: #fff;
-}
+  flex-direction: column; /* Menyusun konten secara vertikal */
+  align-items: center; /* Memusatkan semua elemen */
+  gap: 10px; /* Memberikan jarak antar elemen */
 }
 
 .nice-select {

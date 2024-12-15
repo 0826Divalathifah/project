@@ -86,7 +86,7 @@
                             <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <!-- Search Box -->
+                        <!-- Search Box 
                         <div class="search d-none d-md-block">
                             <ul class="d-flex align-items-center">
                                 <li class="mr-15">
@@ -94,13 +94,13 @@
                                         <i class="ti-search"></i>
                                     </div>
                                 </li>
-                               
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
+                        
                     </div>
                     </div>
                 </div>
@@ -108,8 +108,8 @@
         </div>
         <!-- Header End -->
     </header>
-   <!-- header end -->
-   <main>
+    <!-- header end -->
+    <main>
           <!-- listing Area Start -->
           <div class="category-area">
             <div class="container">
@@ -119,8 +119,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <div class="banner-container">
+            <!-- Mobile Device Show Menu-->
+            <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
             <div class="banner-overlay"></div>
             <div class="banner-text">Desa Wisata</div>
+
+            @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                    <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
@@ -132,6 +148,7 @@
                 </nav>
             </div>
         </div>
+        
 
 <div class="container mt-4">
     @foreach($wisata as $wisata)
@@ -147,10 +164,12 @@
                 <h3 class="card-title">{{ $wisata->nama_wisata }}</h3>
                 
                 <!-- Deskripsi di bawah judul -->
-                <p class="card-text">{{ $wisata->deskripsi }}</p>
+                <p class="card-text">{{ \Illuminate\Support\Str::limit($wisata->deskripsi, 300, '...') }}</p>
                 
                 <!-- Tombol Selengkapnya -->
-                <a href="{{ url('/detail_wisata/' . $wisata->id) }}" class="my-btn-primary">Selengkapnya</a>
+                <div class="d-flex justify-content-center">
+                    <a href="{{ url('/detail_wisata/' . $wisata->id) }}" class="my-btn-primary">Selengkapnya</a>
+                </div>
             </div>
         </div>
     @endforeach
@@ -208,7 +227,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -238,7 +257,7 @@
     <!-- Footer End -->
 </footer>
 
-<!--? Search model Begin -->
+<!--? Search model Begin
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-btn">+</div>
@@ -246,8 +265,9 @@
             <input type="text" id="search-input" placeholder="Searching key.....">
         </form>
     </div>
-</div>
-<!-- Search model end -->
+</div> -->
+
+
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>

@@ -9,7 +9,6 @@
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
 
-
     <!-- CSS boostrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
@@ -92,21 +91,12 @@
                             <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <!-- Search Box -->
-                        <div class="search d-none d-md-block">
-                            <ul class="d-flex align-items-center">
-                                <li class="mr-15">
-                                    <div class="nav-search search-switch">
-                                        <i class="ti-search"></i>
-                                    </div>
-                                </li>
-                               
-                            </ul>
-                        </div>
+                        
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
+                        
                     </div>
                     </div>
                 </div>
@@ -114,75 +104,74 @@
         </div>
         <!-- Header End -->
     </header>
-   <!-- header end -->
-   <main>
-          <!-- listing Area Start -->
-          <div class="category-area">
-            <div class="container">
-            <div class="row">
-            
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- header end -->
+    <main>
+<!-- listing Area Start -->
+<div class="container">
+    <div class="category-area">
+        <div class="row">   
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+            <div class="banner-container">
+                <!-- Mobile Device Show Menu-->
+                <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
+                <div class="banner-overlay"></div>
+                <div class="banner-text">Desa Budaya</div>
 
-        <div class="banner-container">
-            
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Desa Budaya</div>
-            @if(isset($homepageData->gambar_banner))
-                <img src="{{ asset('storage/' . $homepageData->gambar_banner) }}" alt="Banner" class="banner-image">
-            @else
-                <!-- Gambar default jika gambar_banner tidak tersedia -->
-                <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
-            @endif
-            <!-- breadcrumb Start-->
-            <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Desa Budaya</a></li>
-                    </ol>
-                </nav>
+                @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                    <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
+
+                <!-- breadcrumb Start-->
+                <div class="breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="#">Desa Budaya</a></li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
-        </div>
-        <div class="content-section" data-aos="fade-up" data-aos-duration="1000">
-        <div data-aos="fade-left"
-            data-aos-anchor="#example-anchor"
-            data-aos-offset="500"
-            data-aos-duration="500">
-        </div>
-        <div class="container mt-4">
+            <div class="content-section" data-aos="fade-up" data-aos-duration="1000">
         <div class="card custom-card">
-        <!-- Gambar di sebelah kiri -->
-        <div class="location-img">
-        @if(isset($homepageData->gambar_welcome))
-                <img src="{{ asset('storage/' . $homepageData->gambar_welcome) }}" alt="Desa Budaya">
+            <div class="location-img">
+            @if(isset($gambar_welcome) && file_exists(public_path('storage/' . $gambar_welcome)))
+                <img src="{{ asset('storage/' . $gambar_welcome) }}" alt="Desa Budaya">
             @else
-                <!-- Gambar default jika gambar_welcome tidak tersedia -->
                 <img src="{{ asset('themewagon/img/desabudaya/gunungan1.jpg') }}" alt="Desa Budaya">
             @endif
         </div>
 
-        <!-- Deskripsi di sebelah kanan -->
         <div class="card-body">
-            <!-- Judul di atas -->
             <h3 class="card-title">Selamat Datang di Website Desa Budaya</h3>
-            
-            <!-- Deskripsi di bawah judul -->
             <p class="card-text">
-                {{ $deskripsi_welcome }}
+            {{ $deskripsi_welcome }}
             </p>
-
         </div>
     </div>
 </div>
+
 </div>
 </div>
 </div>
+</div>
+
+
 <div class="carousel-container">
     @foreach($budaya as $item)
     <div class="carousel-card">
     @if($item->foto_card)
-    <img src="{{ asset('storage/uploads/budaya/' . $item->foto_card) }}" alt="{{ $item->nama_budaya }}" class="card-img-top">
+    <img src="{{ asset('storage/' . $item->foto_card) }}" alt="{{ $item->nama_budaya }}" class="card-img-top">
     @else
         <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Gambar Tidak Tersedia" class="card-img-top">
     @endif
@@ -245,7 +234,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -275,16 +264,7 @@
     <!-- Footer End -->
 </footer>
 
-<!--? Search model Begin -->
-<div class="search-model-box">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-btn">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Searching key.....">
-        </form>
-    </div>
-</div>
-<!-- Search model end -->
+
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>

@@ -17,9 +17,10 @@ class Wisata extends Model
         'nama_wisata',
         'waktu_kunjung',
         'alamat',
-        'harga_masuk',
+        'harga_masuk',      
         'deskripsi',
         'foto_card',
+        'brosur',
         'foto_wisata',
     ];
 

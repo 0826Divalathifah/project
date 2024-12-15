@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Kelola Agenda</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
@@ -44,27 +46,11 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
-              <div class="input-group">
-                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                  <span class="input-group-text" id="search">
-                    <i class="icon-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-              </div>
-            </li>
-          </ul>
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
-    <!-- Social -->
-    <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
+          <!-- Social -->
+          <div class="header-social d-flex align-items-center">
+              
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -132,22 +118,44 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Tambah Agenda Budaya</h4>
-                        <form class="forms-sample">
-                            <div class="form-group">
-                                <label for="namaAcara">Nama Acara</label>
-                                <input type="text" class="form-control" id="namaAcara" placeholder="Masukkan nama acara" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="tanggalAcara">Tanggal Acara</label>
-                                <input type="date" class="form-control" id="tanggalAcara" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="deskripsiAcara">Deskripsi Acara</label>
-                                <textarea class="form-control" id="deskripsiAcara" rows="4" placeholder="Deskripsi acara..." required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                            <button type="reset" class="btn btn-light">Batal</button>
+                    <h4 class="card-title">Tambah Agenda Budaya</h4>
+                    <form class="forms-sample" action="/kelolaagenda" method="POST">
+                        @csrf
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                        <!-- Token CSRF untuk keamanan -->
+                        <div class="form-group">
+                            <label for="namaAcara">Nama Acara</label>
+                            <input type="text" class="form-control" id="namaAcara" name="nama_acara" placeholder="Masukkan nama acara" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggalAcara">Tanggal Acara</label>
+                            <input type="date" class="form-control" id="tanggalAcara" name="tanggal_acara" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="deskripsiAcara">Deskripsi Acara</label>
+                            <textarea class="form-control" id="deskripsiAcara" name="deskripsi_acara" rows="4" placeholder="Deskripsi acara..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat acara" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                        <button type="reset" class="btn btn-light">Batal</button>
+                    </form>
                         </form>
                     </div>
                 </div>
@@ -159,44 +167,44 @@
             <div class="col-12 grid-margin stretch-card">
             <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Daftar Agenda Budaya</h4>
-                <div class="table-responsive">
+            <h4 class="card-title">Daftar Agenda Budaya</h4>
+            <div class="table-responsive">
                 <table class="table table-striped table-borderless">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Acara</th>
-                                    <th>Tanggal Acara</th>
-                                    <th>Deskripsi Acara</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Contoh data agenda -->
-                                <tr>
-                                    <td>1</td>
-                                    <td>Festival Budaya</td>
-                                    <td>2024-10-20</td>
-                                    <td>Festival budaya tahunan yang menampilkan berbagai kesenian lokal.</td>
-                                    <td>
-                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                        <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus agenda ini?');">Hapus</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Pameran Seni Rupa</td>
-                                    <td>2024-11-05</td>
-                                    <td>Pameran seni rupa oleh seniman lokal dan nasional.</td>
-                                    <td>
-                                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                        <button class="btn btn-danger btn-sm" onclick="showAlert('Pameran Seni Rupa');">Hapus</button>
-                                    </td>
-                                </tr>
-                                <!-- Tambahkan data lainnya sesuai kebutuhan -->
-                            </tbody>
-                        </table>
-                    </div>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Acara</th>
+                            <th>Tanggal Acara</th>
+                            <th>Deskripsi Acara</th>
+                            <th>Alamat</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($agendaList as $index => $agenda)
+                            <tr>
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $agenda->nama_acara }}</td>
+                                <td>{{ $agenda->tanggal_acara }}</td>
+                                <td>{{ \Illuminate\Support\Str::limit($agenda->deskripsi_acara, 20, '...') }}</td>
+                                <td>{{ $agenda->alamat }}</td>
+                                <td>
+                                    <!-- Edit button -->
+                                    <a href="/agenda/{{ $agenda->id }}/edit" class="btn btn-warning btn-sm">Edit</a>
+                                    
+                                    <!-- Delete form -->
+                                    <!-- Tombol Hapus -->
+                                    <form id="delete-form-{{ $agenda->id }}" action="{{ url('hapusAgenda/' . $agenda->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $agenda->id }}, 'agenda')">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
                 </div>
             </div>
         </div>

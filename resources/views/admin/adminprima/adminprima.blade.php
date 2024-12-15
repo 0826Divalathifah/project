@@ -29,767 +29,210 @@
   </head>
   <body>
   <div class="container-scroller">
-<!-- partial:../../partials/_navbar.html -->
+  <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
-          </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
-            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
-          </a>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="icon-menu"></span>
-          </button>
-          <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
-              <div class="input-group">
-                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                  <span class="input-group-text" id="search">
-                    <i class="icon-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-              </div>
-            </li>
-          </ul>
-          <ul class="navbar-nav navbar-nav-right">
-          <div class="header-right1 d-flex align-items-center justify-content-center">
-    <!-- Social -->
-    <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Logout</span>
-        </a>
-    </div>
-</div>    
-    <li class="nav-item nav-settings d-none d-lg-flex">
-        <a class="nav-link" href="#">
-            <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
-        </a>
-    </li>
-</ul>
-
-<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-    <span class="icon-menu"></span>
-</button>
-
-  </div>
-</nav>
-      <!-- partial -->
-      <div class="container-fluid page-body-wrapper">
-        <!-- partial:../../partials/_sidebar.html -->
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link" href="{{ asset('/adminprima') }}">
-                <i class="icon-grid menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
-              </a>
-          </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/kelolaprima') }}">
-                <i class="mdi mdi-shape-plus menu-icon"></i>
-                <span class="menu-title">Kelola Produk</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/kelolahomepageprima') }}">
-                <i class="mdi mdi-home menu-icon"></i>
-                <span class="menu-title">Kelola Home Page</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url('/laporanprima') }}">
-                <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Laporan Desa Preneur</span>
-              </a>
-            </li>
-        </nav>
-<!-- partial -->
-<div class="main-panel">
-          <div class="content-wrapper">
-            <div class="row">
-              <div class="col-md-12 grid-margin">
-                <div class="row">
-                  <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                    <h3 class="font-weight-bold">Selamat Datang, </h3>
+                  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                  <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
+                      <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
+                    </a>
+                    <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
+                      <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
+                    </a>
                   </div>
-                  <!--<div class="col-12 col-xl-4">
-                    <div class="justify-content-end d-flex">
-                      <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                        <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                          <a class="dropdown-item" href="#">January - March</a>
-                          <a class="dropdown-item" href="#">March - June</a>
-                          <a class="dropdown-item" href="#">June - August</a>
-                          <a class="dropdown-item" href="#">August - November</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>-->
-                </div>
-              </div>
-            </div>
-    <div class="col-md-12 grid-margin transparent">
-    <div class="row">
-        <!-- Card 1 -->
-        <div class="col-md-4 mb-4 stretch-card transparent">
-            <div class="card card-tale">
-                <div class="card-body">
-                    <p class="mb-4">Total Budaya</p>
-                    <p class="fs-30 mb-2">50</p>
-                    <p>10.00% (30 days)</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 2 -->
-        <div class="col-md-4 mb-4 stretch-card transparent">
-            <div class="card card-dark-blue">
-                <div class="card-body">
-                    <p class="mb-4">Dilihat Sebanyak </p>
-                    <p class="fs-30 mb-2">15.678.907</p>
-                    <p>kali</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="col-md-4 mb-4 stretch-card transparent">
-            <div class="card card-light-blue">
-                <div class="card-body">
-                    <p class="mb-4">Total Produk</p>
-                    <p class="fs-30 mb-2">50</p>
-                    <p>2.00% (30 days)</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 4 
-        <div class="col-md-3 mb-4 stretch-card transparent">
-            <div class="card card-light-danger">
-                <div class="card-body">
-                    <p class="mb-4">Total Transaksi</p>
-                    <p class="fs-30 mb-2">567</p>
-                    <p>0.22% (30 days)</p>
-                </div>
-            </div>
-        </div>-->
-  </div>
-</div>
-            <div class="row">
-              <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <p class="card-title">Daftar Kunjungan</p>
-                    <div class="d-flex flex-wrap mb-5">
-                      <div class="me-5 mt-3">
-                        <p class="text-muted">Users</p>
-                        <h3 class="text-primary fs-30 font-weight-medium">71.56%</h3>
-                      </div>
-                    </div>
-                    <canvas id="order-chart"></canvas>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <p class="card-title">Jumlah Eventt</p>
-                      <a href="{{ url('/laporanbudaya') }}" class="text-info">View all</a>
-                    </div>
-                    <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
-                    <canvas id="sales-chart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
-                <div class="card position-relative">
-                  <div class="card-body">
-                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-bs-ride="carousel">
-                      <div class="carousel-inner">
-                        <div class="carousel-item active">
-                          <div class="row">
-                            <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
-                              <div class="ml-xl-4 mt-3">
-                                <p class="card-title">Detailed Reports</p>
-                                <h1 class="text-primary">$34040</h1>
-                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
-                                <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                              </div>
-                            </div>
-                            <div class="col-md-12 col-xl-9">
-                              <div class="row">
-                                <div class="col-md-6 border-right">
-                                  <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                    <table class="table table-borderless report-table">
-                                      <tr>
-                                        <td class="text-muted">Illinois</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">713</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Washington</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">583</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Mississippi</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">924</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">California</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">664</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Maryland</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">560</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Alaska</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">793</h5>
-                                        </td>
-                                      </tr>
-                                    </table>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                  <div class="daoughnutchart-wrapper">
-                                    <canvas id="north-america-chart"></canvas>
-                                  </div>
-                                  <div id="north-america-chart-legend">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="carousel-item">
-                          <div class="row">
-                            <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
-                              <div class="ml-xl-4 mt-3">
-                                <p class="card-title">Detailed Reports</p>
-                                <h1 class="text-primary">$34040</h1>
-                                <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>
-                                <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                              </div>
-                            </div>
-                            <div class="col-md-12 col-xl-9">
-                              <div class="row">
-                                <div class="col-md-6 border-right">
-                                  <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                    <table class="table table-borderless report-table">
-                                      <tr>
-                                        <td class="text-muted">Illinois</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">713</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Washington</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">583</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Mississippi</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">924</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">California</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">664</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Maryland</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">560</h5>
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td class="text-muted">Alaska</td>
-                                        <td class="w-100 px-0">
-                                          <div class="progress progress-md mx-4">
-                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                          </div>
-                                        </td>
-                                        <td>
-                                          <h5 class="font-weight-bold mb-0">793</h5>
-                                        </td>
-                                      </tr>
-                                    </table>
-                                  </div>
-                                </div>
-                                <div class="col-md-6 mt-3">
-                                  <div class="daoughnutchart-wrapper">
-                                    <canvas id="south-america-chart"></canvas>
-                                  </div>
-                                  <div id="south-america-chart-legend"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <a class="carousel-control-prev" href="#detailedReports" role="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      </a>
-                      <a class="carousel-control-next" href="#detailedReports" role="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-7 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <p class="card-title mb-0">Top Products</p>
-                    <div class="table-responsive">
-                      <table class="table table-striped table-borderless">
-                        <thead>
-                          <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Search Engine Marketing</td>
-                            <td class="font-weight-bold">$362</td>
-                            <td>21 Sep 2018</td>
-                            <td class="font-weight-medium">
-                              <div class="badge badge-success">Completed</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Search Engine Optimization</td>
-                            <td class="font-weight-bold">$116</td>
-                            <td>13 Jun 2018</td>
-                            <td class="font-weight-medium">
-                              <div class="badge badge-success">Completed</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Display Advertising</td>
-                            <td class="font-weight-bold">$551</td>
-                            <td>28 Sep 2018</td>
-                            <td class="font-weight-medium">
-                              <div class="badge badge-warning">Pending</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Pay Per Click Advertising</td>
-                            <td class="font-weight-bold">$523</td>
-                            <td>30 Jun 2018</td>
-                            <td class="font-weight-medium">
-                              <div class="badge badge-warning">Pending</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>E-Mail Marketing</td>
-                            <td class="font-weight-bold">$781</td>
-                            <td>01 Nov 2018</td>
-                            <td class="font-weight-medium">
-                              <div class="badge badge-danger">Cancelled</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Referral Marketing</td>
-                            <td class="font-weight-bold">$283</td>
-                            <td>20 Mar 2018</td>
-                            <td class="font-weight-medium">
-                              <div class="badge badge-warning">Pending</div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Social media marketing</td>
-                            <td class="font-weight-bold">$897</td>
-                            <td>26 Oct 2018</td>
-                            <td class="font-weight-medium">
-                              <div class="badge badge-success">Completed</div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">To Do Lists</h4>
-                    <div class="list-wrapper pt-2">
-                      <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-                        <li>
-                          <div class="form-check form-check-flat">
-                            <label class="form-check-label">
-                              <input class="checkbox" type="checkbox"> Meeting with Urban Team </label>
-                          </div>
-                          <i class="remove ti-close"></i>
-                        </li>
-                        <li class="completed">
-                          <div class="form-check form-check-flat">
-                            <label class="form-check-label">
-                              <input class="checkbox" type="checkbox" checked> Duplicate a project for new customer </label>
-                          </div>
-                          <i class="remove ti-close"></i>
-                        </li>
-                        <li>
-                          <div class="form-check form-check-flat">
-                            <label class="form-check-label">
-                              <input class="checkbox" type="checkbox"> Project meeting with CEO </label>
-                          </div>
-                          <i class="remove ti-close"></i>
-                        </li>
-                        <li class="completed">
-                          <div class="form-check form-check-flat">
-                            <label class="form-check-label">
-                              <input class="checkbox" type="checkbox" checked> Follow up of team zilla </label>
-                          </div>
-                          <i class="remove ti-close"></i>
-                        </li>
-                        <li>
-                          <div class="form-check form-check-flat">
-                            <label class="form-check-label">
-                              <input class="checkbox" type="checkbox"> Level up for Antony </label>
-                          </div>
-                          <i class="remove ti-close"></i>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="add-items d-flex mb-0 mt-2">
-                      <input type="text" class="form-control todo-list-input" placeholder="Add new task">
-                      <button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i class="icon-circle-plus"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                    <p class="card-title mb-0">Projects</p>
-                    <div class="table-responsive">
-                      <table class="table table-borderless">
-                        <thead>
-                          <tr>
-                            <th class="ps-0  pb-2 border-bottom">Places</th>
-                            <th class="border-bottom pb-2">Orders</th>
-                            <th class="border-bottom pb-2">Users</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td class="ps-0">Kentucky</td>
-                            <td>
-                              <p class="mb-0"><span class="font-weight-bold me-2">65</span>(2.15%)</p>
-                            </td>
-                            <td class="text-muted">65</td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0">Ohio</td>
-                            <td>
-                              <p class="mb-0"><span class="font-weight-bold me-2">54</span>(3.25%)</p>
-                            </td>
-                            <td class="text-muted">51</td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0">Nevada</td>
-                            <td>
-                              <p class="mb-0"><span class="font-weight-bold me-2">22</span>(2.22%)</p>
-                            </td>
-                            <td class="text-muted">32</td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0">North Carolina</td>
-                            <td>
-                              <p class="mb-0"><span class="font-weight-bold me-2">46</span>(3.27%)</p>
-                            </td>
-                            <td class="text-muted">15</td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0">Montana</td>
-                            <td>
-                              <p class="mb-0"><span class="font-weight-bold me-2">17</span>(1.25%)</p>
-                            </td>
-                            <td class="text-muted">25</td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0">Nevada</td>
-                            <td>
-                              <p class="mb-0"><span class="font-weight-bold me-2">52</span>(3.11%)</p>
-                            </td>
-                            <td class="text-muted">71</td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0 pb-0">Louisiana</td>
-                            <td class="pb-0">
-                              <p class="mb-0"><span class="font-weight-bold me-2">25</span>(1.32%)</p>
-                            </td>
-                            <td class="pb-0">14</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="row">
-                  <div class="col-md-12 grid-margin stretch-card">
-                    <div class="card">
-                      <div class="card-body">
-                        <p class="card-title">Charts</p>
-                        <div class="charts-data">
-                          <div class="mt-3">
-                            <p class="mb-0">Data 1</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="progress progress-md flex-grow-1 me-4">
-                                <div class="progress-bar bg-inf0" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="mb-0">5k</p>
-                            </div>
-                          </div>
-                          <div class="mt-3">
-                            <p class="mb-0">Data 2</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="progress progress-md flex-grow-1 me-4">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="mb-0">1k</p>
-                            </div>
-                          </div>
-                          <div class="mt-3">
-                            <p class="mb-0">Data 3</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="progress progress-md flex-grow-1 me-4">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 48%" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="mb-0">992</p>
-                            </div>
-                          </div>
-                          <div class="mt-3">
-                            <p class="mb-0">Data 4</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <div class="progress progress-md flex-grow-1 me-4">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="mb-0">687</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
-                    <div class="card data-icon-card-primary">
-                      <div class="card-body">
-                        <p class="card-title text-white">Number of Meetings</p>
-                        <div class="row">
-                          <div class="col-8 text-white">
-                            <h3>34040</h3>
-                            <p class="text-white font-weight-500 mb-0">The total number of sessions within the date range.It is calculated as the sum . </p>
-                          </div>
-                          <div class="col-4 background-icon">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4 stretch-card grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                    <p class="card-title">Notifications</p>
-                    <ul class="icon-data-list">
-                      <li>
-                        <div class="d-flex">
-                          <img src="assets/images/faces/face1.jpg" alt="user">
-                          <div>
-                            <p class="text-info mb-1">Isabella Becker</p>
-                            <p class="mb-0">Sales dashboard have been created</p>
-                            <small>9:30 am</small>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <img src="assets/images/faces/face2.jpg" alt="user">
-                          <div>
-                            <p class="text-info mb-1">Adam Warren</p>
-                            <p class="mb-0">You have done a great job #TW111</p>
-                            <small>10:30 am</small>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <img src="assets/images/faces/face3.jpg" alt="user">
-                          <div>
-                            <p class="text-info mb-1">Leonard Thornton</p>
-                            <p class="mb-0">Sales dashboard have been created</p>
-                            <small>11:30 am</small>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <img src="assets/images/faces/face4.jpg" alt="user">
-                          <div>
-                            <p class="text-info mb-1">George Morrison</p>
-                            <p class="mb-0">Sales dashboard have been created</p>
-                            <small>8:50 am</small>
-                          </div>
-                        </div>
-                      </li>
-                      <li>
-                        <div class="d-flex">
-                          <img src="assets/images/faces/face5.jpg" alt="user">
-                          <div>
-                            <p class="text-info mb-1">Ryan Cortez</p>
-                            <p class="mb-0">Herbs are fun and easy to grow.</p>
-                            <small>9:00 am</small>
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <p class="card-title">Advanced Table</p>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="table-responsive">
-                          <table id="example" class="display expandable-table" style="width:100%">
-                            <thead>
-                              <tr>
-                                <th>Quote#</th>
-                                <th>Product</th>
-                                <th>Business type</th>
-                                <th>Policy holder</th>
-                                <th>Premium</th>
-                                <th>Status</th>
-                                <th>Updated at</th>
-                                <th></th>
-                              </tr>
-                            </thead>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                      <span class="icon-menu"></span>
+                    </button>
+                    <ul class="navbar-nav navbar-nav-right">
+                    <div class="header-right1 d-flex align-items-center justify-content-center">
+              <!-- Social -->
+             <div class="header-social d-flex align-items-center">
+              <form action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
+                      <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+                      <span style="font-size: 16px;">Logout</span>
+                  </button>
+              </form>
           </div>
-          <!-- content-wrapper ends -->
-          <!-- partial:partials/_footer.html -->
-          <footer class="footer">
-  <div class="d-sm-flex justify-content-center justify-content-sm-between">
-    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023. Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ms-1"></i></span>
-  </div>
-</footer>
-        <!-- partial -->
+          </div>    
+              <li class="nav-item nav-settings d-none d-lg-flex">
+                  <a class="nav-link" href="#">
+                      <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
+                  </a>
+              </li>
+          </ul>
+
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="icon-menu"></span>
+          </button>
+
+            </div>
+          </nav>
+          <!-- partial -->
+          <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link"  href="{{ url('/adminprima') }}">
+                    <i class="icon-grid menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                  </a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/kelolaprima') }}">
+                    <i class="mdi mdi-shape-plus menu-icon"></i>
+                    <span class="menu-title">Kelola Produk</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/kelolahomepageprima') }}">
+                    <i class="mdi mdi-home menu-icon"></i>
+                    <span class="menu-title">Kelola Home Page</span>
+                  </a>
+                </li>
+                <!--<li class="nav-item">
+                  <a class="nav-link" href="{{ url('/laporanprima') }}">
+                    <i class="icon-paper menu-icon"></i>
+                    <span class="menu-title">Laporan Desa Prima</span>
+                  </a>
+                </li>-->
+            </nav>
+            <!-- partial -->
+              <div class="main-panel">
+                <div class="content-wrapper">
+                  <div class="row">
+                    <div class="col-md-12 grid-margin">
+                      <div class="row">
+                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                          <h3 class="font-weight-bold">Selamat Datang, </h3>
+                          <p id="currentDateTime"></p>
+                        </div>
+                        <!--<div class="col-12 col-xl-4">
+                          <div class="justify-content-end d-flex">
+                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                              <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                                <a class="dropdown-item" href="#">January - March</a>
+                                <a class="dropdown-item" href="#">March - June</a>
+                                <a class="dropdown-item" href="#">June - August</a>
+                                <a class="dropdown-item" href="#">August - November</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>-->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 grid-margin transparent">
+                  <div class="row justify-content-center">
+
+                <!-- Card 1 --> 
+                  <div class="col-lg-6 col-md-12 mb-4">
+                  <div class="card shadow-sm border-0 rounded">
+                      <div class="card-body d-flex align-items-center">
+                          <!-- Background Icon -->
+                          <div class="col-4 background-icon d-flex align-items-center justify-content-center">
+                              <i class="mdi mdi-image-filter-hdr text-primary" style="font-size: 48px;"></i>
+                          </div>
+                          <!-- Text Content -->
+                          <div>
+                              <h5 class="card-title mb-2 text-primary">Total Produk</h5>
+                              <h2 class="mb-0">{{ $totalPrima }}</h2>
+                              <p class="text-muted">Produk yang Tersedia</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="col-lg-6 col-md-12 mb-4">
+                  <div class="card shadow-sm border-0 rounded">
+                      <div class="card-body d-flex align-items-center">
+                          <!-- Background Icon -->
+                          <div class="col-4 background-icon d-flex align-items-center justify-content-center">
+                              <i class="mdi mdi-web text-primary" style="font-size: 48px;"></i>
+                          </div>
+                          <!-- Text Content -->
+                          <div>
+                              <h5 class="card-title mb-2 text-primary">Total Kunjungan Website</h5>
+                              <h2 class="mb-0">{{ $totalVisitsDesaPrima }}</h2>
+                              <p class="text-muted">Jumlah kunjungan</p>
+                          </div>
+                      </div>
+                  </div>
+            </div>
         </div>
-        <!-- main-panel ends -->
-      </div>
-      <!-- page-body-wrapper ends -->
     </div>
-    <!-- container-scroller -->
+
+    <div class="row">
+
+    <div class="col-md-7 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="card-title">Jumlah Kunjungan Desa Prima</p>
+          <select id="filter" class="form-select w-25" data-desa="Desa Prima">
+          <option value="daily" {{ $filter == 'daily' ? 'selected' : '' }}>Harian</option>
+          <option value="weekly" {{ $filter == 'weekly' ? 'selected' : '' }}>Mingguan</option>
+          <option value="monthly" {{ $filter == 'monthly' ? 'selected' : '' }}>Bulanan</option>
+          <option value="yearly" {{ $filter == 'yearly' ? 'selected' : '' }}>Tahunan</option>
+          </select>
+        </div>
+        <!-- Elemen untuk menyimpan data -->
+        <canvas id="desaPrimaChart" height="150" 
+            data-labels="{{ implode(',', $labels) }}" 
+            data-data="{{ implode(',', $data) }}"></canvas>
+        </div>
+      </div>
+  </div>
+
+      <div class="col-md-5 grid-margin stretch-card">
+<div class="card">
+<div class="card-body">
+    <div class="d-flex justify-content-between">
+        <p class="card-title mb-10">Daftar Produk Prima</p>
+        <a href="{{ url('/kelolaproduk') }}" class="text-info">View all</a>
+    </div>
+    <div class="table-responsive" style="max-height: 200px; overflow-y: auto;">
+        <table id="example" class="display expandable-table" style="width:100%">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Produk</th>
+                </tr>
+            </thead>
+            <tbody>
+              @forelse($prima as $index => $item)
+                  <tr>
+                      <td>{{ $index + 1 }}</td>
+                      <td>{{ $item->nama_produk }}</td>
+                  </tr>
+              @empty
+                  <tr>
+                      <td colspan="2" class="text-center">Tidak ada produk yang tersedia.</td>
+                  </tr>
+              @endforelse
+          </tbody>
+
+        </table>
+    </div>
+</div>
+</div>
+</div>
+
+
+</div>
+<!-- content-wrapper ends -->
+<!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
     
 <!-- plugins:js -->
 <script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
@@ -810,6 +253,11 @@
 <!-- Custom js for this page-->
 <script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+<script src="{{ asset('admin/assets/js/datetime.js') }}"></script>
+<script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
+<script>
+    const dataDesa = @json($dataDesa);
+</script>
 <!-- End custom js for this page-->
 </body>
 </html>

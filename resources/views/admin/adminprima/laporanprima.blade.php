@@ -139,7 +139,7 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url('/laporanprima') }}">
                 <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Laporan Desa Preneur</span>
+                <span class="menu-title">Laporan Desa Prima</span>
               </a>
             </li>
         </nav>
@@ -194,19 +194,81 @@
         </div>
   </div>
 </div>
-<div class="col-md-8 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <p class="card-title">GrafikPenjualan</p>
-                      <a href="#" class="text-info">View all</a>
-                    </div>
-                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
-                    <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
-                    <canvas id="sales-chart"></canvas>
-                  </div>
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-title mb-0">Laporan Produk Prima</p>
+
+        <!-- Tampilkan pesan jika ada -->
+        @if(session('success'))
+          <div class="alert alert-success">
+            {{ session('success') }}
+          </div>
+        @elseif(session('error'))
+          <div class="alert alert-danger">
+            {{ session('error') }}
+          </div>
+        @endif
+
+        <div class="table-responsive">
+          <table class="table table-striped table-borderless">
+            <thead>
+              <tr>
+                <th>Nama Produk</th>
+                <th>Harga</th>
+                <th>Tanggal</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              @if($laporanPrima->isEmpty())
+                <tr>
+                  <td colspan="4" class="text-center">Tidak ada data laporan.</td>
+                </tr>
+              @else
+                @foreach($laporanPrima as $laporan)
+                <tr>
+                  <td>{{ $laporan->judul }}</td>
+                  <td class="font-weight-bold">Rp {{ number_format($laporan->total, 0, ',', '.') }}</td>
+                  <td>{{ \Carbon\Carbon::parse($laporan->tanggal)->format('d M Y') }}</td>
+                  <td class="font-weight-medium">
+                    @if($laporan->status === 'selesai')
+                      <div class="badge badge-success">Selesai</div>
+                    @elseif($laporan->status === 'pending')
+                      <div class="badge badge-warning">Pending</div>
+                    @else
+                      <div class="badge badge-danger">Dibatalkan</div>
+                    @endif
+                  </td>
+                </tr>
+                @endforeach
+              @endif
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Grafik Penjualan -->
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <p class="card-title">Grafik Penjualan</p>
+                    <a href="#" class="text-info">View all</a>
                 </div>
-              </div>
+                <p class="font-weight-500">
+                    The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc
+                </p>
+                <div id="sales-chart-legend" class="chartjs-legend mt-4 mb-2"></div>
+                <canvas id="sales-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
           <!-- partial -->

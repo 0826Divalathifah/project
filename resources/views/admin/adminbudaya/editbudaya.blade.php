@@ -44,35 +44,19 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
-              <div class="input-group">
-                <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                  <span class="input-group-text" id="search">
-                    <i class="icon-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-              </div>
-            </li>
-          </ul>
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
+        
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
             <span style="font-size: 16px;">Logout</span>
         </a>
     </div>
-</div>
-<li class="nav-item nav-settings d-none d-lg-flex">
+</div>    
+    <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
             <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
         </a>
@@ -133,8 +117,7 @@
                         <li class="breadcrumb-item"><a href="#"> Edit Budaya</a></li>
                     </ol>
                 </nav>
-
-                <div class="col-12 grid-margin stretch-card">
+    <div class="col-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Formulir Edit Budaya</h4>
@@ -156,7 +139,7 @@
             @endif
 
             {{-- Form untuk mengupdate budaya --}}
-            <form action="/admin/update-budaya/{{ $budaya->id }}" method="POST" enctype="multipart/form-data">
+            <form action="/updateBudaya/{{ $budaya->id }}" method="POST" enctype="multipart/form-data">
               @csrf
               @method('PUT')
 
@@ -193,8 +176,10 @@
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
                         <input type="text" name="harga_max" class="form-control rounded" value="{{ old('harga_max', $budaya->harga_max) }}" placeholder="Masukkan harga maksimum" oninput="formatCurrency(this)">
+                        
                     </div>
                 </div>
+
                 {{-- Link Youtube --}}
                 <div class="form-group">
                     <label for="link_youtube">Link Youtube</label>
@@ -206,13 +191,6 @@
                 <div class="form-group">
                     <label for="nomor_whatsapp">Nomor WhatsApp Aktif</label>
                     <input type="text" name="nomor_whatsapp" class="form-control" value="{{ old('nomor_whatsapp', $budaya->nomor_whatsapp) }}" placeholder="Masukkan Nomor WhatsApp" required>
-                </div>
-
-                {{-- Link Google Maps --}}
-                <div class="form-group">
-                    <label for="link_google_maps">Link Google Maps</label>
-                    <input type="url" name="link_google_maps" class="form-control" value="{{ old('link_google_maps', $budaya->link_google_maps) }}" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
-                    <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
                 </div>
 
                 {{-- Deskripsi --}}
@@ -227,9 +205,15 @@
 
                     <!-- Menampilkan Foto yang Sudah Ada (dengan opsi hapus) -->
                     @if ($budaya->foto_card)
+                    <div id="existing-photos" style="margin-bottom: 15px;">
                         <div class="photo-preview" style="display: inline-block; margin-right: 10px; position: relative;">
-                            <img src="{{ asset('uploads/budaya/' . $budaya->foto_card) }}" alt="Foto Card" width="150">
-                            <button type="button" class="btn-close remove-photo" aria-label="Close" style="position: absolute; top: 0; right: 0;" data-foto="{{ $budaya->foto_card }}"></button>
+                            <!-- Gambar diatur block untuk memastikan berada di bawah label -->
+                            <img src="{{ asset('storage/' . $budaya->foto_card) }}" alt="Foto Card" width="100" >
+                            <button type="button" class="btn-close remove-photo" aria-label="Close" 
+                                    style="position: absolute; top: 5px; right: 5px; background-color: white; border: none; border-radius: 50%; padding: 2px 6px; cursor: pointer; color: red;" 
+                                    data-foto="{{ $budaya->foto_card }}">
+                                &times;
+                            </button>
                             <input type="hidden" name="existing_photos[]" value="{{ $budaya->foto_card }}">
                         </div>
                     @endif
@@ -243,32 +227,37 @@
                         </span>
                     </div>
                 </div>
+
+                
                 {{-- Foto Slider --}}
                 <div class="form-group">
-                <label>Unggah Foto-Foto Kebudayaan</label>
+                    <label>Unggah Foto-Foto Kebudayaan</label>
 
-                <!-- Menampilkan Foto yang Sudah Ada (dengan opsi hapus) -->
-                @if (!empty($budaya->foto_slider) && is_array(json_decode($budaya->foto_slider, true)))
-                    <div id="existing-photos" style="margin-bottom: 15px;">
-                        @foreach (json_decode($budaya->foto_slider, true) as $foto)
-                            <div class="photo-preview" style="display: inline-block; margin-right: 10px; position: relative;">
-                                <img src="{{ asset('uploads/budaya/' . $foto) }}" alt="Foto Slider" width="100">
-                                <button type="button" class="btn-close remove-photo" aria-label="Close" style="position: absolute; top: 0; right: 0;" data-foto="{{ $foto }}"></button>
-                                <input type="hidden" name="existing_photos[]" value="{{ $foto }}">
-                            </div>
-                        @endforeach
+                    <!-- Menampilkan Foto yang Sudah Ada (dengan opsi hapus) -->
+                    @if (!empty($budaya->foto_slider) && is_array(json_decode($budaya->foto_slider, true)))
+                        <div id="existing-photos" style="margin-bottom: 15px;">
+                            @foreach (json_decode($budaya->foto_slider, true) as $foto)
+                                <div class="photo-preview" style="display: inline-block; margin-right: 10px; position: relative;">
+                                    <img src="{{ asset('storage/' . $foto) }}" alt="Foto Slider" width="100">
+                                    <button type="button" class="btn-close remove-photo" aria-label="Close" 
+                                            style="position: absolute; top: 5px; right: 5px; background-color: white; border: none; border-radius: 50%; padding: 2px 6px; cursor: pointer; color: red;"
+                                            data-foto="{{ $foto }}"></button>
+                                    <input type="hidden" name="existing_photos[]" value="{{ $foto }}">
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+
+                    <!-- Field untuk Upload Gambar Baru -->
+                    <input type="file" name="foto_slider[]" class="file-upload-default" multiple>
+                    <div class="input-group col-xs-12 d-flex align-items-center">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                        <span class="input-group-append ms-2">
+                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                        </span>
                     </div>
-                @endif
-
-                <!-- Field untuk Upload Gambar Baru -->
-                <input type="file" name="foto_slider[]" class="file-upload-default" multiple>
-                <div class="input-group col-xs-12 d-flex align-items-center">
-                    <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
-                    <span class="input-group-append ms-2">
-                        <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                    </span>
                 </div>
-            </div>
+
                 <button type="submit" class="btn btn-primary me-2">Submit</button>
                 <a href="{{ url('/kelolabudaya') }}" class="btn btn-light">Kembali</a>
             </form>

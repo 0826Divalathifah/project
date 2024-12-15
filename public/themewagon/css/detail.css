@@ -36,69 +36,68 @@
     border-radius: 10px;
 }
 
-/*detail produk*/
-body {
-    font-family: Arial, sans-serif;
-}
+/* Struktur Utama */
 .product-container {
     max-width: 500px;
     margin: auto;
     padding: 20px;
 }
+
 .product-title {
     font-size: 24px;
     font-weight: bold;
     color: #3e2e4f;
 }
+
 .product-price {
     color: #555;
     margin: 5px 0;
     font-size: 18px;
 }
+
 .product-description {
     font-size: 16px;
     margin-bottom: 15px;
     color: #666;
 }
+
 .input-container {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
+
 .input-container label {
     font-weight: bold;
     margin-right: 10px;
     width: 70px;
 }
-.input-container input,
-.input-container select {
+
+.input-container input {
     padding: 5px;
     font-size: 16px;
     flex: 1;
 }
+
+/* Kontainer tombol */
 .button-container {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 15px;
+    flex-direction: column; /* Menyusun tombol vertikal */
+    align-items: center; /* Memusatkan tombol */
+    gap: 10px; /* Jarak antar tombol */
+    margin-top: 10px;
 }
+
 .button-container button {
-    flex: 1;
     padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
+    font-size: 14px; /* Ukuran tombol lebih kecil */
+    width: 100%; /* Tombol memenuhi lebar kontainer */
+    max-width: 300px; /* Batas maksimum lebar tombol */
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
     color: white;
-}
-#detailBtn {
-    background-color: #8a2be2;
-}
-#whatsappBtn {
-    background-color: #007bff;
-}
-#detailBtn:disabled, #whatsappBtn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+    transition: background-color 0.3s ease;
 }
 
 /*corousel yang di detail produk*/
@@ -147,5 +146,41 @@ body {
     }
 }    
 
+/* Tombol Detail Produk */
+#detailBtn {
+    background-color: #007bff; /* Warna biru */
+    color: white; /* Warna teks putih */
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 5px; /* Sudut melengkung */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px; /* Jarak dari elemen sebelumnya */
+}
 
+/* Styling tombol WhatsApp */
+.whatsapp-container {
+    display: flex;
+    justify-content: center; /* Memusatkan tombol */
+    margin-top: 20px;
+}
 
+#whatsappBtn {
+    background-color: #1b5731; /* Warna hijau khas WhatsApp */
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#whatsappBtn:hover {
+    background-color: #20b358; /* Hijau lebih gelap saat hover */
+    transform: scale(1.05); /* Efek zoom saat hover */
+}

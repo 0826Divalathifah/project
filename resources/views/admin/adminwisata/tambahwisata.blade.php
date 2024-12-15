@@ -3,9 +3,8 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Kelurahan</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tambah Wisata</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -14,11 +13,12 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <!-- endinject -->
 
+
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/js/select.dataTables.min.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css') }}">
     <!-- End plugin css for this page -->
 
     <!-- inject:css -->
@@ -28,14 +28,15 @@
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}">
   </head>
   <body>
+    
   <div class="container-scroller">
 <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
+        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminwisata') }}" >
             <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminwisata') }}">
             <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
@@ -43,7 +44,7 @@
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="icon-menu"></span>
           </button>
-          <ul class="navbar-nav mr-lg-2">
+          <!--<ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
                 <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
@@ -54,16 +55,11 @@
                 <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
               </div>
             </li>
-          </ul>
+          </ul>-->
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -77,6 +73,7 @@
         </a>
     </li>
 </ul>
+
 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
     <span class="icon-menu"></span>
 </button>
@@ -114,7 +111,8 @@
             </li>-->
         </ul>
         </nav>
-        <div class="main-panel">
+
+    <div class="main-panel">
     <div class="content-wrapper">
     <div class="row">
           
@@ -128,11 +126,26 @@
 
     <div class="col-12 grid-margin stretch-card">
     <div class="card">
-    <form id="formTambahWisata" action="/tambahwisata" method="POST" enctype="multipart/form-data">
+    <form id="formTambahWisata" action="{{ url('/simpanWisata') }}" method="POST" enctype="multipart/form-data">
             @csrf 
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Wisata</h4>
                 <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+
+                {{-- Notifikasi berhasil atau error --}}
+                @if(session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <!-- Input Nama Wisata -->
                 <div class="form-group">
@@ -145,16 +158,15 @@
                     <label for="hargaWisata" class="form-label">Harga Tiket Masuk (opsional)</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaWisata" name="harga" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)">
+                        <input type="text" class="form-control rounded" id="hargaWisata" name="harga_masuk" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)">
                     </div>
                 </div>
 
-                <!-- Input URL Google Maps -->
+                <!-- Input Alamat -->
                 <div class="form-group">
-                    <label for="mapsLink">Link Google Maps</label>
-                    <input type="url" class="form-control" id="mapsLink" name="maps_link" placeholder="Masukkan Link Google Maps" pattern="https://.*" required>
-                    <small class="form-text text-muted">Masukkan link Google Maps yang valid, mulai dengan "https://".</small>
-                </div>
+                  <label for="alamat">Alamat</label>
+                  <input type="text" class="form-control" id="alamat" name="alamat" value="{{ old('alamat') }}" placeholder="Masukkan alamat wisata" required>
+              </div>
 
                 <!-- Input Deskripsi -->
                 <div class="form-group">
@@ -174,6 +186,18 @@
                     </div>
                 </div>
 
+                <!-- Input Foto Brosur -->
+                <div class="form-group">
+                    <label>Unggah Foto Brosur Wisata (Optional)</label>
+                    <input type="file" name="brosur" class="file-upload-default" required>
+                    <div class="input-group col-xs-12 d-flex align-items-center">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto brosur jika ada" >
+                        <span class="input-group-append ms-2">
+                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                        </span>
+                    </div>
+                </div>
+
                 <!-- Input Foto Wisata -->
                 <div class="form-group">
                     <label>Unggah Foto-Foto Wisata</label>
@@ -185,30 +209,31 @@
                         </span>
                     </div>
                 </div>
+
                 <!-- Input Dinamis untuk Hari dan Jam Kunjung -->
-              <div class="form-group">
-                  <label>Waktu Kunjung</label>
-                  <div id="waktuKunjungWrapper">
-                      <div class="input-group mb-3 waktu-kunjung">
-                          <select class="form-control me-2" name="hari[]" required>
-                              <option value="">Pilih Hari</option>
-                              <option value="Setiap Hari">Setiap Hari</option>
-                              <option value="Senin">Senin</option>
-                              <option value="Selasa">Selasa</option>
-                              <option value="Rabu">Rabu</option>
-                              <option value="Kamis">Kamis</option>
-                              <option value="Jumat">Jumat</option>
-                              <option value="Sabtu">Sabtu</option>
-                              <option value="Minggu">Minggu</option>
-                          </select>
-                          <input type="time" class="form-control me-2" name="jam_buka[]" required>
-                          <span class="input-group-text">s/d</span>
-                          <input type="time" class="form-control ms-2" name="jam_tutup[]" required>
-                          <button type="button" class="btn btn-danger btn-sm ms-2 removeWaktuKunjung">Hapus</button>
-                      </div>
-                  </div>
-                  <button type="button" class="btn btn-inverse-primary btn-fw" id="addWaktuKunjung">Tambah Waktu Kunjung</button>
-              </div>
+                <div class="form-group">
+                    <label>Waktu Kunjung</label>
+                    <div id="waktuKunjungWrapper">
+                        <div class="input-group mb-3 waktu-kunjung">
+                            <select class="form-control me-2" name="hari[]" required>
+                                <option value="">Pilih Hari</option>
+                                <option value="Setiap Hari">Setiap Hari</option>
+                                <option value="Senin">Senin</option>
+                                <option value="Selasa">Selasa</option>
+                                <option value="Rabu">Rabu</option>
+                                <option value="Kamis">Kamis</option>
+                                <option value="Jumat">Jumat</option>
+                                <option value="Sabtu">Sabtu</option>
+                                <option value="Minggu">Minggu</option>
+                            </select>
+                            <input type="time" class="form-control me-2" name="jam_buka[]" required>
+                            <span class="input-group-text">s/d</span>
+                            <input type="time" class="form-control ms-2" name="jam_tutup[]" required>
+                            <button type="button" class="btn btn-danger btn-sm ms-2 removeWaktuKunjung">Hapus</button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-2" id="addWaktuKunjung">Tambah Waktu Kunjung</button>
+                </div>
               
                 <!-- Submit Button -->
                 <button type="submit" id="submitWisata" class="btn btn-primary me-2">Submit</button>

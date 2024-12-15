@@ -4,19 +4,144 @@ namespace App\Http\Controllers;
 
 use App\Models\Budaya;
 use App\Models\Agenda;
-use App\Models\HomepageBudaya;
+use App\Models\Homepage;
+use App\Models\Visit;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 
 class AdminDesaBudayaController extends Controller
 {
-    // Menampilkan dashboard
-    public function showDashboard()
+
+
+
+    public function showDashboard(Request $request)
     {
-        return view('admin.adminbudaya.adminbudaya');
+        // Total budaya di database
+        $totalBudaya = Budaya::count(); // Menghitung jumlah budaya
+
+        // Total agenda di database
+        $totalAgenda = Agenda::count(); // Menghitung jumlah agenda
+
+        // Total kunjungan keseluruhan untuk Desa Budaya
+        $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count(); // Menghitung jumlah kunjungan
+
+        // Agenda yang akan datang
+        $agendaComing = Agenda::where('tanggal_acara', '>=', Carbon::now()) // Mengambil agenda yang tanggal acara-nya lebih besar dari atau sama dengan sekarang
+            ->orderBy('tanggal_acara', 'asc')
+            ->get();
+
+        // Data agenda per bulan (untuk chart agenda bulanan)
+        $month = $request->input('month'); // Ambil bulan dari query string
+        $year = $request->input('year', date('Y')); // Ambil tahun, default ke tahun sekarang
+
+        // Data agenda berdasarkan filter bulan dan tahun
+        $agendaQuery = Agenda::query();
+
+        if ($month) {
+            $agendaQuery->whereMonth('created_at', $month);
+        }
+
+        if ($year) {
+            $agendaQuery->whereYear('created_at', $year);
+        }
+
+        $agendaPerMonth = $agendaQuery->selectRaw('MONTH(created_at) as month, COUNT(*) as total_agenda')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        $agendaLabels = $agendaPerMonth->pluck('month')->map(fn($m) => Carbon::create()->month($m)->format('F'));
+        $agendaTotals = $agendaPerMonth->pluck('total_agenda');
+
+        // Daftar budaya
+        $budaya = Budaya::all(); // Mengambil semua data budaya (tidak digunakan langsung untuk total)
+
+        // Mendapatkan nama desa dari URL, default ke 'Desa Budaya'
+        $desaName = $request->get('desa', 'Desa Budaya');
+
+        // Filter (default: daily)
+        $filter = $request->get('filter', 'daily');
+
+        $data = [];
+        $labels = [];
+
+        if ($filter === 'daily') {
+            // Contoh untuk filter harian
+            $dates = collect(range(0, 6))->map(function ($day) {
+                return now()->subDays($day)->format('Y-m-d');
+            })->reverse();
+
+            foreach ($dates as $date) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereDate('created_at', $date)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = $date;
+            }
+        } elseif ($filter === 'weekly') {
+            // Contoh untuk filter mingguan
+            $weeks = collect(range(0, 3))->map(function ($week) {
+                return now()->subWeeks($week)->format('W');
+            })->reverse();
+
+            foreach ($weeks as $week) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereRaw('WEEK(created_at) = ?', [$week])
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = 'Minggu ' . ($weeks->search($week) + 1);
+            }
+        } elseif ($filter === 'monthly') {
+            // Contoh untuk filter bulanan
+            $months = range(1, 12);
+
+            foreach ($months as $month) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', now()->year)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = Carbon::create()->month($month)->format('M');
+            }
+        } elseif ($filter === 'yearly') {
+            // Contoh untuk filter tahunan
+            $years = Visit::selectRaw('YEAR(created_at) as year')
+                ->distinct()
+                ->pluck('year');
+
+            foreach ($years as $year) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereYear('created_at', $year)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = $year;
+            }
+        }
+        // Kirim data ke view
+        return view('admin.adminbudaya.adminbudaya', compact(
+            'totalBudaya',
+            'totalAgenda',
+            'totalVisitsDesaBudaya',
+            'agendaComing', // Agenda yang akan datang
+            'agendaLabels',
+            'agendaTotals',
+            'year',
+            'month',
+            'budaya', // Data budaya jika diperlukan untuk ditampilkan
+            'desaName', 
+            'data',
+            'labels',
+            'filter'
+        ));
     }
+
 
     public function kelolaBudaya()
     {
@@ -41,37 +166,45 @@ class AdminDesaBudayaController extends Controller
             'harga_max' => 'nullable|numeric',
             'link_youtube' => 'nullable|url|max:255',
             'nomor_whatsapp' => 'required|string|max:15',
-            'link_google_maps' => 'nullable|url|max:255',
             'deskripsi' => 'required|string',
             'foto_card' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
             'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
 
+        // Konversi link YouTube ke format embed jika ada
+        $link_youtube = $request->input('link_youtube');
+        if ($link_youtube) {
+            if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/', $link_youtube, $matches)) {
+                $validatedData['link_youtube'] = 'https://www.youtube.com/embed/' . $matches[1];
+            }
+        }
+
         // Proses upload foto_card
-        $fotoCardPath = $request->file('foto_card')->store('uploads/budaya', 'public');
-        $validatedData['foto_card'] = $fotoCardPath;
+        $validatedData['foto_card'] = $request->file('foto_card')->store('uploads/budaya', 'public');
 
         // Proses upload foto_slider
-        $fotoSliderPaths = [];
         if ($request->hasFile('foto_slider')) {
             foreach ($request->file('foto_slider') as $foto) {
                 $fotoSliderPaths[] = $foto->store('uploads/budaya', 'public');
             }
+            $validatedData['foto_slider'] = json_encode($fotoSliderPaths);
+        } else {
+            $validatedData['foto_slider'] = json_encode([]);
         }
-        $validatedData['foto_slider'] = json_encode($fotoSliderPaths);
 
         // Simpan data ke database
         Budaya::create($validatedData);
 
-        return redirect()->back()->with('success', 'Data budaya berhasil ditambahkan');
+        return redirect()->to('/kelolabudaya')->with('success', 'Data budaya berhasil ditambahkan');
     }
+
 
     // Menampilkan form edit budaya
     public function editBudaya($id)
     {
         $budaya = Budaya::findOrFail($id); 
         return view('admin.adminbudaya.editbudaya', compact('budaya'));
-    }
+    }   
 
     // Memperbarui budaya
     public function updateBudaya(Request $request, $id)
@@ -85,7 +218,6 @@ class AdminDesaBudayaController extends Controller
             'harga_max' => 'nullable|numeric',
             'link_youtube' => 'nullable|url|max:255',
             'nomor_whatsapp' => 'required|string|max:15',
-            'link_google_maps' => 'nullable|url|max:255',
             'deskripsi' => 'required|string',
             'foto_card' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
@@ -96,6 +228,7 @@ class AdminDesaBudayaController extends Controller
         }
 
         $budaya = Budaya::findOrFail($id);
+
         // Update foto card
         if ($request->hasFile('foto_card')) {
             if ($budaya->foto_card && Storage::disk('public')->exists($budaya->foto_card)) {
@@ -128,22 +261,32 @@ class AdminDesaBudayaController extends Controller
             }
         }
 
-        // Update data di database
-        $budaya->update([
-            'nama_budaya' => $request->nama_budaya,
-            'nama_desa_budaya' => $request->nama_desa_budaya,
-            'alamat' => $request->alamat,
-            'harga_min' => $request->harga_min,
-            'harga_max' => $request->harga_max,
-            'link_youtube' => $request->link_youtube,
-            'nomor_whatsapp' => $request->nomor_whatsapp,
-            'link_google_maps' => $request->link_google_maps,
-            'deskripsi' => $request->deskripsi,
-            'foto_slider' => json_encode(array_values($fotoSliderPaths)),
-        ]);
+        // Konversi link YouTube ke format embed jika tersedia
+        $link_youtube = $request->input('link_youtube');
+        if ($link_youtube) {
+            if (preg_match('/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/', $link_youtube, $matches)) {
+                $link_youtube = 'https://www.youtube.com/embed/' . $matches[1];
+            } elseif (preg_match('/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/', $link_youtube, $matches)) {
+                $link_youtube = 'https://www.youtube.com/embed/' . $matches[1];
+            }
+        }
 
-        return redirect()->back()->with('success', 'Data budaya berhasil diperbarui');
-    }
+    // Update data di database
+    $budaya->update([
+        'nama_budaya' => $request->nama_budaya,
+        'nama_desa_budaya' => $request->nama_desa_budaya,
+        'alamat' => $request->alamat,
+        'harga_min' => $request->harga_min,
+        'harga_max' => $request->harga_max,
+        'link_youtube' => $link_youtube,
+        'nomor_whatsapp' => $request->nomor_whatsapp,
+        'deskripsi' => $request->deskripsi,
+        'foto_slider' => json_encode(array_values($fotoSliderPaths)),
+    ]);
+
+    return redirect()->back()->with('success', 'Data budaya berhasil diperbarui');
+}
+
 
     // Menghapus budaya
     public function hapusBudaya($id)
@@ -200,6 +343,7 @@ class AdminDesaBudayaController extends Controller
  
          return redirect()->back()->with('success', 'Agenda berhasil ditambahkan');
      }
+ 
      // Menampilkan form edit agenda
      public function editAgenda($id)
      {
@@ -233,29 +377,34 @@ class AdminDesaBudayaController extends Controller
     }
  
      // Menghapus agenda
-    public function deleteAgenda($id)
+     public function hapusAgenda($id)
     {
-        $agenda = Agenda::findOrFail($id);
-        $agenda->delete();
+        // Cari dan hapus agenda berdasarkan ID
+        Agenda::findOrFail($id)->delete();
 
-        return redirect()->to('/kelolaagenda')->with('success', 'Agenda berhasil dihapus');
+        // Redirect dengan pesan sukses
+        return redirect()->back()->with('success', 'Agenda berhasil dihapus.');
     }
+
+         
+    // Menampilkan halaman kelola homepage budaya
     public function kelolaHomepage()
     {
-        $homepageData = HomepageBudaya::first();
+        $homepageData = Homepage::where('desa_name', 'budaya')->first();
         return view('admin.adminbudaya.kelolahomepagebudaya', compact('homepageData'));
     }
 
-    public function editHomepageBudaya()
+    // Mengupdate banner gambar untuk homepage budaya
+    public function updateBannerBudaya(Request $request)
     {
-        $homepageData = HomepageBudaya::first();
-        return view('admin.edit_homepagebudaya', compact('homepageData'));
-    }
+        // Ambil data homepage budaya berdasarkan desa_name 'budaya'
+        $homepageData = Homepage::where('desa_name', 'budaya')->first();
 
-    public function updateHomepageBudaya(Request $request)
-    {
-        // Mengambil data pertama atau membuat baru jika belum ada
-        $homepageData = HomepageBudaya::firstOrNew();
+        // Jika data tidak ditemukan, buat data baru untuk desa budaya
+        if (!$homepageData) {
+            $homepageData = new Homepage;
+            $homepageData->desa_name = 'budaya'; // Tentukan desa yang sedang diproses
+        }
 
         // Mengelola upload gambar banner jika ada
         if ($request->hasFile('banner_image')) {
@@ -263,28 +412,49 @@ class AdminDesaBudayaController extends Controller
             if ($homepageData->gambar_banner && Storage::disk('public')->exists($homepageData->gambar_banner)) {
                 Storage::disk('public')->delete($homepageData->gambar_banner);
             }
-            $homepageData->gambar_banner = $request->file('banner_image')->store('uploads', 'public');
+
+            // Simpan gambar baru ke folder 'uploads/budaya'
+            $bannerImageName = $request->file('banner_image')->store('uploads/budaya', 'public');
+            $homepageData->gambar_banner = $bannerImageName;
         }
 
+        // Simpan perubahan ke dalam database
+        $homepageData->save();
+
+        // Redirect kembali dengan pesan sukses
+        return redirect()->back()->with('success', 'Banner Desa Budaya berhasil diperbarui');
+    }
+
+    // Mengupdate card welcome untuk homepage budaya
+    public function updateWelcomeCard(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'deskripsi_welcome' => 'required|string|max:500',
+            'gambar_welcome' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        // Ambil atau buat data homepage budaya
+        $homepageData = Homepage::where('desa_name', 'budaya')->firstOrNew(['desa_name' => 'budaya']);
+
         // Mengelola upload gambar welcome jika ada
-        if ($request->hasFile('welcome_image')) {
+        if ($request->hasFile('gambar_welcome')) {
             // Hapus gambar lama jika ada
             if ($homepageData->gambar_welcome && Storage::disk('public')->exists($homepageData->gambar_welcome)) {
                 Storage::disk('public')->delete($homepageData->gambar_welcome);
             }
-            $homepageData->gambar_welcome = $request->file('welcome_image')->store('uploads', 'public');
+
+            // Simpan gambar baru ke folder 'uploads/budaya'
+            $homepageData->gambar_welcome = $request->file('gambar_welcome')->store('uploads/budaya', 'public');
         }
 
         // Menyimpan deskripsi welcome
-        $homepageData->deskripsi_welcome = $request->welcome_description;
+        $homepageData->deskripsi = $request->deskripsi_welcome;
         $homepageData->save();
 
-        return redirect()->back()->with('success', 'Data berhasil disimpan');
-    }   
-
-     public function laporanBudaya()
-     {
-         return view('admin.adminbudaya.laporanbudaya');
-     }
+        // Redirect kembali dengan data terbaru
+        return redirect()->back()->with('success', 'Card Selamat Datang berhasil diperbarui');
+    }
  
+    
 }

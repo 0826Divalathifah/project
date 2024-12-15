@@ -1,85 +1,87 @@
-$(document).ready(function(){
-    
-    (function($) {
-        "use strict";
+document.addEventListener('DOMContentLoaded', function () {
+    const submitButton = document.getElementById('submitFeedback');
+    console.log(submitButton);
+    const contactForm = document.getElementById('contactForm');
 
-    
-    jQuery.validator.addMethod('answercheck', function (value, element) {
-        return this.optional(element) || /^\bcat\b$/.test(value)
-    }, "type the correct answer -_-");
+    submitButton.addEventListener('click', function (event) {
+         console.log('Tombol diklik');
+        // Mencegah reload halaman
+        event.preventDefault();
 
-    // validate contactForm form
-    $(function() {
-        $('#contactForm').validate({
-            rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                subject: {
-                    required: true,
-                    minlength: 4
-                },
-                number: {
-                    required: true,
-                    minlength: 5
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                message: {
-                    required: true,
-                    minlength: 20
-                }
+        // Ambil nilai input form
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        console.log('Name:', name);
+        console.log('Email:', email);
+        console.log('Message:', message);
+
+        // Validasi hanya untuk kolom message (wajib diisi)
+        if (!message) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Pesan Kosong!',
+                text: 'Harap isi pesan sebelum mengirim!',
+            });
+            return;
+        }
+
+        // Validasi email jika diisi
+        if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Email Tidak Valid!',
+                text: 'Mohon masukkan alamat email yang valid!',
+            });
+            return;
+        }
+
+        // Siapkan data untuk dikirim
+        const formData = new FormData(contactForm);
+        // Debugging: Cek data sebelum dikirim
+            console.log(formData.get('name'));
+            console.log(formData.get('email'));
+            console.log(formData.get('message'));
+
+        // Kirim data ke server menggunakan fetch
+        fetch('/simpanFeedback', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+                'Accept': 'application/json',
             },
-            messages: {
-                name: {
-                    required: "come on, you have a name, don't you?",
-                    minlength: "your name must consist of at least 2 characters"
-                },
-                subject: {
-                    required: "come on, you have a subject, don't you?",
-                    minlength: "your subject must consist of at least 4 characters"
-                },
-                number: {
-                    required: "come on, you have a number, don't you?",
-                    minlength: "your Number must consist of at least 5 characters"
-                },
-                email: {
-                    required: "no email, no message"
-                },
-                message: {
-                    required: "um...yea, you have to write something to send this form.",
-                    minlength: "thats all? really?"
-                }
-            },
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    type:"POST",
-                    data: $(form).serialize(),
-                    url:"contact_process.php",
-                    success: function() {
-                        $('#contactForm :input').attr('disabled', 'disabled');
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor','default');
-                            $('#success').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#success').modal('show');
-                        })
-                    },
-                    error: function() {
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $('#error').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#error').modal('show');
-                        })
-                    }
-                })
-            }
+            body: formData,
         })
-    })
-        
- })(jQuery)
-})
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Tampilkan pesan sukses
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Terima Kasih!',
+                        text: 'Pesan Anda telah berhasil dikirim!',
+                    });
+
+                    // Reset form setelah sukses
+                    contactForm.reset();
+                } else {
+                    // Tampilkan pesan error dari server
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops!',
+                        text: 'Terjadi kesalahan. Mohon coba lagi.',
+                    });
+                }
+            })
+            .catch(error => {
+                // Tangani error dari server
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: 'Terjadi kesalahan server. Mohon coba lagi.',
+                });
+                console.error('Error:', error);
+            });
+    });
+});

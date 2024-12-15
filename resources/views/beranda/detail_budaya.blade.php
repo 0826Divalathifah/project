@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html class="no-js" lang="zxx">
 <head>
     <meta charset="utf-8">
@@ -26,24 +27,24 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/calendar.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/whatsapp.css') }}">
-    
-    
-    
+
 </head>
+
 <body class="full-wrapper">
     <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="">
+                    <div class="preloader-img pere-text">
+                        <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Preloader Start -->
-<header>
+    <!-- Preloader end -->
+
+    <header>
     <!-- Header Start -->
     <div class="header-area">
         <div class="main-header header-sticky">
@@ -51,24 +52,25 @@
                 <div class="menu-wrapper d-flex align-items-center justify-content-between">
                     <div class="header-left d-flex align-items-center">
                         <!-- Logo -->
-                        <!-- Logo -->
                         <div class="logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
-                                </a></div>
+                            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                            </a>
+                        </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="{{ url('/') }}">Beranda</a></li>
-                                    <li><a href="#">Desa Mandiri Budaya</a>
+                                    <li>
+                                        <a href="#">Desa Mandiri Budaya</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ url('/desabudaya') }}">Desa Budaya </a></li>
+                                            <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
                                             <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
                                             <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
                                             <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
                                         </ul>
-                                    <li>   
+                                    </li>  
                                     <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
                                     <li><a href="{{ url('/contact') }}">Kontak</a></li>
                                 </ul>
@@ -82,7 +84,7 @@
                             <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <!-- Search Box -->
+                        <!-- Search Box 
                         <div class="search d-none d-md-block">
                             <ul class="d-flex align-items-center">
                                 <li class="mr-15">
@@ -91,7 +93,7 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
@@ -101,97 +103,135 @@
                 </div>
             </div>
         </div>
-        <!-- Header End -->
-    </header>
-    <!-- header end -->
-    <main>
-       <!-- listing Area Start -->
-       <div class="category-area">
-            <div class="container">
-            <div class="row">
+    </div>
+    <!-- Header End -->
+</header>
+
+
+<main>
+    <!-- listing Area Start -->
+        <div class="container">
+        <div class="category-area">
+        <div class="row">
+
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-
-    <div class="banner-container">
-    @if(isset($homepageData->gambar_banner))
-        <img src="{{ asset('storage/' . $homepageData->gambar_banner) }}" alt="Banner" class="banner-image">
-    @else
-        <!-- Gambar default jika gambar_banner tidak tersedia -->
-        <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
-    @endif
-        <div class="banner-overlay"></div> <!-- Overlay -->
-        <div class="banner-text">Detail Budaya</div> <!-- Teks di atas gambar -->
-
-        <!-- breadcrumb Start-->
-        <div class="breadcrumb">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="#">Detail budaya</a></li>
-                </ol>
-            </nav>
-        </div>
-    </div>      
-       
-    <div class="container">
+            <div class="banner-container">
+                <!-- Mobile Device Show Menu-->
+                <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
+                @if(isset($homepageData->gambar_banner))
+                    <img src="{{ asset('storage/' . $homepageData->gambar_banner) }}" alt="Banner" class="banner-image">
+                @else
+                <!-- Gambar default jika gambar_banner tidak tersedia -->
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                    @endif
+                <div class="banner-overlay"></div> <!-- Overlay -->
+                <div class="banner-text">Detail Budaya</div> <!-- Teks di atas gambar -->
+                    
+                <!-- breadcrumb Start-->
+                    <div class="breadcrumb">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
+                                <li class="breadcrumb-item"><a href="#">Detail budaya</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>  
+                </div>    
+    
+    <div class="container-fluid">
     <div class="row">
-
         <!-- Bagian Video -->
-            <div class="col-lg-8">
-                <div class="video-container">
-                    @if(isset($embed_link) && !empty($embed_link))
-                        <iframe src="{{ $embed_link }}"
+        <div class="col-lg-8">
+            <div class="video-container">
+                @if(isset($embed_youtube_link) && !empty($embed_youtube_link))
+                    <iframe src="{{ $embed_youtube_link }}"
                             title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen
-                            style="width: 100%; height: 370px;">
-                        </iframe>
-                    @else
-                        <p>Video tidak tersedia.</p>
-                    @endif
-                </div>
-
-        <!-- Carousel Slider di Sebelah Kiri dengan 4 Foto per Slide -->
-        <div class="col-lg-12">
-        <div id="carouselExampleIndicators" class="carousel slide mt-4" data-bs-ride="carousel" style="width: 100%; margin: 0 auto;">
-            <div class="carousel-inner">
-                @php
-                    $fotoSlider = $budaya->foto_slider ?? []; // Pastikan foto_slider sudah dalam bentuk array
-                @endphp
-                @if (!empty($fotoSlider))
-                    @foreach ($fotoSlider as $index => $foto)
-                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                            <div class="d-flex justify-content-center">
-                                <img src="{{ asset('storage/' . $foto) }}" alt="Foto Slider" style="width: 80%; height: 150px; object-fit: cover; margin: 0 10px;">
-                            </div>
-                        </div>
-                    @endforeach
+                            style="width: 100%; height: 370px; object-fit: cover;">
+                    </iframe>
                 @else
-                    <p>Tidak ada foto slider yang tersedia.</p>
+                    <p>Video tidak tersedia.</p>
                 @endif
             </div>
 
-                <!-- Tambahkan navigasi carousel -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    </button>
+            <!-- Carousel Slider -->
+            <div class="row mt-4">
+                <div class="col-lg-12">
+                    <div id="photoGallery" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @php
+                                $fotoSlider = $budaya->foto_slider ?? [];
+                            @endphp
+                            @if (!empty($fotoSlider))
+                                @foreach (array_chunk($fotoSlider, 3) as $index => $fotoGroup)
+                                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                        <div class="row">
+                                            @foreach ($fotoGroup as $foto)
+                                                <div class="col-4">
+                                                    <img src="{{ asset('storage/' . $foto) }}" alt="Foto Slider" class="d-block w-100" style="height: 300px; object-fit: cover;">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p class="text-center">Tidak ada foto slider yang tersedia.</p>
+                            @endif
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#photoGallery" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#photoGallery" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            </div>
-        <!-- Deskripsi di Bawah Carousel -->
-        <div class="description mt-4">
-            <h2>Description</h2>
-            <p>{{ $budaya->deskripsi }}</p> <!-- Menampilkan deskripsi dari database -->
+
+            <!-- Kisaran Harga -->
+            @if(!empty($budaya->harga_min) || !empty($budaya->harga_max))
+                <div class="price-range mt-5">
+                    <h2>Kisaran Harga</h2>
+                    <p>
+                        @if(!empty($budaya->harga_min) && !empty($budaya->harga_max))
+                            Rp {{ number_format($budaya->harga_min, 0, ',', '.') }} - Rp {{ number_format($budaya->harga_max, 0, ',', '.') }}
+                        @elseif(!empty($budaya->harga_min))
+                            Mulai dari Rp {{ number_format($budaya->harga_min, 0, ',', '.') }}
+                        @elseif(!empty($budaya->harga_max))
+                            Hingga Rp {{ number_format($budaya->harga_max, 0, ',', '.') }}
+                        @endif
+                    </p>
+                </div>
+            @endif
+
+            <!-- Deskripsi -->
+            @if(!empty($budaya->deskripsi))
+                <div class="description mt-5">
+                    <h2>Description</h2>
+                    <p>{{ $budaya->deskripsi }}</p>
+                </div>
+            @else
+                <div class="description mt-5">
+                    <p>Deskripsi tidak tersedia.</p>
+                </div>
+            @endif
         </div>
-    </div>
-    <!-- Kalender Jadwal -->
-    <div class="col-lg-4">
-        <div class="container mt-4">
+
+        <!-- Kalender Jadwal -->
+        <div class="col-lg-4 col-md-12">
             <div id="calendar-container" class="card p-4 shadow-sm">
                 <div class="calendar-navigation d-flex justify-content-between align-items-center mb-3">
                     <button id="prev-month" class="btn btn-outline-secondary btn-sm">&lsaquo;&lsaquo;</button>
@@ -200,16 +240,16 @@
                 </div>
 
                 <div id="calendar" class="row g-2"></div>
-                
-                <!-- Keterangan di bawah kalender -->
+
+                <!-- Detail Jadwal di dalam kotak kalender -->
                 <div id="event-description" class="mt-4 p-3 bg-light border rounded shadow-sm">
                     <h5>Detail Jadwal:</h5>
                     <p id="event-detail" class="text-muted">Klik pada tanggal yang memiliki tanda (*) untuk melihat detail acara.</p>
                 </div>
             </div>
 
-            <!-- Tombol Pesan Sekarang -->
-            <button id="pesanSekarangBtn" style="background-color: green; color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; margin-bottom: 10px;">
+            <!-- Tombol Pesan Sekarang dengan lebar penuh -->
+            <button id="pesanSekarangBtn" style="background-color: green; color: white; border: none; width: 100%; padding: 10px 20px; font-size: 16px; cursor: pointer; border-radius: 5px; margin-top: 20px;">
                 Pesan Sekarang
             </button>
 
@@ -217,7 +257,6 @@
             <div id="chatBox" style="display: none; margin-top: 20px; border: 1px solid #ddd; padding: 20px; border-radius: 10px; position: relative; width: 300px;">
                 <div id="chatHeader" style="display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="margin: 0;">Kirim Pesanan Anda!</h3>
-                    <!-- Tombol Close -->
                     <span id="closeChat" style="cursor: pointer; font-size: 20px; font-weight: bold; color: red;">&times;</span>
                 </div>
                 <textarea id="chatInput" placeholder="Ketik pesan disini" style="width: 100%; padding: 10px; border-radius: 5px; margin-bottom: 10px;"></textarea>
@@ -226,52 +265,37 @@
                 </button>
             </div>
 
-        <!-- Bagian Peta di Bawah Form -->
-        <div class="map mt-4">
-            <h2>Lokasi Kami</h2>
-            @if(isset($embed_map_link) && !empty($embed_map_link))
-                <iframe src="{{ $embed_map_link }}"
-                        width="100%" 
-                        height="250" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy">
-                </iframe>
-            @else
-                <p>Lokasi tidak tersedia.</p>
-            @endif
         </div>
-    </div>
     </div>
 </div>
 
 <style>
-    .video-container {
-        margin-bottom: 20px;
-    }
-    .description {
-        margin-top: 20px;
-    }
-    .form-group {
-        margin-bottom: 15px;
-    }
-    .btn-primary {
-        background-color: #9F78FF;
-        border: none;
-        padding: 20px 20px;
-        border-radius: 5px;
-        color: white;
-        cursor: pointer;
-    }
-    .btn-primary:hover {
-        background-color: #8764db;
-    }
+.video-container {
+    margin-bottom: 20px;
+}
+.description {
+    margin-top: 20px;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.btn-primary {
+    background-color: #9F78FF;
+    border: none;
+    padding: 20px 20px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+.btn-primary:hover {
+    background-color: #8764db;
+}
 </style>
 
-        <!--  Details End -->
+    <!--  Details End -->
 
 
-    </main>
+</main>
 
     <footer>
     <!-- Footer Start -->
@@ -318,7 +342,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -357,7 +381,6 @@
     </div>
 </div>
 
-<!-- Search model end -->
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
@@ -409,7 +432,7 @@
 <script src="{{ asset('themewagon/js/mail-script.js') }}"></script>
 <script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script>
 
-<!-- Jquery Plugins, main Jquery -->    
+<!-- Jquery Plugins, main Jquery -->	
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>
 <script src="{{ asset('themewagon/js/main.js') }}"></script>
 

@@ -322,4 +322,3 @@ function updateCarousel() {
     const wrapper = document.querySelector('.carousel-wrapper'); // Mengambil wrapper carousel
     wrapper.style.transform = `translateX(-${currentSlide * 100}%)`; // Menggeser posisi wrapper
 }
-

@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('themewagon/css/detail.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('themewagon/css/search.css') }}">
     
     
     
@@ -76,23 +76,37 @@
                         </div>
                     </div>
                     <div class="header-right1 d-flex align-items-center">
-                        <!-- Social -->
-                        <div class="header-social d-none d-md-block">
-                            <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
-                            <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-                        </div>
-                        <!-- Search Box -->
-                        <div class="search d-none d-md-block">
-                            <ul class="d-flex align-items-center">
-                                <li class="mr-15">
-                                    <div class="nav-search search-switch">
-                                        <i class="ti-search"></i>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                    <!-- Social -->
+                    <div class="header-social d-none d-md-block">
+                        <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                        <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                     </div>
+
+                    <!-- Search Box 
+                    <div class="search d-none d-md-block">
+                        <ul class="d-flex align-items-center">
+                            <li class="mr-15">
+                                <div class="nav-search search-switch">
+                                    <i class="ti-search"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>-->
+                </div>
+
+                <!-- Hidden Search Form -->
+                <div id="search-container" class="d-none mt-3">
+                    <div class="input-group" style="max-width: 300px; margin: 0 auto;">
+                        <input type="text" id="search-input" class="form-control" placeholder="Cari kata..." aria-label="Search">
+                        <button id="search-btn" class="btn btn-primary ml-2">Cari</button>
+                    </div>
+                    <div class="navigation-buttons mt-2 text-center">
+                        <button id="prev-result" class="btn btn-sm btn-outline-secondary">&uarr; Sebelumnya</button>
+                        <button id="next-result" class="btn btn-sm btn-outline-secondary">&darr; Berikutnya</button>
+                    </div>
+                </div>
+
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
@@ -104,7 +118,7 @@
         <!-- Header End -->
     </header>
     <!-- header end -->
-    <main>
+    <main id="content">
        <!-- listing Area Start -->
        <div class="category-area">
             <div class="container">
@@ -115,9 +129,25 @@
         
 
         <div class="banner-container">
+            <!-- Mobile Device Show Menu-->
+            <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
             <div class="banner-overlay"></div>
             <div class="banner-text">Detail Wisata</div>
 
+            @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                    <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
+                
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
                 <nav aria-label="breadcrumb">
@@ -135,7 +165,13 @@
         <div class="col-md-6">
             <!-- Gambar Wisata -->
             <div class="detail-img">
-                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Wisata Alam" class="img-fluid rounded">
+                @if(!empty($wisata->foto_card))
+                    <!-- Jika ada foto pada database -->
+                    <img src="{{ asset('storage/' . $wisata->foto_card) }}" alt="{{ $wisata->nama_wisata }}" class="img-fluid rounded">
+                @else
+                    <!-- Jika foto tidak tersedia, gunakan gambar default -->
+                    <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" alt="Gambar Tidak Tersedia" class="img-fluid rounded">
+                @endif
             </div>
         </div>
         <div class="col-md-6">
@@ -145,93 +181,89 @@
                 {{ $wisata->deskripsi }}
             </p>
     
-        <!-- Informasi Harga -->
-        <h4 class="mt-4">Harga Masuk</h4>
-        <p class="lead">
-            Rp {{ number_format($wisata->harga_masuk, 0, ',', '.') }} / orang
-        </p>
+            <!-- Informasi Harga -->
+            <h4 class="mt-4">Harga Masuk</h4>
+            <p class="lead">
+                Rp {{ $wisata->harga_masuk }} / orang 
+            </p>
 
-        <!-- Informasi Hari dan Jam Buka -->
-        <h4 class="mt-4">Hari dan Jam Buka</h4>
-        <p class="lead">
-            @if($wisata->waktu_kunjung)
-                @foreach(json_decode($wisata->waktu_kunjung) as $waktu)
-                    {{ $waktu->hari }}: {{ $waktu->jam_buka }} - {{ $waktu->jam_tutup }}<br>
-                @endforeach
-            @else
-                Tidak ada informasi waktu kunjung.
-            @endif
-        </p>
+            <!-- Waktu Kunjung -->
+            <h4 class="mt-4">Waktu Kunjung</h4>
+            <p class="lead">
+                @if($wisata->waktu_kunjung)
+                    @foreach(json_decode($wisata->waktu_kunjung) as $waktu)
+                        {{ $waktu->hari }}: {{ $waktu->jam_buka }} - {{ $waktu->jam_tutup }}<br>
+                    @endforeach
+                @else
+                    Tidak ada informasi waktu kunjung.
+                @endif
+            </p>
 
-        <!-- Alamat Desa Wisata -->
-        <h4 class="mt-4">Alamat</h4>
-        <p class="lead">
-            {{ $wisata->alamat }}
-        </p>
+            <!-- Alamat Desa Wisata -->
+            <h4 class="mt-4">Alamat</h4>
+            <p class="lead">
+                {{ $wisata->alamat }}
+            </p>
         </div>
     </div>
 
-    <!-- Menambahkan Google Maps -->
+<!-- Menampilkan Brosur Wisata -->
+@if(!empty($wisata->brosur))
     <div class="row mt-5">
         <div class="col-12">
-            <h3 class="text-center">Lokasi Wisata</h3>
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126557.45100734407!2d110.29177434570313!3d-7.801938653110409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a57d9d5b21c35%3A0x1b46f5165a7a1eab!2sDesa%20Sardono!5e0!3m2!1sen!2sid!4v1632061715199!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <h3 class="text-center">Brosur Wisata</h3>
+        </div>
+        <div class="col-12 text-center">
+            <div 
+                style="width: 100%; max-height: 300px; overflow-y: auto; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+                <img 
+                    src="{{ asset('storage/' . $wisata->brosur) }}" 
+                    alt="Brosur Wisata" 
+                    style="width: 100%; height: auto; display: block;">
             </div>
         </div>
     </div>
-<!-- Galeri Foto Slider -->
-<div class="row mt-5">
-        <div class="col-12">
-            <h3 class="text-center">Galeri Foto</h3>
-        </div>
-        <div class="col-12">
-            <div id="photoGallery" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 1">
-                            </div>
-                            <div class="col-4">
-                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 2">
-                            </div>
-                            <div class="col-4">
-                                <img src="{{ asset('themewagon/img/desawisata/gallery3.jpg') }}" class="d-block w-100" alt="Galeri 3">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="{{ asset('themewagon/img/desawisata/gallery4.jpg') }}" class="d-block w-100" alt="Galeri 4">
-                            </div>
-                            <div class="col-4">
-                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 5">
-                            </div>
-                            <div class="col-4">
-                                <img src="{{ asset('themewagon/img/desawisata/wisata2.jpg') }}" class="d-block w-100" alt="Galeri 6">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Tambahkan slide lainnya sesuai kebutuhan -->
+@endif
+
+
+
+            <!-- Galeri Foto Slider -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h3 class="text-center">Galeri Foto</h3>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#photoGallery" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden"></span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#photoGallery" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden"></span>
-                </button>
+                <div class="col-12">
+                    <div id="photoGallery" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @php
+                                $fotoGaleri = json_decode($wisata->foto_wisata, true) ?? []; // Ambil data foto_wisata dan decode
+                            @endphp
+                            @if (!empty($fotoGaleri))
+                                @foreach (array_chunk($fotoGaleri, 3) as $index => $fotoGroup)
+                                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                        <div class="row">
+                                            @foreach ($fotoGroup as $foto)
+                                                <div class="col-4">
+                                                    <img src="{{ asset('storage/' . $foto) }}" class="d-block w-100" alt="Galeri Foto" style="height: 300px; object-fit: cover;">
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <p class="text-center">Tidak ada foto yang tersedia di galeri.</p>
+                            @endif
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#photoGallery" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#photoGallery" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
-        <!--  Details End -->
-
-
     </main>
 
     <footer>
@@ -257,20 +289,20 @@
                     </div>
                 </div>
 
-                <!-- Quick Links -->
-                <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
-                    <div class="single-footer-caption mb-50">
-                        <div class="footer-tittle">
-                            <h4>Link</h4>
-                            <ul>
-                                <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
-                                <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
-                                <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
-                                <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
-                            </ul>
+                        <!-- Quick Links -->
+                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Link</h4>
+                                    <ul>
+                                        <li><a href="{{ url('/desabudaya') }}">Desa Budaya</a></li>
+                                        <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
+                                        <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
+                                        <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
                 <!-- Contact Info -->
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
@@ -279,7 +311,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -319,7 +351,16 @@
 </div>
 
 
-<!-- Search model end -->
+<!--? Search model Begin
+<div class="search-model-box">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-btn">+</div>
+        <form class="search-model-form">
+            <input type="text" id="search-input" placeholder="Searching key.....">
+        </form>
+    </div>
+</div> -->
+
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
@@ -353,6 +394,9 @@
 
 <!-- calendar js -->
 <script src="{{ asset('themewagon/js/calendar.js') }}"></script>
+
+<!-- search js -->
+<script src="{{ asset('themewagon/js/search.js') }}"></script>
 
 <!-- whatsapp js -->
 <script src="{{ asset('themewagon/js/whatsapp.js') }}"></script>
