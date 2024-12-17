@@ -11,18 +11,18 @@ class AuthController extends Controller
 {
     // Menampilkan form login
     public function login(Request $request)
-{
-    $credentials = $request->only('email', 'password');
-    $admin = Admin::where('email', $credentials['email'])->first();
+    {
+        $credentials = $request->only('email', 'password');
+        $admin = Admin::where('email', $credentials['email'])->first();
 
-    if ($admin && Hash::check($credentials['password'], $admin->password)) {
-        // Login berhasil
-        return response()->json(['message' => 'Login berhasil']);
-    } else {
-        // Login gagal
-        return response()->json(['message' => 'Email atau password salah'], 401);
+        if ($admin && Hash::check($credentials['password'], $admin->password)) {
+            // Login berhasil
+            return response()->json(['message' => 'Login berhasil']);
+        } else {
+            // Login gagal
+            return response()->json(['message' => 'Email atau password salah'], 401);
+        }
     }
-}
 
 
     // Proses login
@@ -41,6 +41,7 @@ class AuthController extends Controller
         if ($admin && Hash::check($request->password, $admin->password)) {
             // Tentukan redirect berdasarkan role
             $redirect = match ($admin->role) {
+                'superadmin'=>'/adminkalurahan',
                 'admin_budaya' => '/adminbudaya',
                 'admin_preneur' => '/adminpreneur',
                 'admin_prima' => '/adminprima',

@@ -27,16 +27,7 @@ Route::middleware('auth')->group(function () {
 
     // Rute untuk halaman dashboard superadmin krahan
     Route::get('/adminkalurahan', [AdminKalurahanController::class, 'showDashboard'])->name('admin.adminkalurahan.adminkalurahan');
-    Route::get('/buttons', [AdminKalurahanController::class, 'uifeatures1'])->name('admin.adminkalurahan.ui-features.buttons');
-    Route::get('/dropdowns', [AdminKalurahanController::class, 'uifeatures2'])->name('admin.adminkalurahan.ui-features.dropdowns');
-    Route::get('/typography', [AdminKalurahanController::class, 'uifeatures3'])->name('admin.adminkalurahan.ui-features.typography');
-    Route::get('/chartjs', [AdminKalurahanController::class, 'charts'])->name('admin.adminkalurahan.charts.chartjs');
-    Route::get('/basic_elements', [AdminKalurahanController::class, 'forms'])->name('admin.adminkalurahan.forms.basic_elements');
-    Route::get('/basic-table', [AdminKalurahanController::class, 'tables'])->name('admin.adminkalurahan.tables.basic-table');
-    Route::get('/mdi', [AdminKalurahanController::class, 'icons'])->name('admin.adminkalurahan.icons.mdi');
-    Route::get('/error-404', [AdminKalurahanController::class, 'samples1'])->name('admin.adminkalurahan.samples.error-404');
-    Route::get('/error-500', [AdminKalurahanController::class, 'samples2'])->name('admin.adminkalurahan.samples.error-500');
-    Route::get('/documentation', [AdminKalurahanController::class, 'docs'])->name('admin.adminkalurahan.docs.documentation');
+   
 
 });
 
@@ -55,23 +46,9 @@ Route::get('/desawisata', [PageController::class, 'desawisata'])->name('desawisa
 Route::get('/detail_wisata/{id}', [PageController::class, 'detail_wisata']);
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/simpanFeedback', [PageController::class, 'simpanFeedback'])->name('simpanFeedback');
-Route::get('/transaksi', [PageController::class, 'transaksi'])->name('transaksi');
 
 // // Rute untuk halaman dashboard superadmin krahan
-// Route::get('/adminkalurahan', [AdminKalurahanController::class, 'showDashboard'])->name('admin.adminkalurahan.adminkalurahan');
-// Route::get('/buttons', [AdminKalurahanController::class, 'uifeatures1'])->name('admin.adminkalurahan.ui-features.buttons');
-// Route::get('/dropdowns', [AdminKalurahanController::class, 'uifeatures2'])->name('admin.adminkalurahan.ui-features.dropdowns');
-// Route::get('/typography', [AdminKalurahanController::class, 'uifeatures3'])->name('admin.adminkalurahan.ui-features.typography');
-// Route::get('/chartjs', [AdminKalurahanController::class, 'charts'])->name('admin.adminkalurahan.charts.chartjs');
-// Route::get('/basic_elements', [AdminKalurahanController::class, 'forms'])->name('admin.adminkalurahan.forms.basic_elements');
-// Route::get('/basic-table', [AdminKalurahanController::class, 'tables'])->name('admin.adminkalurahan.tables.basic-table');
-// Route::get('/mdi', [AdminKalurahanController::class, 'icons'])->name('admin.adminkalurahan.icons.mdi');
-// Route::get('/error-404', [AdminKalurahanController::class, 'samples1'])->name('admin.adminkalurahan.samples.error-404');
-// Route::get('/error-500', [AdminKalurahanController::class, 'samples2'])->name('admin.adminkalurahan.samples.error-500');
-// Route::get('/documentation', [AdminKalurahanController::class, 'docs'])->name('admin.adminkalurahan.docs.documentation');
-
-// Rute untuk halaman dashboard superadmin kalurahan
-
+Route::get('/adminkalurahan', [AdminKalurahanController::class, 'showDashboard'])->name('admin.adminkalurahan.adminkalurahan');
 Route::get('/kelolahomepage', [AdminKalurahanController::class, 'kelolahomepage']);
 Route::post('/update-homepage-kalurahan', [AdminKalurahanController::class, 'updateHomepageKalurahan']);
 Route::get('/tambahadmin', [AdminKalurahanController::class, 'tambahadmin']);
