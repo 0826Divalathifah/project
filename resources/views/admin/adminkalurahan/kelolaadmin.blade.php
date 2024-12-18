@@ -34,10 +34,10 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkalurahan') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
+            <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ url('/adminkalurahan') }}">
-            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
+            <img src="{{ asset('beranda/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -60,13 +60,14 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
             <span style="font-size: 16px;">Logout</span>
-        </a>
-    </div>
+        </button>
+    </form>
+</div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
@@ -153,18 +154,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($admins as $admin)
+                                @foreach($users as $user)
                                 <tr>
-                                    <td>{{ $admin->name }}</td>
-                                    <td>{{ $admin->email }}</td>
-                                    <td>{{ ucfirst(str_replace('_', ' ', $admin->role)) }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ ucfirst(str_replace('_', ' ', $user->role)) }}</td>
                                     <td>
-                                        <a href="{{ url('/editadmin', ['id' => $admin->id]) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('/editadmin', ['id' => $user->id]) }}" class="btn btn-primary btn-sm">Edit</a>
                                         <!-- Tombol Hapus -->
-                                        <form id="delete-form-{{ $admin->id }}" action="{{ url('hapusAdmin/' . $admin->id) }}" method="POST" style="display:inline;">
+                                        <form id="delete-form-{{ $user->id }}" action="{{ url('hapusAdmin/' . $user->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $admin->id }}, 'admin')">Hapus</button>
+                                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $user->id }}, 'user')">Hapus</button>
                                         </form>
 
                                     </td>
