@@ -1,0 +1,24 @@
+/* Search Toggle Icon */
+#search-toggle {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+/* Highlight Style */
+.highlight {
+    background-color: yellow;
+    color: black;
+    padding: 2px;
+    border-radius: 3px;
+}
+
+/* Search Form Transition */
+#search-container {
+    transition: all 0.3s ease-in-out;
+}
+/* Navigation Buttons */
+.navigation-buttons button {
+    margin: 5px;
+    font-size: 0.9rem;
+}
+

@@ -1,0 +1,22 @@
+.breadcrumb {
+    font-size: 18px;
+    color: #ffffff;
+    display: flex; /* Menggunakan flexbox untuk mengatur tata letak */
+    justify-content: center; /* Memposisikan breadcrumb di tengah */
+}
+
+.breadcrumb-item {
+    display: inline-block; /* Pastikan item tetap dalam satu baris */
+}
+
+.breadcrumb-item a {
+    color: #4B49AC;
+    text-decoration: none;
+    z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
+    position: relative; /* Memastikan z-index bekerja */
+}
+
+.breadcrumb-item a:hover {
+    color: #383781;
+    text-decoration: underline;
+}

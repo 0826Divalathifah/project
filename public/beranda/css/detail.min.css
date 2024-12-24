@@ -1,0 +1,96 @@
+/* Mengatur layout produk agar responsif */
+.product-detail {
+    display: flex;
+    flex-direction: row; /* Layout horizontal pada layar besar */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.product-image {
+    flex: 1;
+    margin-right: 30px;
+}
+
+.product-details {
+    flex: 1;
+    margin-top: 20px;
+}
+
+.topping-container {
+    display: flex;
+    align-items: center; /* Sejajar vertikal */
+    margin-top: 20px;
+}
+
+.topping-container label {
+    font-weight: bold;
+    margin-right: 10px; /* Jarak antara label dan select */
+}
+
+.product-details select {
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Media Queries untuk layar yang lebih kecil */
+@media (max-width: 768px) {
+    .product-detail {
+        flex-direction: column; /* Ubah layout jadi vertikal pada layar kecil */
+    }
+
+    .product-image {
+        margin-right: 0;
+        margin-bottom: 20px; /* Tambahkan jarak bawah untuk gambar */
+    }
+
+    .product-details {
+        margin-top: 10px;
+    }
+
+    .product-details select {
+        width: 100%; /* Memaksimalkan lebar pada layar kecil */
+    }
+
+    .add-to-cart, .favorite {
+        width: 100%; /* Tombol melebar penuh di layar kecil */
+    }
+
+    .carousel-item img {
+        max-height: 300px; /* Ubah tinggi maksimal gambar di slider untuk layar kecil */
+    }
+}
+
+/* Media Queries untuk layar yang lebih kecil, seperti smartphone */
+@media (max-width: 480px) {
+    .product-detail {
+        padding: 10px;
+    }
+
+    .product-details h2 {
+        font-size: 20px; /* Ukuran font lebih kecil di layar kecil */
+    }
+
+    .product-details .price {
+        font-size: 18px;
+    }
+
+    .product-details select {
+        font-size: 14px; /* Ukuran font lebih kecil */
+        padding: 8px;
+    }
+
+    .add-to-cart, .favorite {
+        padding: 15px 10px;
+        font-size: 14px;
+    }
+}

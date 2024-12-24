@@ -1,0 +1,54 @@
+/* style.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+h2.welcome-text {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+p.description {
+    font-size: 16px;
+    color: #555;
+}
+
+.card {
+    border: none;
+    overflow: hidden; /* Untuk efek zoom pada gambar */
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.img-container {
+    overflow: hidden; /* Memastikan gambar tetap berada dalam card */
+}
+
+.card-img-left {
+    transition: transform 0.5s ease; /* Animasi untuk zoom gambar */
+}
+
+.card:hover .card-img-left {
+    transform: scale(1.2); /* Efek zoom saat kursor diarahkan */
+}
+
+.card-body {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 14px;
+}
