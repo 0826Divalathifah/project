@@ -26,5 +26,7 @@ class Prima extends Model
         'foto_card',
         'foto_slider', // Untuk menyimpan path gambar produk dalam format JSON
     ];
+    
+   
 
 }

@@ -137,7 +137,18 @@
                     </nav>
                 </div>
             </div>
+                <!-- breadcrumb Start-->
+                <div class="breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="#">Tentang Kami</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
 
+            <div class="about-area">
             <div class="about-area">
             <div class="container">
                 <div class="row justify-content-center">
@@ -277,6 +288,7 @@
 </footer>
 
 <!--? Search model Begin 
+<!--? Search model Begin 
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-btn">+</div>
@@ -284,6 +296,7 @@
             <input type="text" id="search-input" placeholder="Searching key.....">
         </form>
     </div>
+</div>-->
 </div>-->
 <!-- Search model end -->
 <!-- Scroll Up -->

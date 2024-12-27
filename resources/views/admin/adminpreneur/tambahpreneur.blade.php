@@ -229,7 +229,6 @@
     <script src="{{ asset('admin/assets/js/typeahead.js') }}"></script>
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
     <script src="{{ asset('admin/assets/js/varianProduk.js') }}"></script>
     <!-- End custom js for this page-->
 </body>

@@ -122,6 +122,29 @@
   <div class="content-wrapper">
     <div class="row"></div>
 
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row"></div>
+
+        <!-- Kelola Banner -->
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Kelola Banner</h4>
+                    <form class="forms-sample" action="{{ url('/updateBannerBudaya') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="bannerImage">Edit Banner</label>
+                            <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
+                            @if(isset($homepageData->gambar_banner))
+                                <img src="{{ asset('storage/'.$homepageData->gambar_banner) }}" alt="Current Banner" width="100" class="mt-2">
+                            @endif
+                        </div>
+                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Kelola Banner -->
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
@@ -176,8 +199,12 @@
         </div>
 
         </div>
+
+        </div>
     </div>
 </div>
+
+
 
 
 

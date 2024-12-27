@@ -92,10 +92,12 @@
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
                         
+                        
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
+                        
                         
                     </div>
                     </div>
@@ -156,18 +158,23 @@
             <h3 class="card-title">Selamat Datang di Website Desa Budaya</h3>
             <p class="card-text">
             {{ $deskripsi_welcome }}
+            {{ $deskripsi_welcome }}
             </p>
         </div>
     </div>
 </div>
 
+
 </div>
 </div>
 </div>
 </div>
+
+
 
 
 <div class="carousel-container">
+    @foreach($budaya as $item)
     @foreach($budaya as $item)
     <div class="carousel-card">
     @if($item->foto_card)
@@ -179,9 +186,21 @@
         <h3><a href="{{ url('/detail_budaya/' . $item->id) }}">{{ $item->nama_budaya }}</a></h3>
         <p>{{ $item->nama_desa_budaya }}</p>
         <p>{{ $item->alamat }}</p>
+    @if($item->foto_card)
+    <img src="{{ asset('storage/' . $item->foto_card) }}" alt="{{ $item->nama_budaya }}" class="card-img-top">
+    @else
+        <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Gambar Tidak Tersedia" class="card-img-top">
+    @endif
+
+        <h3><a href="{{ url('/detail_budaya/' . $item->id) }}">{{ $item->nama_budaya }}</a></h3>
+        <p>{{ $item->nama_desa_budaya }}</p>
+        <p>{{ $item->alamat }}</p>
     </div>
     @endforeach
+    @endforeach
 </div>
+
+
 
 
 
@@ -235,6 +254,7 @@
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
                                 <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -263,6 +283,7 @@
     </div>
     <!-- Footer End -->
 </footer>
+
 
 
 <!-- Scroll Up -->

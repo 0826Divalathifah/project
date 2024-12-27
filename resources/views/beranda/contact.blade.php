@@ -4,6 +4,7 @@
 <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Kontak</title>
+    <title>Kontak</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -94,6 +95,7 @@
                                 <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
                         <!-- Search Box 
+                        <!-- Search Box 
                         <div class="search d-none d-md-block">
                             <ul class="d-flex align-items-center">
                                 <li class="mr-15">
@@ -102,6 +104,7 @@
                                     </div>
                                 </li>
                             </ul>
+                        </div>-->
                         </div>-->
                     </div>
                     <!-- Mobile Menu -->
@@ -123,6 +126,7 @@
             
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
         <style>
         /* Styling for the banner */
@@ -196,6 +200,16 @@
                     <!-- Ikon Login dan Sign Up -->
                     </div>
         </div>
+        <!-- Mobile Device Show Menu-->
+        <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+        </div>
             <div class="banner-overlay"></div>
             <div class="banner-text">Kontak</div>
 
@@ -252,6 +266,39 @@
                     </h3>
                 </div>
             </div>
+                <div class="col-24">
+                    <h3 class="contact-title">
+                        Kesan dan Pesan
+                    </h3>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+            <form class="form-contact contact_form" action="/simpanFeedback" method="POST" id="contactForm" novalidate="novalidate">
+            @csrf
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Kirim Pesan" required></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                <input class="form-control valid" name="name" id="name" type="text" placeholder="Masukkan Nama Anda">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input class="form-control valid" name="email" id="email" type="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <button type="button" id="submitFeedback" class="button button-contactForm boxed-btn">Kirim Pesan</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 
             <div class="col-lg-12">
             <form class="form-contact contact_form" action="/simpanFeedback" method="POST" id="contactForm" novalidate="novalidate">
@@ -298,6 +345,7 @@
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-email"></i></span>
                             <div class="media-body">
+                                <h3>kalurahansinduharjo@gmail.com</h3>
                                 <h3>kalurahansinduharjo@gmail.com</h3>
                                 <p>Kirimkan pertanyaan Anda kepada kami kapan saja</p>
                             </div>
@@ -354,6 +402,7 @@
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
                                 <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -383,6 +432,7 @@
     <!-- Footer End -->
 </footer>
 <!--? Search model Begin
+<!--? Search model Begin
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-btn">+</div>
@@ -390,6 +440,9 @@
             <input type="text" id="search-input" placeholder="Searching key.....">
         </form>
     </div>
+</div> -->
+
+
 </div> -->
 
 
@@ -432,6 +485,13 @@
 <script src="{{ asset('themewagon/js/hover-direction-snake.min.js') }}"></script>
 
 <!-- contact js -->
+ <script src="{{ asset('themewagon/js/contact.js') }}"></script> 
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- <script src="{{ asset('themewagon/js/jquery.form.js') }}"></script> -->
+<!-- <script src="{{ asset('themewagon/js/jquery.validate.min.js') }}"></script> -->
+<!-- <script src="{{ asset('themewagon/js/mail-script.js') }}"></script> -->
+<!-- <script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script> -->
  <script src="{{ asset('themewagon/js/contact.js') }}"></script> 
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->

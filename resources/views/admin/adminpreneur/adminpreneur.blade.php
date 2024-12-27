@@ -30,6 +30,7 @@
   <body>
   <div class="container-scroller">
   <!-- partial:../../partials/_navbar.html -->
+  <!-- partial:../../partials/_navbar.html -->
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
                   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
                   <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
@@ -64,7 +65,88 @@
           <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
               <span class="icon-menu"></span>
           </button>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+              <span class="icon-menu"></span>
+          </button>
 
+            </div>
+          </nav>
+          <!-- partial -->
+          <div class="container-fluid page-body-wrapper">
+            <!-- partial:../../partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link"  href="{{ url('/adminpreneur') }}">
+                    <i class="icon-grid menu-icon"></i>
+                    <span class="menu-title">Dashboard</span>
+                  </a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/kelolapreneur') }}">
+                    <i class="mdi mdi-shape-plus menu-icon"></i>
+                    <span class="menu-title">Kelola Produk</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/kelolahomepagepreneur') }}">
+                    <i class="mdi mdi-home menu-icon"></i>
+                    <span class="menu-title">Kelola Home Page</span>
+                  </a>
+                </li>
+                <!--<li class="nav-item">
+                  <a class="nav-link" href="{{ url('/laporanprima') }}">
+                    <i class="icon-paper menu-icon"></i>
+                    <span class="menu-title">Laporan Desa Prima</span>
+                  </a>
+                </li>-->
+            </nav>
+            <!-- partial -->
+              <div class="main-panel">
+                <div class="content-wrapper">
+                  <div class="row">
+                    <div class="col-md-12 grid-margin">
+                      <div class="row">
+                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+                          <h3 class="font-weight-bold">Selamat Datang, </h3>
+                          <p id="currentDateTime"></p>
+                        </div>
+                        <!--<div class="col-12 col-xl-4">
+                          <div class="justify-content-end d-flex">
+                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
+                              <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
+                                <a class="dropdown-item" href="#">January - March</a>
+                                <a class="dropdown-item" href="#">March - June</a>
+                                <a class="dropdown-item" href="#">June - August</a>
+                                <a class="dropdown-item" href="#">August - November</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>-->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 grid-margin transparent">
+                  <div class="row justify-content-center">
+
+                <!-- Card 1 --> 
+                  <div class="col-lg-6 col-md-12 mb-4">
+                  <div class="card shadow-sm border-0 rounded">
+                      <div class="card-body d-flex align-items-center">
+                          <!-- Background Icon -->
+                          <div class="col-4 background-icon d-flex align-items-center justify-content-center">
+                              <i class="mdi mdi-image-filter-hdr text-primary" style="font-size: 48px;"></i>
+                          </div>
+                          <!-- Text Content -->
+                          <div>
+                              <h5 class="card-title mb-2 text-primary">Total Produk</h5>
+                              <h2 class="mb-0">{{ $totalPreneur }}</h2>
+                              <p class="text-muted">Produk yang Tersedia</p>
+                          </div>
+                      </div>
+                  </div>
             </div>
           </nav>
           <!-- partial -->
@@ -152,6 +234,14 @@
                           <!-- Background Icon -->
                           <div class="col-4 background-icon d-flex align-items-center justify-content-center">
                               <i class="mdi mdi-web text-primary" style="font-size: 48px;"></i>
+
+              <!-- Card 2 -->
+              <div class="col-lg-6 col-md-12 mb-4">
+                  <div class="card shadow-sm border-0 rounded">
+                      <div class="card-body d-flex align-items-center">
+                          <!-- Background Icon -->
+                          <div class="col-4 background-icon d-flex align-items-center justify-content-center">
+                              <i class="mdi mdi-web text-primary" style="font-size: 48px;"></i>
                           </div>
                           <!-- Text Content -->
                           <div>
@@ -160,7 +250,84 @@
                               <p class="text-muted">Jumlah kunjungan</p>
                           </div>
                       </div>
+                          <!-- Text Content -->
+                          <div>
+                              <h5 class="card-title mb-2 text-primary">Total Kunjungan Website</h5>
+                              <h2 class="mb-0">{{ $totalVisitsDesaPreneur }}</h2>
+                              <p class="text-muted">Jumlah kunjungan</p>
+                          </div>
+                      </div>
                   </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+    <div class="col-md-7 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <p class="card-title">Jumlah Kunjungan Desa Preneur</p>
+          <select id="filter" class="form-select w-25" data-desa="Desa Preneur">
+          <option value="daily" {{ $filter == 'daily' ? 'selected' : '' }}>Harian</option>
+          <option value="weekly" {{ $filter == 'weekly' ? 'selected' : '' }}>Mingguan</option>
+          <option value="monthly" {{ $filter == 'monthly' ? 'selected' : '' }}>Bulanan</option>
+          <option value="yearly" {{ $filter == 'yearly' ? 'selected' : '' }}>Tahunan</option>
+          </select>
+        </div>
+        <!-- Elemen untuk menyimpan data -->
+        <canvas id="desaPreneurChart" height="150" 
+            data-labels="{{ implode(',', $labels) }}" 
+            data-data="{{ implode(',', $data) }}"></canvas>
+        </div>
+      </div>
+  </div>
+
+      <div class="col-md-5 grid-margin stretch-card">
+<div class="card">
+<div class="card-body">
+    <div class="d-flex justify-content-between">
+        <p class="card-title mb-10">Daftar Produk Preneur</p>
+        <a href="{{ url('/kelolaproduk') }}" class="text-info">View all</a>
+    </div>
+    <div class="table-responsive" style="max-height: 200px; overflow-y: auto;">
+        <table id="example" class="display expandable-table" style="width:100%">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Produk</th>
+                </tr>
+            </thead>
+            <tbody>
+              @forelse($preneur as $index => $item)
+                  <tr>
+                      <td>{{ $index + 1 }}</td>
+                      <td>{{ $item->nama_produk }}</td>
+                  </tr>
+              @empty
+                  <tr>
+                      <td colspan="2" class="text-center">Tidak ada produk yang tersedia.</td>
+                  </tr>
+              @endforelse
+          </tbody>
+
+        </table>
+    </div>
+</div>
+</div>
+</div>
+
+
+</div>
+<!-- content-wrapper ends -->
+<!-- partial -->
+</div>
+<!-- main-panel ends -->
+</div>
+<!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
             </div>
         </div>
     </div>
@@ -251,6 +418,10 @@
 <!-- Custom js for this page-->
 <script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
 <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
+<script src="{{ asset('admin/assets/js/datetime.js') }}"></script>
+<script>
+    const dataDesa = @json($dataDesa);
+</script>
 <script src="{{ asset('admin/assets/js/datetime.js') }}"></script>
 <script>
     const dataDesa = @json($dataDesa);
