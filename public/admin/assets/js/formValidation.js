@@ -12,26 +12,6 @@ document.querySelector("#submit").addEventListener("click", () => {
         return; // Keluar dari fungsi jika form tidak valid
     }
 
-    // Jika valid, tampilkan SweetAlert
-    Swal.fire({
-        title: "Apakah Anda Sudah Yakin?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Ya"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                title: "Pemesanan Berhasil!",
-                text: "Pesanan anda sedang diproses.",
-                icon: "success"
-            }).then(() => {
-                // Mengembalikan form ke kondisi default
-                form.reset();
-            });
-        }
-    });
 });
 
 // Script for formatting currency input
@@ -43,24 +23,71 @@ function formatCurrency(input) {
     }
 }
 
-// penghapusan pada tambah agenda
-function confirmDelete(agendaName) {
-        Swal.fire({
-            title: "Apakah Anda yakin?",
-            text: "Anda akan menghapus agenda: " + agendaName,
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Ya, Hapus!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Agenda Dihapus!",
-                    text: "Agenda " + agendaName + " telah dihapus.",
-                    icon: "success"
-                });
-                // Logika penghapusan bisa ditambahkan di sini, seperti menghapus data dari server
-            }
-        });
+//penghapus data setiap desa
+// Function for confirming the deletion of various types of data
+function confirmDelete(id, type) {
+    // Determining the message based on the type of data
+    const messages = {
+        'budaya': 'Data Budaya ini akan dihapus beserta semua foto terkait!',
+        'prima': 'Data Produk Prima ini akan dihapus beserta semua foto terkait!',
+        'preneur': 'Data Produk Preneur ini akan dihapus beserta semua foto terkait!',
+        'wisata': 'Data Wisata ini akan dihapus beserta semua foto terkait!',
+        'agenda': 'Agenda ini akan dihapus!',
+        'feedback': 'Feedback ini akan dihapus!',
+        'admin': 'Admin ini akan dihapus!',
+    };
+
+    // Get the message based on the type
+    const message = messages[type] || 'Data ini akan dihapus!';
+
+    // Display confirmation alert with SweetAlert
+    Swal.fire({
+        title: 'Apakah Anda yakin?',
+        text: message,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Hapus',
+        cancelButtonText: 'Batal',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Submit the form based on the ID
+            document.getElementById(`delete-form-${id}`).submit();
+        }
+    });
+}
+
+// If the deletion is successful, display success alert
+document.addEventListener('DOMContentLoaded', function () {
+    const successElement = document.querySelector('[data-success]');
+    const errorElement = document.querySelector('[data-error]');
+    
+    if (successElement) {
+        const successMessage = successElement.getAttribute('data-success');
+        if (successMessage) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: successMessage,
+            });
+        }
     }
+
+    // If the deletion failed, display error alert
+    if (errorElement) {
+        const errorMessage = errorElement.getAttribute('data-error');
+        if (errorMessage) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal!',
+                text: errorMessage,
+            });
+        }
+    }
+});
+
+
+
+
+
+

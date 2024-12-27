@@ -100,155 +100,107 @@
     <!-- header end -->     
     <main>
        
-                 <!-- listing Area Start -->
-                 <div class="category-area">
-            <div class="container">
-            <div class="row">
-            
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-        /* Styling for the banner */
-        .banner-container {
-            position: relative;
-            text-align: center;
-            color: white;
-            width: 200%; /* Lebarkan hingga penuh ke samping */
-            height: 600px; /* Tetap 500px untuk tinggi */
-            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            margin-bottom: 60px;
-        }
-
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan hitam */
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .banner-text {
-            position: relative;
-            z-index: 2;
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 100px; /* To vertically center text */
-        }
-        @media screen and (max-width: 768px) {
-            .banner-container {
-                width: 100%; /* Tetap penuh pada layar kecil */
-                height: 300px; /* Kurangi tinggi untuk layar lebih kecil */
-            }
-
-            .banner-text {
-                font-size: 36px; /* Ukuran teks lebih kecil di layar mobile */
-            }
-        }
+    <div class="container">
+    <div class="category-area">
+        <div class="row">   
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+            <div class="banner-container">
+                <!-- Mobile Device Show Menu-->
+                <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
 
 
-        .breadcrumb {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ffffff;
-        }
+                <div class="banner-overlay"></div>
+                <div class="banner-text">Tentang Kami</div>
 
-        .breadcrumb-item a {
-            color: #ffffff;
-            text-decoration: none;
-            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
-            position: relative; /* Penting untuk memastikan z-index bekerja */
-        }
+                @if(isset($banner_image) && file_exists(public_path('storage/' . $banner_image)))
+                    <img src="{{ asset('storage/' . $banner_image) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
 
-        .breadcrumb-item a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        
-    </style>
-
-        <div class="banner-container">
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Tentang Kami</div>
-
-            <!-- breadcrumb Start-->
-            <div class="breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb justify-content-center">
-                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                        <li class="breadcrumb-item"><a href="#">Tentang Kami</a></li>
-                    </ol>
-                </nav>
+                <!-- breadcrumb Start-->
+                <div class="breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="#">Tentang Kami</a></li>
+                        </ol>
+                    </nav>
+                </div>
             </div>
-        </div>
 
-        <div class="about-area">
+            <div class="about-area">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
                         <div class="section-tittle mb-60 text-center pt-10">
                             <h2>Desa Mandiri Budaya Desa Sinduharjo</h2>
-                            <p class="pera" style="text-align: justify;">
-                                Kalurahan Sinduharjo, yang terletak di Kecamatan Ngaglik, Kabupaten Sleman, Yogyakarta, telah mendapatkan pengakuan sebagai Desa Budaya Mandiri. Predikat ini diberikan sebagai bentuk apresiasi atas komitmen dan keberhasilan desa dalam melestarikan serta mengembangkan kebudayaan lokal secara mandiri dan berkelanjutan.
-                            </p>
+                            <p style="text-align: justify;">{{ $deskripsi }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="d-flex justify-content-center">
-                        <div class="col-12 col-sm-6">
-                            <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block img-fluid" alt="Gambar 1">
-                        </div>
-                        <div class="col-12 col-sm-6">
-                            <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block img-fluid" alt="Gambar 2">
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-flex justify-content-center">
-                        <div class="col-12 col-sm-4">
-                            <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block img-fluid" alt="Gambar 3">
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <img src="{{ asset('themewagon/img/gallery/gallery3.jpg') }}" class="d-block img-fluid" alt="Gambar 4">
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <img src="{{ asset('themewagon/img/gallery/gallery2.jpg') }}" class="d-block img-fluid" alt="Gambar 5">
-                        </div>
-                    </div>
-                </div>
-                <!-- Tambahkan carousel-item lainnya -->
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
+        @if(isset($slider_images) && is_array($slider_images) && count($slider_images) > 0)
+    <div id="customCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            @foreach ($slider_images as $index => $image)
+                <button 
+                    type="button" 
+                    data-bs-target="#customCarousel" 
+                    data-bs-slide-to="{{ $index }}" 
+                    class="{{ $index == 0 ? 'active' : '' }}" 
+                    aria-current="{{ $index == 0 ? 'true' : 'false' }}" 
+                    aria-label="Slide {{ $index + 1 }}">
+                </button>
+            @endforeach
         </div>
+
+        <div class="carousel-inner">
+            @foreach (array_chunk($slider_images, 3) as $index => $sliderGroup)
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                    <div class="row gx-2">
+                        @foreach ($sliderGroup as $image)
+                            <div class="col-md-4 col-sm-12">
+                                <img src="{{ asset('storage/' . $image) }}" 
+                                     class="d-block w-100 rounded shadow" 
+                                     alt="Slider Image" 
+                                     style="height: 300px; object-fit: cover;">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endforeach
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+@else
+    <p class="text-center text-muted">Tidak ada gambar slider tersedia.</p>
+@endif
+
+
 
     </div>
 </div>
-    </main>
+</main>
     <footer>
     <!-- Footer Start -->
     <div class="footer-area footer-padding">
@@ -324,7 +276,7 @@
     <!-- Footer End -->
 </footer>
 
-<!--? Search model Begin -->
+<!--? Search model Begin 
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-btn">+</div>
@@ -332,7 +284,7 @@
             <input type="text" id="search-input" placeholder="Searching key.....">
         </form>
     </div>
-</div>
+</div>-->
 <!-- Search model end -->
 <!-- Scroll Up -->
 <div id="back-top" >

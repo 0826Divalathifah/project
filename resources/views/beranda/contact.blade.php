@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Desa Budaya</title>
+    <title>Kontak</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -93,7 +93,7 @@
                                 <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                                 <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <!-- Search Box -->
+                        <!-- Search Box 
                         <div class="search d-none d-md-block">
                             <ul class="d-flex align-items-center">
                                 <li class="mr-15">
@@ -101,9 +101,8 @@
                                         <i class="ti-search"></i>
                                     </div>
                                 </li>
-                               
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
@@ -124,6 +123,7 @@
             
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <style>
         /* Styling for the banner */
         .banner-container {
@@ -186,8 +186,24 @@
     </style>
 
         <div class="banner-container">
+        <!-- Mobile Device Show Menu-->
+        <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+        </div>
             <div class="banner-overlay"></div>
             <div class="banner-text">Kontak</div>
+
+            @if(isset($banner_image) && file_exists(public_path('storage/' . $banner_image)))
+                            <img src="{{ asset('storage/' . $banner_image) }}" alt="Banner" class="banner-image">
+                        @else
+                            <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                        @endif
 
             <!-- Breadcrumb Start -->
             <nav aria-label="breadcrumb">
@@ -230,42 +246,40 @@
                     
                 </div>
                 <div class="row" style="margin-top: 20px;">
-                    <div class="col-24">
-                        <h3 class="contact-title">
-                            Kesan dan Pesan
-                        </h3>
-                    </div>
+                <div class="col-24">
+                    <h3 class="contact-title">
+                        Kesan dan Pesan
+                    </h3>
                 </div>
+            </div>
 
-                    <div class="col-lg-12">
-                        <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Kirim Pesan'" placeholder=" Kirim Pesan"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Nama Anda'" placeholder="Masukkan Nama Anda">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Subject">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group mt-3">
-                                <button type="submit" class="button button-contactForm boxed-btn">Send</button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="col-lg-12">
+            <form class="form-contact contact_form" action="/simpanFeedback" method="POST" id="contactForm" novalidate="novalidate">
+            @csrf
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" placeholder="Kirim Pesan" required></textarea>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                <input class="form-control valid" name="name" id="name" type="text" placeholder="Masukkan Nama Anda">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <input class="form-control valid" name="email" id="email" type="email" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <button type="button" id="submitFeedback" class="button button-contactForm boxed-btn">Kirim Pesan</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
                     <div class="col-lg-3 offset-lg-1">
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-home"></i></span>
@@ -284,7 +298,7 @@
                         <div class="media contact-info">
                             <span class="contact-info__icon"><i class="ti-email"></i></span>
                             <div class="media-body">
-                                <h3>sinduharjomantep@gmail.com</h3>
+                                <h3>kalurahansinduharjo@gmail.com</h3>
                                 <p>Kirimkan pertanyaan Anda kepada kami kapan saja</p>
                             </div>
                         </div>
@@ -339,7 +353,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -368,7 +382,7 @@
     </div>
     <!-- Footer End -->
 </footer>
-<!--? Search model Begin -->
+<!--? Search model Begin
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-btn">+</div>
@@ -376,8 +390,9 @@
             <input type="text" id="search-input" placeholder="Searching key.....">
         </form>
     </div>
-</div>
-<!-- Search model end -->
+</div> -->
+
+
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
@@ -417,11 +432,13 @@
 <script src="{{ asset('themewagon/js/hover-direction-snake.min.js') }}"></script>
 
 <!-- contact js -->
-<script src="{{ asset('themewagon/js/contact.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.form.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/mail-script.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script>
+ <script src="{{ asset('themewagon/js/contact.js') }}"></script> 
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- <script src="{{ asset('themewagon/js/jquery.form.js') }}"></script> -->
+<!-- <script src="{{ asset('themewagon/js/jquery.validate.min.js') }}"></script> -->
+<!-- <script src="{{ asset('themewagon/js/mail-script.js') }}"></script> -->
+<!-- <script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script> -->
 
 <!-- Jquery Plugins, main Jquery -->	
 <script src="{{ asset('themewagon/js/plugins.js') }}"></script>

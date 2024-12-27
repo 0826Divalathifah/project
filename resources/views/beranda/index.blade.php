@@ -49,32 +49,31 @@
                         <div class="header-left d-flex align-items-center">
                             <!-- Logo -->
                             <div class="logo">
-                            <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                                <a href="{{ url('/') }}">
+                                    <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
                                 </a>
-
                             </div>
                             <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>
-                                <ul id="navigation">
-                                    <li><a href="{{ url('/') }}">Beranda</a></li>
-                                    <li><a href="#">Desa Mandiri Budaya</a>
-                                        <ul class="submenu">
-                                            <li><a href="{{ url('/desabudaya') }}">Desa Budaya </a></li>
-                                            <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
-                                            <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
-                                            <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
-                                        </ul>
-                                    <li>   
-                                    <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
-                                    <li><a href="{{ url('/contact') }}">Kontak</a></li>
+                            <div class="main-menu d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="{{ url('/') }}">Beranda</a></li>
+                                        <li><a href="#">Desa Mandiri Budaya</a>
+                                            <ul class="submenu">
+                                                <li><a href="{{ url('/desabudaya') }}">Desa Budaya </a></li>
+                                                <li><a href="{{ url('/desaprima') }}">Desa Prima</a></li>
+                                                <li><a href="{{ url('/desapreneur') }}">Desa Preneur</a></li>
+                                                <li><a href="{{ url('/desawisata') }}">Desa Wisata</a></li>
+                                            </ul>
+                                        <li>   
+                                        <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
+                                        <li><a href="{{ url('/contact') }}">Kontak</a></li>
 
-                                    <li><a href="#" onclick="showAuthForm()">Login</a></li>
+                                        <li><a href="#" onclick="showLoginForm()">Login</a></li>
 
-                                </ul>
-                            </nav>
-                        </div>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                         <div class="header-right1 d-flex align-items-center">
                             <!-- Social -->
@@ -86,7 +85,6 @@
                             </div>
                         </div>
 
-
                         <!-- Mobile Menu -->
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -97,7 +95,7 @@
         </div>
         <!-- Header End -->
     </header>
-    <!-- header end -->
+
     <main>
         <!--? Hero Area Start-->
         <div class="container-fluid">
@@ -113,49 +111,34 @@
                     </div>
                 </div>
                 <!-- /End mobile  Menu-->
-
                 <div class="slider-active dot-style fullwidth-slider">
-                    <!-- Single -->
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}'); 
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 200px;">
-
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="single-slider hero-overly slider-height d-flex align-items-center"
-                        style="background-image: url('{{ asset('themewagon/img/hero/slider.jpg') }}');
-                                background-size: cover; 
-                                background-position: center; 
-                                background-repeat: no-repeat; 
-                                height: 200px;">
-
+                <div class="single-banner hero-overly slider-height d-flex align-items-center"
+                style="
+                    background-image: url(
+                        @if(isset($homepageData->gambar_banner) && file_exists(public_path('storage/' . $homepageData->gambar_banner)))
+                            '{{ asset('storage/' . $homepageData->gambar_banner) }}'
+                        @else
+                            '{{ asset('themewagon/img/desabudaya/banner.jpg') }}'
+                        @endif
+                    ); 
+                    background-size: cover; 
+                    background-position: center; 
+                    background-repeat: no-repeat; 
+                    height: 200px;">
+    
                     <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
-                                    </div>
+                        <div class="row justify-content-center">
+                            <div class="col-xl-8 col-lg-9">
+                                <!-- Hero Caption -->
+                                <div class="hero__caption">
+                                    <h1>DESA<br>MANDIRI<br>BUDAYA</h1>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+                </div>
             </div>
-        </div>
+
        
 <!-- Popular Items End -->
 <!--? New Arrival Start -->
@@ -169,29 +152,15 @@
     </style>
         <div class="container">
             <p class="justified-text">
-                Desa Mandiri Budaya (DMB) adalah desa yang memiliki potensi, inovasi, dan kemandirian untuk mengembangkan nilai-nilai budaya lokal. Program ini melibatkan warga untuk aktif berpartisipasi, sehingga disebut mandiri. DMB menggabungkan empat pilar utama: Desa Wisata, Desa Preneur, Desa Prima, dan Desa Budaya, dan didasarkan pada Peraturan Daerah Istimewa (Perdais) No. 3 Tahun 2017 tentang Pemeliharaan dan Pengembangan Kebudayaan.
-                <br><br>
-                Kalurahan Sinduharjo, Kabupaten Sleman, DI Yogyakarta, ditetapkan sebagai DMB berdasarkan Keputusan Gubernur DIY No. 262/KEP/2016. Untuk mendukung keberhasilannya, diperlukan pendampingan dan pelatihan bagi masyarakat oleh Dinas Pariwisata DIY (Dinpar DIY) dan akademisi. Pelatihan ini meliputi materi tentang pengenalan USP, pemasaran digital, pengemasan paket wisata, analisis keuangan, dan SOP untuk kelestarian desa wisata.
-                <br><br>
-                Tujuan dari program ini adalah agar masyarakat memiliki pengetahuan yang cukup untuk melestarikan, melindungi, mengembangkan, dan memanfaatkan budaya lokal, sehingga Desa Sinduharjo dapat terus mengedepankan keunikannya dan menjadi DMB yang berkelanjutan dan kompetitif di sektor pariwisata.
+            {{ $deskripsi_index }}
             </p>
         </div>
 
-        <!-- Section tittle -->
-         <!-- <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-8 col-md-10">
-                <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
-                    <h2>Desa<br>Budaya<<br>Mandiri</h2>
-                </div>
-            </div>
-        </div> -->
-        
-
-
-<!--? collection -->
-
+<!-- Banner Section -->
 <div class="new-arrival">
-    <section class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" data-background="{{ asset('themewagon/img/gallery/gallery3.jpg') }}">
+    <section 
+        class="collection section-bg2 section-padding30 section-over1 ml-15 mr-15" 
+        data-background="{{ asset('storage/' . $gambar_banner) }}">
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-9">
@@ -299,7 +268,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -333,15 +302,15 @@
 
 
 
-<!-- Search Model Begin -->
+<!--? Search model Begin
 <div class="search-model-box">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-btn">+</div>
         <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Searching key...">
+            <input type="text" id="search-input" placeholder="Searching key.....">
         </form>
     </div>
-</div>
+</div> -->
 <!-- Search Model End -->
 
 <!-- Scroll Up -->
@@ -391,35 +360,10 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Fungsi untuk menampilkan pilihan Login/Register
-    async function showAuthForm() {
-        const { isConfirmed, isDismissed } = await Swal.fire({
-            title: "Pilih Opsi",
-            width: '500px', // menambah lebar modal
-            padding: '3em', // padding di dalam modal
-            confirmButtonText: 'Login',
-            confirmButtonColor: '#6A5ACD', // ganti warna tombol Login
-            cancelButtonText: 'Register',
-            cancelButtonColor: '#A9A9A9', // ganti warna tombol Register
-            showCancelButton: true,
-            icon: 'question',
-            customClass: {
-                title: 'swal-custom-title', // menambahkan class CSS untuk judul
-                actions: 'swal-custom-actions', // menambahkan class CSS untuk tombol
-            }
-        });
-
-        if (isConfirmed) {
-            showLoginForm();
-        } else if (isDismissed) {
-            showRegisterForm();
-        }
-    }
-
-    // Fungsi untuk menampilkan form Login
+    // Fungsi untuk menampilkan form Login dengan validasi
     async function showLoginForm() {
         const { value: formValues } = await Swal.fire({
-            title: "Login ",
+            title: "Login",
             width: '500px', // memperbesar lebar modal
             padding: '3em',
             html: `
@@ -431,9 +375,10 @@
                 const email = document.getElementById("swal-login-email").value;
                 const password = document.getElementById("swal-login-password").value;
 
+                // Validasi untuk memastikan email dan password tidak kosong
                 if (!email || !password) {
                     Swal.showValidationMessage(`Harap isi semua field!`);
-                    return false; // Menghentikan eksekusi jika field kosong
+                    return false;
                 }
 
                 return { email, password };
@@ -444,40 +389,6 @@
             Swal.fire(`Login Berhasil!`);
         }
     }
-
-    // Fungsi untuk menampilkan form Register
-    async function showRegisterForm() {
-        const { value: formValues } = await Swal.fire({
-            title: "Register ",
-            width: '500px',
-            padding: '3em',
-            html: `
-                <input id="swal-register-name" class="swal2-input" placeholder="Nama Lengkap" value="">
-                <input id="swal-register-email" class="swal2-input" placeholder="Email" value="">
-                <input id="swal-register-password" class="swal2-input" type="password" placeholder="Password" value="">
-                <input id="swal-register-confirm-password" class="swal2-input" type="password" placeholder="Konfirmasi Password" value="">
-            `,
-            focusConfirm: false,
-            preConfirm: () => {
-                const name = document.getElementById("swal-register-name").value;
-                const email = document.getElementById("swal-register-email").value;
-                const password = document.getElementById("swal-register-password").value;
-                const confirmPassword = document.getElementById("swal-register-confirm-password").value;
-
-                if (!name || !email || !password || !confirmPassword) {
-                    Swal.showValidationMessage(`Harap isi semua field!`);
-                    return false;
-                } else if (password !== confirmPassword) {
-                    Swal.showValidationMessage(`Password dan Konfirmasi Password tidak cocok!`);
-                    return false;
-                }
-
-                return { name, email, password };
-            }
-        });
-
-        if (formValues) {
-            Swal.fire(`Register Berhasil!`);
-        }
-    }
 </script>
+
+

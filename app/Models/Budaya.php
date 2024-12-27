@@ -19,7 +19,6 @@ class Budaya extends Model
         'harga_max',
         'link_youtube',
         'nomor_whatsapp',
-        'link_google_maps',
         'deskripsi',
         'foto_card',
         'foto_slider',

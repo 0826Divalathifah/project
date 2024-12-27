@@ -60,11 +60,6 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Settings -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-settings text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Setting</span>
-        </a>
         <!-- Icon Power -->
         <a class="nav-link d-flex align-items-center mx-3" href="#">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
@@ -155,7 +150,7 @@
             @endif
 
             {{-- Form untuk mengupdate agenda --}}
-            <form action="/admin/update-agenda/{{ $agenda->id }}" method="POST">
+            <form action="/updateAgenda/{{ $agenda->id }}" method="POST">
                 @csrf
                 @method('PUT')
 

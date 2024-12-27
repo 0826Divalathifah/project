@@ -78,7 +78,7 @@
                             <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
                             <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                         </div>
-                        <!-- Search Box -->
+                        <!-- Search Box 
                         <div class="search d-none d-md-block">
                             <ul class="d-flex align-items-center">
                                 <li class="mr-15">
@@ -87,11 +87,12 @@
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
                         <div class="mobile_menu d-block d-lg-none"></div>
+                            
                     </div>
                     </div>
                 </div>
@@ -107,83 +108,26 @@
             
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-        /* Styling for the banner */
-        .banner-container {
-            position: relative;
-            text-align: center;
-            color: white;
-            width: 200%; /* Lebarkan hingga penuh ke samping */
-            height: 600px; /* Tetap 500px untuk tinggi */
-            background: url('{{ asset('themewagon/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            margin-bottom: 60px;
-        }
-
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5); /* Overlay semi-transparan hitam */
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .banner-text {
-            position: relative;
-            z-index: 2;
-            font-size: 48px;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 100px; /* To vertically center text */
-        }
-        @media screen and (max-width: 768px) {
-            .banner-container {
-                width: 100%; /* Tetap penuh pada layar kecil */
-                height: 300px; /* Kurangi tinggi untuk layar lebih kecil */
-            }
-
-            .banner-text {
-                font-size: 36px; /* Ukuran teks lebih kecil di layar mobile */
-            }
-        }
-
-
-        .breadcrumb {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ffffff;
-        }
-
-        .breadcrumb-item a {
-            color: #ffffff;
-            text-decoration: none;
-            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
-            position: relative; /* Penting untuk memastikan z-index bekerja */
-        }
-
-        .breadcrumb-item a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        
-    </style>
 
         <div class="banner-container">
+            <!-- Mobile Device Show Menu-->
+            <div class="header-right2 d-flex align-items-center">
+                    <!-- Social -->
+                    <div class="header-social  d-block d-md-none">
+                    <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.instagram.com/kalurahan_sinduharjo?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                    <!-- Ikon Login dan Sign Up -->
+                    </div>
+                </div>
             <div class="banner-overlay"></div>
             <div class="banner-text">Desa Prima</div>
+
+            @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                    <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">
@@ -195,111 +139,87 @@
                 </nav>
             </div>
         </div>
+        </main>
 
-        <div class="row">
-            <!--? Left content -->
-            <div class="col-xl-3 col-lg-3 col-md-4 ">
-                <!-- Job Category Listing start -->
-                <div class="category-listing mb-50">
-                    <!-- single one -->
-                    <div class="single-listing">
-                        <!-- Select City items start -->
-                        <div class="select-job-items2">
-                                    <select name="select2" id="categorySelect" onchange="navigateToSection()">
-                                        <option value="">--Pilih Kategori--</option>
-                                        <option value="makanan">Makanan dan Minuman</option>
-                                        <option value="kerajinan">Kerajinan dan Aksesoris</option>
-                                    </select>
-                                </div>
+        
+    <div class="row">
+    <!-- Left content -->
+    <div class="col-xl-3 col-lg-3 col-md-4">
+        <div class="category-listing mb-50">
+            <div class="single-listing">
+                <div class="select-job-items2">
+                    <select name="select2" id="categorySelect" onchange="navigateToSection()">
+                        <option value="">--Pilih Kategori--</option>
+                        <option value="makanan">Makanan dan Minuman</option>
+                        <option value="kerajinan">Kerajinan dan Aksesoris</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="col-xl-12 col-lg-9 col-md-8">
+        <!-- Makanan Section -->
+        <div id="makanan" class="slider">
+            @if($makanan->isEmpty())
+                <p>Tidak ada produk makanan tersedia.</p>
+            @else
+                @foreach($makanan as $produk)
+                    <div class="card">
+                        <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a>
+                            </h5>
+                            <span style="color: #FF5733;">{{ $produk->harga_produk }}</span>
+                            <p class="card-text">{{ $produk->deskripsi }}</p>
+                            <a href="{{ url('/detail_prima', $produk->id) }}" class="btn btn-primary">Selengkapnya</a>
+                        </div>
                     </div>
-                </div>
-                <!-- Job Category Listing End -->
-                </div>
-                <!--?  Right content -->
-                <div class="col-xl-9 col-lg-9 col-md-8 ">
-</head>
-<body>
-    <!-- Makanan Section -->
-    <div id="makanan" class="slider">
-        <div class="card">
-            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Briza Brownies">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
-                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                <p class="card-text">Deskripsi singkat produk 1.</p>
-                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-            </div>                                                                                              
+                @endforeach
+            @endif
         </div>
 
-        <div class="card">
-            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 2">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 2</a></h5>
-                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                <p class="card-text">Deskripsi singkat produk 2.</p>
-                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 3">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 3</a></h5>
-                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                <p class="card-text">Deskripsi singkat produk 3.</p>
-                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-            </div>
+        <!-- Kerajinan Section -->
+        <div id="kerajinan" class="slider">
+            @if($kerajinan->isEmpty())
+                <p>Tidak ada produk kerajinan tersedia.</p>
+            @else
+                @foreach($kerajinan as $produk)
+                    <div class="card">
+                        <img src="{{ asset('storage/' . $produk->foto_card) }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ url('/detail_prima', $produk->id) }}">{{ $produk->nama_produk }}</a>
+                            </h5>
+                            <span style="color: #FF5733;">{{ $produk->harga_produk }}</span>
+                            <p class="card-text">{{ $produk->deskripsi }}</p>
+                            <a href="{{ url('/detail_prima', $produk->id) }}" class="btn btn-primary">Selengkapnya</a>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
+</div>
 
-     <!-- Kerajinan section -->
-     <div id="kerajinan" class="slider">
-        <div class="card">
-            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Kerajinan Tas">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Briza Brownies</a></h5>
-                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                <p class="card-text">Deskripsi produk 1</p>
-                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-            </div>                                                                                              
-        </div>
+<script>
+    function navigateToSection() {
+        // Sembunyikan semua kategori
+        document.getElementById("makanan").style.display = "none";
+        document.getElementById("kerajinan").style.display = "none";
 
-        <div class="card">
-            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 2">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 2</a></h5>
-                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                <p class="card-text">Deskripsi singkat produk 2.</p>
-                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-            </div>
-        </div>
+        // Tampilkan kategori yang dipilih
+        var selectedCategory = document.getElementById("categorySelect").value;
 
-        <div class="card">
-            <img src="{{ asset('themewagon/img/desaprima/produk1.jpeg') }}" alt="Produk 3">
-            <div class="card-body">
-                <h5 class="card-title"><a href="{{ url('/detail_produk') }}">Produk 3</a></h5>
-                <span style="color: #FF5733;">Rp 35.000 - Rp 100.000</span>
-                <p class="card-text">Deskripsi singkat produk 3.</p>
-                <a href="{{ url('/detail_produk') }}" class="btn">Selengkapnya</a>
-            </div>
-        </div>
-    </div>
+        if (selectedCategory) {
+            document.getElementById(selectedCategory).style.display = "flex";
+        }
+    }
+</script>
 
-        <!-- Custom Styles for Card Slider -->
 
-        <script>
-            function navigateToSection() {
-                var selectedCategory = document.getElementById("categorySelect").value;
-                
-                if (selectedCategory === "makanan") {
-                    document.getElementById("makanan").scrollIntoView({ behavior: "smooth" });
-                } else if (selectedCategory === "kerajinan") {
-                    document.getElementById("kerajinan").scrollIntoView({ behavior: "smooth" });
-                }
-            }
-        </script>
-<!-- listing-area Area End -->
-</main>
 
 <footer>
     <!-- Footer Start -->
@@ -346,7 +266,7 @@
                             <h4>Kontak</h4>
                             <ul>
                                 <li><a href="#">(0274) 882723</a></li>
-                                <li><a href="#">sinduharjo@gmail.com</a></li>
+                                <li><a href="#">kalurahansinduharjo@gmail.com</a></li>
                                 <li><a href="#">Jalan Kaliurang Km 10.5, Gentan, Ngaglik, Sleman, Yogyakarta</a></li>
                             </ul>
                         </div>
@@ -385,7 +305,8 @@
         </form>
     </div>
 </div>
-<!-- Search model end -->
+
+
 <!-- Scroll Up -->
 <div id="back-top" >
     <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
