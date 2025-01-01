@@ -34,10 +34,10 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminwiata') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
+            <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ url('/adminwisata') }}">
-            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
+            <img src="{{ asset('beranda/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -128,12 +128,8 @@
             <h4 class="card-title">Formulir Edit Wisata</h4>
             <p class="card-description">Ubah Wisata dengan mengedit kolom formulir di bawah ini</p>
 
-            {{-- Notifikasi berhasil atau error --}}
-            @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-
-            @if($errors->any())
+            <!-- Tampilkan Error Secara Statis -->
+            @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
@@ -142,6 +138,16 @@
                     </ul>
                 </div>
             @endif
+
+            <!-- Tampilkan Sukses atau Error dengan SweetAlert -->
+            <div id="messages" style="display: none;">
+                @if(session('success'))
+                    <div data-success="{{ session('success') }}"></div>
+                @endif
+                @if(session('error'))
+                    <div data-error="{{ session('error') }}"></div>
+                @endif
+            </div>
 
             {{-- Form untuk mengupdate wisata --}}
             <form action="/updateWisata/{{ $wisata->id }}" method="POST" enctype="multipart/form-data">

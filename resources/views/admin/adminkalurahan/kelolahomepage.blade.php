@@ -34,10 +34,10 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminkalurahan') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
+            <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ url('/adminklurahan') }}">
-            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
+            <img src="{{ asset('beranda/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -130,6 +130,19 @@
                 <h4 class="card-title">Kelola Beranda</h4>
                 <form class="forms-sample" action="{{ url('/update-homepage-kalurahan') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+
+                    <div id="messages" style="display: none;">
+                    <!-- Pesan sukses dari session -->
+                      @if(session('success'))
+                          <div data-success="{{ session('success') }}"></div>
+                      @endif
+
+                      <!-- Pesan error dari session -->
+                      @if(session('error'))
+                          <div data-error="{{ session('error') }}"></div>
+                      @endif
+                  </div>
+
                     <!-- Edit Banner -->
                     <div class="form-group">
                         <label for="bannerImage">Edit Banner</label>

@@ -34,10 +34,10 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
         <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminwisata') }}" >
-            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
+            <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
           </a>
           <a class="navbar-brand brand-logo-mini" href="{{ url('/adminwisata') }}">
-            <img src="{{ asset('themewagon/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
+            <img src="{{ asset('beranda/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
           </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -122,6 +122,28 @@
                     <h4 class="card-title">Kelola Wisata</h4>
                     <a href="{{ url('tambahwisata') }}" class="btn btn-primary">Tambah Wisata</a>
                   </div>
+
+                  <!-- Tampilkan Error Secara Statis -->
+                  @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
+
+                  <!-- Tampilkan Sukses atau Error dengan SweetAlert -->
+                  <div id="messages" style="display: none;">
+                      @if(session('success'))
+                          <div data-success="{{ session('success') }}"></div>
+                      @endif
+                      @if(session('error'))
+                          <div data-error="{{ session('error') }}"></div>
+                      @endif
+                  </div>
+
                   <div class="table-responsive">
                     <table class="table table-striped table-borderless">
                       <thead>

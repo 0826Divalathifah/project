@@ -42,7 +42,7 @@ class AdminKalurahanController extends Controller
         $wisata = Wisata::all();
 
         // Ambil semua data admin dari database
-        $admins = Admin::all();
+        $admin = Admin::all();
 
         // Mendapatkan nama desa dari URL (misalnya: Desa Budaya, Desa Wisata)
         $desaName = $request->get('desa', 'total'); // Menggunakan 'total' untuk statistik keseluruhan
@@ -139,7 +139,7 @@ class AdminKalurahanController extends Controller
             'preneur',
             'prima',
             'wisata',
-            'admins',
+            'admin',
             'desaName',
             'data',
             'labels',
@@ -154,7 +154,7 @@ class AdminKalurahanController extends Controller
         $admin = Admin::all(); 
 
         // Kirim data admin ke view
-        return view('admin.adminkalurahan.kelolaadmin', compact('admins'));
+        return view('admin.adminkalurahan.kelolaadmin', compact('admin'));
     }
     
     public function tambahadmin()
@@ -163,30 +163,26 @@ class AdminKalurahanController extends Controller
     }
     
     public function simpanadmin(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:admin,email', // Perbaikan nama tabel
-            'role' => 'required|in:super_admin,admin_budaya,admin_preneur,admin_prima,admin_wisata',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-    
-        try {
-            // Membuat admin baru berdasarkan role yang dipilih
-            Admin::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password), // Meng-hash password
-                'role' => $request->role,
-            ]);
-    
-            // Redirect dengan pesan sukses setelah admin berhasil disimpan
-            return redirect('/kelolaadmin')->with('success', 'Admin berhasil ditambahkan');
-        } catch (\Exception $e) {
-            // Menangani kesalahan tak terduga
-            return redirect()->back()->withErrors(['error' => 'Terjadi kesalahan saat menambahkan admin.']);
-        }
-    }
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:admin,email',
+        'role' => 'required|in:super_admin,admin_budaya,admin_preneur,admin_prima,admin_wisata',
+        'password' => 'required|string|min:8|confirmed',
+    ]);
+
+    // Coba simpan data
+    Admin::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'role' => $request->role,
+    ]);
+
+    // Redirect dengan pesan sukses
+    return redirect()->to('/kelolaadmin')->with('success', 'Admin berhasil diperbarui');
+}
+
     
     public function editAdmin($id)
     {
@@ -290,37 +286,42 @@ class AdminKalurahanController extends Controller
     {
         $homepageData = Homepage::where('desa_name', 'kalurahan')->first();
         $tentangKamiData = KelolaHomepage::where('nama_menu', 'tentang_kami')->first();
-        $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->firstOrNew(['nama_menu' => 'kontak']);
+        $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->first();
         
-        return view('admin.adminkalurahan.kelolahomepagekalurahan', compact('homepageData','tentangKamiData','kontakData'));
+        return view('admin.adminkalurahan.kelolahomepage', compact('homepageData','tentangKamiData','kontakData'));
     }
 
-   // Mengupdate banner dan deskripsi untuk homepage kalurahan
     public function updateHomepageKalurahan(Request $request)
     {
         // Validasi input
         $request->validate([
             'deskripsi_index' => 'required|string|max:500',
-            'banner_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'gambar_banner' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        // Ambil atau buat data homepage kalurahan
-        $homepageData = Homepage::where('desa_name', 'kalurahan')->firstOrNew(['desa_name' => 'kalurahan']);
+        // Ambil data homepage kalurahan berdasarkan desa_name 'kalurahan'
+        $homepageData = Homepage::where('desa_name', 'kalurahan')->first();
+
+        // Jika data tidak ditemukan, buat data baru untuk desa kalurahan
+        if (!$homepageData) {
+            $homepageData = new Homepage;
+            $homepageData->desa_name = 'kalurahan';
+        }
 
         // Mengelola upload gambar banner jika ada
-        if ($request->hasFile('banner_image')) {
-            // Hapus gambar banner lama jika ada
+        if ($request->hasFile('gambar_banner')) {
+            // Hapus gambar lama jika ada
             if ($homepageData->gambar_banner && Storage::disk('public')->exists($homepageData->gambar_banner)) {
                 Storage::disk('public')->delete($homepageData->gambar_banner);
             }
 
-            // Simpan gambar banner baru ke folder 'uploads/kalurahan'
-            $homepageData->gambar_banner = $request->file('banner_image')->store('uploads/kalurahan', 'public');
+            // Simpan gambar baru ke folder 'uploads/kalurahan'
+            $bannerImageName = $request->file('gambar_banner')->store('uploads/kalurahan', 'public');
+            $homepageData->gambar_banner = $bannerImageName;
         }
 
         // Menyimpan deskripsi 
         $homepageData->deskripsi = $request->deskripsi_index;
-        $homepageData->save();
 
         // Simpan perubahan ke dalam database
         $homepageData->save();
@@ -328,7 +329,6 @@ class AdminKalurahanController extends Controller
         // Redirect kembali dengan pesan sukses
         return redirect()->back()->with('success', 'Homepage Kalurahan berhasil diperbarui');
     }
-
 
     public function updateHomepageTentangKami(Request $request)
     {
@@ -405,29 +405,22 @@ class AdminKalurahanController extends Controller
             'banner_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->firstOrNew(['nama_menu' => 'kontak']);
+        $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->first();
 
-        // Simpan banner image
+        // Upload banner jika ada
         if ($request->hasFile('banner_image')) {
-            $bannerPath = $request->file('banner_image')->store('uploads/homepage', 'public');
+            // Hapus gambar banner lama jika ada
+            if ($kontakData->banner_image && Storage::disk('public')->exists($kontakData->banner_image)) {
+                Storage::disk('public')->delete($kontakData->banner_image);
+            }
+            // Simpan gambar banner baru
+            $kontakData->banner_image = $request->file('banner_image')->store('uploads/homepage', 'public');
         }
 
-        // Update data di database untuk Kontak
-        KelolaHomepage::updateOrCreate(
-            ['nama_menu' => 'kontak'],
-            [
-                'banner_image' => $bannerPath ?? null,
-                'deskripsi' => null,
-                'slider_images' => null,
-            ]
-        );
+        $kontakData->save();
 
         return back()->with('success', 'Banner Kontak berhasil diperbarui.');
     }
-
-
-
-
 
 
 }

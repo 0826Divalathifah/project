@@ -7,25 +7,25 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('beranda/img/favicon.ico') }}">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="{{ asset('themewagon/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/slicknav.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/progressbar_barfiller.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/gijgo.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/animated-headline.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/fontawesome-all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/detail.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/detail.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/progressbar_barfiller.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/gijgo.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/animated-headline.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/detail.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/detail.css') }}">
     
 
 </head>
@@ -41,7 +41,7 @@
                         <!-- Logo -->
                         <div class="logo">
                             <a href="{{ url('/') }}">
-                            <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                            <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
                             </a>
                         </div>
                         <!-- Main-menu -->
@@ -121,7 +121,7 @@
                 @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
                         <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
                     @else
-                        <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                        <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
                     @endif
 
                     
@@ -177,43 +177,10 @@
         <div class="col-md-6">
             <div class="product-details">
                 <h2 class="fw-bold mb-3">{{ $preneur->nama_produk }}</h2>
-                <p class="text-success fw-bold h4 mb-3">{{ $preneur->harga_produk }}</p>
+                <p class="text-success fw-bold h4 mb-3">Rp {{ $preneur->harga_produk }}</p>
                 <p class="text-muted">{{ $preneur->deskripsi }}</p>
 
-                <!-- Input Jumlah 
-                <div class="mt-4">
-                    <label for="quantity" class="form-label">Jumlah</label>
-                    <input type="number" id="quantity" class="form-control w-50" min="1" value="1">
-                </div>-->
-
-                <!-- Tombol -->
-                <!--<div class="mt-4">
-                    <button 
-                        class="btn btn-primary me-2" 
-                        id="detailBtn" 
-                        data-product-id="{{ $prima->id }}" 
-                        data-product-name="{{ $prima->nama_produk }}" 
-                        data-product-price="{{ $prima->harga_produk ?? '0' }}" 
-                        data-product-quantity="1">
-                        Detail Pesanan-->
-                    <!-- Chatbox 
-                    <div id="chatbox-container" style="position: fixed; bottom: 20px; right: 20px; width: 300px; z-index: 1000;">
-                        <div id="chatbox-header" style="background-color: #007bff; color: white; padding: 10px; cursor: pointer; border-radius: 5px 5px 0 0;">
-                            Chat Pesanan
-                        </div>
-                        <div id="chatbox-body" style="display: none; border: 1px solid #ccc; background: white; max-height: 400px; overflow-y: auto; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-                            <div style="padding: 10px;">
-                                <h3>Detail Pesanan</h3>
-                                <p>Nama Produk: <span id="productName"></span></p>
-                                <p>Harga per Unit: <span id="productPrice"></span></p>
-                                <p>Jumlah: <span id="productQuantity"></span></p>
-                                <p>Total Harga: <span id="totalPrice"></span></p>
-                            </div>
-                        </div>
-                    </div>
-                    </button>-->
-                    <!-- Tombol Lanjut ke WhatsApp -->
-                   <!-- Tombol dengan data produk dari model preneur -->
+               
                     <button id="whatsappBtn" 
                         data-nama_produk="{{ $preneur->nama_produk }}" 
                         data-harga_produk="{{ $preneur->harga_produk }}" 
@@ -239,7 +206,7 @@
                         <!-- Logo -->
                         <div class="footer-logo mb-35" style="text-align: right;">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_footer.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 120px;">
+                                <img src="{{ asset('beranda/img/logo/logo_footer.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 120px;">
                             </a>
                         </div>
                         <!-- Social Media Icons -->
@@ -321,50 +288,50 @@
 
 <!-- JS here -->
 <!-- Jquery, Popper, Bootstrap -->
-<script src="{{ asset('themewagon/js/vendor/modernizr-3.5.0.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/vendor/jquery-1.12.4.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/popper.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('beranda/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+<script src="{{ asset('beranda/js/vendor/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ asset('beranda/js/popper.min.js') }}"></script>
+<script src="{{ asset('beranda/js/bootstrap.min.js') }}"></script>
 
 
 <!-- Slick-slider , Owl-Carousel ,slick-nav -->
-<script src="{{ asset('themewagon/js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/slick.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.slicknav.min.js') }}"></script>
+<script src="{{ asset('beranda/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('beranda/js/slick.min.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.slicknav.min.js') }}"></script>
 
 <!-- One Page, Animated-HeadLin, Date Picker -->
-<script src="{{ asset('themewagonjs/wow.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/animated.headline.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.magnific-popup.js') }}"></script>
-<script src="{{ asset('themewagon/js/gijgo.min.js') }}"></script>
+<script src="{{ asset('berandajs/wow.min.js') }}"></script>
+<script src="{{ asset('beranda/js/animated.headline.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.magnific-popup.js') }}"></script>
+<script src="{{ asset('beranda/js/gijgo.min.js') }}"></script>
 
 
 <!-- Nice-select, sticky,Progress -->
-<script src="{{ asset('themewagon/js/jquery.nice-select.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.sticky.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.barfiller.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.sticky.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.barfiller.js') }}"></script>
 
 <!-- counter , waypoint,Hover Direction -->
-<script src="{{ asset('themewagon/js/jquery.counterup.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/waypoints.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.countdown.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/hover-direction-snake.min.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('beranda/js/waypoints.min.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.countdown.min.js') }}"></script>
+<script src="{{ asset('beranda/js/hover-direction-snake.min.js') }}"></script>
 
 <!-- contact js -->
-<script src="{{ asset('themewagon/js/contact.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.form.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/mail-script.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script>
+<script src="{{ asset('beranda/js/contact.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.form.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('beranda/js/mail-script.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.ajaxchimp.min.js') }}"></script>
 
 <!-- Jquery Plugins, main Jquery -->	
-<script src="{{ asset('themewagon/js/plugins.js') }}"></script>
-<script src="{{ asset('themewagon/js/main.js') }}"></script>
+<script src="{{ asset('beranda/js/plugins.js') }}"></script>
+<script src="{{ asset('beranda/js/main.js') }}"></script>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('themewagon/js/whatsapp.js') }}"></script>
-<script src="{{ asset('themewagon/js/detail.js') }}"></script>
+<script src="{{ asset('beranda/js/whatsapp.js') }}"></script>
+<script src="{{ asset('beranda/js/detail.js') }}"></script>
 
 
 <script>
