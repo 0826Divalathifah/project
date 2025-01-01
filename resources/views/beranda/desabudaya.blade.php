@@ -123,14 +123,15 @@
                     <!-- Ikon Login dan Sign Up -->
                     </div>
                 </div>
-                <div class="banner-overlay"></div>
-                <div class="banner-text">Desa Budaya</div>
+                
 
-                @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
+                @if($gambar_banner && Storage::disk('public')->exists($gambar_banner))
                     <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
                 @else
                     <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
                 @endif
+                <div class="banner-overlay"></div>
+                <div class="banner-text">Desa Budaya</div>
 
                 <!-- breadcrumb Start-->
                 <div class="breadcrumb">
@@ -168,19 +169,19 @@
 
 
 <div class="carousel-container">
-    @foreach($budaya as $item)
+@foreach($budaya as $item)
     <div class="carousel-card">
-    @if($item->foto_card)
-    <img src="{{ asset('storage/' . $item->foto_card) }}" alt="{{ $item->nama_budaya }}" class="card-img-top">
-    @else
-        <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Gambar Tidak Tersedia" class="card-img-top">
-    @endif
-
+        @if($item->foto_card && Storage::disk('public')->exists($item->foto_card))
+            <img src="{{ asset('storage/' . $item->foto_card) }}" alt="{{ $item->nama_budaya }}" class="card-img-top">
+        @else
+            <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Gambar Tidak Tersedia" class="card-img-top">
+        @endif
         <h3><a href="{{ url('/detail_budaya/' . $item->id) }}">{{ $item->nama_budaya }}</a></h3>
         <p>{{ $item->nama_desa_budaya }}</p>
         <p>{{ $item->alamat }}</p>
     </div>
-    @endforeach
+@endforeach
+
 </div>
 
 

@@ -115,15 +115,14 @@
                     <!-- Ikon Login dan Sign Up -->
                     </div>
                 </div>
-                <div class="banner-overlay"></div>
-                <div class="banner-text">Detail Produk</div>
-
                 @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
                         <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
                     @else
                         <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
                     @endif
 
+                <div class="banner-overlay"></div>
+                <div class="banner-text">Detail Produk</div>
                     
                 <!-- breadcrumb Start-->
                     <div class="breadcrumb">
@@ -191,9 +190,9 @@
                     <button 
                         class="btn btn-primary me-2" 
                         id="detailBtn" 
-                        data-product-id="{{ $prima->id }}" 
-                        data-product-name="{{ $prima->nama_produk }}" 
-                        data-product-price="{{ $prima->harga_produk ?? '0' }}" 
+                        data-product-id="{{ $preneur->id }}" 
+                        data-product-name="{{ $preneur->nama_produk }}" 
+                        data-product-price="{{ $preneur->harga_produk ?? '0' }}" 
                         data-product-quantity="1">
                         Detail Pesanan-->
                     <!-- Chatbox 

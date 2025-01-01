@@ -20,12 +20,13 @@ class Prima extends Model
     protected $fillable = [
         'kategori_produk',
         'nama_produk',
-        'harga_min',
-        'harga_max',
+        'harga_produk',
         'nomor_whatsapp',
         'deskripsi',
         'foto_card',
         'foto_slider', // Untuk menyimpan path gambar produk dalam format JSON
     ];
+    
+   
 
 }

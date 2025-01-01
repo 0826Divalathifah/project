@@ -7,23 +7,23 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('themewagon/img/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('beranda/img/favicon.ico') }}">
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="{{ asset('themewagon/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/slicknav.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/progressbar_barfiller.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/gijgo.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/animated-headline.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/fontawesome-all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/nice-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('themewagon/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/progressbar_barfiller.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/gijgo.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/animated-headline.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('beranda/css/style.css') }}">
 
   
     
@@ -35,7 +35,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                <img src="{{ asset('themewagon/img/logo/logo Kabupaten Sleman.png') }}" alt="">
+                <img src="{{ asset('beranda/img/logo/logo Kabupaten Sleman.png') }}" alt="">
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                             <!-- Logo -->
                             <div class="logo">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
+                                <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
                                 </a>
 
                             </div>
@@ -118,14 +118,13 @@
                 </div>
 
 
-                <div class="banner-overlay"></div>
-                <div class="banner-text">Tentang Kami</div>
-
                 @if(isset($banner_image) && file_exists(public_path('storage/' . $banner_image)))
                     <img src="{{ asset('storage/' . $banner_image) }}" alt="Banner" class="banner-image">
                 @else
-                    <img src="{{ asset('themewagon/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                    <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
                 @endif
+                <div class="banner-overlay"></div>
+                <div class="banner-text">Tentang Kami</div>
 
                 <!-- breadcrumb Start-->
                 <div class="breadcrumb">
@@ -212,7 +211,7 @@
                         <!-- Logo -->
                         <div class="footer-logo mb-35" style="text-align: right;">
                             <a href="{{ url('/') }}">
-                                <img src="{{ asset('themewagon/img/logo/logo_footer.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 120px;">
+                                <img src="{{ asset('beranda/img/logo/logo_footer.png') }}" alt="Logo Kelurahan Sinduharjo" style="width: 400px; height: 120px;">
                             </a>
                         </div>
                         <!-- Social Media Icons -->
@@ -293,43 +292,43 @@
 
 <!-- JS here -->
 <!-- jQuery, Popper, Bootstrap -->
-<script src="{{ asset('themewagon/js/vendor/modernizr-3.5.0.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/vendor/jquery-1.12.4.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/popper.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('beranda/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+<script src="{{ asset('beranda/js/vendor/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ asset('beranda/js/popper.min.js') }}"></script>
+<script src="{{ asset('beranda/js/bootstrap.min.js') }}"></script>
 
 <!-- Slick-slider, Owl-Carousel, Slick-nav -->
-<script src="{{ asset('themewagon/js/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/slick.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.slicknav.min.js') }}"></script>
+<script src="{{ asset('beranda/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('beranda/js/slick.min.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.slicknav.min.js') }}"></script>
 
 <!-- One Page, Animated Headline, Date Picker -->
-<script src="{{ asset('themewagon/js/wow.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/animated.headline.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.magnific-popup.js') }}"></script>
-<script src="{{ asset('themewagon/js/gijgo.min.js') }}"></script>
+<script src="{{ asset('beranda/js/wow.min.js') }}"></script>
+<script src="{{ asset('beranda/js/animated.headline.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.magnific-popup.js') }}"></script>
+<script src="{{ asset('beranda/js/gijgo.min.js') }}"></script>
 
 <!-- Nice-select, Sticky, Progress -->
-<script src="{{ asset('themewagon/js/jquery.nice-select.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.sticky.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.barfiller.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.sticky.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.barfiller.js') }}"></script>
 
 <!-- Counter, Waypoint, Hover Direction -->
-<script src="{{ asset('themewagon/js/jquery.counterup.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/waypoints.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.countdown.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/hover-direction-snake.min.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('beranda/js/waypoints.min.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.countdown.min.js') }}"></script>
+<script src="{{ asset('beranda/js/hover-direction-snake.min.js') }}"></script>
 
 <!-- Contact JS -->
-<script src="{{ asset('themewagon/js/contact.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.form.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('themewagon/js/mail-script.js') }}"></script>
-<script src="{{ asset('themewagon/js/jquery.ajaxchimp.min.js') }}"></script>
+<script src="{{ asset('beranda/js/contact.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.form.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('beranda/js/mail-script.js') }}"></script>
+<script src="{{ asset('beranda/js/jquery.ajaxchimp.min.js') }}"></script>
 
 <!-- jQuery Plugins, Main jQuery -->
-<script src="{{ asset('themewagon/js/plugins.js') }}"></script>
-<script src="{{ asset('themewagon/js/main.js') }}"></script>
+<script src="{{ asset('beranda/js/plugins.js') }}"></script>
+<script src="{{ asset('beranda/js/main.js') }}"></script>
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

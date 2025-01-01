@@ -57,17 +57,19 @@
     <!-- Preloader End -->
 <header>
     <!-- Header Start -->
-    <div class="header-area">
-        <div class="main-header header-sticky">
-            <div class="container-fluid">
-                <div class="menu-wrapper d-flex align-items-center justify-content-between">
-                    <div class="header-left d-flex align-items-center">
-                         <!-- Logo -->
-                         <div class="logo">
+    <div class="header-area ">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper d-flex align-items-center justify-content-between">
+                        <div class="header-left d-flex align-items-center">
+                            <!-- Logo -->
+                            <div class="logo">
                             <a href="{{ url('/') }}">
                                 <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 97 px; height: 70px;">
-                                </a></div>
-                        <!-- Main-menu -->
+                                </a>
+
+                            </div>
+                            <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
@@ -82,112 +84,44 @@
                                     <li>   
                                     <li><a href="{{ url('/about') }}">Tentang Kami</a></li>
                                     <li><a href="{{ url('/contact') }}">Kontak</a></li>
+
+
                                 </ul>
                             </nav>
                         </div>
-                    </div>
-                    <div class="header-right1 d-flex align-items-center">
-                        <!-- Social -->
-                        <div class="header-social d-none d-md-block">
-                        <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
+                        </div>
+                        <div class="header-right1 d-flex align-items-center">
+                            <!-- Social -->
+                            <div class="header-social d-none d-md-block">
+                                <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
                                 <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
                                 <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+                                 <!-- Ikon Login dan Sign Up -->
+                            </div>
                         </div>
-                        <!-- Search Box 
-                        <div class="search d-none d-md-block">
-                            <ul class="d-flex align-items-center">
-                                <li class="mr-15">
-                                    <div class="nav-search search-switch">
-                                        <i class="ti-search"></i>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>-->
-                    </div>
-                    <!-- Mobile Menu -->
-                    <div class="col-12">
-                        <div class="mobile_menu d-block d-lg-none"></div>
-                    </div>
+
+
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Header End -->
     </header>
+    <!-- header end -->     
     <main>
-        <!-- header end -->
-        <!-- listing Area Start -->
-            <div class="category-area">
-            <div class="container">
-            <div class="row">
-            
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <style>
-        /* Styling for the banner */
-        .banner-container {
-            position: relative;
-            text-align: center;
-            color: white;
-            height: 600px;
-            background: url('{{ asset('beranda/img/desabudaya/banner.jpg') }}') no-repeat center center/cover;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            pointer-events: none; /* Membuat overlay tidak memblokir interaksi */
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2; /* Pastikan ini berada di atas overlay */
-            text-align: center;
-        }
-
-        .banner-text {
-            font-size: 48px;
-            font-weight: bold;
-            z-index: 3; 
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            margin-top: 100px;
-        }
-
-        .breadcrumb {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #ffffff;
-        }
-
-        .breadcrumb-item a {
-            color: #ffffff;
-            text-decoration: none;
-            z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
-            position: relative; /* Penting untuk memastikan z-index bekerja */
-        }
-
-        .breadcrumb-item a:hover {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-        
-    </style>
-
-        <div class="banner-container">
-        <!-- Mobile Device Show Menu-->
-        <div class="header-right2 d-flex align-items-center">
+       
+    <div class="container">
+    <div class="category-area">
+        <div class="row">   
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+            <div class="banner-container">
+                <!-- Mobile Device Show Menu-->
+                <div class="header-right2 d-flex align-items-center">
                     <!-- Social -->
                     <div class="header-social  d-block d-md-none">
                     <a href="https://sinduharjosid.slemankab.go.id/first"><i class="fas fa-globe"></i></a>
@@ -195,23 +129,26 @@
                     <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                     <!-- Ikon Login dan Sign Up -->
                     </div>
-        </div>
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Kontak</div>
+                </div>
 
-            @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
-                            <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
-                        @else
-                            <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
-                        @endif
+                @if(isset($kontakData->banner_image) && file_exists(public_path('storage/' . $kontakData->banner_image)))
+                    <img src="{{ asset('storage/' . $kontakData->banner_image) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Default Banner" class="banner-image">
+                @endif
+                <div class="banner-overlay"></div>
+                <div class="banner-text">Kontak</div>
 
-            <!-- Breadcrumb Start -->
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-                    <li class="breadcrumb-item"><a href="{{ url('#') }}">Kontak</a></li>
-                </ol>
-            </nav>
+                <!-- breadcrumb Start-->
+                <div class="breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
+                            <li class="breadcrumb-item"><a href="#">Tentang Kami</a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
             <!-- Breadcrumb End -->
         </div>
         

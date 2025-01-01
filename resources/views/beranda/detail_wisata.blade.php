@@ -139,14 +139,14 @@
                     <!-- Ikon Login dan Sign Up -->
                     </div>
                 </div>
-            <div class="banner-overlay"></div>
-            <div class="banner-text">Detail Wisata</div>
 
             @if(isset($gambar_banner) && file_exists(public_path('storage/' . $gambar_banner)))
                     <img src="{{ asset('storage/' . $gambar_banner) }}" alt="Banner" class="banner-image">
                 @else
                     <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
                 @endif
+            <div class="banner-overlay"></div>
+            <div class="banner-text">Detail Wisata</div>
                 
             <!-- breadcrumb Start-->
             <div class="breadcrumb">

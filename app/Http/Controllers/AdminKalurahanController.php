@@ -42,7 +42,7 @@ class AdminKalurahanController extends Controller
         $wisata = Wisata::all();
 
         // Ambil semua data admin dari database
-        $admins = Admin::all();
+        $users = user::all();
 
         // Mendapatkan nama desa dari URL (misalnya: Desa Budaya, Desa Wisata)
         $desaName = $request->get('desa', 'total'); // Menggunakan 'total' untuk statistik keseluruhan
@@ -139,7 +139,7 @@ class AdminKalurahanController extends Controller
             'preneur',
             'prima',
             'wisata',
-            'admins',
+            'users',
             'desaName',
             'data',
             'labels',
@@ -151,10 +151,10 @@ class AdminKalurahanController extends Controller
     public function kelolaAdmin()
     {
         // Ambil semua data admin dari database
-        $admin = Admin::all(); 
+        $users = user::all(); 
 
         // Kirim data admin ke view
-        return view('admin.adminkalurahan.kelolaadmin', compact('admins'));
+        return view('admin.adminkalurahan.kelolaadmin', compact('admin'));
     }
     
     public function tambahadmin()
@@ -400,30 +400,29 @@ class AdminKalurahanController extends Controller
 
 
     public function updateHomepageKontak(Request $request)
-    {
-        $request->validate([
-            'banner_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+{
+    $request->validate([
+        'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
 
-        $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->firstOrNew(['nama_menu' => 'kontak']);
+    // Ambil data kontak atau buat baru jika belum ada
+    $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->firstOrNew(['nama_menu' => 'kontak']);
 
-        // Simpan banner image
-        if ($request->hasFile('banner_image')) {
-            $bannerPath = $request->file('banner_image')->store('uploads/homepage', 'public');
-        }
-
-        // Update data di database untuk Kontak
-        KelolaHomepage::updateOrCreate(
-            ['nama_menu' => 'kontak'],
-            [
-                'banner_image' => $bannerPath ?? null,
-                'deskripsi' => null,
-                'slider_images' => null,
-            ]
-        );
-
-        return back()->with('success', 'Banner Kontak berhasil diperbarui.');
+    // Simpan file banner jika ada
+    $bannerPath = $kontakData->banner_image ?? null;
+    if ($request->hasFile('banner_image')) {
+        $bannerPath = $request->file('banner_image')->store('uploads/homepage', 'public');
     }
+
+    // Update data
+    $kontakData->banner_image = $bannerPath;
+    $kontakData->deskripsi = null; // Atur deskripsi jika ada
+    $kontakData->slider_images = null; // Atur slider_images jika ada
+    $kontakData->save();
+
+    return back()->with('success', 'Banner Kontak berhasil diperbarui.');
+}
+
 
 
 }

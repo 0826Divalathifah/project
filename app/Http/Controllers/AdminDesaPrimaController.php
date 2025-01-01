@@ -36,10 +36,10 @@ class AdminDesaPrimaController extends Controller
                 'total' => $desaPrimaVisits->pluck('total'),
             ],
         ];
-         // Mengambil jumlah kunjungan untuk Desa prima bulan ini
+         // Mengambil jumlah kunjungan untuk Desa Prima bulan ini
          $totalVisitsDesaprima = Visit::where('desa_name', 'Desa Prima')->count();
          
-         // Menghitung total prima
+         // Menghitung total Prima
          $totalPrima = Prima::count();
  
          $desaPrimaVisits = Visit::selectRaw('DATE(created_at) as date, COUNT(*) as total')
@@ -57,7 +57,7 @@ class AdminDesaPrimaController extends Controller
              ],
          ];
  
-         // Mendapatkan nama desa dari URL, default ke 'Desa prima'
+         // Mendapatkan nama desa dari URL, default ke 'Desa Prima'
          $desaName = $request->get('desa', 'Desa Prima');
  
          // Filter (default: daily)
@@ -174,7 +174,6 @@ class AdminDesaPrimaController extends Controller
         return redirect()->to('/kelolaprima')->with('success', 'Produk dan varian berhasil ditambahkan');
     }
     
-    
 
     
     public function kelolaPrima()
@@ -268,13 +267,16 @@ class AdminDesaPrimaController extends Controller
         }
     
          // Hapus semua foto slider
-         $fotoSliderPaths = json_decode($prima->foto_slider, true) ?? [];
-         foreach ($fotoSliderPaths as $foto) {
-             if (Storage::disk('public')->exists($foto)) {
-                 Storage::disk('public')->delete($foto);
-             }
-         }
-    
+        $fotoSliderPaths = is_string($prima->foto_slider) ? json_decode($prima->foto_slider, true) : [];
+
+        // Pastikan $fotoSliderPaths adalah array sebelum digunakan dalam foreach
+        if (is_array($fotoSliderPaths)) {
+            foreach ($fotoSliderPaths as $foto) {
+                if (Storage::disk('public')->exists($foto)) {
+                    Storage::disk('public')->delete($foto);
+                }
+            }
+        }
         // Hapus data dari database
         $prima->delete();
     

@@ -112,7 +112,7 @@ class PageController extends Controller
             $preneur = Preneur::findOrFail($id);
 
             // Ambil data dari tabel `Homepage` dengan `desa_name` bernilai 'wisata'
-            $homepageData = Homepage::where('desa_name', 'preneu')->first();
+            $homepageData = Homepage::where('desa_name', 'preneur')->first();
             $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg'; // Path default jika gambar tidak ditemukan
 
             // Decode foto_slider menjadi array
@@ -171,14 +171,14 @@ class PageController extends Controller
                 // Menyimpan kunjungan ke tabel visits
             Visit::create([
                 'url' => url()->current(), // Mengambil URL yang diakses
-                'desa_name' => 'Desa Wisata', // Nama desa
+                'desa_name' => 'wisata', // Nama desa
             ]);
 
             // Mengambil semua data wisata dari database
             $wisata = Wisata::all();
             
             // Mengambil jumlah kunjungan untuk Desa Wisata bulan ini
-            $totalVisitsDesaWisata = Visit::where('desa_name', 'Desa Wisata')->count();
+            $totalVisitsDesaWisata = Visit::where('desa_name', 'wisata')->count();
 
             // Mengirim data wisata dan jumlah kunjungan ke view
             return view('beranda.desawisata', compact('wisata', 'totalVisitsDesaWisata'));
@@ -217,13 +217,17 @@ class PageController extends Controller
     public function contact()
     {
         // Ambil data deskripsi dan gambar banner dari model KelolaHomepage untuk halaman Kontak
-        $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->firstOrNew(['nama_menu' => 'kontak']);
+        $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->first();
+    
+        // Pastikan data tersedia, dan set variabel
+        $banner_image = $kontakData ? $kontakData->banner_image : null;
     
         // Mengirimkan data ke view
         return view('beranda.contact', [
             'banner_image' => $banner_image,
         ]);
     }
+
 
     public function simpanFeedback(Request $request)
     {
