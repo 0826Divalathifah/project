@@ -99,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+<<<<<<< HEAD
 
 document.addEventListener("DOMContentLoaded", function () {
     const searchToggle = document.getElementById("search-toggle");
@@ -201,3 +202,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+=======
+>>>>>>> yusuf

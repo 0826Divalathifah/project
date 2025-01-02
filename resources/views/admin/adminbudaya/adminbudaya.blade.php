@@ -18,51 +18,47 @@
     <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}">
 </head>
 
-<body>
-<div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-        <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
-            <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
-          </a>
-          <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
-            <img src="{{ asset('beranda/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
-          </a>
-        </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="icon-menu"></span>
-          </button>
-          
-          <ul class="navbar-nav navbar-nav-right">
-          <div class="header-right1 d-flex align-items-center justify-content-center">
-            <!-- Social -->
-            <div class="header-social d-flex align-items-center">
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
-                        <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-                        <span style="font-size: 16px;">Logout</span>
-                    </button>
-                </form>
-            </div>
-          </div>    
-          <li class="nav-item nav-settings d-none d-lg-flex">
-              <a class="nav-link" href="#">
-                  <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
-              </a>
-          </li>
-          </ul>
-
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+  <div class="container-scroller">
+  <!-- partial:../../partials/_navbar.html -->
+  <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+          <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+          <a class="navbar-brand brand-logo me-5" href="{{ url ('/adminbudaya') }}" >
+              <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
+            </a>
+            <a class="navbar-brand brand-logo-mini" href="{{ url('/adminbudaya') }}">
+              <img src="{{ asset('beranda/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
+            </a>
+          </div>
+          <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
               <span class="icon-menu"></span>
           </button>
 
-        </div>
-    </nav>
-    <!-- partial -->
-    <div class=" container-fluid page-body-wrapper">
+    <ul class="navbar-nav navbar-nav-right">
+    <div class="header-right1 d-flex align-items-center justify-content-center">
+    <!-- Social -->
+    <div class="header-social d-flex align-items-center">
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
+            <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+            <span style="font-size: 16px;">Logout</span>
+        </button>
+    </form>
+</div>
+    </div>
+</div>    
+    
+</ul>
+
+<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+    <span class="icon-menu"></span>
+</button>
+
+  </div>
+</nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
         <!-- partial:../../partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">

@@ -60,12 +60,14 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Logout</span>
-        </a>
-    </div>
+              <form action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
+                      <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+                      <span style="font-size: 16px;">Logout</span>
+                  </button>
+              </form>
+          </div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
@@ -126,125 +128,143 @@
 
     <div class="col-12 grid-margin stretch-card">
     <div class="card">
-    <form id="formTambahWisata" action="{{ url('/simpanWisata') }}" method="POST" enctype="multipart/form-data">
-            @csrf 
-            <div class="card-body">
-                <h4 class="card-title">Formulir Tambah Wisata</h4>
-                <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+            @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+        @endif
 
-                <!-- Tampilkan Error Secara Statis -->
-                @if ($errors->any())
-                  <div class="alert alert-danger">
-                      <ul>
-                          @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                          @endforeach
-                      </ul>
+      <form id="formTambahWisata" action="{{ url('/simpanWisata') }}" method="POST" enctype="multipart/form-data">
+          @csrf 
+          <div class="card-body">
+              <h4 class="card-title">Formulir Tambah Wisata</h4>
+              <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+
+              <!-- Input Nama Wisata -->
+              <div class="form-group">
+                  <label for="namaWisata">Nama Wisata</label>
+                  <input 
+                      type="text" 
+                      class="form-control" 
+                      id="namaWisata" 
+                      name="nama_wisata" 
+                      placeholder="Masukkan nama wisata" 
+                      value="{{ old('nama_wisata') }}" 
+                      required>
+              </div>
+
+              <!-- Input Harga (opsional) -->
+              <div class="mb-3">
+                  <label for="hargaWisata" class="form-label">Harga Tiket Masuk (opsional)</label>
+                  <div class="input-group">
+                      <span class="input-group-text">Rp</span>
+                      <input 
+                          type="text" 
+                          class="form-control rounded" 
+                          id="hargaWisata" 
+                          name="harga_masuk" 
+                          aria-label="Harga" 
+                          placeholder="Masukkan harga" 
+                          value="{{ old('harga_masuk') }}" 
+                          oninput="formatCurrency(this)">
                   </div>
-              @endif
-
-              <!-- Tampilkan Sukses atau Error dengan SweetAlert -->
-              <div id="messages" style="display: none;">
-                  @if(session('success'))
-                      <div data-success="{{ session('success') }}"></div>
-                  @endif
-                  @if(session('error'))
-                      <div data-error="{{ session('error') }}"></div>
-                  @endif
               </div>
 
-                <!-- Input Nama Wisata -->
-                <div class="form-group">
-                    <label for="namaWisata">Nama Wisata</label>
-                    <input type="text" class="form-control" id="namaWisata" name="nama_wisata" placeholder="Masukkan nama wisata" required>
-                </div>
-
-                <!-- Input Harga (opsional) -->
-                <div class="mb-3">
-                    <label for="hargaWisata" class="form-label">Harga Tiket Masuk (opsional)</label>
-                    <div class="input-group">
-                        <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control rounded" id="hargaWisata" name="harga_masuk" aria-label="Harga" placeholder="Masukkan harga" oninput="formatCurrency(this)">
-                    </div>
-                </div>
-
-                <!-- Input Alamat -->
-                <div class="form-group">
+              <!-- Input Alamat -->
+              <div class="form-group">
                   <label for="alamat">Alamat</label>
-                  <input type="text" class="form-control" id="alamat" name="alamat" value="{{ old('alamat') }}" placeholder="Masukkan alamat wisata" required>
+                  <input 
+                      type="text" 
+                      class="form-control" 
+                      id="alamat" 
+                      name="alamat" 
+                      value="{{ old('alamat') }}" 
+                      placeholder="Masukkan alamat wisata" 
+                      required>
               </div>
 
-                <!-- Input Deskripsi -->
-                <div class="form-group">
-                    <label for="deskripsiWisata">Deskripsi Wisata</label>
-                    <textarea class="form-control" id="deskripsiWisata" name="deskripsi" rows="5" placeholder="Masukkan deskripsi wisata" required></textarea>
-                </div>
+              <!-- Input Deskripsi -->
+              <div class="form-group">
+                  <label for="deskripsiWisata">Deskripsi Wisata</label>
+                  <textarea 
+                      class="form-control" 
+                      id="deskripsiWisata" 
+                      name="deskripsi" 
+                      rows="5" 
+                      placeholder="Masukkan deskripsi wisata" 
+                      required>{{ old('deskripsi') }}</textarea>
+              </div>
 
-                <!-- Input Foto Card -->
-                <div class="form-group">
-                    <label>Unggah Foto Card Wisata (Ukuran 300 x 150 px)</label>
-                    <input type="file" name="foto_card" class="file-upload-default" required>
-                    <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto card" required>
-                        <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                        </span>
-                    </div>
-                </div>
+              <!-- Input Foto Card -->
+              <div class="form-group">
+                  <label>Unggah Foto Card Wisata (Ukuran 300 x 150 px)</label>
+                  <input type="file" name="foto_card" class="file-upload-default" required>
+                  <div class="input-group col-xs-12 d-flex align-items-center">
+                      <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto card">
+                      <span class="input-group-append ms-2">
+                          <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                      </span>
+                  </div>
+              </div>
 
-                <!-- Input Foto Brosur -->
-                <div class="form-group">
-                    <label>Unggah Foto Brosur Wisata (Optional)</label>
-                    <input type="file" name="brosur" class="file-upload-default" required>
-                    <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto brosur jika ada" >
-                        <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                        </span>
-                    </div>
-                </div>
+              <!-- Input Foto Brosur -->
+              <div class="form-group">
+                  <label>Unggah Foto Brosur Wisata (Optional)</label>
+                  <input type="file" name="brosur" class="file-upload-default">
+                  <div class="input-group col-xs-12 d-flex align-items-center">
+                      <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto brosur jika ada">
+                      <span class="input-group-append ms-2">
+                          <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                      </span>
+                  </div>
+              </div>
 
-                <!-- Input Foto Wisata -->
-                <div class="form-group">
-                    <label>Unggah Foto-Foto Wisata</label>
-                    <input type="file" name="foto_wisata[]" class="file-upload-default" id="fileInput" multiple required>
-                    <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto" required>
-                        <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                        </span>
-                    </div>
-                </div>
+              <!-- Input Foto Wisata -->
+              <div class="form-group">
+                  <label>Unggah Foto-Foto Wisata</label>
+                  <input type="file" name="foto_wisata[]" class="file-upload-default" id="fileInput" multiple>
+                  <div class="input-group col-xs-12 d-flex align-items-center">
+                      <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                      <span class="input-group-append ms-2">
+                          <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                      </span>
+                  </div>
+              </div>
 
-                <!-- Input Dinamis untuk Hari dan Jam Kunjung -->
-                <div class="form-group">
-                    <label>Waktu Kunjung</label>
-                    <div id="waktuKunjungWrapper">
-                        <div class="input-group mb-3 waktu-kunjung">
-                            <select class="form-control me-2" name="hari[]" required>
-                                <option value="">Pilih Hari</option>
-                                <option value="Setiap Hari">Setiap Hari</option>
-                                <option value="Senin">Senin</option>
-                                <option value="Selasa">Selasa</option>
-                                <option value="Rabu">Rabu</option>
-                                <option value="Kamis">Kamis</option>
-                                <option value="Jumat">Jumat</option>
-                                <option value="Sabtu">Sabtu</option>
-                                <option value="Minggu">Minggu</option>
-                            </select>
-                            <input type="time" class="form-control me-2" name="jam_buka[]" required>
-                            <span class="input-group-text">s/d</span>
-                            <input type="time" class="form-control ms-2" name="jam_tutup[]" required>
-                            <button type="button" class="btn btn-danger btn-sm ms-2 removeWaktuKunjung">Hapus</button>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-primary mt-2" id="addWaktuKunjung">Tambah Waktu Kunjung</button>
-                </div>
-              
-                <!-- Submit Button -->
-                <button type="submit" id="submitWisata" class="btn btn-primary me-2">Submit</button>
-            </div>
-        </form>
+              <!-- Input Dinamis untuk Hari dan Jam Kunjung -->
+              <div class="form-group">
+                  <label>Waktu Kunjung</label>
+                  <div id="waktuKunjungWrapper">
+                      <div class="input-group mb-3 waktu-kunjung">
+                          <select class="form-control me-2" name="hari[]" required>
+                              <option value="" {{ old('hari.0') == '' ? 'selected' : '' }}>Pilih Hari</option>
+                              <option value="Setiap Hari" {{ old('hari.0') == 'Setiap Hari' ? 'selected' : '' }}>Setiap Hari</option>
+                              <option value="Senin" {{ old('hari.0') == 'Senin' ? 'selected' : '' }}>Senin</option>
+                              <option value="Selasa" {{ old('hari.0') == 'Selasa' ? 'selected' : '' }}>Selasa</option>
+                              <option value="Rabu" {{ old('hari.0') == 'Rabu' ? 'selected' : '' }}>Rabu</option>
+                              <option value="Kamis" {{ old('hari.0') == 'Kamis' ? 'selected' : '' }}>Kamis</option>
+                              <option value="Jumat" {{ old('hari.0') == 'Jumat' ? 'selected' : '' }}>Jumat</option>
+                              <option value="Sabtu" {{ old('hari.0') == 'Sabtu' ? 'selected' : '' }}>Sabtu</option>
+                              <option value="Minggu" {{ old('hari.0') == 'Minggu' ? 'selected' : '' }}>Minggu</option>
+                          </select>
+                          <input type="time" class="form-control me-2" name="jam_buka[]" value="{{ old('jam_buka.0') }}" required>
+                          <span class="input-group-text">s/d</span>
+                          <input type="time" class="form-control ms-2" name="jam_tutup[]" value="{{ old('jam_tutup.0') }}" required>
+                          <button type="button" class="btn btn-danger btn-sm ms-2 removeWaktuKunjung">Hapus</button>
+                      </div>
+                  </div>
+                  <button type="button" class="btn btn-primary mt-2" id="addWaktuKunjung">Tambah Waktu Kunjung</button>
+              </div>
+            
+              <!-- Submit Button -->
+              <button type="submit" id="submitWisata" class="btn btn-primary me-2">Submit</button>
+          </div>
+      </form>
+
     </div>
 </div>
 </div>

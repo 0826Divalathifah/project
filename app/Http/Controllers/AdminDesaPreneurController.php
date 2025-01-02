@@ -264,13 +264,16 @@ class AdminDesaPreneurController extends Controller
         }
     
          // Hapus semua foto slider
-         $fotoSliderPaths = json_decode($preneur->foto_slider, true) ?? [];
-         foreach ($fotoSliderPaths as $foto) {
-             if (Storage::disk('public')->exists($foto)) {
-                 Storage::disk('public')->delete($foto);
-             }
-         }
-    
+        $fotoSliderPaths = is_string($preneur->foto_slider) ? json_decode($preneur->foto_slider, true) : [];
+
+        // Pastikan $fotoSliderPaths adalah array sebelum digunakan dalam foreach
+        if (is_array($fotoSliderPaths)) {
+            foreach ($fotoSliderPaths as $foto) {
+                if (Storage::disk('public')->exists($foto)) {
+                    Storage::disk('public')->delete($foto);
+                }
+            }
+        }
         // Hapus data dari database
         $preneur->delete();
     

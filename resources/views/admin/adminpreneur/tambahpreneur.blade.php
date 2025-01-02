@@ -113,81 +113,84 @@
             <div class="card-body">
                 <h4 class="card-title">Formulir Tambah Produk</h4>
                 <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
-                
+
                 <!-- Tampilkan Error Secara Statis -->
                 @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                        <!-- Tampilkan Sukses atau Error dengan SweetAlert -->
-                        <div id="messages" style="display: none;">
-                            @if(session('success'))
-                                <div data-success="{{ session('success') }}"></div>
-                            @endif
-                            @if(session('error'))
-                                <div data-error="{{ session('error') }}"></div>
-                            @endif
+                <!-- Tampilkan Sukses atau Error dengan SweetAlert -->
+                <div id="messages" style="display: none;">
+                    @if(session('success'))
+                        <div data-success="{{ session('success') }}"></div>
+                    @endif
+                    @if(session('error'))
+                        <div data-error="{{ session('error') }}"></div>
+                    @endif
+                </div>
+
+                <form action="{{ url('/submit-form') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+                    <!-- Input Kategori -->
+                    <div class="form-group">
+                        <label>Pilih Kategori</label>
+                        <select name="kategori_produk" class="js-example-basic-single w-100" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="makanan" {{ old('kategori_produk') == 'makanan' ? 'selected' : '' }}>Makanan dan Minuman</option>
+                            <option value="kerajinan" {{ old('kategori_produk') == 'kerajinan' ? 'selected' : '' }}>Kerajinan dan Aksesoris</option>
+                        </select>
+                    </div>
+
+                    <!-- Input Nama Produk -->
+                    <div class="form-group">
+                        <label for="nama_produk">Nama Produk</label>
+                        <input type="text" class="form-control" id="namaProduk" name="nama_produk" placeholder="Masukkan nama produk" value="{{ old('nama_produk') }}" required>
+                    </div>
+
+                    <!-- Input Harga -->
+                    <div class="mb-3">
+                        <label for="harga_produk" class="form-label">Harga</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Rp</span>
+                            <input type="text" name="harga_produk" class="form-control rounded" placeholder="Masukkan harga" value="{{ old('harga_produk') }}" oninput="formatCurrency(this)" required>
                         </div>
-
-                <!-- Input Kategori -->
-                <div class="form-group">
-                    <label>Pilih Kategori</label>
-                    <select name="kategori_produk" class="js-example-basic-single w-100" required>
-                        <option value="">Pilih Kategori</option>
-                        <option value="makanan">Makanan dan Minuman</option>
-                        <option value="kerajinan">Kerajinan dan Aksesoris</option>
-                    </select>
-                </div>
-
-                <!-- Input Nama Produk -->
-                <div class="form-group">
-                    <label for="nama_produk">Nama Produk</label>
-                    <input type="text" class="form-control" id="namaProduk" name="nama_produk" placeholder="Masukkan nama produk" required>
-                </div>
-
-                <!-- Input Harga -->
-                <div class="mb-3">
-                    <label for="harga_produk" class="form-label">Harga</label>
-                    <div class="input-group">
-                        <span class="input-group-text">Rp</span>
-                        <input type="text" name ="harga_produk" class="form-control rounded" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
                     </div>
-                </div>
 
-                <!-- Input Nomor WhatsApp -->
-                <div class="form-group">
-                    <label for="nomor_whatsapp">Nomor WhatsApp Aktif</label>
-                    <input type="text" class="form-control" id="whatsappNumber" name="nomor_whatsapp" placeholder="Masukkan Nomor WhatsApp" min="0" required>
-                </div>
-
-                <!-- Input Deskripsi -->
-                <div class="form-group">
-                    <label for="deskripsi">Deskripsi</label>
-                    <textarea class="form-control" id="exampleTextarea1" name="deskripsi" rows="5" placeholder="Masukkan deskripsi produk" required></textarea>
-                </div>
-
-                <!-- Input Foto Card -->
-                <div class="form-group">
-                    <label>Unggah Foto Card</label>
-                    <input type="file" name="foto_card" class="file-upload-default" required>
-                    <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
-                        <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                        </span>
+                    <!-- Input Nomor WhatsApp -->
+                    <div class="form-group">
+                        <label for="nomor_whatsapp">Nomor WhatsApp Aktif</label>
+                        <input type="text" class="form-control" id="whatsappNumber" name="nomor_whatsapp" placeholder="Masukkan Nomor WhatsApp" value="{{ old('nomor_whatsapp') }}" min="0" required>
                     </div>
-                </div>
 
-                <!-- Input Foto Produk -->
-                <div class="form-group">
-                    <label>Unggah Foto-Foto Produk</label>
-                    <input type="file" name="foto_slider[]" class="file-upload-default" id="fileInput" multiple required>
+                    <!-- Input Deskripsi -->
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <textarea class="form-control" id="exampleTextarea1" name="deskripsi" rows="5" placeholder="Masukkan deskripsi produk" required>{{ old('deskripsi') }}</textarea>
+                    </div>
+
+                    <!-- Input Foto Card -->
+                    <div class="form-group">
+                        <label>Unggah Foto Card</label>
+                        <input type="file" name="foto_card" class="file-upload-default" required>
+                        <div class="input-group col-xs-12 d-flex align-items-center">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                            <span class="input-group-append ms-2">
+                                <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Input Foto Produk -->
+                    <div class="form-group">
+                        <label>Unggah Foto-Foto Produk</label>
+                        <input type="file" name="foto_slider[]" class="file-upload-default" id="fileInput" multiple required>
                         <div class="input-group col-xs-12 d-flex align-items-center">
                             <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
                             <span class="input-group-append ms-2">
@@ -196,10 +199,10 @@
                         </div>
                     </div>
 
-                <!-- Submit Button -->
-                <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+                    <!-- Submit Button -->
+                    <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+                </form>
             </div>
-        </form>
     </div>
 </div>
 

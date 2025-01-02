@@ -148,6 +148,7 @@
                 </div>
             </div>
 
+<<<<<<< HEAD
             <!-- Kelola Card Selamat Datang -->
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
@@ -158,6 +159,18 @@
                           <div class="form-group">
                               <label for="welcomeImage">Edit Foto</label>
                               <input type="file" name="gambar_welcome" class="form-control" id="welcomeImage" accept="image/*">
+=======
+        <!-- Kelola Card Selamat Datang -->
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Kelola Card Selamat Datang</h4>
+                    <form class="forms-sample" action="{{ url('/updateWelcomeCard') }}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group">
+                          <label for="welcomeImage">Edit Foto</label>
+                          <input type="file" name="gambar_welcome" class="form-control" id="welcomeImage" accept="image/*">
+>>>>>>> yusuf
 
                               @if(!empty($homepageData->gambar_welcome) && Storage::disk('public')->exists($homepageData->gambar_welcome))
                                   <div class="mt-3">
@@ -211,5 +224,9 @@
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
 
     <!-- End custom js for this page-->
+<<<<<<< HEAD
   </body>
+=======
+</body>
+>>>>>>> yusuf
 </html>

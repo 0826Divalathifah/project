@@ -49,13 +49,14 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
             <span style="font-size: 16px;">Logout</span>
-        </a>
-    </div>
+        </button>
+    </form>
+</div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
@@ -121,7 +122,7 @@
         </nav>
         <div class="col-12 grid-margin stretch-card">
     <div class="card">
-    <form id="formEdit" action="{{ url('/updateAdmin/' . $admin->id) }}" method="POST" enctype="multipart/form-data">
+    <form id="formEdit" action="{{ url('/updateAdmin/' . $users->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT') <!-- Ini untuk menggunakan HTTP PUT method, yang menunjukkan bahwa ini adalah update -->
     <!-- form content -->
@@ -150,24 +151,24 @@
     <!-- Input Nama Admin -->
     <div class="form-group">
         <label for="name">Nama Admin</label>
-        <input type="text" name="name" class="form-control" placeholder="Masukkan Nama Admin" value="{{ old('name', $admin->name) }}" required>
+        <input type="text" name="name" class="form-control" placeholder="Masukkan Nama Admin" value="{{ old('name', $users->name) }}" required>
     </div>
 
     <!-- Input Email Admin -->
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" name="email" class="form-control" placeholder="Masukkan Email" value="{{ old('email', $admin->email) }}" required>
+        <input type="email" name="email" class="form-control" placeholder="Masukkan Email" value="{{ old('email', $users->email) }}" required>
     </div>
 
     <!-- Input Role Admin -->
     <div class="form-group">
         <label for="role">Peran Admin</label>
         <select name="role" class="form-control" required>
-            <option value="super_admin" {{ old('role', $admin->role) == 'super_admin' ? 'selected' : '' }}>Admin Kalurahan (Super Admin)</option>
-            <option value="admin_budaya" {{ old('role', $admin->role) == 'admin_budaya' ? 'selected' : '' }}>Admin Desa Budaya</option>
-            <option value="admin_preneur" {{ old('role', $admin->role) == 'admin_preneur' ? 'selected' : '' }}>Admin Desa Preneur</option>
-            <option value="admin_prima" {{ old('role', $admin->role) == 'admin_prima' ? 'selected' : '' }}>Admin Desa Prima</option>
-            <option value="admin_wisata" {{ old('role', $admin->role) == 'admin_wisata' ? 'selected' : '' }}>Admin Desa Wisata</option>
+            <option value="super_admin" {{ old('role', $users->role) == 'super_admin' ? 'selected' : '' }}>Admin Kalurahan (Super Admin)</option>
+            <option value="admin_budaya" {{ old('role', $users->role) == 'admin_budaya' ? 'selected' : '' }}>Admin Desa Budaya</option>
+            <option value="admin_preneur" {{ old('role', $users->role) == 'admin_preneur' ? 'selected' : '' }}>Admin Desa Preneur</option>
+            <option value="admin_prima" {{ old('role', $users->role) == 'admin_prima' ? 'selected' : '' }}>Admin Desa Prima</option>
+            <option value="admin_wisata" {{ old('role', $users->role) == 'admin_wisata' ? 'selected' : '' }}>Admin Desa Wisata</option>
         </select>
     </div>
 

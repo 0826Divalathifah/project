@@ -60,12 +60,13 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
             <span style="font-size: 16px;">Logout</span>
-        </a>
+        </button>
+    </form>
     </div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
@@ -173,55 +174,120 @@
         </div>
     </div>
 
-<!-- Kelola Menu Tentang Kami -->
+    <!-- Kelola Menu Tentang Kami -->
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Kelola Menu Tentang Kami</h4>
-                <form class="forms-sample" action="{{ url('/update-homepage-tentangkami') }}" method="POST" enctype="multipart/form-data">
-                 @csrf
-                <!-- Edit Banner -->
-                <div class="form-group">
+                <h4 class="card-title">Kelola Halaman Tentang Kami</h4>
+    <form action="{{ url('/update-homepage-tentangkami') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="form-group">
                     <label for="bannerImage">Edit Banner</label>
                     <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
-                    @if(isset($homepageData->banner_image))
+                    @if(isset($tentangKamiData->banner_image))
                         <div class="mt-2">
-                            <img src="{{ asset('storage/' . $homepageData->banner_image) }}" alt="Current Banner" width="100">
+                            <img src="{{ asset('storage/' . $tentangKamiData->banner_image) }}" alt="Current Banner" width="100">
                         </div>
                     @endif
                 </div>
-                
-                <!-- Edit Deskripsi -->
-                <div class="form-group">
-                    <label for="indexDescription">Edit Deskripsi</label>
-                    <textarea 
-                        class="form-control" 
-                        name="deskripsi_index" 
-                        id="indexDescription" 
-                        rows="4" 
-                        placeholder="Deskripsi..."
-                        required>{{ old('deskripsi_index', $homepageData->deskripsi ?? '') }}</textarea>
-                </div>
-                
-                <!-- Gambar Slider -->
-                <div class="form-group">
-                    <label for="sliderImage">Upload Gambar Slider</label>
-                    <input type="file" name="slider_images[]" class="file-upload-default" id="fileInput" accept="image/*" multiple>
-                    @if(isset($homepageData->slider_images))
-                        <div class="mt-2">
-                            @foreach($homepageData->slider_images as $image)
-                                <img src="{{ asset('storage/' . $image) }}" alt="Slider Image" width="100">
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
-                
-                <!-- Tombol Simpan -->
-                <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-            </form>
-            </div>
-        </div>
+
+    <div class="form-group mt-3">
+        <label>Deskripsi</label>
+        <textarea name="deskripsi" class="form-control" rows="5">{{ old('deskripsi', $tentangKamiData->deskripsi ?? '') }}</textarea>
     </div>
+
+    <div class="form-group mt-3">
+        <label>Upload Slider Images</label>
+        <input type="file" name="slider_images[]" class="form-control" accept="image/*" multiple id="slider-input">
+    </div>
+
+    <!-- Menampilkan Gambar Slider -->
+    <div class="row mt-3" id="slider-preview">
+        @if(isset($tentangKamiData->slider_images))
+            @php
+                $sliderImages = json_decode($tentangKamiData->slider_images, true);
+            @endphp
+            @if(is_array($sliderImages) && count($sliderImages) > 0)
+                @foreach($sliderImages as $image)
+                    <div class="col-md-3 photo-preview mb-3" id="photo-{{ md5($image) }}">
+                        <div class="position-relative">
+                            <img src="{{ asset('storage/' . $image) }}" alt="Slider Image" class="img-thumbnail" style="height: 150px; object-fit: cover;">
+                            <button type="button" class="btn btn-danger btn-sm remove-photo position-absolute top-0 end-0" data-foto="{{ $image }}">
+                                &times;
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
+        @endif
+    </div>
+
+    <!-- Input Hidden untuk Gambar yang Dihapus -->
+    <div id="hapus-foto-container"></div>
+
+    <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+</form>
+
+<script>
+// Tambahkan gambar yang dihapus ke form
+document.querySelectorAll('.remove-photo').forEach(button => {
+    button.addEventListener('click', function() {
+        let imageToRemove = this.getAttribute('data-foto');
+
+        // Tambahkan input hidden untuk gambar yang dihapus
+        let hapusFotoContainer = document.getElementById('hapus-foto-container');
+        let hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'hapus_foto_slider[]';
+        hiddenInput.value = imageToRemove;
+        hapusFotoContainer.appendChild(hiddenInput);
+
+        // Hapus elemen gambar dari tampilan
+        let photoPreview = document.getElementById('photo-' + md5(imageToRemove));
+        if (photoPreview) {
+            photoPreview.remove();
+        }
+    });
+});
+
+// Menampilkan gambar baru yang diupload sebelum submit
+document.getElementById('slider-input').addEventListener('change', function(e) {
+    let sliderPreview = document.getElementById('slider-preview');
+    let files = e.target.files;
+
+    Array.from(files).forEach(file => {
+        let reader = new FileReader();
+
+        reader.onload = function(event) {
+            let col = document.createElement('div');
+            col.className = 'col-md-3 photo-preview mb-3';
+            col.innerHTML = `
+                <div class="position-relative">
+                    <img src="${event.target.result}" alt="New Slider Image" class="img-thumbnail" style="height: 150px; object-fit: cover;">
+                </div>
+            `;
+            sliderPreview.appendChild(col);
+        };
+
+        reader.readAsDataURL(file);
+    });
+});
+
+// Fungsi hash untuk md5
+function md5(string) {
+    return string.split('').reduce(function(a, b) {
+        a = ((a << 5) - a) + b.charCodeAt(0);
+        return a & a;
+    }, 0);
+}
+</script>
+
+
+</div>
+</div>
+</div>
+
+
 
 <!-- Kelola Menu Kontak -->
     <div class="col-12 grid-margin stretch-card">
@@ -234,9 +300,9 @@
                   <div class="form-group">
                       <label for="bannerImage">Edit Banner</label>
                       <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">
-                      @if(isset($homepageData->banner_image))
+                      @if(isset($kontakData->banner_image))
                           <div class="mt-2">
-                              <img src="{{ asset('storage/' . $homepageData->banner_image) }}" alt="Current Banner" width="100">
+                              <img src="{{ asset('storage/' . $kontakData->banner_image) }}" alt="Current Banner" width="100">
                           </div>
                       @endif
                   </div>
@@ -273,6 +339,8 @@
     <script src="{{ asset('admin/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admin/assets/js/formValidation.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/photoManager.js') }}"></script> 
+              
     <!-- End custom js for this page-->
 
 </body>

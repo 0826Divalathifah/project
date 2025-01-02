@@ -58,15 +58,16 @@
           </ul>-->
           <ul class="navbar-nav navbar-nav-right">
           <div class="header-right1 d-flex align-items-center justify-content-center">
-    <!-- Social -->
-    <div class="header-social d-flex align-items-center">
-        
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
+   <!-- Social -->
+   <div class="header-social d-flex align-items-center">
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
             <span style="font-size: 16px;">Logout</span>
-        </a>
-    </div>
+        </button>
+    </form>
+</div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
@@ -133,51 +134,62 @@
                 <div class="col-12 grid-margin stretch-card">
             <div class="card">
             <form id="formTambah" action="{{ url('/simpanAdmin') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <!-- form content -->
-                <div class="card-body">
-                    <h4 class="card-title">Formulir Tambah Admin</h4>
-                    <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
-        
-                    <div id="messages" style="display: none;">
-                    <!-- Pesan sukses dari session -->
-                      @if(session('success'))
-                          <div data-success="{{ session('success') }}"></div>
-                      @endif
+              @csrf
 
-                      <!-- Pesan error dari session -->
-                      @if(session('error'))
-                          <div data-error="{{ session('error') }}"></div>
-                      @endif
+              <!-- Pesan Error Validasi -->
+              @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
+
+              <!-- Pesan Sukses dan Error -->
+              <div id="messages" style="display: none;">
+                  @if(session('success'))
+                      <div data-success="{{ session('success') }}"></div>
+                  @endif
+
+                  @if(session('error'))
+                      <div data-error="{{ session('error') }}"></div>
+                  @endif
+              </div>
+
+              <!-- Form Content -->
+              <div class="card-body">
+                  <h4 class="card-title">Formulir Tambah Admin</h4>
+                  <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+
+                  <!-- Input Nama Admin -->
+                  <div class="form-group">
+                      <label for="name">Nama Admin</label>
+                      <input type="text" name="name" class="form-control" placeholder="Masukkan Nama Admin" value="{{ old('name') }}" required>
                   </div>
 
-                    <!-- Input Nama Admin -->
-                    <div class="form-group">
-                        <label for="name">Nama Admin</label>
-                        <input type="text" name="name" class="form-control" placeholder="Masukkan Nama Admin" value="{{ old('name') }}" required>
-                    </div>
+                  <!-- Input Email Admin -->
+                  <div class="form-group">
+                      <label for="email">Email</label>
+                      <input type="email" name="email" class="form-control" placeholder="Masukkan Email" value="{{ old('email') }}" required>
+                  </div>
 
-                    <!-- Input Email Admin -->
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Masukkan Email" value="{{ old('email') }}" required>
-                    </div>
+                  <!-- Input Role Admin -->
+                  <div class="form-group">
+                      <label for="role">Peran Admin</label>
+                      <select name="role" class="form-control" required>
+                          <option value="">Pilih Peran Admin</option>
+                          <option value="superadmin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Admin Kalurahan (Super Admin)</option>
+                          <option value="admin_budaya" {{ old('role') == 'admin_budaya' ? 'selected' : '' }}>Admin Desa Budaya</option>
+                          <option value="admin_preneur" {{ old('role') == 'admin_preneur' ? 'selected' : '' }}>Admin Desa Preneur</option>
+                          <option value="admin_prima" {{ old('role') == 'admin_prima' ? 'selected' : '' }}>Admin Desa Prima</option>
+                          <option value="admin_wisata" {{ old('role') == 'admin_wisata' ? 'selected' : '' }}>Admin Desa Wisata</option>
+                      </select>
+                  </div>
 
-                    <!-- Input Role Admin -->
-                    <div class="form-group">
-                        <label for="role">Peran Admin</label>
-                        <select name="role" class="form-control" required>
-                            <option value="">Pilih Peran Admin</option>
-                            <option value="super_admin" {{ old('role') == 'super_admin' ? 'selected' : '' }}>Admin Kalurahan (Super Admin)</option>
-                            <option value="admin_budaya" {{ old('role') == 'admin_budaya' ? 'selected' : '' }}>Admin Desa Budaya</option>
-                            <option value="admin_preneur" {{ old('role') == 'admin_preneur' ? 'selected' : '' }}>Admin Desa Preneur</option>
-                            <option value="admin_prima" {{ old('role') == 'admin_prima' ? 'selected' : '' }}>Admin Desa Prima</option>
-                            <option value="admin_wisata" {{ old('role') == 'admin_wisata' ? 'selected' : '' }}>Admin Desa Wisata</option>
-                        </select>
-                    </div>
-
-                    <!-- Password -->
-                    <div class="form-group">
+                  <!-- Password -->
+                  <div class="form-group">
                       <label for="password">Kata Sandi</label>
                       <div class="input-group">
                           <input type="password" name="password" id="password" class="form-control" placeholder="Masukkan Kata Sandi" required>
@@ -187,7 +199,7 @@
                       </div>
                   </div>
 
-                  <!--Confirm Password -->
+                  <!-- Confirm Password -->
                   <div class="form-group">
                       <label for="password_confirmation">Konfirmasi Kata Sandi</label>
                       <div class="input-group">
@@ -198,14 +210,10 @@
                       </div>
                   </div>
 
-                    <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
-                </div>
-
-            </form>
-
-</div>
-
-
+                  <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+              </div>
+          </form>
+        </div>
 </div>
 </div>
 

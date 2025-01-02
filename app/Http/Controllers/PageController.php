@@ -31,55 +31,55 @@ class PageController extends Controller
             return view('beranda.index', compact('banners','gambar_banner','deskripsi_index'));
         }
        
-        public function desabudaya()
-        {
-            // Mengambil semua data budaya
-            $budaya = Budaya::all();
+    public function desabudaya()
+    {
+        // Mengambil semua data budaya
+        $budaya = Budaya::all();
 
-            // Ambil data dari tabel `Homepage` dengan `desa_name` bernilai 'budaya'
-            $homepageData = Homepage::where('desa_name', 'budaya')->first();
+        // Ambil data dari tabel Homepage dengan desa_name bernilai 'budaya'
+        $homepageData = Homepage::where('desa_name', 'budaya')->first();
 
-            // Pastikan data tersedia untuk view
-            $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg'; // Path default jika gambar tidak ditemukan
-            $gambar_welcome = $homepageData->gambar_welcome ?? 'uploads/default_welcome.jpg';
-            $deskripsi_welcome = $homepageData->deskripsi ?? 'Deskripsi default untuk Desa Budaya.'; // Deskripsi default jika tidak ada data
+        // Pastikan data tersedia untuk view
+        $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg'; // Path default jika gambar tidak ditemukan
+        $gambar_welcome = $homepageData->gambar_welcome ?? 'uploads/default_welcome.jpg';
+        $deskripsi_welcome = $homepageData->deskripsi ?? 'Deskripsi default untuk Desa Budaya.'; // Deskripsi default jika tidak ada data
 
-            // Menyimpan kunjungan ke tabel visits
-            Visit::create([
-                'url' => url()->current(), // Mengambil URL yang diakses
-                'desa_name' => 'Desa Budaya', // Nama desa
-            ]);
+        // Menyimpan kunjungan ke tabel visits
+        Visit::create([
+            'url' => url()->current(), // Mengambil URL yang diakses
+            'desa_name' => 'Desa Budaya', // Nama desa
+        ]);
 
-            // Menghitung total kunjungan untuk Desa Budaya
-            $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count();
+        // Menghitung total kunjungan untuk Desa Budaya
+        $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count();
 
             // Mengirimkan data ke view
             return view('beranda.desabudaya', compact('budaya', 'gambar_banner', 'gambar_welcome', 'deskripsi_welcome', 'homepageData','totalVisitsDesaBudaya'));
         }
 
-        public function detail_budaya($id)
-        {
-            // Mengambil data budaya berdasarkan ID
-            $budaya = Budaya::findOrFail($id);
-            
-            // Decode foto_slider menjadi array
-            $budaya->foto_slider = json_decode($budaya->foto_slider, true);
+    public function detail_budaya($id)
+    {
+        // Mengambil data budaya berdasarkan ID
+        $budaya = Budaya::findOrFail($id);
+        
+        // Decode foto_slider menjadi array
+        $budaya->foto_slider = json_decode($budaya->foto_slider, true);
 
-            // Mengambil semua agenda untuk kalender
-            $agenda = Agenda::all();
+        // Mengambil semua agenda untuk kalender
+        $agenda = Agenda::all();
 
             // Ambil data dari tabel `Homepage` dengan `desa_name` bernilai 'wisata'
             $homepageData = Homepage::where('desa_name', 'budaya')->first();
 
-            // Pastikan data tersedia untuk view
-            $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg'; // Path default jika gambar tidak ditemukan
+        // Pastikan data tersedia untuk view
+        $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg'; // Path default jika gambar tidak ditemukan
 
-            // Langsung mengambil embed link Google Maps dan YouTube dari database
-            $embed_youtube_link = $budaya->link_youtube;
+        // Langsung mengambil embed link Google Maps dan YouTube dari database
+        $embed_youtube_link = $budaya->link_youtube;
 
-            // Mengirim data ke tampilan
-            return view('beranda.detail_budaya', compact('budaya', 'agenda', 'embed_youtube_link', 'homepageData', 'gambar_banner'));
-        } 
+        // Mengirim data ke tampilan
+        return view('beranda.detail_budaya', compact('budaya', 'agenda', 'embed_youtube_link', 'homepageData', 'gambar_banner'));
+    }
 
         public function desapreneur()
         {
@@ -170,14 +170,14 @@ class PageController extends Controller
                 // Menyimpan kunjungan ke tabel visits
             Visit::create([
                 'url' => url()->current(), // Mengambil URL yang diakses
-                'desa_name' => 'Desa Wisata', // Nama desa
+                'desa_name' => 'wisata', // Nama desa
             ]);
 
             // Mengambil semua data wisata dari database
             $wisata = Wisata::all();
             
             // Mengambil jumlah kunjungan untuk Desa Wisata bulan ini
-            $totalVisitsDesaWisata = Visit::where('desa_name', 'Desa Wisata')->count();
+            $totalVisitsDesaWisata = Visit::where('desa_name', 'wisata')->count();
 
             // Mengirim data wisata dan jumlah kunjungan ke view
             return view('beranda.desawisata', compact('wisata', 'totalVisitsDesaWisata'));

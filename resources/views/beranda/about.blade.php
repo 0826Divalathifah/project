@@ -118,6 +118,11 @@
                 </div>
 
 
+                @if(isset($banner_image) && file_exists(public_path('storage/' . $banner_image)))
+                    <img src="{{ asset('storage/' . $banner_image) }}" alt="Banner" class="banner-image">
+                @else
+                    <img src="{{ asset('beranda/img/desabudaya/banner.jpg') }}" alt="Banner" class="banner-image">
+                @endif
                 <div class="banner-overlay"></div>
                 <div class="banner-text">Tentang Kami</div>
 

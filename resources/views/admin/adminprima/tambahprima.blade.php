@@ -48,12 +48,14 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Logout</span>
-        </a>
-    </div>
+              <form action="{{ route('logout') }}" method="POST">
+                  @csrf
+                  <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
+                      <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+                      <span style="font-size: 16px;">Logout</span>
+                  </button>
+              </form>
+          </div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
@@ -105,83 +107,83 @@
                     </ol>
                 </nav>
 
-    <div class="col-12 grid-margin stretch-card">
-    <div class="card">
-    <form id="formTambah" action="{{ url ('/tambahprima') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-
-            <div class="card-body">
-                <h4 class="card-title">Formulir Tambah Produk</h4>
-                <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
-                
-                {{-- Notifikasi berhasil atau error --}}
-                @if(session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
-
+                <div class="col-12 grid-margin stretch-card">
+                <div class="card">
                 @if($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form id="formTambah" action="{{ url('/tambahprima') }}" method="POST" enctype="multipart/form-data"> 
+                @csrf
+
+                <div class="card-body">
+                    <h4 class="card-title">Formulir Tambah Produk</h4>
+                    <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
+
+                    {{-- Notifikasi berhasil --}}
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+
+                    <!-- Input Kategori -->
+                    <div class="form-group">
+                        <label>Pilih Kategori</label>
+                        <select name="kategori_produk" class="js-example-basic-single w-100" required>
+                            <option value="">Pilih Kategori</option>
+                            <option value="makanan" {{ old('kategori_produk') == 'makanan' ? 'selected' : '' }}>Makanan dan Minuman</option>
+                            <option value="kerajinan" {{ old('kategori_produk') == 'kerajinan' ? 'selected' : '' }}>Kerajinan dan Aksesoris</option>
+                        </select>
                     </div>
-                @endif
 
-                <!-- Input Kategori -->
-                <div class="form-group">
-                    <label>Pilih Kategori</label>
-                    <select name="kategori_produk" class="js-example-basic-single w-100" required>
-                        <option value="">Pilih Kategori</option>
-                        <option value="makanan">Makanan dan Minuman</option>
-                        <option value="kerajinan">Kerajinan dan Aksesoris</option>
-                    </select>
-                </div>
-
-                <!-- Input Nama Produk -->
-                <div class="form-group">
-                    <label for="nama_produk">Nama Produk</label>
-                    <input type="text" class="form-control" id="namaProduk" name="nama_produk" placeholder="Masukkan nama produk" required>
-                </div>
-
-                <!-- Input Harga -->
-                <div class="mb-3">
-                    <label for="harga_produk" class="form-label">Harga</label>
-                    <div class="input-group">
-                        <span class="input-group-text">Rp</span>
-                        <input type="text" name ="harga_produk" class="form-control rounded" placeholder="Masukkan harga" oninput="formatCurrency(this)" required>
+                    <!-- Input Nama Produk -->
+                    <div class="form-group">
+                        <label for="nama_produk">Nama Produk</label>
+                        <input type="text" class="form-control" id="namaProduk" name="nama_produk" placeholder="Masukkan nama produk" value="{{ old('nama_produk') }}" required>
                     </div>
-                </div>
 
-                <!-- Input Nomor WhatsApp -->
-                <div class="form-group">
-                    <label for="nomor_whatsapp">Nomor WhatsApp Aktif</label>
-                    <input type="text" class="form-control" id="whatsappNumber" name="nomor_whatsapp" placeholder="Masukkan Nomor WhatsApp" min="0" required>
-                </div>
-
-                <!-- Input Deskripsi -->
-                <div class="form-group">
-                    <label for="deskripsi">Deskripsi</label>
-                    <textarea class="form-control" id="exampleTextarea1" name="deskripsi" rows="5" placeholder="Masukkan deskripsi produk" required></textarea>
-                </div>
-
-                <!-- Input Foto Card -->
-                <div class="form-group">
-                    <label>Unggah Foto Card</label>
-                    <input type="file" name="foto_card" class="file-upload-default" required>
-                    <div class="input-group col-xs-12 d-flex align-items-center">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
-                        <span class="input-group-append ms-2">
-                            <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                        </span>
+                    <!-- Input Harga -->
+                    <div class="mb-3">
+                        <label for="harga_produk" class="form-label">Harga</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Rp</span>
+                            <input type="text" name="harga_produk" class="form-control rounded" placeholder="Masukkan harga" oninput="formatCurrency(this)" value="{{ old('harga_produk') }}" required>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Input Foto Produk -->
-                <div class="form-group">
-                    <label>Unggah Foto-Foto Produk</label>
-                    <input type="file" name="foto_slider[]" class="file-upload-default" id="fileInput" multiple required>
+                    <!-- Input Nomor WhatsApp -->
+                    <div class="form-group">
+                        <label for="nomor_whatsapp">Nomor WhatsApp Aktif</label>
+                        <input type="text" class="form-control" id="whatsappNumber" name="nomor_whatsapp" placeholder="Masukkan Nomor WhatsApp" value="{{ old('nomor_whatsapp') }}" required>
+                    </div>
+
+                    <!-- Input Deskripsi -->
+                    <div class="form-group">
+                        <label for="deskripsi">Deskripsi</label>
+                        <textarea class="form-control" id="exampleTextarea1" name="deskripsi" rows="5" placeholder="Masukkan deskripsi produk" required>{{ old('deskripsi') }}</textarea>
+                    </div>
+
+                    <!-- Input Foto Card -->
+                    <div class="form-group">
+                        <label>Unggah Foto Card</label>
+                        <input type="file" name="foto_card" class="file-upload-default" required>
+                        <div class="input-group col-xs-12 d-flex align-items-center">
+                            <input type="text" class="form-control file-upload-info" disabled placeholder="Ukuran 300 x 150 px">
+                            <span class="input-group-append ms-2">
+                                <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Input Foto Produk -->
+                    <div class="form-group">
+                        <label>Unggah Foto-Foto Produk</label>
+                        <input type="file" name="foto_slider[]" class="file-upload-default" id="fileInput" multiple required>
                         <div class="input-group col-xs-12 d-flex align-items-center">
                             <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
                             <span class="input-group-append ms-2">
@@ -190,10 +192,11 @@
                         </div>
                     </div>
 
-                <!-- Submit Button -->
-                <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
-            </div>
-        </form>
+                    <!-- Submit Button -->
+                    <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+                </div>
+            </form>
+
     </div>
 </div>
 

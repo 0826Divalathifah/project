@@ -123,13 +123,14 @@
     position: relative;
     text-align: center;
     color: white;
-    width: 300%; /* Lebarkan hingga penuh ke samping */
-    height: 600px; /* Tetap 500px untuk tinggi */
+    width: 100%; /* Mengatur lebar menjadi 100% agar lebih responsif */
+    height: 600px; /* Tetap 600px untuk tinggi */
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 60px; 
+    margin-bottom: 60px;
+    overflow: hidden; /* Untuk memotong gambar yang melebihi batas */
 }
 
 .banner-image {
@@ -187,7 +188,7 @@
         }
 
         .breadcrumb-item a {
-            color: #9d8d8d;
+            color: #ffffff;
             text-decoration: none;
             z-index: 3; /* Pastikan link memiliki z-index yang lebih tinggi */
             position: relative; /* Penting untuk memastikan z-index bekerja */
@@ -360,7 +361,6 @@
         font-size: 2.5rem;
         font-weight: bold;
         margin-bottom: 20px;
-        margin-top: 20px;
         color: #333;
         text-align: center; /* Menengahkan teks */
         transform: translateY(-10px); /* Mengangkat elemen judul ke atas */

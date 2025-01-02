@@ -35,7 +35,7 @@ CREATE TABLE `preneur` (
   `harga_produk` int(11) NOT NULL,
   `nomor_whatsapp` varchar(15) NOT NULL,
   `foto_card` varchar(255) NOT NULL,
-  `foto_produk` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`foto_produk`)),
+  `foto_slider` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`foto_slider`)),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

@@ -109,100 +109,100 @@
                         </nav>
                         <div class="col-12 grid-margin stretch-card">
                             <div class="card">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
                             <form action="/simpanBudaya" method="POST" enctype="multipart/form-data" id="formTambah">
-                                    @csrf
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
+                                @csrf
+                                <div class="card-body">
+                                    <h4 class="card-title">Formulir Tambah Budaya</h4>
+                                    <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
 
-                                    @if(session('success'))
-                                        <div class="alert alert-success">
-                                            {{ session('success') }}
-                                        </div>
-                                    @endif
-
-                                    <div class="card-body">
-                                        <h4 class="card-title">Formulir Tambah Budaya</h4>
-                                        <p class="card-description">Lengkapi kolom formulir di bawah ini</p>
-
-                                        <div class="form-group">
-                                            <label for="nama_budaya">Nama Budaya</label>
-                                            <input type="text" name="nama_budaya" class="form-control" placeholder="contoh: 'Karawitan Miguyoh Rasa'" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="nama_desa_budaya">Nama Desa Budaya</label>
-                                            <input type="text" name="nama_desa_budaya" class="form-control" placeholder="contoh: 'Desa Budaya Gentan'" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="alamat">Alamat</label>
-                                            <input type="text" name="alamat" class="form-control" placeholder="Alamat" required>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="harga_min" class="form-label">Harga Minimum (optional)</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">Rp</span>
-                                                <input type="text" name="harga_min" class="form-control rounded" placeholder="Masukkan harga minimum" oninput="formatCurrency(this)">
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="harga_max" class="form-label">Harga Maksimum (optional)</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text">Rp</span>
-                                                <input type="text" name="harga_max" class="form-control rounded" placeholder="Masukkan harga maksimum" oninput="formatCurrency(this)">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="link_youtube">Link Youtube</label>
-                                            <input type="url" name="link_youtube" class="form-control" placeholder="Masukkan Link Youtube" pattern="https://.*" required>
-                                            <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="nomor_whatsapp">Nomor WhatsApp Aktif</label>
-                                            <input type="text" name="nomor_whatsapp" class="form-control" placeholder="Masukkan Nomor WhatsApp" required>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="deskripsi">Deskripsi</label>
-                                            <textarea name="deskripsi" class="form-control" id="deskripsi" rows="5" required></textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Unggah Foto Card Budaya</label>
-                                            <input type="file" name="foto_card" class="file-upload-default" required>
-                                            <div class="input-group col-xs-12 d-flex align-items-center">
-                                                <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto card" required>
-                                                <span class="input-group-append ms-2">
-                                                    <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Unggah Foto-Foto Kebudayaan</label>
-                                            <input type="file" name="foto_slider[]" class="file-upload-default" id="fileInput" multiple required>
-                                            <div class="input-group col-xs-12 d-flex align-items-center">
-                                                <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto ">
-                                                <span class="input-group-append ms-2">
-                                                    <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+                                    <div class="form-group">
+                                        <label for="nama_budaya">Nama Budaya</label>
+                                        <input type="text" name="nama_budaya" class="form-control" placeholder="contoh: 'Karawitan Miguyoh Rasa'" value="{{ old('nama_budaya') }}" required>
                                     </div>
-                                </form>
+
+                                    <div class="form-group">
+                                        <label for="nama_desa_budaya">Nama Desa Budaya</label>
+                                        <input type="text" name="nama_desa_budaya" class="form-control" placeholder="contoh: 'Desa Budaya Gentan'" value="{{ old('nama_desa_budaya') }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="alamat">Alamat</label>
+                                        <input type="text" name="alamat" class="form-control" placeholder="Alamat" value="{{ old('alamat') }}" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="harga_min" class="form-label">Harga Minimum (optional)</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">Rp</span>
+                                            <input type="text" name="harga_min" class="form-control rounded" placeholder="Masukkan harga minimum" oninput="formatCurrency(this)" value="{{ old('harga_min') }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="harga_max" class="form-label">Harga Maksimum (optional)</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">Rp</span>
+                                            <input type="text" name="harga_max" class="form-control rounded" placeholder="Masukkan harga maksimum" oninput="formatCurrency(this)" value="{{ old('harga_max') }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="link_youtube">Link Youtube</label>
+                                        <input type="url" name="link_youtube" class="form-control" placeholder="Masukkan Link Youtube" pattern="https://.*" value="{{ old('link_youtube') }}" required>
+                                        <small class="form-text text-muted">Masukkan link Youtube yang valid, mulai dengan "https://".</small>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="nomor_whatsapp">Nomor WhatsApp Aktif</label>
+                                        <input type="text" name="nomor_whatsapp" class="form-control" placeholder="Masukkan Nomor WhatsApp" value="{{ old('nomor_whatsapp') }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="deskripsi">Deskripsi</label>
+                                        <textarea name="deskripsi" class="form-control" id="deskripsi" rows="5" required>{{ old('deskripsi') }}</textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Unggah Foto Card Budaya</label>
+                                        <input type="file" name="foto_card" class="file-upload-default" required>
+                                        <div class="input-group col-xs-12 d-flex align-items-center">
+                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Unggah foto card">
+                                            <span class="input-group-append ms-2">
+                                                <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Unggah Foto-Foto Kebudayaan</label>
+                                        <input type="file" name="foto_slider[]" class="file-upload-default" id="fileInput" multiple required>
+                                        <div class="input-group col-xs-12 d-flex align-items-center">
+                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Silahkan Upload Lebih dari 1 Foto">
+                                            <span class="input-group-append ms-2">
+                                                <button class="file-upload-browse btn btn-primary" type="button">Unggah</button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" id="submit" class="btn btn-primary me-2">Submit</button>
+                                </div>
+                            </form>
                             </div>
                         </div>
                     </div>

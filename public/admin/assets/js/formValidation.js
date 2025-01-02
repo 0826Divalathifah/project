@@ -83,6 +83,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 icon: 'success',
                 title: 'Berhasil!',
                 text: successMessage,
+                timer: 2000, // Waktu dalam milidetik (3000 ms = 3 detik)
+                showConfirmButton: false, // Hilangkan tombol OK
             });
         }
     }
