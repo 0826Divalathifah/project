@@ -48,13 +48,14 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-   
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
             <span style="font-size: 16px;">Logout</span>
-        </a>
-    </div>
+        </button>
+    </form>
+</div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
@@ -118,13 +119,22 @@
               <a href="{{ url('tambahbudaya') }}" class="btn btn-primary">Tambah Budaya</a>
             </div>
 
+            <!-- Tampilkan Error Secara Statis -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <!-- Tampilkan Sukses atau Error dengan SweetAlert -->
             <div id="messages" style="display: none;">
-                <!-- Pesan sukses dari session -->
                 @if(session('success'))
                     <div data-success="{{ session('success') }}"></div>
                 @endif
-
-                <!-- Pesan error dari session -->
                 @if(session('error'))
                     <div data-error="{{ session('error') }}"></div>
                 @endif

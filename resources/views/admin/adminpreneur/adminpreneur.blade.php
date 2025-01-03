@@ -1,262 +1,335 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Desa Preneur</title>
+<?php
 
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/feather/feather.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/css/vendor.bundle.base.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <!-- endinject -->
+namespace App\Http\Controllers;
 
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/assets/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('admin/assets/js/select.dataTables.min.css') }}">
+use App\Models\Visit;
+use App\Models\Wisata;
+use App\Models\Homepage;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+
+class AdminDesaWisataController extends Controller
+{
+
     
-    <!-- End plugin css for this page -->
 
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('admin/assets/css/style.css') }}">
-    <!-- endinject -->
+    public function showDashboard(Request $request)
+    {
+        // Mengambil semua data wisata
+        $wisata = Wisata::all();
 
-    <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.png') }}">
-  </head>
-  <body>
-  <div class="container-scroller">
-  <!-- partial:../../partials/_navbar.html -->
-<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-                  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-                  <a class="navbar-brand brand-logo me-5" href="{{ url ('/penjual') }}" >
-                      <img src="{{ asset('beranda/img/logo/logo_header.png') }}" alt="Logo Kabupaten Sleman" style="width: 110 px; height: 52px;">
-                    </a>
-                    <a class="navbar-brand brand-logo-mini" href="{{ url('/penjual') }}">
-                      <img src="{{ asset('beranda/img/logo/logo kabupaten sleman.png') }}"  alt="Logo Kabupaten Sleman" style="width: 100 px; height: 40px;">
-                    </a>
-                  </div>
-                  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-                      <span class="icon-menu"></span>
-                    </button>
-                    <ul class="navbar-nav navbar-nav-right">
-                    <div class="header-right1 d-flex align-items-center justify-content-center">
-              <!-- Social -->
-              <div class="header-social d-flex align-items-center">
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
-                        <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-                        <span style="font-size: 16px;">Logout</span>
-                    </button>
-                </form>
-            </div>
-          </div>    
-              <li class="nav-item nav-settings d-none d-lg-flex">
-                  <a class="nav-link" href="#">
-                      <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
-                  </a>
-              </li>
-          </ul>
+        // Total kunjungan keseluruhan untuk Desa Budaya
+        $totalVisitsDesaWisata = Visit::where('desa_name', 'Desa Wisata')->count(); // Menghitung jumlah kunjungan
+        
+        // Menghitung total wisata
+        $totalWisata = Wisata::count();
 
-          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-              <span class="icon-menu"></span>
-          </button>
+        // Mendapatkan nama desa dari URL, default ke 'Desa Wisata'
+        $desaName = $request->get('desa', 'Desa Wisata');
 
-            </div>
-          </nav>
-          <!-- partial -->
-          <div class="container-fluid page-body-wrapper">
-            <!-- partial:../../partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-              <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link"  href="{{ url('/adminpreneur') }}">
-                    <i class="icon-grid menu-icon"></i>
-                    <span class="menu-title">Dashboard</span>
-                  </a>
-              </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/kelolapreneur') }}">
-                    <i class="mdi mdi-shape-plus menu-icon"></i>
-                    <span class="menu-title">Kelola Produk</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ url('/kelolahomepagepreneur') }}">
-                    <i class="mdi mdi-home menu-icon"></i>
-                    <span class="menu-title">Kelola Home Page</span>
-                  </a>
-                </li>
-                <!--<li class="nav-item">
-                  <a class="nav-link" href="{{ url('/laporanprima') }}">
-                    <i class="icon-paper menu-icon"></i>
-                    <span class="menu-title">Laporan Desa Prima</span>
-                  </a>
-                </li>-->
-            </nav>
-            <!-- partial -->
-              <div class="main-panel">
-                <div class="content-wrapper">
-                  <div class="row">
-                    <div class="col-md-12 grid-margin">
-                      <div class="row">
-                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                          <h3 class="font-weight-bold">Selamat Datang, </h3>
-                          <p id="currentDateTime"></p>
-                        </div>
-                        <!--<div class="col-12 col-xl-4">
-                          <div class="justify-content-end d-flex">
-                            <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                              <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <i class="mdi mdi-calendar"></i> Today (10 Jan 2021) </button>
-                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                                <a class="dropdown-item" href="#">January - March</a>
-                                <a class="dropdown-item" href="#">March - June</a>
-                                <a class="dropdown-item" href="#">June - August</a>
-                                <a class="dropdown-item" href="#">August - November</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>-->
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 grid-margin transparent">
-                  <div class="row justify-content-center">
+        // Filter (default: daily)
+        $filter = $request->get('filter', 'daily');
+   
+        $data = [];
+        $labels = [];
 
-                <!-- Card 1 --> 
-                  <div class="col-lg-6 col-md-12 mb-4">
-                  <div class="card shadow-sm border-0 rounded">
-                      <div class="card-body d-flex align-items-center">
-                          <!-- Background Icon -->
-                          <div class="col-4 background-icon d-flex align-items-center justify-content-center">
-    <i class="mdi mdi-cube-outline text-primary" style="font-size: 48px;"></i>
-</div>
-                          <!-- Text Content -->
-                          <div>
-                              <h5 class="card-title mb-2 text-primary">Total Produk</h5>
-                              <h2 class="mb-0">{{ $totalPreneur }}</h2>
-                              <p class="text-muted">Produk yang Tersedia</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+        if ($filter === 'daily') {
+            // Contoh untuk filter harian
+            $dates = collect(range(0, 6))->map(function ($day) {
+                return now()->subDays($day)->format('Y-m-d');
+            })->reverse();
 
-              <!-- Card 2 -->
-              <div class="col-lg-6 col-md-12 mb-4">
-                  <div class="card shadow-sm border-0 rounded">
-                      <div class="card-body d-flex align-items-center">
-                          <!-- Background Icon -->
-                          <div class="col-4 background-icon d-flex align-items-center justify-content-center">
-                              <i class="mdi mdi-web text-primary" style="font-size: 48px;"></i>
-                          </div>
-                          <!-- Text Content -->
-                          <div>
-                              <h5 class="card-title mb-2 text-primary">Total Kunjungan Website</h5>
-                              <h2 class="mb-0">{{ $totalVisitsDesaPreneur }}</h2>
-                              <p class="text-muted">Jumlah kunjungan</p>
-                          </div>
-                      </div>
-                  </div>
-            </div>
-        </div>
-    </div>
+            foreach ($dates as $date) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereDate('created_at', $date)
+                    ->count();
 
-    <div class="row">
+                $data[] = $visitCount;
+                $labels[] = $date;
+            }
+        } elseif ($filter === 'weekly') {
+            // Contoh untuk filter mingguan
+            $weeks = collect(range(0, 3))->map(function ($week) {
+                return now()->subWeeks($week)->format('W');
+            })->reverse();
 
-    <div class="col-md-7 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center">
-          <p class="card-title">Jumlah Kunjungan Desa Preneur</p>
-          <select id="filter" class="form-select w-25" data-desa="Desa Preneur">
-          <option value="daily" {{ $filter == 'daily' ? 'selected' : '' }}>Harian</option>
-          <option value="weekly" {{ $filter == 'weekly' ? 'selected' : '' }}>Mingguan</option>
-          <option value="monthly" {{ $filter == 'monthly' ? 'selected' : '' }}>Bulanan</option>
-          <option value="yearly" {{ $filter == 'yearly' ? 'selected' : '' }}>Tahunan</option>
-          </select>
-        </div>
-        <!-- Elemen untuk menyimpan data -->
-        <canvas id="desaPreneurChart" height="150" 
-            data-labels="{{ implode(',', $labels) }}" 
-            data-data="{{ implode(',', $data) }}"></canvas>
-        </div>
-      </div>
-  </div>
+            foreach ($weeks as $week) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereRaw('WEEK(created_at) = ?', [$week])
+                    ->count();
 
-      <div class="col-md-5 grid-margin stretch-card">
-<div class="card">
-<div class="card-body">
-    <div class="d-flex justify-content-between">
-        <p class="card-title mb-10">Daftar Produk Preneur</p>
-        <a href="{{ url('/kelolaproduk') }}" class="text-info">View all</a>
-    </div>
-    <div class="table-responsive" style="max-height: 200px; overflow-y: auto;">
-        <table id="example" class="display expandable-table" style="width:100%">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Produk</th>
-                </tr>
-            </thead>
-            <tbody>
-              @forelse($preneur as $index => $item)
-                  <tr>
-                      <td>{{ $index + 1 }}</td>
-                      <td>{{ $item->nama_produk }}</td>
-                  </tr>
-              @empty
-                  <tr>
-                      <td colspan="2" class="text-center">Tidak ada produk yang tersedia.</td>
-                  </tr>
-              @endforelse
-          </tbody>
+                $data[] = $visitCount;
+                $labels[] = 'Minggu ' . ($weeks->search($week) + 1);
+            }
+        } elseif ($filter === 'monthly') {
+            // Contoh untuk filter bulanan
+            $months = range(1, 12);
 
-        </table>
-    </div>
-</div>
-</div>
-</div>
+            foreach ($months as $month) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereMonth('created_at', $month)
+                    ->whereYear('created_at', now()->year)
+                    ->count();
 
+                $data[] = $visitCount;
+                $labels[] = Carbon::create()->month($month)->format('M');
+            }
+        } elseif ($filter === 'yearly') {
+            // Contoh untuk filter tahunan
+            $years = Visit::selectRaw('YEAR(created_at) as year')
+                ->distinct()
+                ->pluck('year');
 
-</div>
-<!-- content-wrapper ends -->
-<!-- partial -->
-</div>
-<!-- main-panel ends -->
-</div>
-<!-- page-body-wrapper ends -->
-</div>
-<!-- container-scroller -->
+            foreach ($years as $year) {
+                $visitCount = Visit::where('desa_name', $desaName)
+                    ->whereYear('created_at', $year)
+                    ->count();
+
+                $data[] = $visitCount;
+                $labels[] = $year;
+            }
+        }
+
+        // Kirim data ke view
+        return view('admin.adminwisata.adminwisata', compact(
+            'totalVisitsDesaWisata',
+            'totalWisata',
+            'desaName', 
+            'wisata',
+            'data',
+            'labels',
+            'filter'
+        ));
+    }
+
+    // Tampilkan daftar wisata untuk dikelola
+    public function kelolaWisata()
+    {
+        $wisata = Wisata::all();
+        return view('admin.adminwisata.kelolawisata', compact('wisata'));
+    }
     
-<!-- plugins:js -->
-<script src="{{ asset('admin/assets/vendors/js/vendor.bundle.base.js') }}"></script>
-<!-- endinject -->
- <!-- Plugin js for this page -->
-<script src="{{ asset('admin/assets/vendors/chart.js/chart.umd.js') }}"></script>
-<script src="{{ asset('admin/assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-<script src="assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-<script src="{{ asset('admin/assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js') }}"></script>
-<script src="{{ asset('admin/assets/js/dataTables.select..min.js') }}"></script>
+    // Tampilkan form tambah wisata
+    public function tambahWisata()
+    {
+        return view('admin.adminwisata.tambahwisata');
+    }
 
-<!-- Custom js for this page-->
-<script src="{{ asset('admin/assets/js/off-canvas.js') }}"></script>
-<script src="{{ asset('admin/assets/js/template.js') }}"></script>
-<script src="{{ asset('admin/assets/js/settings.js') }}"></script>
-<script src="{{ asset('admin/assets/js/todolist.js') }}"></script>
+    public function deleteWisata($id)
+    {
+        $wisata = Wisata::findOrFail($id); // Pastikan data ditemukan
+    
+        // Hapus foto card jika ada
+        if ($wisata->foto_card && Storage::disk('public')->exists($wisata->foto_card)) {
+            Storage::disk('public')->delete($wisata->foto_card);
+        }
 
-<!-- Custom js for this page-->
-<script src="{{ asset('admin/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-<script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
-<script src="{{ asset('admin/assets/js/datetime.js') }}"></script>
-<script>
-    const dataDesa = @json($dataDesa);
-</script>
-<!-- End custom js for this page-->
-</body>
-</html>
+        // Hapus brosur jika ada
+        if ($wisata->brosur && Storage::disk('public')->exists($wisata->brosur)) {
+            Storage::disk('public')->delete($wisata->brosur);
+        }
+    
+        // Hapus semua foto yang ada di kolom foto_wisata (json array)
+        $fotoWisataPaths = json_decode($wisata->foto_wisata, true) ?? [];
+        foreach ($fotoWisataPaths as $foto) {
+            if (Storage::disk('public')->exists($foto)) {
+                Storage::disk('public')->delete($foto);
+            }
+        }
+    
+        // Hapus data wisata dari database
+        $wisata->delete();
+    
+        return redirect()->to('/kelolawisata')->with('success', 'Wisata beserta semua foto terkait berhasil dihapus');
+    }
+
+    public function simpanWisata(Request $request)
+    {
+        // Validasi input form
+        $validatedData = $request->validate([
+            'nama_wisata' => 'required|string|max:100',
+            'hari' => 'required|array',
+            'jam_buka' => 'required|array',
+            'jam_tutup' => 'required|array',
+            'alamat' => 'nullable|string|max:255',
+            'harga_masuk' => 'nullable|numeric',
+            'deskripsi' => 'nullable|string',
+            'foto_card' => 'required|image|mimes:jpeg,png,jpg|max:5120',
+            'brosur' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+            'foto_wisata.*' => 'required|image|mimes:jpeg,png,jpg|max:5120',
+        ]);
+
+    
+        // Gabungkan hari, jam buka, dan jam tutup dalam satu array
+        $jadwalKunjungan = [];
+        foreach ($request->hari as $index => $hari) {
+            $jadwalKunjungan[] = [
+                'hari' => $hari,
+                'jam_buka' => $request->jam_buka[$index],
+                'jam_tutup' => $request->jam_tutup[$index],
+            ];
+        }
+        $validatedData['waktu_kunjung'] = json_encode($jadwalKunjungan);
+    
+        // Proses upload foto_card
+        if ($request->hasFile('foto_card')) {
+        $validatedData['foto_card'] = $request->file('foto_card')->store('uploads/wisata', 'public');
+        }
+
+        // Proses upload brosur
+        if ($request->hasFile('brosur')) {
+        $validatedData['brosur'] = $request->file('brosur')->store('uploads/wisata', 'public');
+        }
+
+        // Proses upload foto_wisata
+        $fotoWisataPaths = [];
+        if ($request->hasFile('foto_wisata')) {
+            foreach ($request->file('foto_wisata') as $file) {
+                $fotoWisataPaths[] = $file->store('uploads/wisata', 'public');
+            }
+        }
+        $validatedData['foto_wisata'] = json_encode($fotoWisataPaths);
+    
+        // Simpan data ke database
+        Wisata::create($validatedData);
+    
+        return redirect()->to('/kelolawisata')->with('success', 'Wisata berhasil ditambahkan!');
+    }         
+    
+        // Tampilkan form edit wisata
+        public function editWisata($id)
+        {
+            $wisata = Wisata::findOrFail($id);
+            return view('admin.adminwisata.editwisata', compact('wisata'));
+        }
+
+        public function updateWisata(Request $request, $id)
+        {
+            $request->validate([
+                'nama_wisata' => 'required|string|max:255',
+                'harga_masuk' => 'nullable|numeric',
+                'alamat' => 'required|string|max:255',
+                'deskripsi' => 'required|string',
+                'foto_card' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                'brosur' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                'foto_slider.*' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+                'hari.*' => 'nullable|string',
+                'jam_buka.*' => 'nullable|date_format:H:i',
+                'jam_tutup.*' => 'nullable|date_format:H:i',
+                'hapus_foto_slider.*' => 'nullable|string', // Tambahan untuk input foto yang dihapus
+            ]);
+        
+            $wisata = Wisata::findOrFail($id);
+        
+            // Update field dasar
+            $wisata->nama_wisata = $request->nama_wisata;
+            $wisata->harga_masuk = $request->harga_masuk;
+            $wisata->alamat = $request->alamat;
+            $wisata->deskripsi = $request->deskripsi;
+        
+            // Update foto_card
+            if ($request->hasFile('foto_card')) {
+                if ($wisata->foto_card) {
+                    Storage::disk('public')->delete($wisata->foto_card);
+                }
+                $wisata->foto_card = $request->file('foto_card')->store('images', 'public');
+            }
+        
+            // Update brosur
+            if ($request->hasFile('brosur')) {
+                if ($wisata->brosur) {
+                    Storage::disk('public')->delete($wisata->brosur);
+                }
+                $wisata->brosur = $request->file('brosur')->store('images', 'public');
+            }
+        
+            // Update foto_slider
+            $fotoSliderLama = json_decode($wisata->foto_wisata, true) ?? [];
+            $fotoSliderBaru = [];
+        
+            // Hapus foto_slider yang dipilih untuk dihapus
+            if ($request->has('hapus_foto_slider')) {
+                foreach ($request->hapus_foto_slider as $hapusFoto) {
+                    if (in_array($hapusFoto, $fotoSliderLama)) {
+                        // Hapus file dari storage
+                        Storage::disk('public')->delete($hapusFoto);
+                        // Hapus path dari array
+                        $fotoSliderLama = array_filter($fotoSliderLama, fn($foto) => $foto !== $hapusFoto);
+                    }
+                }
+            }
+        
+            // Tambahkan foto_slider baru
+            if ($request->hasFile('foto_slider')) {
+                foreach ($request->file('foto_slider') as $file) {
+                    $fotoSliderBaru[] = $file->store('images', 'public');
+                }
+            }
+        
+            // Gabungkan foto lama yang tersisa dengan foto baru
+            $wisata->foto_wisata = json_encode(array_merge($fotoSliderLama, $fotoSliderBaru));
+        
+            // Update waktu kunjung
+            $waktuKunjung = [];
+            if ($request->has('hari')) {
+                foreach ($request->hari as $index => $hari) {
+                    $waktuKunjung[] = [
+                        'hari' => $hari,
+                        'jam_buka' => $request->jam_buka[$index] ?? null,
+                        'jam_tutup' => $request->jam_tutup[$index] ?? null,
+                    ];
+                }
+            }
+            $wisata->waktu_kunjung = json_encode($waktuKunjung);
+            
+        // Jika user ingin menghapus brosur
+        if ($wisata->brosur) {
+            Storage::disk('public')->delete($wisata->brosur);
+            $wisata->brosur = null;
+        }
+
+            $wisata->save();
+        
+            return redirect('/kelolawisata')->with('success', 'Data wisata berhasil diperbarui!');
+        }      
+
+        public function kelolaHomepage()
+        {
+            $homepageData = Homepage::where('desa_name', 'wisata')->first();
+            return view('admin.adminwisata.kelolahomepagewisata', compact('homepageData'));
+        }
+
+        // Mengelola update banner gambar untuk homepage wisata
+        public function updateBannerWisata(Request $request)
+        {
+            // Ambil data homepage wisata berdasarkan desa_name 'wisata'
+            $homepageData = Homepage::where('desa_name', 'wisata')->first();
+
+            // Jika data tidak ditemukan, buat data baru untuk desa wisata
+            if (!$homepageData) {
+                $homepageData = new Homepage;
+                $homepageData->desa_name = 'wisata'; // Tentukan desa yang sedang diproses
+            }
+
+            // Mengelola upload gambar banner jika ada
+            if ($request->hasFile('banner_image')) {
+                // Hapus gambar lama jika ada
+                if ($homepageData->gambar_banner && Storage::disk('public')->exists($homepageData->gambar_banner)) {
+                    Storage::disk('public')->delete($homepageData->gambar_banner);
+                }
+
+                // Simpan gambar baru ke folder 'uploads/wisata'
+                $bannerImageName = $request->file('banner_image')->store('uploads/wisata', 'public');
+                $homepageData->gambar_banner = $bannerImageName;
+            }
+
+            // Simpan perubahan ke dalam database
+            $homepageData->save();
+
+            // Redirect kembali dengan pesan sukses
+            return redirect()->back()->with('success', 'Banner Desa Wisata berhasil diperbarui');
+        }
+    
+}

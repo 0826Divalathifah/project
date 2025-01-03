@@ -282,7 +282,7 @@ class AdminDesaBudayaController extends Controller
         'foto_slider' => json_encode(array_values($fotoSliderPaths)),
     ]);
 
-    return redirect()->back()->with('success', 'Data budaya berhasil diperbarui');
+    return redirect()->to('/kelolabudaya')->with('success', 'Data budaya berhasil diperbarui');
 }
 
 
@@ -339,7 +339,7 @@ class AdminDesaBudayaController extends Controller
              'alamat' => $request->alamat,
          ]);
  
-         return redirect()->back()->with('success', 'Agenda berhasil ditambahkan');
+         return redirect()->to('/kelolaagenda')->with('success', 'Agenda berhasil ditambahkan');
      }
  
      // Menampilkan form edit agenda
@@ -454,5 +454,5 @@ class AdminDesaBudayaController extends Controller
         return redirect()->back()->with('success', 'Card Selamat Datang berhasil diperbarui');
     }
  
-    
+ 
 }

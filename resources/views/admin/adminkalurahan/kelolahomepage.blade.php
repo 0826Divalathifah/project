@@ -60,12 +60,13 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
     <!-- Social -->
     <div class="header-social d-flex align-items-center">
-        
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
             <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
             <span style="font-size: 16px;">Logout</span>
-        </a>
+        </button>
+    </form>
     </div>
 </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
@@ -130,6 +131,19 @@
                 <h4 class="card-title">Kelola Beranda</h4>
                 <form class="forms-sample" action="{{ url('/update-homepage-kalurahan') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+
+                    <div id="messages" style="display: none;">
+                    <!-- Pesan sukses dari session -->
+                      @if(session('success'))
+                          <div data-success="{{ session('success') }}"></div>
+                      @endif
+
+                      <!-- Pesan error dari session -->
+                      @if(session('error'))
+                          <div data-error="{{ session('error') }}"></div>
+                      @endif
+                  </div>
+
                     <!-- Edit Banner -->
                     <div class="form-group">
                         <label for="bannerImage">Edit Banner</label>

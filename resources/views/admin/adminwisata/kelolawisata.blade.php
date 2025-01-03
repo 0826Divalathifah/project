@@ -124,6 +124,28 @@
                     <h4 class="card-title">Kelola Wisata</h4>
                     <a href="{{ url('tambahwisata') }}" class="btn btn-primary">Tambah Wisata</a>
                   </div>
+
+                  <!-- Tampilkan Error Secara Statis -->
+                  @if ($errors->any())
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
+
+                  <!-- Tampilkan Sukses atau Error dengan SweetAlert -->
+                  <div id="messages" style="display: none;">
+                      @if(session('success'))
+                          <div data-success="{{ session('success') }}"></div>
+                      @endif
+                      @if(session('error'))
+                          <div data-error="{{ session('error') }}"></div>
+                      @endif
+                  </div>
+
                   <div class="table-responsive">
                     <table class="table table-striped table-borderless">
                       <thead>

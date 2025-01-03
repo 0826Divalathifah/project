@@ -1,32 +1,44 @@
 // Event listener for the form submission with SweetAlert validation
-document.querySelector("#submit").addEventListener("click", () => {
-    const form = document.querySelector("#formTambah");
-    // Cek apakah form valid
-    if (!form.checkValidity()) {
-        // Jika tidak valid, tampilkan pesan kesalahan
-        Swal.fire({
-            title: "Perhatian!",
-            text: "Harap lengkapi semua field yang diperlukan.",
-            icon: "warning"
-        });
-        return; // Keluar dari fungsi jika form tidak valid
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector("form"); // Mengambil form pertama di halaman
+    const submitButton = document.querySelector("#submit");
+
+    // Cek apakah form dan tombol submit ditemukan
+    if (!form || !submitButton) {
+        console.error("Form or submit button not found!"); // Log jika form atau tombol tidak ditemukan
+        return;
     }
 
+    // Tambahkan event listener ke tombol submit
+    submitButton.addEventListener("click", (event) => {
+        console.log("Submit button clicked"); // Log ketika tombol diklik
+
+        // Cek apakah form valid
+        console.log("Checking form validity...");
+        if (!form.checkValidity()) {
+            // Jika tidak valid, hentikan submit dan tampilkan pesan kesalahan
+            event.preventDefault();
+            console.log("Form is invalid"); // Log jika form tidak valid
+            Swal.fire({
+                title: "Perhatian!",
+                text: "Harap lengkapi semua field yang diperlukan.",
+                icon: "warning"
+            });
+        } else {
+            // Jika valid, submit form
+            console.log("Form is valid, submitting..."); // Log sebelum submit
+        }
+    });
 });
 
 // Script for formatting currency input
 function formatCurrency(input) {
-    let value = input.value.replace(/\D/g, '');
-    if (value) {
-        value = Number(value).toLocaleString('id-ID');
-        input.value = value;
-    }
+    let value = input.value.replace(/[^0-9]/g, ''); // Hanya angka
+    input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, "."); // Format ribuan
 }
 
-//penghapus data setiap desa
 // Function for confirming the deletion of various types of data
 function confirmDelete(id, type) {
-    // Determining the message based on the type of data
     const messages = {
         'budaya': 'Data Budaya ini akan dihapus beserta semua foto terkait!',
         'prima': 'Data Produk Prima ini akan dihapus beserta semua foto terkait!',
@@ -37,10 +49,9 @@ function confirmDelete(id, type) {
         'admin': 'Admin ini akan dihapus!',
     };
 
-    // Get the message based on the type
     const message = messages[type] || 'Data ini akan dihapus!';
+    console.log("Delete confirmation message:", message);
 
-    // Display confirmation alert with SweetAlert
     Swal.fire({
         title: 'Apakah Anda yakin?',
         text: message,
@@ -51,31 +62,36 @@ function confirmDelete(id, type) {
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
-            // Submit the form based on the ID
+            console.log("Confirmed deletion for ID:", id);
             document.getElementById(`delete-form-${id}`).submit();
+        } else {
+            console.log("Deletion cancelled");
         }
     });
 }
 
-// If the deletion is successful, display success alert
+// Display success or error alerts after deletion
 document.addEventListener('DOMContentLoaded', function () {
     const successElement = document.querySelector('[data-success]');
     const errorElement = document.querySelector('[data-error]');
     
     if (successElement) {
         const successMessage = successElement.getAttribute('data-success');
+        console.log("Success message found:", successMessage);
         if (successMessage) {
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
                 text: successMessage,
+                timer: 2000, // Waktu dalam milidetik (3000 ms = 3 detik)
+                showConfirmButton: false, // Hilangkan tombol OK
             });
         }
     }
 
-    // If the deletion failed, display error alert
     if (errorElement) {
         const errorMessage = errorElement.getAttribute('data-error');
+        console.log("Error message found:", errorMessage);
         if (errorMessage) {
             Swal.fire({
                 icon: 'error',
@@ -85,9 +101,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
-
-
-
-
-
-

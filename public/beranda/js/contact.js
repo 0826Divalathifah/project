@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const submitButton = document.getElementById('submitFeedback');
-    const contactForm = document.getElementById('contactForm');
-
-    submitButton.addEventListener('click', function (event) {
-        // Mencegah reload halaman
-        event.preventDefault();
+    // Fungsi untuk menangani pengiriman form
+    function handleSubmit(event) {
+        event.preventDefault(); // Mencegah reload halaman
 
         // Ambil nilai input form
         const name = document.getElementById('name').value.trim();
@@ -32,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // Siapkan data untuk dikirim
-        const formData = new FormData(contactForm);
+        const formData = new FormData(document.getElementById('contactForm'));
 
         // Kirim data ke server menggunakan fetch
         fetch('/simpanFeedback', {
@@ -43,7 +40,12 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             body: formData,
         })
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 if (data.success) {
                     // Tampilkan pesan sukses
@@ -54,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
 
                     // Reset form setelah sukses
-                    contactForm.reset();
+                    document.getElementById('contactForm').reset();
                 } else {
                     // Tampilkan pesan error dari server
                     Swal.fire({
@@ -73,5 +75,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
                 console.error('Error:', error);
             });
-    });
+    }
+
+    // Langsung pasang fungsi handleSubmit ke form
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleSubmit);
+    } else {
+        console.error('Form tidak ditemukan!');
+    }
 });

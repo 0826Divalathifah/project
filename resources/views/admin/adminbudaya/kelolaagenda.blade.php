@@ -50,14 +50,15 @@
           <div class="header-right1 d-flex align-items-center justify-content-center">
           <!-- Social -->
           <div class="header-social d-flex align-items-center">
-              
-        <!-- Icon Power -->
-        <a class="nav-link d-flex align-items-center mx-3" href="#">
-            <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
-            <span style="font-size: 16px;">Logout</span>
-        </a>
-    </div>
-</div>    
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="nav-link d-flex align-items-center mx-3" style="background: none; border: none; cursor: pointer;">
+                        <i class="ti-power-off text-primary" style="font-size: 24px; margin-right: 10px;"></i>
+                        <span style="font-size: 16px;">Logout</span>
+                    </button>
+                </form>
+            </div>
+        </div>    
     <li class="nav-item nav-settings d-none d-lg-flex">
         <a class="nav-link" href="#">
             <i class="mdi mdi-arrow-up-bold-circle-outline"></i>
@@ -121,21 +122,27 @@
                     <h4 class="card-title">Tambah Agenda Budaya</h4>
                     <form class="forms-sample" action="/kelolaagenda" method="POST">
                         @csrf
+                        <!-- Tampilkan Error Secara Statis -->
                         @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
+                        <!-- Tampilkan Sukses atau Error dengan SweetAlert -->
+                        <div id="messages" style="display: none;">
+                            @if(session('success'))
+                                <div data-success="{{ session('success') }}"></div>
+                            @endif
+                            @if(session('error'))
+                                <div data-error="{{ session('error') }}"></div>
+                            @endif
                         </div>
-                    @endif
+
                         <!-- Token CSRF untuk keamanan -->
                         <div class="form-group">
                             <label for="namaAcara">Nama Acara</label>

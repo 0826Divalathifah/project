@@ -124,6 +124,27 @@
                   <form class="forms-sample" action="{{ url('/updateBannerPreneur') }}" method="POST" enctype="multipart/form-data">
                       @csrf
 
+                      <!-- Tampilkan Error Secara Statis -->
+                      @if ($errors->any())
+                          <div class="alert alert-danger">
+                              <ul>
+                                  @foreach ($errors->all() as $error)
+                                      <li>{{ $error }}</li>
+                                  @endforeach
+                              </ul>
+                          </div>
+                      @endif
+
+                      <!-- Tampilkan Sukses atau Error dengan SweetAlert -->
+                      <div id="messages" style="display: none;">
+                          @if(session('success'))
+                              <div data-success="{{ session('success') }}"></div>
+                          @endif
+                          @if(session('error'))
+                              <div data-error="{{ session('error') }}"></div>
+                          @endif
+                      </div>
+
                       <div class="form-group">
                           <label for="bannerImage">Edit Banner</label>
                           <input type="file" name="banner_image" class="form-control" id="bannerImage" accept="image/*">

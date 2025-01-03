@@ -184,34 +184,35 @@
               </div>
 
               <div class="col-6 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <p class="card-title mb-3">Data Admin</p>
-            <div class="table-responsive">
-                <table class="table table-striped table-borderless table-hover">
-                    <thead>
-                        <tr>
-                            <th>Nama Lengkap</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($users as $user)
+                <div class="card">
+                <div class="card-body">
+                <p class="card-title mb-3">Data Admin</p>
+                <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                    <table class="table table-striped table-borderless table-hover">
+                        <thead>
                             <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ ucfirst(str_replace('_', ' ', $user->role)) }}</td>
+                                <th>Nama Lengkap</th>
+                                <th>Email</th>
+                                <th>Role</th>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="3" class="text-center">Tidak ada admin yang tersedia.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @forelse ($users->take(5) as $user) <!-- Ambil hanya 5 data -->
+                                <tr>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ ucfirst(str_replace('_', ' ', $user->role)) }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="3" class="text-center">Tidak ada admin yang tersedia.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
+
     </div>
 </div>
 

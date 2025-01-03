@@ -174,8 +174,6 @@ class AdminDesaPreneurController extends Controller
         return redirect()->to('/kelolapreneur')->with('success', 'Produk dan varian berhasil ditambahkan');
     }
     
-
-    
     public function kelolaPreneur()
     {
         $preneur = Preneur::all();
@@ -254,7 +252,6 @@ class AdminDesaPreneurController extends Controller
 
         return redirect()->to('/kelolapreneur')->with('success', 'Produk berhasil diperbarui');
     }
-
     
 
     public function hapusPreneur($id)

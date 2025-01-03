@@ -18,17 +18,18 @@ class PageController extends Controller
 {
 
         public function index()
-    {
-        // Ambil data dari tabel `Homepage` dengan `desa_name` bernilai 'budaya'
-        $homepageData = Homepage::where('desa_name', 'kalurahan')->first();
-    
-    
-        // Tentukan nilai default jika data tidak ada
-        $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg';
-        $deskripsi_index = $homepageData->deskripsi_index ?? 'Deskripsi default untuk Index.';
-    
-        return view('beranda.index', compact('gambar_banner', 'deskripsi_index'));
-    }
+        {
+
+            // Ambil semua data dari tabel Homepage berdasarkan desa_name
+            $banners = Homepage::whereIn('desa_name', ['kalurahan', 'budaya', 'preneur', 'prima', 'wisata'])->get();
+            $homepageData = Homepage::where('desa_name', 'kalurahan')->first();
+            
+            // Tentukan nilai default jika data tidak ada
+            $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg';
+            $deskripsi_index = $homepageData->deskripsi ?? 'Deskripsi default untuk Index.';
+            
+            return view('beranda.index', compact('banners','gambar_banner','deskripsi_index'));
+        }
        
     public function desabudaya()
     {
@@ -52,9 +53,9 @@ class PageController extends Controller
         // Menghitung total kunjungan untuk Desa Budaya
         $totalVisitsDesaBudaya = Visit::where('desa_name', 'Desa Budaya')->count();
 
-        // Mengirimkan data ke view
-        return view('beranda.desabudaya', compact('budaya', 'gambar_banner', 'gambar_welcome', 'deskripsi_welcome', 'homepageData','totalVisitsDesaBudaya'));
-    }
+            // Mengirimkan data ke view
+            return view('beranda.desabudaya', compact('budaya', 'gambar_banner', 'gambar_welcome', 'deskripsi_welcome', 'homepageData','totalVisitsDesaBudaya'));
+        }
 
     public function detail_budaya($id)
     {
@@ -67,8 +68,8 @@ class PageController extends Controller
         // Mengambil semua agenda untuk kalender
         $agenda = Agenda::all();
 
-        // Ambil data dari tabel Homepage dengan desa_name bernilai 'wisata'
-        $homepageData = Homepage::where('desa_name', 'budaya')->first();
+            // Ambil data dari tabel `Homepage` dengan `desa_name` bernilai 'wisata'
+            $homepageData = Homepage::where('desa_name', 'budaya')->first();
 
         // Pastikan data tersedia untuk view
         $gambar_banner = $homepageData->gambar_banner ?? 'uploads/default_banner.jpg'; // Path default jika gambar tidak ditemukan
@@ -163,8 +164,6 @@ class PageController extends Controller
             // Mengembalikan tampilan detail produk dengan data yang diambil
             return view('beranda.detail_prima', compact('prima' , 'gambar_banner'));
         }
-
-        
              
         public function desawisata()
         {
@@ -196,66 +195,47 @@ class PageController extends Controller
 
             return view('beranda.detail_wisata', compact('wisata','homepageData', 'gambar_banner'));
         }
+                       
+        public function about()
+        {
+            $tentangKamiData = KelolaHomepage::where('nama_menu', 'tentang_kami')->first();
             
+            return view('beranda.about', [
+                'tentangKamiData' => $tentangKamiData,
+                'deskripsi' => $tentangKamiData->deskripsi ?? '',
+                'banner_image' => $tentangKamiData->banner_image ?? '',
+                'slider_images' => json_decode($tentangKamiData->slider_images, true) ?? [], // Decode JSON ke array
+            ]);
+        }
 
-            
-    public function about()
-    {
-        $tentangKamiData = KelolaHomepage::where('nama_menu', 'tentang_kami')->first();
+        public function contact()
+        {
+            // Ambil data deskripsi dan gambar banner dari model KelolaHomepage untuk halaman Kontak
+            $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->first();
         
-        return view('beranda.about', [
-            'tentangKamiData' => $tentangKamiData,
-            'deskripsi' => $tentangKamiData->deskripsi ?? '',
-            'banner_image' => $tentangKamiData->banner_image ?? '',
-            'slider_images' => json_decode($tentangKamiData->slider_images, true) ?? [], // Decode JSON ke array
-        ]);
-    }
+            // Mengirimkan data ke view
+            return view('beranda.contact', [
+                'banner_image' => $kontakData->banner_image ?? '',
+            ]);
+        }
 
+        public function simpanFeedback(Request $request)
+        {
+            // Validasi input hanya jika `message` kosong
+            $request->validate([
+                'message' => 'required|string',
+                'name' => 'nullable|string|max:255',
+                'email' => 'nullable|email|max:255',
+            ]);
 
-    
-
-    public function contact()
-    {
-        // Ambil data deskripsi dan gambar banner dari model KelolaHomepage untuk halaman Kontak
-        $kontakData = KelolaHomepage::where('nama_menu', 'kontak')->first();
-    
-        // Pastikan data tersedia, dan set variabel
-        $banner_image = $kontakData ? $kontakData->banner_image : null;
-    
-        // Mengirimkan data ke view
-        return view('beranda.contact', [
-            'banner_image' => $banner_image,
-        ]);
-    }
-
-
-    public function simpanFeedback(Request $request)
-    {
-        // Validasi input hanya jika `message` kosong
-        $request->validate([
-            'message' => 'required|string',
-            'name' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255',
-        ]);
-
-        // Simpan ke database
-        Feedback::create([
-            'message' => $request->message,
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
-    
-        return response()->json(['success' => true, 'message' => 'Feedback berhasil disimpan']);
-    }
-
-    public function elements()
-    {
-        return view('beranda.elements'); // Mengarah ke resources/views/beranda/contact.blade.php
-    }
-
-    public function transaksi()
-    {
-        return view('beranda.transaksi'); // Mengarah ke resources/views/beranda/contact.blade.php
-    }
+            // Simpan ke database
+            Feedback::create([
+                'message' => $request->message,
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+        
+            return response()->json(['success' => true, 'message' => 'Feedback berhasil disimpan']);
+        }
 
 }

@@ -206,13 +206,7 @@
                 <div class="price-range mt-5">
                     <h2>Kisaran Harga</h2>
                     <p>
-                        @if(!empty($budaya->harga_min) && !empty($budaya->harga_max))
-                            Rp {{ number_format($budaya->harga_min, 0, ',', '.') }} - Rp {{ number_format($budaya->harga_max, 0, ',', '.') }}
-                        @elseif(!empty($budaya->harga_min))
-                            Mulai dari Rp {{ number_format($budaya->harga_min, 0, ',', '.') }}
-                        @elseif(!empty($budaya->harga_max))
-                            Hingga Rp {{ number_format($budaya->harga_max, 0, ',', '.') }}
-                        @endif
+                        Rp {{ $budaya->harga_min }} - Rp {{ $budaya->harga_max }}
                     </p>
                 </div>
             @endif
