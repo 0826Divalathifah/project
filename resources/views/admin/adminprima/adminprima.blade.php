@@ -135,8 +135,8 @@
                       <div class="card-body d-flex align-items-center">
                           <!-- Background Icon -->
                           <div class="col-4 background-icon d-flex align-items-center justify-content-center">
-                              <i class="mdi mdi-image-filter-hdr text-primary" style="font-size: 48px;"></i>
-                          </div>
+    <i class="mdi mdi-cube-outline text-primary" style="font-size: 48px;"></i>
+</div>
                           <!-- Text Content -->
                           <div>
                               <h5 class="card-title mb-2 text-primary">Total Produk</h5>

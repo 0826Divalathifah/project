@@ -151,10 +151,10 @@ class AdminKalurahanController extends Controller
     public function kelolaAdmin()
     {
         // Ambil semua data admin dari database
-        $users = user::all(); 
+        $users = User::all(); 
 
         // Kirim data admin ke view
-        return view('admin.adminkalurahan.kelolaadmin', compact('admin'));
+        return view('admin.adminkalurahan.kelolaadmin', compact('users'));
     }
     
     public function tambahadmin()
@@ -173,7 +173,7 @@ class AdminKalurahanController extends Controller
     
         try {
             // Membuat admin baru berdasarkan role yang dipilih
-            Admin::create([
+            User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password), // Meng-hash password
@@ -190,8 +190,8 @@ class AdminKalurahanController extends Controller
     
     public function editAdmin($id)
     {
-        $admin = Admin::findOrFail($id);
-        return view('admin.adminkalurahan.editadmin', compact('admin'));
+        $users = user::findOrFail($id);
+        return view('admin.adminkalurahan.editadmin', compact('users'));
     }
 
 
@@ -205,17 +205,17 @@ class AdminKalurahanController extends Controller
         ]);
 
         try {
-            $admin = Admin::findOrFail($id);
-            $admin->name = $request->name;
-            $admin->email = $request->email;
-            $admin->role = $request->role;
+            $users = User::findOrFail($id);
+            $users->name = $request->name;
+            $users->email = $request->email;
+            $users->role = $request->role;
 
             // Jika password diisi, update password dengan hash baru
             if ($request->password) {
-                $admin->password = Hash::make($request->password);
+                $users->password = Hash::make($request->password);
             }
 
-            $admin->save();
+            $users->save();
 
             return redirect('/kelolaadmin')->with('success', 'Admin berhasil diperbarui');
 
@@ -230,7 +230,7 @@ class AdminKalurahanController extends Controller
      public function hapusAdmin($id)
     {
         // Cari dan hapus agenda berdasarkan ID
-        Admin::findOrFail($id)->delete();
+        User::findOrFail($id)->delete();
 
         // Redirect dengan pesan sukses
         return redirect()->back()->with('success', 'Admin berhasil dihapus.');
